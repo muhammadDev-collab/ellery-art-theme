@@ -6,6 +6,19 @@
   ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
+<style>
+  .shopify-section--slideshow .slideshow,
+  .shopify-section--slideshow .content-over-media {
+    max-height: 90vh;
+  }
+
+  .shopify-section--slideshow .content-over-media__media,
+  .shopify-section--slideshow .content-over-media > img,
+  .shopify-section--slideshow .content-over-media > video {
+    max-height: 90vh;
+  }
+</style>
+
 {%- if section.blocks.size > 0 -%}
   {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
