@@ -232,11 +232,24 @@
                 flex-shrink: 0;
               }
               .size-variant__label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
                 font-size: 12px;
                 color: #444;
                 padding: 0 10px;
-                font-style:italic;
+                font-style: italic;
+                gap: 2px;
+              }
+              .size-variant__badge {
+                font-size: 9px;
+                font-weight: 700;
+                font-style: normal;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: #888;
               }
               .size-variant__prices {
                 display: flex;
@@ -267,8 +280,10 @@
 
             {%- assign param_name = form_id | append: '-option' | append: option.position -%}
             <div class="size-variant-list">
+              {%- assign visible_index = 0 -%}
               {%- for option_value in option.values -%}
                 {%- unless hide_sold_out_variants and option_value.available == false and option_value.selected == false -%}
+                  {%- assign visible_index = visible_index | plus: 1 -%}
                   {%- assign ov_id = 'option-value-size-' | append: section.id | append: '-' | append: forloop.index -%}
                   {%- assign ov_parts = option_value.name | split: '|' -%}
                   {%- assign ov_short = ov_parts[0] | strip -%}
@@ -277,6 +292,12 @@
                   {%- assign ov_on_sale = false -%}
                   {%- if ov_variant.compare_at_price > ov_variant.price -%}
                     {%- assign ov_on_sale = true -%}
+                  {%- endif -%}
+                  {%- assign ov_badge = '' -%}
+                  {%- if visible_index == 2 -%}
+                    {%- assign ov_badge = 'Most Popular' -%}
+                  {%- elsif visible_index == 3 -%}
+                    {%- assign ov_badge = 'Best Value' -%}
                   {%- endif -%}
 
                   <input class="sr-only" type="radio"
@@ -292,7 +313,10 @@
                     class="size-variant-item {% if option_value.selected %}is-selected{% endif %} {% if option_value.available == false %}is-disabled{% endif %}">
                     <span class="size-variant__short">{{ ov_short }}</span>
                     <span class="size-variant__divider"></span>
-                    <span class="size-variant__label">{{ ov_long | default: ov_short }}</span>
+                    <span class="size-variant__label">
+                      {%- if ov_badge != '' -%}<span class="size-variant__badge">{{ ov_badge }}</span>{%- endif -%}
+                      {{ ov_long | default: ov_short }}
+                    </span>
                     <span class="size-variant__divider"></span>
                     <span class="size-variant__prices">
                       {%- if ov_on_sale -%}
