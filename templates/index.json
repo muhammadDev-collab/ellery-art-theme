@@ -185,7 +185,7 @@
         "padding_horizontal": 5,
         "padding_horizontal_mobile": 1.5,
         "full_width": false,
-        "content_width": 1500,
+        "content_width": 800,
         "border_thickness": 0,
         "section_radius": 0
       }
