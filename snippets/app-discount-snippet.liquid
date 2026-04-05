@@ -106,14 +106,18 @@
 
     var TYPE = {{ type | json }};
 
-    // Set CSS variable for sticky offset calculation (header type only)
+    // Set --discount-progress-bar-height so the header's sticky top offset is correct
     if (TYPE === 'header') {
-      var barEl = document.querySelector('.discount-app-header.progress-bar-main');
       function setBarHeight() {
-        var h = barEl ? barEl.offsetHeight : 55;
+        var barEl = document.querySelector('.discount-app-header.progress-bar-main');
+        var h = barEl ? barEl.getBoundingClientRect().height : 55;
         document.documentElement.style.setProperty('--discount-progress-bar-height', h + 'px');
       }
-      setBarHeight();
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setBarHeight);
+      } else {
+        setBarHeight();
+      }
       window.addEventListener('resize', setBarHeight);
     }
 

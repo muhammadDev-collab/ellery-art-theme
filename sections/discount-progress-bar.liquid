@@ -1,3 +1,16 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  /* When announcement bar is above it, sit below the announcement bar */
+  .shopify-section--announcement-bar ~ #shopify-section-{{ section.id }} {
+    top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
+  }
+</style>
+
 {% render 'app-discount-snippet', type: 'header' %}
 
 {% schema %}

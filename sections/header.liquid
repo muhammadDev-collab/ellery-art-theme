@@ -48,18 +48,17 @@
       top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
     }
 
-    .shopify-section--discount-progress-bar ~ #shopify-section-{{ section.id }},
+    /* Progress bar alone above header */
+    .shopify-section--discount-progress-bar ~ #shopify-section-{{ section.id }} {
+      top: var(--discount-progress-bar-height, 55px);
+    }
+
+    /* Announcement bar + progress bar both above header */
     .shopify-section--announcement-bar ~ .shopify-section--discount-progress-bar ~ #shopify-section-{{ section.id }} {
       top: calc(
         (var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px)) +
         var(--discount-progress-bar-height, 55px)
       );
-    }
-
-    .shopify-section--discount-progress-bar {
-      position: sticky;
-      top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
-      z-index: 5;
     }
   {%- endif -%}
 
