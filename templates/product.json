@@ -240,34 +240,6 @@
             "video_6": "shopify://files/videos/DailyInspoVideo.mov"
           }
         },
-        "section_vso_theme_sections_product_video_gallery_CGXdRy": {
-          "type": "shopify://apps/section-vso-theme-sections/blocks/productVideoGallery/06016590-3938-4460-bd08-bd58cf996a58",
-          "settings": {
-            "block_top_spacing": 0,
-            "block_bottom_spacing": 0,
-            "video_title": "<strong>See it in action</strong>",
-            "video_title_font_color": "#2e2a39",
-            "video_title_font_size": 16,
-            "video_title_margin_bottom": 8,
-            "video_width": 90,
-            "video_radius": 4,
-            "border_color_type": "gradient",
-            "border_gradient": "linear-gradient(135deg, rgba(64, 64, 64, 1), rgba(96, 96, 96, 1) 50%, rgba(32, 32, 32, 1) 100%)",
-            "border_color": "#404040",
-            "border_width": 1,
-            "gallery_gap": 6,
-            "use_full_width": true,
-            "arrow_bg_color": "#404040",
-            "arrow_stroke_color": "#ffffff",
-            "use_circle_shape": false,
-            "use_strict_9_16_aspect_ratio": true,
-            "video_2": "shopify://files/videos/SnapInsta.to_AQNrSbJs0ErvoTSpY5Ypq9yZ0NHUXcU9sd0vzf7R0onIHFdoYIKZQ6k9m6dnkGv5BsdyiE78_CgP8pYls4j5nNUIdbVC8NvmhEUz954.mov",
-            "video_3": "shopify://files/videos/b3312f22add34fc4a49d61fc68657bdf.mov",
-            "video_4": "shopify://files/videos/SnapInsta.to_AQNKOMmdfJqTKSKZtLhNEMjy0ZYF28OScJfU3_CMgW7GCkDZ9LSmvV20T0-Mn7sxpwrhPcTH6ADnDeWx40OrZtXFxDawq_9K79B6qoU 2.mp4",
-            "video_6": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
-            "video_7": "shopify://files/videos/DailyInspoVideo.mov"
-          }
-        },
         "accordion_H8Wz8j": {
           "type": "accordion",
           "settings": {
@@ -305,7 +277,6 @@
         "section_vso_theme_sections_delivery_information_Lq3JXd",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
         "in_the_wild_JfpLWB",
-        "section_vso_theme_sections_product_video_gallery_CGXdRy",
         "accordion_H8Wz8j",
         "accordion_7pkFiz"
       ],
