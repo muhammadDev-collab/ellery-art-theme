@@ -1,0 +1,237 @@
+<div class="itw-panel__overlay" id="itw-panel-overlay"></div>
+
+<div class="itw-panel" id="itw-panel" role="dialog" aria-modal="true" aria-label="In The Wild">
+  <div class="itw-panel__header">
+    <h2 class="itw-panel__heading">IN THE WILD</h2>
+    <button class="itw-panel__close" id="itw-panel-close" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="itw-panel__divider"></div>
+
+  <div class="itw-panel__body">
+    <p class="itw-panel__subtext" id="itw-panel-subtext"></p>
+    <div class="itw-panel__reels" id="itw-panel-reels"></div>
+  </div>
+</div>
+
+<style>
+  .itw-panel__overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 100000;
+  }
+  .itw-panel__overlay.active { display: block; }
+
+  .itw-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 420px;
+    max-width: 95vw;
+    height: 100%;
+    background: #fff;
+    z-index: 100001;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.14);
+  }
+  .itw-panel.visible { transform: translateX(0); }
+
+  .itw-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px 48px;
+    flex-shrink: 0;
+  }
+  .itw-panel__heading {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .itw-panel__close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: currentColor;
+  }
+  .itw-panel__close:hover { opacity: 0.6; }
+
+  .itw-panel__divider {
+    height: 1px;
+    background: #e5e5e5;
+    flex-shrink: 0;
+  }
+
+  .itw-panel__body {
+    padding: 20px 18px 24px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .itw-panel__subtext {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #333;
+    margin: 0 0 20px;
+  }
+
+  .itw-panel__reels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .itw-panel__reel-wrap {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 9/16;
+    cursor: pointer;
+  }
+
+  .itw-panel__reel-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .itw-panel__play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .itw-panel__play-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: #111;
+    margin-left: 3px;
+  }
+  .itw-panel__reel-wrap.playing .itw-panel__play-icon {
+    opacity: 0;
+  }
+</style>
+
+<script>
+(function () {
+  var panel   = document.getElementById('itw-panel');
+  var overlay = document.getElementById('itw-panel-overlay');
+  var closeBtn = document.getElementById('itw-panel-close');
+  var subtextEl = document.getElementById('itw-panel-subtext');
+  var reelsEl  = document.getElementById('itw-panel-reels');
+
+  function openPanel(subtext) {
+    // Set subtext
+    subtextEl.textContent = subtext || '';
+
+    // Clone video elements from hidden source container
+    reelsEl.innerHTML = '';
+    var srcContainer = document.getElementById('itw-video-source');
+    if (srcContainer) {
+      srcContainer.querySelectorAll('[data-itw-video]').forEach(function (slot) {
+        var origVideo = slot.querySelector('video');
+        if (!origVideo) return;
+
+        var wrap = document.createElement('div');
+        wrap.className = 'itw-panel__reel-wrap';
+
+        var video = origVideo.cloneNode(true);
+        video.loop = true;
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        video.preload = 'metadata';
+        video.removeAttribute('autoplay');
+        video.removeAttribute('controls');
+
+        var icon = document.createElement('div');
+        icon.className = 'itw-panel__play-icon';
+        icon.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>';
+
+        wrap.appendChild(video);
+        wrap.appendChild(icon);
+        reelsEl.appendChild(wrap);
+
+        // Toggle play/pause on tap
+        wrap.addEventListener('click', function () {
+          if (video.paused) {
+            video.play();
+            wrap.classList.add('playing');
+          } else {
+            video.pause();
+            wrap.classList.remove('playing');
+          }
+        });
+      });
+    }
+
+    // Show panel
+    panel.classList.add('visible');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Autoplay after transition
+    setTimeout(function () {
+      reelsEl.querySelectorAll('video').forEach(function (v) {
+        v.play().then(function () {
+          v.closest('.itw-panel__reel-wrap').classList.add('playing');
+        }).catch(function () {});
+      });
+    }, 380);
+  }
+
+  function closePanel() {
+    panel.classList.remove('visible');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    // Pause all videos
+    reelsEl.querySelectorAll('video').forEach(function (v) {
+      v.pause();
+      v.currentTime = 0;
+      v.closest('.itw-panel__reel-wrap').classList.remove('playing');
+    });
+  }
+
+  // Open trigger — dispatched from the product block button
+  document.addEventListener('itw:open', function (e) {
+    openPanel(e.detail && e.detail.subtext);
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closePanel);
+  if (overlay)  overlay.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closePanel();
+  });
+})();
+</script>

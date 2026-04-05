@@ -625,6 +625,75 @@
               </div>
             </share-button>
 
+          {%- when 'in_the_wild' -%}
+            {%- liquid
+              assign itw_has_videos = false
+              for i in (1..6)
+                assign vid_key = 'video_' | append: i
+                assign vid = block.settings[vid_key]
+                if vid != blank
+                  assign itw_has_videos = true
+                  break
+                endif
+              endfor
+            -%}
+            {%- if itw_has_videos -%}
+              {%- comment -%}Hidden video source container — cloned into panel by JS{%- endcomment -%}
+              <div id="itw-video-source" style="display:none">
+                {%- for i in (1..6) -%}
+                  {%- assign vid_key = 'video_' | append: i -%}
+                  {%- assign vid = block.settings[vid_key] -%}
+                  {%- if vid != blank -%}
+                    <div data-itw-video>
+                      {{- vid | video_tag: loop: true, muted: true, playsinline: true, preload: 'metadata' -}}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <button
+                type="button"
+                class="itw-trigger"
+                data-subtext="{{ block.settings.subtext | escape }}"
+              >
+                <span class="itw-trigger__label">{{ block.settings.button_label | default: 'In The Wild' }}</span>
+                <svg class="itw-trigger__icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              </button>
+
+              <style>
+                .itw-trigger {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 0;
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  font-size: 13px;
+                  font-weight: 600;
+                  letter-spacing: 0.05em;
+                  text-transform: uppercase;
+                  color: #163bbc;
+                  text-decoration: underline;
+                  text-underline-offset: 3px;
+                }
+                .itw-trigger:hover { opacity: 0.75; }
+                .itw-trigger__icon { flex-shrink: 0; }
+              </style>
+
+              <script>
+                (function () {
+                  document.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.itw-trigger');
+                    if (!btn) return;
+                    document.dispatchEvent(new CustomEvent('itw:open', {
+                      detail: { subtext: btn.dataset.subtext || '' }
+                    }));
+                  });
+                })();
+              </script>
+            {%- endif -%}
+
           {%- when 'more_information' -%}
             {%- comment -%}We need at least one block compatible with below gallery information{%- endcomment -%}
             {%- if block.settings.text != blank and has_content_below_gallery -%}
