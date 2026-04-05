@@ -55,49 +55,66 @@
     font-size: var(--font-heading-size-xs, 0.7rem) !important;
   }
 
-  /* Mega menu row layout */
-  .mega-menu--custom .mega-menu__linklist--rows {
+  /* Mega menu column layout */
+  .mega-menu--custom {
+    align-items: flex-start;
+  }
+
+  .mega-menu--custom .mega-menu__linklist--cols {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem 3rem;
+    flex-shrink: 0;
+  }
+
+  .mega-menu__col {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    flex: 1;
+    gap: 0.6rem;
   }
 
-  .mega-menu__row {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding-block: 0.75rem;
-    border-bottom: 1px solid rgb(var(--border-color) / 0.15);
-  }
-
-  .mega-menu__row:last-child {
-    border-bottom: none;
-  }
-
-  .mega-menu__row-parent {
-    min-width: 160px;
-    flex-shrink: 0;
+  .mega-menu__col-parent {
     font-size: var(--font-heading-size-xs, 0.7rem) !important;
     letter-spacing: var(--font-heading-letter-spacing);
     text-transform: uppercase;
     font-family: var(--font-heading-family);
     font-weight: var(--font-heading-weight);
     white-space: nowrap;
+    margin-bottom: 0.25rem;
   }
 
-  .mega-menu__row-children {
+  .mega-menu__col-children {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.5rem;
+    flex-direction: column;
+    gap: 0.35rem;
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  .mega-menu__row-children a {
+  .mega-menu__col-children a {
     font-size: var(--text-xs);
     white-space: nowrap;
+  }
+
+  /* Middle italic text */
+  .mega-menu__middle-text {
+    flex: 0 1 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1rem;
+  }
+
+  .mega-menu__middle-text p,
+  .mega-menu__middle-text p * {
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+    color: currentColor;
+    opacity: 0.75;
   }
 
   /* Last primary nav item — blue */
@@ -818,6 +835,16 @@
             }
           ],
           "default": "right"
+        },
+        {
+          "type": "header",
+          "content": "Middle Text"
+        },
+        {
+          "type": "richtext",
+          "id": "promo_text",
+          "label": "Promo Text",
+          "info": "Italic text shown between the links and images."
         },
         {
           "type": "header",

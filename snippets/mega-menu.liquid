@@ -1,17 +1,20 @@
 {%- comment -%}
   MEGA MENU COMPONENT
-  Layout: left = rows of (parent + sub-links inline), right = 2 promo images
+  Layout: [link columns] | [middle text] | [2 promo images]
+  Each top-level sub_link = one column, its children listed vertically below it.
 {%- endcomment -%}
 
 <div class="mega-menu mega-menu--custom {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
+
+  {%- comment -%} LEFT: columns — each parent is a column header, children listed below {%- endcomment -%}
   {%- if link.levels > 0 -%}
-    <ul class="mega-menu__linklist mega-menu__linklist--rows unstyled-list">
+    <ul class="mega-menu__linklist mega-menu__linklist--cols unstyled-list">
       {%- for sub_link in link.links -%}
-        <li class="mega-menu__row">
-          <a href="{{ sub_link.url }}" class="mega-menu__row-parent h6">{{ sub_link.title }}</a>
+        <li class="mega-menu__col">
+          <a href="{{ sub_link.url }}" class="mega-menu__col-parent h6">{{ sub_link.title }}</a>
 
           {%- if sub_link.links.size > 0 -%}
-            <ul class="mega-menu__row-children unstyled-list">
+            <ul class="mega-menu__col-children unstyled-list">
               {%- for sub_sub_link in sub_link.links -%}
                 <li>
                   <a href="{{ sub_sub_link.url }}" class="link-faded">{{ sub_sub_link.title }}</a>
@@ -24,6 +27,14 @@
     </ul>
   {%- endif -%}
 
+  {%- comment -%} MIDDLE: italic promo text {%- endcomment -%}
+  {%- if block.settings.promo_text != blank -%}
+    <div class="mega-menu__middle-text">
+      <p>{{ block.settings.promo_text }}</p>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} RIGHT: 2 promo images {%- endcomment -%}
   {%- capture mega_menu_content -%}
     {%- render 'mega-menu-images', context: 'menu', block: block -%}
   {%- endcapture -%}
@@ -33,4 +44,5 @@
       {{- mega_menu_content -}}
     </div>
   {%- endif -%}
+
 </div>
