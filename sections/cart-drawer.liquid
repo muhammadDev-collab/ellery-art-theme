@@ -1,26 +1,138 @@
 <style>
-  /* Cart drawer background */
+  /* ── Cart drawer background ── */
   .cart-drawer.drawer {
     background-color: #f0f0f0 !important;
   }
 
-  /* Free shipping bar + progress bar white backgrounds with gap between */
+  /* ── Free shipping bar: text only, no track ── */
   .cart-free-shipping {
+    background: #ffffff;
+    padding: 14px 16px 10px;
+    text-align: center;
     margin-bottom: 4px;
   }
+  .cart-free-shipping__bar-track {
+    display: none;
+  }
+  .cart-free-shipping__text {
+    font-size: 13px;
+    margin: 0;
+  }
+  .cart-free-shipping__text strong {
+    color: #001bcf;
+  }
+  .cart-free-shipping__text--achieved {
+    color: #2a7a4b;
+  }
+
+  /* ── Progress bar white bg ── */
   .discount-app-cart-drawer.progress-bar-main {
     background-color: #ffffff !important;
     margin-bottom: 4px;
   }
 
-  /* Product cards white background */
+  /* ── Product cards ── */
+  .cart-drawer__items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+  }
   .cart-drawer__items line-item,
   .cart-drawer__items .line-item {
     background: #ffffff;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 12px;
-    margin-bottom: 8px;
-    display: block;
+    display: grid !important;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .cart-drawer__items .line-item__media {
+    width: 90px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  /* ── Product title ── */
+  .cart-drawer__items .line-item-info a,
+  .cart-drawer__items .line-item-info .h6 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ── Variant / size text ── */
+  .cart-drawer__items .line-item-info .smallcaps {
+    font-size: 11px;
+    color: #555;
+  }
+
+  /* ── Price: sale = red, compare-at = grey strikethrough ── */
+  .cart-drawer__items sale-price {
+    color: #cc0000 !important;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .cart-drawer__items compare-at-price {
+    color: #999 !important;
+    font-size: 12px;
+    text-decoration: line-through;
+  }
+
+  /* ── Quantity row ── */
+  .cart-drawer__items line-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  /* ── Trash icon (replace "Remove" text) ── */
+  .cart-drawer__items line-item-quantity a.link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+    font-size: 0;
+    color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23444' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+  }
+
+  /* ── + button: circle dark background ── */
+  .cart-drawer__items quantity-selector > a:last-child,
+  .cart-drawer__items .quantity-selector > a:last-child {
+    background-color: #222 !important;
+    border-radius: 50% !important;
+    width: 26px !important;
+    height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .cart-drawer__items quantity-selector > a:last-child svg,
+  .cart-drawer__items .quantity-selector > a:last-child svg {
+    stroke: #fff !important;
+  }
+
+  /* ── Quantity input ── */
+  .cart-drawer__items .quantity-selector__input {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    width: 24px;
+    text-align: center;
+    padding: 0;
   }
 </style>
 
