@@ -11,6 +11,10 @@
   "type": "header",
   "name": "Header group",
   "sections": {
+    "discount-progress-bar": {
+      "type": "discount-progress-bar",
+      "settings": {}
+    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -89,6 +93,7 @@
   },
   "order": [
     "announcement-bar",
+    "discount-progress-bar",
     "header"
   ]
 }

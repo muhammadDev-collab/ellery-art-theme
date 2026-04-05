@@ -1,0 +1,260 @@
+<!-- Link the custom CSS file -->
+<link rel="stylesheet" href="{{ 'custom-progress-bar.css' | asset_url }}">
+
+{% if type == 'cart' %}
+  <style>
+    .discount-app-{{ type }}.progress-bar-main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2efeb;
+      flex-direction: column;
+      height: 55px;
+      row-gap: 4px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -5px;
+      max-width: 530px;
+    }
+  </style>
+{% elsif type == 'cart-drawer' %}
+  <style>
+    .discount-app-{{ type }}.progress-bar-main {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: #f2efeb; */
+      background-color: white;
+      flex-direction: column;
+      height: 55px;
+      row-gap: 4px;
+      border-radius: 3px;
+    }
+    .discount-app-{{ type }}.progress-bar-main .progress-container {
+      display: none;
+    }
+    .discount-app-{{ type }}.progress-bar-main #progress-description-text {
+      font-size: inherit;
+    }
+    .discount-app-{{ type }}.progress-bar-main .progress-description {
+      width: 95%;
+    }
+    @media screen and (max-width: 641px) {
+      .discount-app-{{ type }}.progress-bar-main #progress-description-text {
+        font-size: 13px;
+      }
+    }
+  </style>
+{% else %}
+  <style>
+    .discount-app-{{ type }}.progress-bar-main {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f2eb;
+      flex-direction: column;
+      height: 55px;
+      row-gap: 4px;
+    }
+    .discount-app-{{ type }}.progress-bar-main ~ .shopify-section--header {
+      top: 55px;
+    }
+  </style>
+{% endif %}
+
+{% comment %} main progress bar {% endcomment %}
+<div class="discount-app-{{ type }} progress-bar-main">
+  <div class="progress-description">
+    <p id="progress-description-text"></p>
+    <img
+      id="ask-about-discount"
+      class="question-icon hide"
+      src="{{ 'question-mark.svg' |  asset_url }}"
+      alt="i" />
+  </div>
+  <div id="progress-container" class="progress-container hide">
+    <div class="line">
+      <div class="progress"></div>
+    </div>
+    <div class="circle blue">
+      <span class="circle_inner_text">&#10003;</span>
+    </div>
+    <div class="circle">
+      <span class="circle_inner_text">&#10003;</span>
+    </div>
+    <div class="circle special">+1</div>
+    <div class="circle">
+      <span class="circle_inner_text">&#10003;</span>
+    </div>
+    <div class="circle special">+2</div>
+  </div>
+</div>
+
+{% if settings.discounted_collection != blank %}
+  {% assign collection_handle = settings.discounted_collection %}
+  <script>
+      window.discountedCollectionHandle = "{{ collection_handle }}";
+  </script>
+{% endif %}
+
+<!-- Link the custom JS file -->
+{% comment %} <script src="{{ 'custom-progress-bar.js' | asset_url }}" defer></script> {% endcomment %}
+{% assign translations = metaobjects["discount_offer_bar_translations"]['discount-offer-bar-translations'] %}
+
+<script id="app-discount-action">
+  $(document).ready(function(){
+    const circles = document.querySelectorAll('.discount-app-{{ type }} .circle');
+    const progressLine = document.querySelector('.discount-app-{{ type }} .line .progress');
+    const progressContainer = document.querySelector('.discount-app-{{ type }} #progress-container');
+    const progressDescription = document.querySelector('.discount-app-{{ type }} #progress-description-text');
+    const askAboutDiscount = document.querySelector('.discount-app-{{ type }} #ask-about-discount');
+    
+    // Maximum cart count to complete the progress
+    const maxCartItems = 5; // This is arbitrary, adjust as needed.
+
+    const stepDescriptions = [
+        "{{ translations.step_1 | escape }}",
+        "{{ translations.step_2 | escape }}",
+        "{{ translations.step_3 | escape }}",
+        "{{ translations.step_4 | escape }}",
+        "{{ translations.step_5 | escape }}",
+        "{{ translations.step_6 | escape }}"
+    ];
+
+    // Update progress bar based on the cart count
+    function updateProgressBar(cartCount) {
+        let step = Math.min(cartCount, maxCartItems); // Don't exceed the max steps
+        const stepProgress = [0, 15, 38, 64, 87, 100]; // Adjust progress percentages
+        
+        // Update circle background colors
+        circles.forEach((circle, index) => {
+            if (index < step) {
+                circle.classList.add('blue'); // Completed steps
+                if (circle.classList.contains('special')) {
+                    circle.innerHTML = '<span>&#10003;</span>'; // Change +1 or +2 to tick
+                }
+            } else {
+                circle.classList.remove('blue'); // Uncompleted steps
+                if (circle.classList.contains('special')) {
+                    circle.innerHTML = index === 2 ? "+1" : "+2"; // Reset to +1 and +2 for step 3 and 5
+                }
+            }
+        });
+
+        // Update progress line width
+        progressLine.style.width = stepProgress[step] + '%';
+        // Update the description text based on the current step
+        progressDescription.textContent = stepDescriptions[step];
+        askAboutDiscount.classList.remove('hide');
+        askAboutDiscount.classList.add('show');
+        
+        if (cartCount > 0){
+            progressContainer.classList.remove('hide');
+            progressContainer.classList.add('show');
+        }
+        else {
+            progressContainer.classList.remove('show');
+            progressContainer.classList.add('hide');
+        }
+
+    }
+
+    function fetchDiscountCollection(handle, page = 1, limit = 250, allProductIds = []) {
+        const cacheKey = `discountCollection_${handle}`;
+        const cacheExpiryKey = `discountCollectionExpiry_${handle}`;
+
+            // Get cached data and expiry time from localStorage
+        const cachedCollection = localStorage.getItem(cacheKey);
+        const expiryTime = localStorage.getItem(cacheExpiryKey);
+        const currentTime = new Date().getTime();
+
+        // Check if the cache is valid and hasn't expired (1 hour)
+        if (cachedCollection && expiryTime && currentTime < expiryTime) {
+            return Promise.resolve(JSON.parse(cachedCollection));
+        }
+        // Fetch products with pagination, up to 250 per page (maximum allowed by Shopify)
+        return fetch(`/collections/${handle}/products.json?page=${page}&limit=${limit}`)
+            .then(response => response.json())
+            .then(data => {
+                // Concatenate the fetched products with the existing products
+                allProductIds = allProductIds.concat(data.products.map(product => product.id));
+    
+                // If the number of fetched products is less than the limit, we've fetched all products
+                if (data.products.length < limit) {
+                    // Cache the final product list
+                    localStorage.setItem(cacheKey, JSON.stringify(allProductIds));
+                    localStorage.setItem(cacheExpiryKey, currentTime + 3600 * 1000); // Cache expires in 1 hour
+                    return allProductIds; // Return array of product IDs
+                } else {
+                    // Otherwise, fetch the next page
+                    return fetchDiscountCollection(handle, page + 1, limit, allProductIds);
+                }
+            })
+            .catch(error => console.error('Error fetching discount collection:', error));
+    }
+
+    function fetchCart() {
+        return fetch('/cart.js')
+            .then(response => response.json())
+            .catch(error => console.error('Error fetching cart:', error));
+    }
+
+    function countEligibleProducts(cart, productIds) {
+        let count = 0;
+
+        cart.items.forEach(item => {
+            // Check if the product ID of the cart item is in the discount collection
+            if (productIds.includes(item.product_id)) {
+                count += item.quantity; // Increase counter by quantity of the item
+            }
+        });
+
+        return count;
+    }
+
+
+    function checkCartForDiscounts() {
+        // Replace 'discount-collection-handle' with your actual collection handle
+        const collectionHandle = window.discountedCollectionHandle;
+
+        if (collectionHandle) {
+            Promise.all([fetchDiscountCollection(collectionHandle), fetchCart()])
+                .then(([discountCollectionProductIds, cart]) => {
+                    const eligibleCount = countEligibleProducts(cart, discountCollectionProductIds);
+
+                    updateProgressBar(eligibleCount);
+                })
+                .catch(error => console.error('Error in checking cart for discounts:', error));
+        }
+    }
+
+    // Call this function on cart update
+    checkCartForDiscounts();
+
+    const elementToObserve = document.querySelector(".Header__CartDot");
+
+    // Create a MutationObserver to detect changes in innerText
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            checkCartForDiscounts();
+        });
+    });
+
+    // Set the configuration to observe only child node changes (text)
+    observer.observe(elementToObserve, { childList: true, subtree: true });
+    // Monitor for changes in the cart (for dynamic updates)
+
+    $('.discount-app-{{ type }} #ask-about-discount').click(function () {
+        $('.discount-info-popup').addClass('visible');
+        //document.getElementById("cart-popup-overlay").style.display = "block";
+    });
+  })
+</script>
