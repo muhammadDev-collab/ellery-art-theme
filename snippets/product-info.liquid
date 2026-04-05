@@ -638,6 +638,9 @@
               endfor
             -%}
             {%- if itw_has_videos -%}
+              {%- comment -%}Hidden richtext subtext — read by panel JS{%- endcomment -%}
+              <div id="itw-subtext-source" style="display:none">{{ block.settings.subtext }}</div>
+
               {%- comment -%}Hidden video source container — cloned into panel by JS{%- endcomment -%}
               <div id="itw-video-source" style="display:none">
                 {%- for i in (1..6) -%}
@@ -651,22 +654,19 @@
                 {%- endfor -%}
               </div>
 
-              <div class="itw-widget" data-subtext="{{ block.settings.subtext | escape }}">
-
-                {{- '<!-- ITW widget -->' -}}
-
+              <div class="itw-widget">
                 <div class="itw-widget__header">
                   <div class="itw-widget__title-group">
                     <span class="itw-widget__title">IN THE WILD</span>
                     <span class="itw-widget__sep">|</span>
-                    <span class="itw-widget__subtitle">Real Customer Experiences</span>
+                    <span class="itw-widget__subtitle"><em>Real Customer Experiences</em></span>
                   </div>
                   <div class="itw-widget__arrows">
                     <button type="button" class="itw-widget__arrow itw-widget__arrow--prev" aria-label="Previous">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                     </button>
                     <button type="button" class="itw-widget__arrow itw-widget__arrow--next" aria-label="Next">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                     </button>
                   </div>
                 </div>
@@ -687,13 +687,10 @@
                     {%- endfor -%}
                   </div>
                 </div>
-
               </div>
 
               <style>
-                .itw-widget {
-                  width: 100%;
-                }
+                .itw-widget { width: 100%; }
                 .itw-widget__header {
                   display: flex;
                   align-items: center;
@@ -703,8 +700,7 @@
                 .itw-widget__title-group {
                   display: flex;
                   align-items: center;
-                  gap: 8px;
-                  flex-wrap: wrap;
+                  gap: 7px;
                 }
                 .itw-widget__title {
                   font-size: 13px;
@@ -713,43 +709,32 @@
                   text-transform: uppercase;
                   color: #111;
                 }
-                .itw-widget__sep {
-                  color: #999;
-                  font-size: 13px;
-                }
+                .itw-widget__sep { color: #999; font-size: 13px; }
                 .itw-widget__subtitle {
                   font-size: 13px;
-                  font-style: italic;
                   color: #555;
                   font-weight: 400;
                 }
                 .itw-widget__arrows {
                   display: flex;
-                  gap: 4px;
+                  gap: 2px;
                   flex-shrink: 0;
                 }
                 .itw-widget__arrow {
                   width: 28px;
                   height: 28px;
-                  border: 1px solid #ddd;
-                  border-radius: 50%;
-                  background: #fff;
+                  border: none;
+                  background: none;
                   cursor: pointer;
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   padding: 0;
                   color: #333;
-                  transition: border-color 0.2s, color 0.2s;
                 }
-                .itw-widget__arrow:hover {
-                  border-color: #163bbc;
-                  color: #163bbc;
-                }
-                .itw-widget__track-wrap {
-                  overflow: hidden;
-                  width: 100%;
-                }
+                .itw-widget__arrow:hover { color: #163bbc; }
+                .itw-widget__arrow:disabled { opacity: 0.3; cursor: default; }
+                .itw-widget__track-wrap { overflow: hidden; width: 100%; }
                 .itw-widget__track {
                   display: flex;
                   gap: 8px;
@@ -781,50 +766,43 @@
                   align-items: center;
                   justify-content: center;
                   background: rgba(0,0,0,0.18);
-                  transition: background 0.2s;
                 }
                 .itw-widget__play svg {
-                  width: 28px;
-                  height: 28px;
+                  width: 26px;
+                  height: 26px;
                   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
-                }
-                .itw-widget__thumb:hover .itw-widget__play {
-                  background: rgba(0,0,0,0.32);
                 }
               </style>
 
               <script>
                 (function () {
-                  var widget = document.querySelector('.itw-widget');
+                  var widget  = document.querySelector('.itw-widget');
                   if (!widget) return;
+                  var track   = widget.querySelector('.itw-widget__track');
+                  var thumbs  = widget.querySelectorAll('.itw-widget__thumb');
+                  var btnPrev = widget.querySelector('.itw-widget__arrow--prev');
+                  var btnNext = widget.querySelector('.itw-widget__arrow--next');
+                  var visible = 4;
+                  var current = 0;
+                  var total   = thumbs.length;
 
-                  var track     = widget.querySelector('.itw-widget__track');
-                  var thumbs    = widget.querySelectorAll('.itw-widget__thumb');
-                  var btnPrev   = widget.querySelector('.itw-widget__arrow--prev');
-                  var btnNext   = widget.querySelector('.itw-widget__arrow--next');
-                  var visible   = 4;
-                  var current   = 0;
-                  var total     = thumbs.length;
-
-                  function slide() {
-                    var thumbWidth = thumbs[0] ? thumbs[0].offsetWidth + 8 : 0;
-                    track.style.transform = 'translateX(-' + (current * thumbWidth) + 'px)';
+                  function updateArrows() {
+                    if (btnPrev) btnPrev.disabled = current === 0;
+                    if (btnNext) btnNext.disabled = current >= total - visible;
                   }
+                  function slide() {
+                    var w = thumbs[0] ? thumbs[0].offsetWidth + 8 : 0;
+                    track.style.transform = 'translateX(-' + (current * w) + 'px)';
+                    updateArrows();
+                  }
+                  updateArrows();
 
-                  if (btnPrev) btnPrev.addEventListener('click', function () {
-                    if (current > 0) { current--; slide(); }
-                  });
-                  if (btnNext) btnNext.addEventListener('click', function () {
-                    if (current < total - visible) { current++; slide(); }
-                  });
+                  if (btnPrev) btnPrev.addEventListener('click', function () { if (current > 0) { current--; slide(); } });
+                  if (btnNext) btnNext.addEventListener('click', function () { if (current < total - visible) { current++; slide(); } });
 
-                  // Open panel on thumb click
                   thumbs.forEach(function (thumb, idx) {
                     thumb.addEventListener('click', function () {
-                      var subtext = widget.dataset.subtext || '';
-                      document.dispatchEvent(new CustomEvent('itw:open', {
-                        detail: { subtext: subtext, index: idx }
-                      }));
+                      document.dispatchEvent(new CustomEvent('itw:open', { detail: { index: idx } }));
                     });
                   });
                 })();

@@ -1,6 +1,7 @@
 <div class="itw-panel__overlay" id="itw-panel-overlay"></div>
 
 <div class="itw-panel" id="itw-panel" role="dialog" aria-modal="true" aria-label="In The Wild">
+
   <div class="itw-panel__header">
     <h2 class="itw-panel__heading">IN THE WILD</h2>
     <button class="itw-panel__close" id="itw-panel-close" aria-label="Close">
@@ -14,8 +15,24 @@
   <div class="itw-panel__divider"></div>
 
   <div class="itw-panel__body">
-    <p class="itw-panel__subtext" id="itw-panel-subtext"></p>
-    <div class="itw-panel__reels" id="itw-panel-reels"></div>
+
+    <div class="itw-panel__subtext" id="itw-panel-subtext"></div>
+
+    <div class="itw-panel__slider-nav">
+      <button type="button" class="itw-panel__nav-btn itw-panel__nav-prev" id="itw-prev" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button type="button" class="itw-panel__nav-btn itw-panel__nav-next" id="itw-next" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="itw-panel__reel-viewport">
+      <div class="itw-panel__reel-track" id="itw-panel-track"></div>
+    </div>
+
+    <div class="itw-panel__dots" id="itw-panel-dots"></div>
+
   </div>
 </div>
 
@@ -24,7 +41,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0,0,0,0.45);
     z-index: 100000;
   }
   .itw-panel__overlay.active { display: block; }
@@ -33,7 +50,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 420px;
+    width: 400px;
     max-width: 95vw;
     height: 100%;
     background: #fff;
@@ -46,6 +63,7 @@
   }
   .itw-panel.visible { transform: translateX(0); }
 
+  /* Header */
   .itw-panel__header {
     display: flex;
     align-items: center;
@@ -73,7 +91,7 @@
     padding: 4px;
     display: flex;
     align-items: center;
-    color: currentColor;
+    color: #111;
   }
   .itw-panel__close:hover { opacity: 0.6; }
 
@@ -83,49 +101,81 @@
     flex-shrink: 0;
   }
 
+  /* Body */
   .itw-panel__body {
     padding: 20px 18px 24px;
     overflow-y: auto;
     flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Richtext subtext */
   .itw-panel__subtext {
     font-size: 14px;
     line-height: 1.65;
     color: #333;
-    margin: 0 0 20px;
+    margin-bottom: 16px;
+  }
+  .itw-panel__subtext p { margin: 0 0 8px; }
+  .itw-panel__subtext p:last-child { margin-bottom: 0; }
+  .itw-panel__subtext a {
+    color: #163bbc;
+    text-decoration: underline;
   }
 
-  .itw-panel__reels {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  /* Nav arrows row (right-aligned, no border/bg) */
+  .itw-panel__slider-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0;
+    margin-bottom: 10px;
   }
+  .itw-panel__nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #333;
+    line-height: 1;
+  }
+  .itw-panel__nav-btn:hover { color: #163bbc; }
+  .itw-panel__nav-btn:disabled { opacity: 0.25; cursor: default; }
 
-  .itw-panel__reel-wrap {
-    position: relative;
-    border-radius: 10px;
+  /* Reel slider */
+  .itw-panel__reel-viewport {
     overflow: hidden;
-    background: #000;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .itw-panel__reel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+  .itw-panel__reel-slide {
+    flex: 0 0 100%;
     aspect-ratio: 9/16;
+    position: relative;
+    background: #000;
     cursor: pointer;
   }
-
-  .itw-panel__reel-wrap video {
+  .itw-panel__reel-slide video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-
-  .itw-panel__play-icon {
+  .itw-panel__reel-play {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
-    background: rgba(255,255,255,0.85);
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.82);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -133,39 +183,100 @@
     pointer-events: none;
     transition: opacity 0.2s;
   }
-  .itw-panel__play-icon svg {
-    width: 16px;
-    height: 16px;
+  .itw-panel__reel-play svg {
+    width: 20px;
+    height: 20px;
     fill: #111;
     margin-left: 3px;
   }
-  .itw-panel__reel-wrap.playing .itw-panel__play-icon {
-    opacity: 0;
+  .itw-panel__reel-slide.playing .itw-panel__reel-play { opacity: 0; }
+
+  /* Dot pagination */
+  .itw-panel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+    flex-shrink: 0;
+  }
+  .itw-panel__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .itw-panel__dot.active {
+    background: #163bbc;
+    transform: scale(1.2);
   }
 </style>
 
 <script>
 (function () {
-  var panel   = document.getElementById('itw-panel');
-  var overlay = document.getElementById('itw-panel-overlay');
+  var panel    = document.getElementById('itw-panel');
+  var overlay  = document.getElementById('itw-panel-overlay');
   var closeBtn = document.getElementById('itw-panel-close');
   var subtextEl = document.getElementById('itw-panel-subtext');
-  var reelsEl  = document.getElementById('itw-panel-reels');
+  var track    = document.getElementById('itw-panel-track');
+  var dotsEl   = document.getElementById('itw-panel-dots');
+  var btnPrev  = document.getElementById('itw-prev');
+  var btnNext  = document.getElementById('itw-next');
 
-  function openPanel(subtext, startIndex) {
-    // Set subtext
-    subtextEl.textContent = subtext || '';
+  var current = 0;
+  var slides  = [];
 
-    // Clone video elements from hidden source container
-    reelsEl.innerHTML = '';
+  function goTo(idx) {
+    // Pause old
+    var oldSlide = slides[current];
+    if (oldSlide) {
+      var oldVid = oldSlide.querySelector('video');
+      if (oldVid) { oldVid.pause(); oldSlide.classList.remove('playing'); }
+    }
+
+    current = idx;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+    // Update dots
+    dotsEl.querySelectorAll('.itw-panel__dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === current);
+    });
+
+    // Update arrows
+    if (btnPrev) btnPrev.disabled = current === 0;
+    if (btnNext) btnNext.disabled = current >= slides.length - 1;
+
+    // Play new
+    var newSlide = slides[current];
+    if (newSlide) {
+      var newVid = newSlide.querySelector('video');
+      if (newVid) {
+        newVid.play().then(function () { newSlide.classList.add('playing'); }).catch(function(){});
+      }
+    }
+  }
+
+  function openPanel(startIndex) {
+    // Load richtext subtext from hidden source
+    var subtextSrc = document.getElementById('itw-subtext-source');
+    subtextEl.innerHTML = subtextSrc ? subtextSrc.innerHTML : '';
+
+    // Build slides from hidden video source
+    track.innerHTML = '';
+    dotsEl.innerHTML = '';
+    slides = [];
+
     var srcContainer = document.getElementById('itw-video-source');
     if (srcContainer) {
-      srcContainer.querySelectorAll('[data-itw-video]').forEach(function (slot) {
+      srcContainer.querySelectorAll('[data-itw-video]').forEach(function (slot, i) {
         var origVideo = slot.querySelector('video');
         if (!origVideo) return;
 
-        var wrap = document.createElement('div');
-        wrap.className = 'itw-panel__reel-wrap';
+        var slide = document.createElement('div');
+        slide.className = 'itw-panel__reel-slide';
 
         var video = origVideo.cloneNode(true);
         video.loop = true;
@@ -175,71 +286,72 @@
         video.removeAttribute('autoplay');
         video.removeAttribute('controls');
 
-        var icon = document.createElement('div');
-        icon.className = 'itw-panel__play-icon';
-        icon.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>';
+        var playIcon = document.createElement('div');
+        playIcon.className = 'itw-panel__reel-play';
+        playIcon.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>';
 
-        wrap.appendChild(video);
-        wrap.appendChild(icon);
-        reelsEl.appendChild(wrap);
+        slide.appendChild(video);
+        slide.appendChild(playIcon);
+        track.appendChild(slide);
+        slides.push(slide);
 
-        // Toggle play/pause on tap
-        wrap.addEventListener('click', function () {
+        // tap = toggle play/pause
+        slide.addEventListener('click', function () {
           if (video.paused) {
             video.play();
-            wrap.classList.add('playing');
+            slide.classList.add('playing');
           } else {
             video.pause();
-            wrap.classList.remove('playing');
+            slide.classList.remove('playing');
           }
         });
+
+        // dot
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'itw-panel__dot';
+        dot.setAttribute('aria-label', 'Go to reel ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsEl.appendChild(dot);
       });
     }
 
-    // Show panel
+    current = -1; // force goTo to treat as fresh
     panel.classList.add('visible');
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Autoplay after transition
+    // Jump to start slide and play after transition
     setTimeout(function () {
-      var wraps = reelsEl.querySelectorAll('.itw-panel__reel-wrap');
-      wraps.forEach(function (wrap, i) {
-        var v = wrap.querySelector('video');
-        if (!v) return;
-        v.play().then(function () {
-          wrap.classList.add('playing');
-        }).catch(function () {});
-      });
-      // Scroll to clicked index
-      if (startIndex && wraps[startIndex]) {
-        wraps[startIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+      goTo(startIndex || 0);
     }, 380);
   }
 
   function closePanel() {
+    // Pause all
+    slides.forEach(function (slide) {
+      var v = slide.querySelector('video');
+      if (v) { v.pause(); v.currentTime = 0; }
+      slide.classList.remove('playing');
+    });
     panel.classList.remove('visible');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-    // Pause all videos
-    reelsEl.querySelectorAll('video').forEach(function (v) {
-      v.pause();
-      v.currentTime = 0;
-      v.closest('.itw-panel__reel-wrap').classList.remove('playing');
-    });
   }
 
-  // Open trigger — dispatched from the product block button
+  if (btnPrev) btnPrev.addEventListener('click', function () { if (current > 0) goTo(current - 1); });
+  if (btnNext) btnNext.addEventListener('click', function () { if (current < slides.length - 1) goTo(current + 1); });
+
   document.addEventListener('itw:open', function (e) {
-    var detail = e.detail || {};
-    openPanel(detail.subtext, detail.index || 0);
+    openPanel((e.detail && e.detail.index) || 0);
   });
 
   if (closeBtn) closeBtn.addEventListener('click', closePanel);
   if (overlay)  overlay.addEventListener('click', closePanel);
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closePanel();
+    if (e.key === 'ArrowLeft' && panel.classList.contains('visible')) goTo(Math.max(0, current - 1));
+    if (e.key === 'ArrowRight' && panel.classList.contains('visible')) goTo(Math.min(slides.length - 1, current + 1));
   });
 })();
 </script>
