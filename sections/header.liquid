@@ -49,6 +49,12 @@
     }
   {%- endif -%}
 
+  /* Match primary nav font size to secondary nav */
+  .header__primary-nav a,
+  .header__primary-nav details > summary {
+    font-size: var(--font-heading-size-xs, 0.7rem) !important;
+  }
+
   /* Last primary nav item — blue */
   .header__primary-nav-item:last-child > a,
   .header__primary-nav-item:last-child > details > summary {
@@ -68,7 +74,7 @@
   /* Reviews inline: REVIEWS <sup>10711</sup> */
   .header__reviews-btn {
     display: inline-flex;
-    align-items: baseline;
+    align-items: stretch;
     gap: 2px;
     color: currentColor;
     text-decoration: none;
