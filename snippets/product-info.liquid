@@ -157,8 +157,8 @@
               {%- liquid
                 assign pdp_variant = product.selected_or_first_available_variant
                 if settings.currency_code_enabled
-                  assign pdp_compare_price = pdp_variant.compare_at_price | money_with_currency
-                  assign pdp_sale_price = pdp_variant.price | money_with_currency
+                  assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
+                  assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
                 else
                   assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros
                   assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros
