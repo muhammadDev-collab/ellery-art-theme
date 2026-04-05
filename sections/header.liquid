@@ -4,7 +4,7 @@
   }
 
   #shopify-section-{{ section.id }} {
-    --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
+    --header-grid: "logo secondary-nav" / 1fr auto;
     --header-padding-block: 1rem;
     --header-transparent-header-text-color: {{ section.settings.transparent_header_text_color.rgb }};
     --header-separation-border-color: {% if section.settings.show_separation_border %}{{ section.settings.color_scheme.settings.text_color.rgb }} / 0.15{% else %}0 0 0 / 0{% endif %};
@@ -116,6 +116,28 @@
     display: flex;
     align-items: center;
     gap: 6px;
+  }
+
+  /* Mobile: hide primary-nav area entirely (hamburger moved to secondary-nav) */
+  @media screen and (max-width: 999px) {
+    #shopify-section-{{ section.id }} .header__primary-nav {
+      display: none !important;
+    }
+    .header__mobile-hamburger {
+      display: flex;
+      align-items: center;
+    }
+    .header__cart-price {
+      display: flex !important;
+    }
+    .header__cart-divider {
+      display: inline-block !important;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .header__mobile-hamburger {
+      display: none !important;
+    }
   }
 
   /* Cart icon with count badge */
@@ -384,8 +406,8 @@
                 {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
                 {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
               {%- endfor -%}
-              <span class="header__cart-divider md-max:hidden" aria-hidden="true"></span>
-              <div class="header__cart-price md-max:hidden">
+              <span class="header__cart-divider" aria-hidden="true"></span>
+              <div class="header__cart-price">
                 {%- if cart_compare_price > cart_total -%}
                   <s class="header__cart-compare-price">{{ cart_compare_price | money }}</s>
                 {%- endif -%}
@@ -401,6 +423,16 @@
             </div>
           </a>
         </li>
+
+        {%- comment -%} Mobile hamburger — last item on the right {%- endcomment -%}
+        {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 -%}
+          <li class="header__mobile-hamburger">
+            <button type="button" aria-controls="sidebar-menu">
+              <span class="sr-only">{{ 'header.general.menu' | t }}</span>
+              {%- render 'icon' with 'hamburger', class: 'header__nav-icon' -%}
+            </button>
+          </li>
+        {%- endif -%}
       </ul>
     </nav>
 
