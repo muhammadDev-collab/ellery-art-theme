@@ -58,6 +58,53 @@
     font-size: var(--text-xs);
   }
 
+  /* Reviews badge */
+  .header__reviews-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: currentColor;
+    font-family: inherit;
+    text-decoration: none;
+  }
+  .header__reviews-badge {
+    font-size: 9px;
+    font-weight: 700;
+    vertical-align: super;
+    line-height: 1;
+  }
+
+  /* Cart divider + price */
+  .header__cart-divider {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: currentColor;
+    opacity: 0.3;
+    margin: 0 2px;
+    vertical-align: middle;
+  }
+  .header__cart-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+    font-size: var(--text-xs);
+  }
+  .header__cart-price s {
+    opacity: 0.5;
+    font-size: 0.9em;
+  }
+  .header__cart-link-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   {%- if section.settings.logo != blank -%}
     #shopify-section-{{ section.id }} {
       --header-logo-width: {{ section.settings.logo_mobile_max_width }}px;
@@ -240,21 +287,9 @@
       -%}
 
       <ul class="contents unstyled-list">
-        {%- if show_country_selector or show_locale_selector -%}
+        {%- if show_locale_selector -%}
           <li class="localization-selectors md-max:hidden">
-            {%- if show_country_selector -%}
-              {%- render 'localization-selector',
-                type: 'country',
-                placement: 'bottom-end',
-                show_country_name: section.settings.show_country_name,
-                show_country_flag: section.settings.show_country_flag,
-                id_prefix: 'header-nav'
-              -%}
-            {%- endif -%}
-
-            {%- if show_locale_selector -%}
-              {%- render 'localization-selector', type: 'locale', placement: 'bottom-end', id_prefix: 'header-nav' -%}
-            {%- endif -%}
+            {%- render 'localization-selector', type: 'locale', placement: 'bottom-end', id_prefix: 'header-nav' -%}
           </li>
         {%- endif -%}
 
@@ -267,21 +302,24 @@
           {%- endif -%}
         {%- endfor -%}
 
-        {%- if shop.customer_accounts_enabled -%}
-          <li class="header__account-link sm-max:hidden">
-            <shopify-account menu="{{ section.settings.customer_account_menu }}">
-              <div slot="signed-out-avatar">
-                {%- if section.settings.show_icons -%}
-                  {%- render 'icon' with 'account', class: 'header__nav-icon' -%}
-                {%- else -%}
-                  <span class="md:hidden">{%- render 'icon' with 'account', class: 'header__nav-icon' -%}</span>
+        {%- comment -%} About Us link {%- endcomment -%}
+        {%- if section.settings.about_us_link != blank -%}
+          <li class="md-max:hidden">
+            <a href="{{ section.settings.about_us_link }}" class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded">
+              {{ section.settings.about_us_label | default: 'About Us' }}
+            </a>
+          </li>
+        {%- endif -%}
 
-                  <span class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden" aria-hidden="true">
-                    {{- 'header.general.login' | t -}}
-                  </span>
-                {%- endif -%}
-              </div>
-            </shopify-account>
+        {%- comment -%} Reviews button {%- endcomment -%}
+        {%- if section.settings.reviews_link != blank -%}
+          <li class="md-max:hidden">
+            <a href="{{ section.settings.reviews_link }}" class="header__reviews-btn {% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded">
+              {{ section.settings.reviews_label | default: 'Reviews' }}
+              {%- if section.settings.reviews_count != blank -%}
+                <sup class="header__reviews-badge">{{ section.settings.reviews_count }}</sup>
+              {%- endif -%}
+            </a>
           </li>
         {%- endif -%}
 
@@ -289,19 +327,12 @@
           <li class="header__search-link">
             <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
-
-              {%- if section.settings.show_icons -%}
-                {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
-              {%- else -%}
-                <span class="md:hidden">{%- render 'icon' with 'search', class: 'header__nav-icon' -%}</span>
-                <span class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden" aria-hidden="true">
-                  {{- 'header.general.search' | t -}}
-                </span>
-              {%- endif -%}
+              {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
             </a>
           </li>
         {%- endif -%}
 
+        {%- comment -%} Divider + cart price + cart icon {%- endcomment -%}
         <li class="relative header__cart-link">
           <a
             href="{{ routes.cart_url }}"
@@ -309,19 +340,27 @@
               aria-controls="cart-drawer"
             {% endif %}
             data-no-instant
+            class="header__cart-link-inner"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
 
-            {%- if section.settings.show_icons -%}
-              {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
-            {%- else -%}
-              <span class="md:hidden">{%- render 'icon' with 'cart', class: 'header__nav-icon' -%}</span>
-              <span class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded md-max:hidden">
-                {{- 'header.general.cart' | t }} (<cart-count>{{ cart.item_count }}</cart-count>)</span
-              >
-            {%- endif -%}
+            {%- unless cart.empty? -%}
+              {%- assign cart_compare_price = 0 -%}
+              {%- assign cart_total = cart.total_price -%}
+              {%- for item in cart.items -%}
+                {%- assign cart_compare_price = cart_compare_price | plus: item.variant.compare_at_price | times: item.quantity -%}
+              {%- endfor -%}
+              <div class="header__cart-price md-max:hidden">
+                {%- if cart_compare_price > cart_total -%}
+                  <s>{{ cart_compare_price | money }}</s>
+                {%- endif -%}
+                <span>{{ cart_total | money }}</span>
+              </div>
+              <span class="header__cart-divider md-max:hidden" aria-hidden="true"></span>
+            {%- endunless -%}
 
-            <cart-dot class="header__cart-dot {% unless cart.empty? %}is-visible{% endunless %} {% unless section.settings.show_icons %}md:hidden{% endunless %}"></cart-dot>
+            {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
+            <cart-dot class="header__cart-dot {% unless cart.empty? %}is-visible{% endunless %}"></cart-dot>
           </a>
         </li>
       </ul>
@@ -554,27 +593,7 @@
     {
       "type": "header",
       "content": "t:global.localization.country_region_selector_category",
-      "info": "t:global.localization.country_region_selector_category_info"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_country_selector",
-      "label": "t:global.localization.show_country_region_selector",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_country_name",
-      "label": "t:global.localization.show_country_name",
-      "default": false,
-      "visible_if": "{{ section.settings.show_country_selector }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_country_flag",
-      "label": "t:global.localization.show_country_flag",
-      "default": true,
-      "visible_if": "{{ section.settings.show_country_selector }}"
+      "info": "Currency selector has been moved to the announcement bar (far left)."
     },
     {
       "type": "header",
@@ -586,6 +605,38 @@
       "id": "show_locale_selector",
       "label": "t:global.localization.show_locale_selector",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "About Us & Reviews"
+    },
+    {
+      "type": "url",
+      "id": "about_us_link",
+      "label": "About Us Link"
+    },
+    {
+      "type": "text",
+      "id": "about_us_label",
+      "label": "About Us Label",
+      "default": "About Us"
+    },
+    {
+      "type": "url",
+      "id": "reviews_link",
+      "label": "Reviews Link"
+    },
+    {
+      "type": "text",
+      "id": "reviews_label",
+      "label": "Reviews Label",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "reviews_count",
+      "label": "Reviews Count Badge",
+      "info": "e.g. 10711 — leave blank to hide badge"
     },
     {
       "type": "header",
