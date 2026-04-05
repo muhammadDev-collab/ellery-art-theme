@@ -4795,7 +4795,7 @@ product-rerender {
 .faq {
   justify-content: center;
   align-items: start;
-  column-gap: 3.75rem;
+  column-gap: 3.65rem;
   display: flex;
 }
 
@@ -8020,8 +8020,9 @@ shopify-account::part(signed-out-avatar) {
 }
 
 .h6, :where(.prose h6) {
-  font-size: var(--text-h6);
-  line-height: 1.7;
+ font-size: 10px;
+    line-height: 1.1;
+    font-weight: 700;
 }
 
 .prose blockquote {
