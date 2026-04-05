@@ -1,14 +1,3 @@
-<style>
-  /* Shopify renders header group sections inside:
-     <div class="shopify-section-group shopify-section-group--header-group">
-     Making this wrapper sticky keeps announcement bar + progress bar + header all stuck together */
-  .shopify-section-group--header-group {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 200 !important;
-  }
-</style>
-
 {% render 'app-discount-snippet', type: 'header' %}
 
 {% schema %}

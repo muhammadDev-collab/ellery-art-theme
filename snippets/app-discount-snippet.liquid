@@ -106,6 +106,17 @@
 
     var TYPE = {{ type | json }};
 
+    // Set CSS variable for sticky offset calculation (header type only)
+    if (TYPE === 'header') {
+      var barEl = document.querySelector('.discount-app-header.progress-bar-main');
+      function setBarHeight() {
+        var h = barEl ? barEl.offsetHeight : 55;
+        document.documentElement.style.setProperty('--discount-progress-bar-height', h + 'px');
+      }
+      setBarHeight();
+      window.addEventListener('resize', setBarHeight);
+    }
+
     var circles         = document.querySelectorAll('.discount-app-' + TYPE + ' .circle');
     var progressLine    = document.querySelector('.discount-app-' + TYPE + ' .line .progress');
     var progressContainer = document.querySelector('.discount-app-' + TYPE + ' .progress-container');
