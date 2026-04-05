@@ -147,6 +147,19 @@
             "payment_button_text_color": ""
           }
         },
+        "section_vso_theme_sections_payment_icons_NaKMNe": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/paymentIcons/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "icon_size": 16,
+            "icon_gap": 4,
+            "alignment": "center",
+            "mobile_icon_size": 24,
+            "mobile_icon_gap": 8,
+            "mobile_alignment": "center",
+            "margin_top": 32,
+            "margin_bottom": 32
+          }
+        },
         "section_vso_theme_sections_product_badge_PAxHCh": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/productBadge/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
@@ -187,19 +200,6 @@
             "date_font_size": 12,
             "margin_top": 0,
             "margin_bottom": 0
-          }
-        },
-        "section_vso_theme_sections_payment_icons_NaKMNe": {
-          "type": "shopify://apps/section-vso-theme-sections/blocks/paymentIcons/06016590-3938-4460-bd08-bd58cf996a58",
-          "settings": {
-            "icon_size": 16,
-            "icon_gap": 4,
-            "alignment": "center",
-            "mobile_icon_size": 24,
-            "mobile_icon_gap": 8,
-            "mobile_alignment": "center",
-            "margin_top": 32,
-            "margin_bottom": 32
           }
         },
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g": {
@@ -287,9 +287,9 @@
         "variant_picker",
         "modal_mNQWbp",
         "buy_buttons",
+        "section_vso_theme_sections_payment_icons_NaKMNe",
         "section_vso_theme_sections_product_badge_PAxHCh",
         "section_vso_theme_sections_delivery_information_Lq3JXd",
-        "section_vso_theme_sections_payment_icons_NaKMNe",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
         "section_vso_theme_sections_product_video_gallery_CGXdRy",
         "accordion_H8Wz8j",
