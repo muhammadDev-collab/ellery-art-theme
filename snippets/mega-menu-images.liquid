@@ -14,10 +14,20 @@
 {%- endcomment -%}
 
 {%- for i in (1..2) -%}
-  {%- assign image_setting = 'image_' | append: i -%}
-  {%- assign heading_setting = 'image_' | append: i | append: '_heading' -%}
-  {%- assign text_setting = 'image_' | append: i | append: '_text' -%}
-  {%- assign link_setting = 'image_' | append: i | append: '_link' -%}
+  {%- assign image_setting      = 'image_' | append: i -%}
+  {%- assign heading_setting    = 'image_' | append: i | append: '_heading' -%}
+  {%- assign text_setting       = 'image_' | append: i | append: '_text' -%}
+  {%- assign collection_setting = 'image_' | append: i | append: '_collection' -%}
+  {%- assign link_setting       = 'image_' | append: i | append: '_link' -%}
+
+  {%- comment -%} Collection link takes priority over manual URL {%- endcomment -%}
+  {%- if block.settings[collection_setting] != blank -%}
+    {%- assign resolved_link = block.settings[collection_setting].url -%}
+  {%- elsif block.settings[link_setting] != blank -%}
+    {%- assign resolved_link = block.settings[link_setting] -%}
+  {%- else -%}
+    {%- assign resolved_link = '' -%}
+  {%- endif -%}
 
   {%- capture image_content -%}
     {%- if block.settings[image_setting] -%}
@@ -40,8 +50,8 @@
   {%- endcapture -%}
 
   {%- if image_content != blank -%}
-    {%- if block.settings[link_setting] != blank -%}
-      <a href="{{ block.settings[link_setting] }}" class="v-stack justify-items-center gap-4 sm:gap-5 group">
+    {%- if resolved_link != blank -%}
+      <a href="{{ resolved_link }}" class="v-stack justify-items-center gap-4 sm:gap-5 group">
         {{- image_content -}}
       </a>
     {%- else -%}

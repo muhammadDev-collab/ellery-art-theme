@@ -55,6 +55,51 @@
     font-size: var(--font-heading-size-xs, 0.7rem) !important;
   }
 
+  /* Mega menu row layout */
+  .mega-menu--custom .mega-menu__linklist--rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+
+  .mega-menu__row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid rgb(var(--border-color) / 0.15);
+  }
+
+  .mega-menu__row:last-child {
+    border-bottom: none;
+  }
+
+  .mega-menu__row-parent {
+    min-width: 160px;
+    flex-shrink: 0;
+    font-size: var(--font-heading-size-xs, 0.7rem) !important;
+    letter-spacing: var(--font-heading-letter-spacing);
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
+    white-space: nowrap;
+  }
+
+  .mega-menu__row-children {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mega-menu__row-children a {
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+
   /* Last primary nav item — blue */
   .header__primary-nav-item:last-child > a,
   .header__primary-nav-item:last-child > details > summary {
@@ -81,17 +126,18 @@
     white-space: nowrap;
   }
   .header__reviews-badge {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 700;
     line-height: 1;
     vertical-align: super;
+    color:#001bcf;
   }
   .header__reviews-label {
     font-size: var(--font-heading-size-xs, 0.7rem);
     letter-spacing: var(--font-heading-letter-spacing);
     text-transform: uppercase;
     font-family: var(--font-heading-family);
-    font-weight: var(--font-heading-weight);
+    font-weight: bold;
   }
 
   /* Cart price block */
@@ -122,7 +168,7 @@
     .header__mobile-hamburger {
       display: none !important;
     }
-    .header__nav-about   { order: 1; }
+    .header__nav-about   { order: 1; font-weight:bold; }
     .header__nav-reviews { order: 2; }
     .header__search-link { order: 3; }
     .header__cart-price-li { order: 4; }
@@ -775,7 +821,7 @@
         },
         {
           "type": "header",
-          "content": "t:sections.header.blocks.mega_menu.image_1"
+          "content": "Image 1"
         },
         {
           "type": "image_picker",
@@ -794,13 +840,19 @@
           "label": "t:global.text.text"
         },
         {
+          "type": "collection",
+          "id": "image_1_collection",
+          "label": "Link to Collection",
+          "info": "Links the image to this collection. Overrides the URL field below."
+        },
+        {
           "type": "url",
           "id": "image_1_link",
-          "label": "t:global.text.link"
+          "label": "Or custom link"
         },
         {
           "type": "header",
-          "content": "t:sections.header.blocks.mega_menu.image_2"
+          "content": "Image 2"
         },
         {
           "type": "image_picker",
@@ -819,9 +871,15 @@
           "label": "t:global.text.text"
         },
         {
+          "type": "collection",
+          "id": "image_2_collection",
+          "label": "Link to Collection",
+          "info": "Links the image to this collection. Overrides the URL field below."
+        },
+        {
           "type": "url",
           "id": "image_2_link",
-          "label": "t:global.text.link"
+          "label": "Or custom link"
         }
       ]
     }

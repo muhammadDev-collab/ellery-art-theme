@@ -1,29 +1,17 @@
 {%- comment -%}
-  ----------------------------------------------------------------------------------------------------------------------
   MEGA MENU COMPONENT
-  ----------------------------------------------------------------------------------------------------------------------
-
-  Render the mega-menu. The mega-menu is a kind of menu optimized for showing a large number of items into several
-  columns.
-
-  ********************************************
-  Supported variables
-  ********************************************
-
-  * link: the link from which we need to render the mega-menu. The link must always be a second level link, but it can
-          also be empty (no links), which is the case if the merchant only want to show images, for instance.
-  * block: the block containing all the information about the menu to render
+  Layout: left = rows of (parent + sub-links inline), right = 2 promo images
 {%- endcomment -%}
 
-<div class="mega-menu {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
+<div class="mega-menu mega-menu--custom {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}" {{ block.shopify_attributes }}>
   {%- if link.levels > 0 -%}
-    <ul class="mega-menu__linklist unstyled-list">
+    <ul class="mega-menu__linklist mega-menu__linklist--rows unstyled-list">
       {%- for sub_link in link.links -%}
-        <li class="v-stack justify-items-start gap-5">
-          <a href="{{ sub_link.url }}" class="h6">{{ sub_link.title }}</a>
+        <li class="mega-menu__row">
+          <a href="{{ sub_link.url }}" class="mega-menu__row-parent h6">{{ sub_link.title }}</a>
 
           {%- if sub_link.links.size > 0 -%}
-            <ul class="v-stack gap-2.5 unstyled-list">
+            <ul class="mega-menu__row-children unstyled-list">
               {%- for sub_sub_link in sub_link.links -%}
                 <li>
                   <a href="{{ sub_sub_link.url }}" class="link-faded">{{ sub_sub_link.title }}</a>
