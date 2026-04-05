@@ -2,76 +2,111 @@
    Global button override — blue #163bbc with slide hover
    ============================================================ */
 
-/* Override CSS variable so ALL .button elements use our blue */
-:root,
-.color-scheme {
-  --btn-blue: 22, 59, 188;          /* #163bbc as R G B */
+:root {
   --btn-blue-hex: #163bbc;
-  --btn-white: 255, 255, 255;
 }
 
-/* ── Base: solid blue fill ── */
+/* ── Base: solid blue, white text ── */
 .button,
 .shopify-challenge__button,
 .shopify-payment-button__button--unbranded {
   background-color: var(--btn-blue-hex) !important;
+  background-image: none !important;
   color: #fff !important;
   border: 2px solid var(--btn-blue-hex) !important;
   border-radius: 4px !important;
-  /* Slide overlay layer — white fills from left on hover */
-  --initial-gradient: linear-gradient(to right, #fff 0%, #fff 100%) !important;
-  --hover-gradient: linear-gradient(transparent, transparent) !important;
-  background-image:
-    linear-gradient(to right, #fff 0%, #fff 100%),
-    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex)) !important;
-  background-size: 0% 100%, 100% 100% !important;
-  background-position: left center, left center !important;
-  background-repeat: no-repeat !important;
-  transition:
-    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-    border-color 0.3s ease !important;
   overflow: hidden !important;
   position: relative !important;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease !important;
+  z-index: 0 !important;
 }
 
-/* ── Hover: slide white from left → right, text turns blue ── */
+/* Slide-in white layer via ::before */
+.button::before,
+.shopify-challenge__button::before,
+.shopify-payment-button__button--unbranded::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  z-index: -1;
+}
+
 @media screen and (pointer: fine) {
+  .button:not([disabled]):hover::before,
+  .shopify-challenge__button:not([disabled]):hover::before,
+  .shopify-payment-button__button--unbranded:not([disabled]):hover::before {
+    transform: translateX(0);
+  }
+
   .button:not([disabled]):hover,
   .shopify-challenge__button:not([disabled]):hover,
   .shopify-payment-button__button--unbranded:not([disabled]):hover {
-    background-size: 100% 100%, 100% 100% !important;
     color: var(--btn-blue-hex) !important;
     border-color: var(--btn-blue-hex) !important;
-    background-position: left center, left center !important;
+    background-color: var(--btn-blue-hex) !important;
   }
 }
 
-/* ── Cart drawer checkout button (custom element, not .button class) ── */
-.cart-drawer__checkout-btn {
-  background-color: var(--btn-blue-hex);
-  color: #fff;
-  border: 2px solid var(--btn-blue-hex);
-  background-image:
-    linear-gradient(to right, #fff 0%, #fff 100%),
-    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex));
-  background-size: 0% 100%, 100% 100%;
-  background-position: left center, left center;
-  background-repeat: no-repeat;
-  transition:
-    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-    border-color 0.3s ease;
-  overflow: hidden;
-  position: relative;
+/* Reverse slide on mouse-out */
+.button:not(:hover)::before,
+.shopify-challenge__button:not(:hover)::before,
+.shopify-payment-button__button--unbranded:not(:hover)::before {
+  transform: translateX(-101%);
+}
+
+/* ── Outline variant ── */
+.button--outline {
+  background-color: transparent !important;
+  color: var(--btn-blue-hex) !important;
+  border: 2px solid var(--btn-blue-hex) !important;
+}
+
+.button--outline::before {
+  background: var(--btn-blue-hex) !important;
 }
 
 @media screen and (pointer: fine) {
+  .button--outline:not([disabled]):hover {
+    color: #fff !important;
+    background-color: transparent !important;
+  }
+}
+
+/* ── Cart drawer checkout button ── */
+.cart-drawer__checkout-btn {
+  background-color: var(--btn-blue-hex) !important;
+  color: #fff !important;
+  border: 2px solid var(--btn-blue-hex) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: color 0.4s ease, border-color 0.4s ease !important;
+  z-index: 0 !important;
+}
+
+.cart-drawer__checkout-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  z-index: -1;
+}
+
+@media screen and (pointer: fine) {
+  .cart-drawer__checkout-btn:not([disabled]):hover::before {
+    transform: translateX(0);
+  }
+
   .cart-drawer__checkout-btn:not([disabled]):hover {
-    background-size: 100% 100%, 100% 100%;
-    background-position: left center, left center;
-    color: var(--btn-blue-hex);
-    border-color: var(--btn-blue-hex);
+    color: var(--btn-blue-hex) !important;
+    border-color: var(--btn-blue-hex) !important;
   }
 
   .cart-drawer__checkout-btn:not([disabled]):hover .cart-drawer__checkout-label,
@@ -85,31 +120,30 @@
   }
 }
 
-/* ── Shopify dynamic checkout buttons (Buy it now, etc.) ── */
+/* Ensure child spans sit above the ::before overlay */
+.cart-drawer__checkout-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.button > *,
+.shopify-challenge__button > *,
+.shopify-payment-button__button--unbranded > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Shopify dynamic branded checkout buttons (rounded corners only) ── */
 .shopify-payment-button__button--branded {
   border-radius: 4px !important;
 }
 
-/* ── Button outline variant stays consistent ── */
-.button--outline {
-  background-color: transparent !important;
-  background-image:
-    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex)),
-    linear-gradient(transparent, transparent) !important;
-  background-size: 0% 100%, 100% 100% !important;
-  background-position: left center, left center !important;
-  background-repeat: no-repeat !important;
-  color: var(--btn-blue-hex) !important;
-  border: 2px solid var(--btn-blue-hex) !important;
-  transition:
-    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
-}
-
-@media screen and (pointer: fine) {
-  .button--outline:not([disabled]):hover {
-    background-size: 100% 100%, 100% 100% !important;
-    background-position: left center, left center !important;
-    color: #fff !important;
-  }
+/* ── Neutralize theme's features--button-transition gradient system ── */
+.features--button-transition .button:not([disabled]):hover,
+.features--button-transition .shopify-challenge__button:not([disabled]):hover,
+.features--button-transition .shopify-payment-button__button--unbranded:not([disabled]):hover {
+  background-size: unset !important;
+  background-position: unset !important;
+  background-image: none !important;
+  background-color: var(--btn-blue-hex) !important;
 }
