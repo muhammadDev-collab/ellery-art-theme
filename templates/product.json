@@ -142,10 +142,6 @@
             "size_chart_page": ""
           }
         },
-        "globo_color_swatch_product_swatches_detail_CPw7qJ": {
-          "type": "shopify://apps/globo-color-swatch/blocks/product-swatches-detail/4394f710-096c-4021-bbde-8ebb26057c11",
-          "settings": {}
-        },
         "modal_mNQWbp": {
           "type": "modal",
           "disabled": true,
@@ -290,7 +286,6 @@
         "section_vso_theme_sections_countdown_timer_YPkYay",
         "payment_terms",
         "variant_picker",
-        "globo_color_swatch_product_swatches_detail_CPw7qJ",
         "modal_mNQWbp",
         "buy_buttons",
         "section_vso_theme_sections_delivery_information_Lq3JXd",
