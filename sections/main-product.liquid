@@ -42,6 +42,7 @@
   {%- endif -%}
 
   #shopify-section-{{ section.id }} {
+    background-color: #f0f0f0;
     --product-grid: "product-gallery" "product-info" {% if has_content_below_gallery %}"product-content"{% endif %} / minmax(0, 1fr);
 
     {%- if allow_transparent_header -%}
@@ -204,12 +205,6 @@
     // Safari in private mode does not allow setting item, we silently fail
   }
 </script>
-
-<style>
-  .shopify-section--main-product {
-    background-color: #f0f0f0;
-  }
-</style>
 
 {% schema %}
 {
