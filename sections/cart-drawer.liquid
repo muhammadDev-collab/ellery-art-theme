@@ -13,15 +13,29 @@
     --background: 240, 240, 240;
   }
 
-  /* ── Remove header divider and hide empty title ── */
+  /* ── Header: top spacing + close button, no divider ── */
   .cart-drawer.drawer::part(header) {
     border-block-end: none !important;
     min-height: 0 !important;
     padding: 0 !important;
   }
-  .cart-drawer .h4[slot="header"]:empty {
-    display: none;
+  .cart-drawer__top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 14px 16px 8px;
   }
+  .cart-drawer__close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+  }
+  .cart-drawer__close-btn:hover { opacity: 0.6; }
 
   /* ── Free shipping bar ── */
   .cart-free-shipping {
@@ -35,12 +49,8 @@
     margin: 0;
     line-height: 1.4;
   }
-  .cart-free-shipping__text strong {
-    color: #001bcf;
-  }
-  .cart-free-shipping__text--achieved strong {
-    color: #2a7a4b;
-  }
+  .cart-free-shipping__text strong { color: #001bcf; }
+  .cart-free-shipping__text--achieved strong { color: #2a7a4b; }
 
   /* ── Progress bar white bg ── */
   .discount-app-cart-drawer.progress-bar-main {
@@ -71,8 +81,6 @@
     object-fit: cover;
     border-radius: 4px;
   }
-
-  /* ── Product title ── */
   .cart-drawer__items .line-item-info a,
   .cart-drawer__items .line-item-info .h6 {
     font-size: 11px;
@@ -82,14 +90,10 @@
     color: inherit;
     text-decoration: none;
   }
-
-  /* ── Variant / size text ── */
   .cart-drawer__items .line-item-info .smallcaps {
     font-size: 11px;
     color: #555;
   }
-
-  /* ── Price: sale = red, compare-at = grey strikethrough ── */
   .cart-drawer__items sale-price {
     color: #cc0000 !important;
     font-size: 13px;
@@ -100,8 +104,6 @@
     font-size: 12px;
     text-decoration: line-through;
   }
-
-  /* ── Quantity row ── */
   .cart-drawer__items line-item-quantity {
     display: flex;
     align-items: center;
@@ -116,25 +118,28 @@
     background: transparent;
   }
 
-  /* ── Minus button → trash icon ── */
-  .cart-drawer__items quantity-selector > a:first-child,
-  .cart-drawer__items quantity-selector > a:first-of-type {
+  /* ── Trash icon on minus/first button ── */
+  .cart-drawer__items quantity-selector > a:first-child {
     overflow: hidden;
     font-size: 0;
     color: transparent !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23444' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 50% !important;
+    width: 26px !important;
+    height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    background-size: 15px !important;
+    background-size: 14px !important;
   }
-  .cart-drawer__items quantity-selector > a:first-child svg,
-  .cart-drawer__items quantity-selector > a:first-of-type svg {
-    display: none !important;
-  }
+  .cart-drawer__items quantity-selector > a:first-child svg { display: none !important; }
 
-  /* ── + button: dark circle ── */
+  /* ── + button: circle with #f0f0f0 bg ── */
   .cart-drawer__items quantity-selector > a:last-child {
-    background-color: #222 !important;
+    background-color: #f0f0f0 !important;
     border-radius: 50% !important;
     width: 26px !important;
     height: 26px !important;
@@ -142,11 +147,9 @@
     align-items: center !important;
     justify-content: center !important;
   }
-  .cart-drawer__items quantity-selector > a:last-child svg {
-    stroke: #fff !important;
-  }
+  .cart-drawer__items quantity-selector > a:last-child svg { stroke: #333 !important; }
 
-  /* ── Quantity input: clean ── */
+  /* ── Quantity input ── */
   .cart-drawer__items .quantity-selector__input {
     border: none !important;
     background: transparent;
@@ -158,8 +161,131 @@
   }
 
   /* ── Remove "Remove" text link ── */
-  .cart-drawer__items line-item-quantity a.link {
-    display: none !important;
+  .cart-drawer__items line-item-quantity a.link { display: none !important; }
+
+  /* ── USP block ── */
+  .cart-drawer__usp {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cart-drawer__usp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .cart-drawer__usp-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+  }
+  .cart-drawer__usp-text {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #333;
+  }
+  .cart-drawer__usp-text strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  /* ── Trending section ── */
+  .cart-drawer__trending {
+    margin-top: 12px;
+    padding-bottom: 12px;
+  }
+  .cart-drawer__trending-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0 2px;
+  }
+  .cart-drawer__trending-titles {}
+  .cart-drawer__trending-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .cart-drawer__trending-subheading {
+    font-size: 11px;
+    color: #666;
+    margin: 2px 0 0;
+  }
+  .cart-drawer__trending-arrows {
+    display: flex;
+    gap: 4px;
+  }
+  .cart-drawer__trending-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: currentColor;
+  }
+  .cart-drawer__trending-arrow:hover { opacity: 0.5; }
+  .cart-drawer__trending-arrow:disabled { opacity: 0.2; cursor: default; }
+
+  /* Slider */
+  .cart-drawer__trending-slider-wrap {
+    overflow: hidden;
+  }
+  .cart-drawer__trending-slider {
+    display: flex;
+    gap: 8px;
+    transition: transform 0.3s ease;
+  }
+  .cart-drawer__trending-card {
+    flex: 0 0 calc(33.333% - 6px);
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-drawer__trending-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .cart-drawer__trending-card-info {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .cart-drawer__trending-card-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cart-drawer__trending-card-compare {
+    font-size: 10px;
+    color: #999;
+    text-decoration: line-through;
+  }
+  .cart-drawer__trending-card-price {
+    font-size: 11px;
+    font-weight: 600;
+    color: #001bcf;
   }
 </style>
 
@@ -171,6 +297,15 @@
   handle-editor-events
 >
   <p class="h4" slot="header"></p>
+
+  {%- comment -%} Top bar: spacing + close button {%- endcomment -%}
+  <div class="cart-drawer__top">
+    <button class="cart-drawer__close-btn" aria-label="Close cart" onclick="document.getElementById('cart-drawer').hide()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
 
   {%- render 'cart-free-shipping-bar' -%}
   {%- render 'app-discount-snippet', type: 'cart-drawer' -%}
@@ -184,60 +319,96 @@
       {%- endfor -%}
     </div>
 
-    {%- liquid
-      assign cross_sell_products_count = 0
-
-      for product in section.settings.cross_sell_products
-        assign items_for_product = cart | line_items_for: product
-
-        if items_for_product.size == 0 and product.available
-          assign cross_sell_products_count = cross_sell_products_count | plus: 1
-        endif
-      endfor
-    -%}
-
-    {%- if cross_sell_products_count > 0 -%}
-      <div class="cart-drawer__complementary-products complementary-products">
-        {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
-
-        {%- if section.settings.cross_sell_title != blank or section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
-          <div class="complementary-products__header complementary-products__header--align-start">
-            <p class="h6">{{ section.settings.cross_sell_title }}</p>
-
-            {%- if section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
-              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots page-dots--narrow">
-                {%- for i in (1..cross_sell_products_count) -%}
-                  <button class="relative" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
-                  </button>
-                {%- endfor -%}
-              </carousel-navigation>
-            {%- endif -%}
+    {%- comment -%} USP Points {%- endcomment -%}
+    {%- if section.settings.usp_1_text != blank or section.settings.usp_2_text != blank or section.settings.usp_3_text != blank -%}
+      <div class="cart-drawer__usp">
+        {%- if section.settings.usp_1_text != blank -%}
+          <div class="cart-drawer__usp-item">
+            <svg class="cart-drawer__usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <p class="cart-drawer__usp-text">{{ section.settings.usp_1_text }}</p>
           </div>
         {%- endif -%}
-
-        {%- liquid
-          capture complementary_products
-            for product in section.settings.cross_sell_products
-              assign products_in_cart = cart.items | where: 'product_id', product.id
-
-              if products_in_cart.size == 0 and product.available
-                render 'product-card-horizontal', product: product, show_quick_buy: true
-              endif
-            endfor
-          endcapture
-        -%}
-
-        {%- if section.settings.cross_sell_stack_products -%}
-          <div class="complementary-products__product-list">
-            {{- complementary_products -}}
+        {%- if section.settings.usp_2_text != blank -%}
+          <div class="cart-drawer__usp-item">
+            <svg class="cart-drawer__usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <p class="cart-drawer__usp-text">{{ section.settings.usp_2_text }}</p>
           </div>
-        {%- else -%}
-          <scroll-carousel id="{{ carousel_id }}" class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x">
-            {{- complementary_products -}}
-          </scroll-carousel>
+        {%- endif -%}
+        {%- if section.settings.usp_3_text != blank -%}
+          <div class="cart-drawer__usp-item">
+            <svg class="cart-drawer__usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <p class="cart-drawer__usp-text">{{ section.settings.usp_3_text }}</p>
+          </div>
         {%- endif -%}
       </div>
+    {%- endif -%}
+
+    {%- comment -%} Trending section {%- endcomment -%}
+    {%- if section.settings.trending_collection != blank -%}
+      {%- assign trending_col = collections[section.settings.trending_collection] -%}
+      {%- if trending_col.products.size > 0 -%}
+        <div class="cart-drawer__trending">
+          <div class="cart-drawer__trending-header">
+            <div class="cart-drawer__trending-titles">
+              <p class="cart-drawer__trending-heading">{{ section.settings.trending_heading | default: 'Trending Right Now' }}</p>
+              <p class="cart-drawer__trending-subheading">{{ section.settings.trending_subheading | default: 'These are selling out fast' }}</p>
+            </div>
+            <div class="cart-drawer__trending-arrows">
+              <button class="cart-drawer__trending-arrow" id="cart-trend-prev" aria-label="Previous">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="cart-drawer__trending-arrow" id="cart-trend-next" aria-label="Next">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cart-drawer__trending-slider-wrap" id="cart-trend-wrap">
+            <div class="cart-drawer__trending-slider" id="cart-trend-slider">
+              {%- for product in trending_col.products limit: 10 -%}
+                {%- assign variant = product.selected_or_first_available_variant -%}
+                <a href="{{ product.url }}" class="cart-drawer__trending-card">
+                  {%- if product.featured_image -%}
+                    {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: product.title }}
+                  {%- endif -%}
+                  <div class="cart-drawer__trending-card-info">
+                    <p class="cart-drawer__trending-card-title">{{ product.title }}</p>
+                    {%- if variant.compare_at_price > variant.price -%}
+                      <span class="cart-drawer__trending-card-compare">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
+                    {%- endif -%}
+                    <span class="cart-drawer__trending-card-price">{{ variant.price | money_without_trailing_zeros }}</span>
+                  </div>
+                </a>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+
+        <script>
+          (function(){
+            var slider = document.getElementById('cart-trend-slider');
+            var wrap   = document.getElementById('cart-trend-wrap');
+            var prev   = document.getElementById('cart-trend-prev');
+            var next   = document.getElementById('cart-trend-next');
+            var index  = 0;
+            var perPage = 3;
+            var total  = slider ? slider.children.length : 0;
+            var maxIndex = Math.max(0, total - perPage);
+
+            function update() {
+              if (!slider || !wrap) return;
+              var cardW = wrap.offsetWidth / perPage;
+              slider.style.transform = 'translateX(-' + (index * cardW) + 'px)';
+              if (prev) prev.disabled = index === 0;
+              if (next) next.disabled = index >= maxIndex;
+            }
+
+            if (prev) prev.addEventListener('click', function(){ if(index > 0){ index--; update(); }});
+            if (next) next.addEventListener('click', function(){ if(index < maxIndex){ index++; update(); }});
+            update();
+          })();
+        </script>
+      {%- endif -%}
     {%- endif -%}
 
     <div slot="footer">
@@ -250,7 +421,6 @@
             {%- if section.settings.show_cart_note -%}
               {%- assign cart_note_dialog_id = 'cart-note-' | append: section.id -%}
               <button class="link-faded-reverse" aria-controls="{{ cart_note_dialog_id }}">{{ 'cart.general.add_order_note' | t }}</button>
-
               <cart-note-dialog id="{{ cart_note_dialog_id }}" class="cart-drawer__order-note">
                 <div class="form">
                   <cart-note class="form-control">
@@ -258,14 +428,12 @@
                     {%- assign placeholder = 'cart.general.note_placeholder' | t -%}
                     {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note, placeholder: placeholder, show_label_as_block: true -%}
                   </cart-note>
-
                   <dialog-close-button class="contents">
                     <button type="button" class="button">{{ 'cart.general.save_note' | t }}</button>
                   </dialog-close-button>
                 </div>
               </cart-note-dialog>
             {%- endif -%}
-
             {%- if section.settings.show_shipping_text -%}
               <p class="text-subdued">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
             {%- endif -%}
@@ -283,7 +451,6 @@
                 <span class="discount-badge text-xs">
                   {%- render 'icon' with 'discount', width: 12 -%}
                   {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money_without_trailing_zeros }})
-
                   {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
                     <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
                       <button type="button">{%- render 'icon' with 'close', width: 8 -%}</button>
@@ -300,16 +467,13 @@
             {%- assign view_cart = 'cart.general.view_cart' | t -%}
             {%- render 'button', href: routes.cart_url, content: view_cart, stretch: true -%}
           {%- endif -%}
-
           {%- if section.settings.show_checkout_button -%}
             {%- capture checkout_button -%}
               {{- 'cart.general.checkout' | t -}}
-
               {%- if section.settings.show_price_in_checkout_button -%}
                 <span class="cart-drawer__button-price">{{- cart.total_price | money_without_trailing_zeros -}}</span>
               {%- endif -%}
             {%- endcapture -%}
-
             {%- render 'button', type: 'submit', content: checkout_button, name: 'checkout', stretch: true -%}
           {%- endif -%}
         </div>
@@ -327,10 +491,6 @@
     {
       "type": "paragraph",
       "content": "t:sections.cart_drawer.page_info"
-    },
-    {
-      "type": "paragraph",
-      "content": "t:sections.cart_drawer.free_shipping_bar_info"
     },
     {
       "type": "color_scheme",
@@ -373,6 +533,49 @@
       "id": "show_price_in_checkout_button",
       "label": "t:sections.cart_drawer.show_price_in_checkout_button",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "USP Points"
+    },
+    {
+      "type": "richtext",
+      "id": "usp_1_text",
+      "label": "USP 1",
+      "default": "<p>Certificate of authenticity included</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "usp_2_text",
+      "label": "USP 2",
+      "default": "<p>4.8/5 TrustScore on Trustpilot</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "usp_3_text",
+      "label": "USP 3",
+      "default": "<p>Buy 2 Get 1 Free | Buy 3 Get 2 Free<br>Automatically applied on the artwork<br>(Frames and mat boards are not included)</p>"
+    },
+    {
+      "type": "header",
+      "content": "Trending Section"
+    },
+    {
+      "type": "text",
+      "id": "trending_heading",
+      "label": "Heading",
+      "default": "TRENDING RIGHT NOW"
+    },
+    {
+      "type": "text",
+      "id": "trending_subheading",
+      "label": "Subheading",
+      "default": "These are selling out fast"
+    },
+    {
+      "type": "collection",
+      "id": "trending_collection",
+      "label": "Collection"
     },
     {
       "type": "header",
