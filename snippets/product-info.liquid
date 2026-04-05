@@ -651,44 +651,181 @@
                 {%- endfor -%}
               </div>
 
-              <button
-                type="button"
-                class="itw-trigger"
-                data-subtext="{{ block.settings.subtext | escape }}"
-              >
-                <span class="itw-trigger__label">{{ block.settings.button_label | default: 'In The Wild' }}</span>
-                <svg class="itw-trigger__icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              </button>
+              <div class="itw-widget" data-subtext="{{ block.settings.subtext | escape }}">
+
+                {{- '<!-- ITW widget -->' -}}
+
+                <div class="itw-widget__header">
+                  <div class="itw-widget__title-group">
+                    <span class="itw-widget__title">IN THE WILD</span>
+                    <span class="itw-widget__sep">|</span>
+                    <span class="itw-widget__subtitle">Real Customer Experiences</span>
+                  </div>
+                  <div class="itw-widget__arrows">
+                    <button type="button" class="itw-widget__arrow itw-widget__arrow--prev" aria-label="Previous">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button type="button" class="itw-widget__arrow itw-widget__arrow--next" aria-label="Next">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="itw-widget__track-wrap">
+                  <div class="itw-widget__track">
+                    {%- for i in (1..6) -%}
+                      {%- assign vid_key = 'video_' | append: i -%}
+                      {%- assign vid = block.settings[vid_key] -%}
+                      {%- if vid != blank -%}
+                        <button type="button" class="itw-widget__thumb" aria-label="Watch video {{ i }}">
+                          {{- vid | video_tag: loop: true, muted: true, playsinline: true, preload: 'metadata', autoplay: true -}}
+                          <div class="itw-widget__play">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
+                          </div>
+                        </button>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+              </div>
 
               <style>
-                .itw-trigger {
-                  display: inline-flex;
+                .itw-widget {
+                  width: 100%;
+                }
+                .itw-widget__header {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 10px;
+                }
+                .itw-widget__title-group {
+                  display: flex;
                   align-items: center;
                   gap: 8px;
-                  padding: 0;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  font-size: 13px;
-                  font-weight: 600;
-                  letter-spacing: 0.05em;
-                  text-transform: uppercase;
-                  color: #163bbc;
-                  text-decoration: underline;
-                  text-underline-offset: 3px;
+                  flex-wrap: wrap;
                 }
-                .itw-trigger:hover { opacity: 0.75; }
-                .itw-trigger__icon { flex-shrink: 0; }
+                .itw-widget__title {
+                  font-size: 13px;
+                  font-weight: 700;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: #111;
+                }
+                .itw-widget__sep {
+                  color: #999;
+                  font-size: 13px;
+                }
+                .itw-widget__subtitle {
+                  font-size: 13px;
+                  font-style: italic;
+                  color: #555;
+                  font-weight: 400;
+                }
+                .itw-widget__arrows {
+                  display: flex;
+                  gap: 4px;
+                  flex-shrink: 0;
+                }
+                .itw-widget__arrow {
+                  width: 28px;
+                  height: 28px;
+                  border: 1px solid #ddd;
+                  border-radius: 50%;
+                  background: #fff;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 0;
+                  color: #333;
+                  transition: border-color 0.2s, color 0.2s;
+                }
+                .itw-widget__arrow:hover {
+                  border-color: #163bbc;
+                  color: #163bbc;
+                }
+                .itw-widget__track-wrap {
+                  overflow: hidden;
+                  width: 100%;
+                }
+                .itw-widget__track {
+                  display: flex;
+                  gap: 8px;
+                  transition: transform 0.35s ease;
+                  will-change: transform;
+                }
+                .itw-widget__thumb {
+                  flex: 0 0 calc(25% - 6px);
+                  aspect-ratio: 9/16;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  position: relative;
+                  cursor: pointer;
+                  padding: 0;
+                  border: none;
+                  background: #000;
+                }
+                .itw-widget__thumb video {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  display: block;
+                  pointer-events: none;
+                }
+                .itw-widget__play {
+                  position: absolute;
+                  inset: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: rgba(0,0,0,0.18);
+                  transition: background 0.2s;
+                }
+                .itw-widget__play svg {
+                  width: 28px;
+                  height: 28px;
+                  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+                }
+                .itw-widget__thumb:hover .itw-widget__play {
+                  background: rgba(0,0,0,0.32);
+                }
               </style>
 
               <script>
                 (function () {
-                  document.addEventListener('click', function (e) {
-                    var btn = e.target.closest('.itw-trigger');
-                    if (!btn) return;
-                    document.dispatchEvent(new CustomEvent('itw:open', {
-                      detail: { subtext: btn.dataset.subtext || '' }
-                    }));
+                  var widget = document.querySelector('.itw-widget');
+                  if (!widget) return;
+
+                  var track     = widget.querySelector('.itw-widget__track');
+                  var thumbs    = widget.querySelectorAll('.itw-widget__thumb');
+                  var btnPrev   = widget.querySelector('.itw-widget__arrow--prev');
+                  var btnNext   = widget.querySelector('.itw-widget__arrow--next');
+                  var visible   = 4;
+                  var current   = 0;
+                  var total     = thumbs.length;
+
+                  function slide() {
+                    var thumbWidth = thumbs[0] ? thumbs[0].offsetWidth + 8 : 0;
+                    track.style.transform = 'translateX(-' + (current * thumbWidth) + 'px)';
+                  }
+
+                  if (btnPrev) btnPrev.addEventListener('click', function () {
+                    if (current > 0) { current--; slide(); }
+                  });
+                  if (btnNext) btnNext.addEventListener('click', function () {
+                    if (current < total - visible) { current++; slide(); }
+                  });
+
+                  // Open panel on thumb click
+                  thumbs.forEach(function (thumb, idx) {
+                    thumb.addEventListener('click', function () {
+                      var subtext = widget.dataset.subtext || '';
+                      document.dispatchEvent(new CustomEvent('itw:open', {
+                        detail: { subtext: subtext, index: idx }
+                      }));
+                    });
                   });
                 })();
               </script>

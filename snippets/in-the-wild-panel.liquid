@@ -152,7 +152,7 @@
   var subtextEl = document.getElementById('itw-panel-subtext');
   var reelsEl  = document.getElementById('itw-panel-reels');
 
-  function openPanel(subtext) {
+  function openPanel(subtext, startIndex) {
     // Set subtext
     subtextEl.textContent = subtext || '';
 
@@ -203,11 +203,18 @@
 
     // Autoplay after transition
     setTimeout(function () {
-      reelsEl.querySelectorAll('video').forEach(function (v) {
+      var wraps = reelsEl.querySelectorAll('.itw-panel__reel-wrap');
+      wraps.forEach(function (wrap, i) {
+        var v = wrap.querySelector('video');
+        if (!v) return;
         v.play().then(function () {
-          v.closest('.itw-panel__reel-wrap').classList.add('playing');
+          wrap.classList.add('playing');
         }).catch(function () {});
       });
+      // Scroll to clicked index
+      if (startIndex && wraps[startIndex]) {
+        wraps[startIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     }, 380);
   }
 
@@ -225,7 +232,8 @@
 
   // Open trigger — dispatched from the product block button
   document.addEventListener('itw:open', function (e) {
-    openPanel(e.detail && e.detail.subtext);
+    var detail = e.detail || {};
+    openPanel(detail.subtext, detail.index || 0);
   });
 
   if (closeBtn) closeBtn.addEventListener('click', closePanel);
