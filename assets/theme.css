@@ -4274,7 +4274,7 @@ product-rerender {
 
 .cart-drawer__footer {
   align-items: start;
-  gap: 02px;
+  gap: 03px;
   display: grid;
 }
 
