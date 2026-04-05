@@ -96,6 +96,10 @@
             "section_gap": 12
           }
         },
+        "judge_me_reviews_preview_badge_WNRCtn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "title": {
           "type": "title",
           "settings": {
@@ -137,10 +141,6 @@
             "variant_image_options": "",
             "size_chart_page": ""
           }
-        },
-        "globo_color_swatch_product_swatches_detail_CPw7qJ": {
-          "type": "shopify://apps/globo-color-swatch/blocks/product-swatches-detail/4394f710-096c-4021-bbde-8ebb26057c11",
-          "settings": {}
         },
         "modal_mNQWbp": {
           "type": "modal",
@@ -280,12 +280,12 @@
       },
       "block_order": [
         "section_vso_theme_sections_product_badge_PAxHCh",
+        "judge_me_reviews_preview_badge_WNRCtn",
         "title",
         "price",
         "section_vso_theme_sections_countdown_timer_YPkYay",
         "payment_terms",
         "variant_picker",
-        "globo_color_swatch_product_swatches_detail_CPw7qJ",
         "modal_mNQWbp",
         "buy_buttons",
         "section_vso_theme_sections_delivery_information_Lq3JXd",
