@@ -26,7 +26,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-3",
-        "enable_sticky": true,
+        "enable_sticky": false,
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 12,
@@ -45,6 +45,7 @@
           "settings": {
             "menu_item": "Fine ART PRINTS",
             "images_position": "right",
+            "promo_text": "",
             "image_1": "shopify://shop_images/6_3f308096-e543-4db5-a0cf-9d85ac967172.png",
             "image_1_heading": "",
             "image_1_text": "",
