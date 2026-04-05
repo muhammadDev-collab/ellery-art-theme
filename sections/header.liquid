@@ -109,16 +109,21 @@
     gap: 6px;
   }
 
-  /* Desktop: hide the standalone price li (price shown separately but we keep it in flow) */
+  /* Desktop order: About Us | Reviews | Search | divider+Price | Cart */
   @media screen and (min-width: 1000px) {
     .header__mobile-hamburger {
       display: none !important;
     }
-    /* On desktop show a divider before the cart price via pseudo-element */
+    .header__nav-about   { order: 1; }
+    .header__nav-reviews { order: 2; }
+    .header__search-link { order: 3; }
+    .header__cart-price-li { order: 4; }
+    .header__cart-link   { order: 5; }
+
+    /* Divider before price */
     .header__cart-price-li {
       display: flex;
       align-items: center;
-      gap: 6px;
     }
     .header__cart-price-li::before {
       content: '';
@@ -127,6 +132,7 @@
       height: 18px;
       background: currentColor;
       opacity: 0.3;
+      margin-right: 8px;
     }
   }
 
@@ -360,7 +366,7 @@
 
         {%- comment -%} About Us link {%- endcomment -%}
         {%- if section.settings.about_us_link != blank -%}
-          <li class="md-max:hidden">
+          <li class="md-max:hidden header__nav-about">
             <a href="{{ section.settings.about_us_link }}" class="{% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded">
               {{ section.settings.about_us_label | default: 'About Us' }}
             </a>
@@ -369,7 +375,7 @@
 
         {%- comment -%} Reviews button {%- endcomment -%}
         {%- if section.settings.reviews_link != blank -%}
-          <li class="md-max:hidden">
+          <li class="md-max:hidden header__nav-reviews">
             <a href="{{ section.settings.reviews_link }}" class="header__reviews-btn link-faded">
               {%- if section.settings.reviews_count != blank -%}
                 <span class="header__reviews-badge">{{ section.settings.reviews_count }}</span>
