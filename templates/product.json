@@ -90,9 +90,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_taxes_notice": false,
-            "price_panel_heading": "HOW OUR PRICES ARE MADE POSSIBLE",
-            "price_panel_content": "<p><em>It’s not a sale.</em>It’s a commitment to do more good.We establish close collaborations with charitable organisations all across the world, to find strategic ways to help them spread awareness with the power of art.<br/><br/>With the organisation, we then reach out to the world’s most talented artists to figure out a way to make limited releases at a never-before-seen price, leaving room for people to make a donation with their purchase. <br/><br/>Our business model is kind of crazy (and a lot of work), but a huge win-win for all.<br/><br/>Especially for our planet.<br/><br/>By purchasing an artwork for a cause, you become a part of our good community. A 100% free membership where the only thing YOU have to do, is keep spreading the word of the true value behind your art. <br/><br/>We truly believe it's the best art deal in the world.<br/><br/>Hopefully, you feel the same.<br/><br/>Want to know more?<a href=\"https://andyokay.com/pages/about-us\" target=\"_blank\" title=\"https://andyokay.com/pages/about-us\">Click here</a></p>"
+            "show_taxes_notice": false
           }
         },
         "section_vso_theme_sections_countdown_timer_YPkYay": {
@@ -301,7 +299,7 @@
         "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "allow_transparent_header": false,
         "transparent_header_use_primary_colors": false,
         "container_size": "lg",
