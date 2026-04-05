@@ -204,7 +204,7 @@
               }
               .size-variant-item {
                 display: grid;
-                grid-template-columns: 60px 1px 1fr 1px auto;
+                grid-template-columns: 60px 1px 90px 1fr 1px auto;
                 align-items: center;
                 background: #ffffff;
                 border: 1px solid #e5e5e5;
@@ -231,25 +231,22 @@
                 background: #e5e5e5;
                 flex-shrink: 0;
               }
+              .size-variant__badge {
+                text-align: left;
+                font-size: 11px;
+                font-weight: 600;
+                font-style: normal;
+                letter-spacing: 0;
+                text-transform: none;
+                color: #888;
+                padding: 0 10px;
+              }
               .size-variant__label {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
                 text-align: center;
                 font-size: 12px;
                 color: #444;
                 padding: 0 10px;
                 font-style: italic;
-                gap: 2px;
-              }
-              .size-variant__badge {
-                font-size: 9px;
-                font-weight: 700;
-                font-style: normal;
-                letter-spacing: 0.06em;
-                text-transform: uppercase;
-                color: #888;
               }
               .size-variant__prices {
                 display: flex;
@@ -313,10 +310,8 @@
                     class="size-variant-item {% if option_value.selected %}is-selected{% endif %} {% if option_value.available == false %}is-disabled{% endif %}">
                     <span class="size-variant__short">{{ ov_short }}</span>
                     <span class="size-variant__divider"></span>
-                    <span class="size-variant__label">
-                      {%- if ov_badge != '' -%}<span class="size-variant__badge">{{ ov_badge }}</span>{%- endif -%}
-                      {{ ov_long | default: ov_short }}
-                    </span>
+                    <span class="size-variant__badge">{{ ov_badge }}</span>
+                    <span class="size-variant__label">{{ ov_long | default: ov_short }}</span>
                     <span class="size-variant__divider"></span>
                     <span class="size-variant__prices">
                       {%- if ov_on_sale -%}
