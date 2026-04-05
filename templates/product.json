@@ -77,25 +77,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "section_vso_theme_sections_product_badge_PAxHCh": {
-          "type": "shopify://apps/section-vso-theme-sections/blocks/productBadge/06016590-3938-4460-bd08-bd58cf996a58",
-          "settings": {
-            "block_top_spacing": -5,
-            "block_bottom_spacing": 0,
-            "section_text": "Order <strong>Today</strong> and pay later with <strong>Klarna</strong>",
-            "text_color": "#1c1c1c",
-            "font_size": 14,
-            "badge_image": "shopify://shop_images/klarna-svgrepo-com.svg",
-            "image_size": 25,
-            "image_radius": 0,
-            "bg_color": "#ffffff",
-            "border_color": "#1c1c1c",
-            "border_width": 0,
-            "padding_block": 0,
-            "border_radius": 6,
-            "section_gap": 12
-          }
-        },
         "judge_me_reviews_preview_badge_WNRCtn": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
@@ -164,6 +145,25 @@
             "atc_button_text_color": "#ffffff",
             "payment_button_background": "#f7f7f7",
             "payment_button_text_color": ""
+          }
+        },
+        "section_vso_theme_sections_product_badge_PAxHCh": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/productBadge/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "block_top_spacing": -5,
+            "block_bottom_spacing": 0,
+            "section_text": "Order <strong>Today</strong> and pay later with <strong>Klarna</strong>",
+            "text_color": "#1c1c1c",
+            "font_size": 14,
+            "badge_image": "shopify://shop_images/klarna-svgrepo-com.svg",
+            "image_size": 25,
+            "image_radius": 0,
+            "bg_color": "#ffffff",
+            "border_color": "#1c1c1c",
+            "border_width": 0,
+            "padding_block": 0,
+            "border_radius": 6,
+            "section_gap": 12
           }
         },
         "section_vso_theme_sections_delivery_information_Lq3JXd": {
@@ -279,7 +279,6 @@
         }
       },
       "block_order": [
-        "section_vso_theme_sections_product_badge_PAxHCh",
         "judge_me_reviews_preview_badge_WNRCtn",
         "title",
         "price",
@@ -288,6 +287,7 @@
         "variant_picker",
         "modal_mNQWbp",
         "buy_buttons",
+        "section_vso_theme_sections_product_badge_PAxHCh",
         "section_vso_theme_sections_delivery_information_Lq3JXd",
         "section_vso_theme_sections_payment_icons_NaKMNe",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
