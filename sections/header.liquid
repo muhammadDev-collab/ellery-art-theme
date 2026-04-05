@@ -39,22 +39,9 @@
   }
 
   {%- if section.settings.enable_sticky -%}
+    /* Always account for both announcement bar and progress bar heights */
     #shopify-section-{{ section.id }} {
       position: sticky;
-      top: 0;
-    }
-
-    .shopify-section--announcement-bar ~ #shopify-section-{{ section.id }} {
-      top: calc(var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px));
-    }
-
-    /* Progress bar alone above header */
-    .shopify-section--discount-progress-bar ~ #shopify-section-{{ section.id }} {
-      top: var(--discount-progress-bar-height, 55px);
-    }
-
-    /* Announcement bar + progress bar both above header */
-    .shopify-section--announcement-bar ~ .shopify-section--discount-progress-bar ~ #shopify-section-{{ section.id }} {
       top: calc(
         (var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px)) +
         var(--discount-progress-bar-height, 55px)
