@@ -105,6 +105,91 @@
         "text_color": "#ffffff"
       }
     },
+    "ss_stats_2_eUEeDW": {
+      "type": "ss-stats-2",
+      "blocks": {
+        "item_BJckEP": {
+          "type": "item",
+          "settings": {
+            "count_from": "050",
+            "count_to": "226",
+            "suffix": "",
+            "text": "<p>Signed Artists</p>"
+          }
+        },
+        "item_YBBzm4": {
+          "type": "item",
+          "settings": {
+            "count_from": "013.512",
+            "count_to": "213.512",
+            "suffix": "",
+            "text": "<p>Artworks sold for Charity</p>"
+          }
+        },
+        "item_Pg7R6Q": {
+          "type": "item",
+          "settings": {
+            "count_from": "1",
+            "count_to": "12",
+            "suffix": "",
+            "text": "<p>Charity Partners</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_BJckEP",
+        "item_YBBzm4",
+        "item_Pg7R6Q"
+      ],
+      "name": "SS - Stats #2",
+      "settings": {
+        "items_per_row": 3,
+        "items_gap": 0,
+        "items_mt": 40,
+        "items_mt_mobile": 16,
+        "item_padding_horizontal": 48,
+        "item_padding_horizontal_mobile": 0,
+        "item_padding_vertical": 0,
+        "item_padding_vertical_mobile": 12,
+        "item_border_thickness": 0,
+        "item_content_align": "center",
+        "item_content_align_mobile": "center",
+        "count_custom": false,
+        "count_font": "josefin_sans_n4",
+        "count_size": 56,
+        "count_size_mobile": 30,
+        "count_height": 50,
+        "count_speed": 2,
+        "item_width": 120,
+        "item_width_mobile": 100,
+        "item_gap": 24,
+        "item_gap_mobile": 24,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 11,
+        "text_height": 150,
+        "count_color": "#121212",
+        "text_color": "#121212",
+        "item_border_color": "#121212",
+        "background_style": "solid",
+        "background_color": "#ffffff",
+        "background_gradient": "linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": false,
+        "content_width": 1500,
+        "border_thickness": 0,
+        "section_radius": 0
+      }
+    },
     "ss_circle_menu_rNj4NH": {
       "type": "ss-circle-menu",
       "blocks": {
@@ -652,6 +737,7 @@
   "order": [
     "slideshow",
     "scrolling-content",
+    "ss_stats_2_eUEeDW",
     "ss_circle_menu_rNj4NH",
     "featured-collections",
     "rich_text_ePWnFE",
