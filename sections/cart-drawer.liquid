@@ -3,6 +3,15 @@
   .cart-drawer.drawer {
     background-color: #f0f0f0 !important;
   }
+  .cart-drawer.drawer::part(panel) {
+    background-color: #f0f0f0 !important;
+  }
+  .cart-drawer.drawer::part(body) {
+    background-color: #f0f0f0 !important;
+  }
+  #cart-drawer {
+    --background: 240, 240, 240;
+  }
 
   /* ── Remove header divider and hide empty title ── */
   .cart-drawer.drawer::part(header) {
