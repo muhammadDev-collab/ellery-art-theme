@@ -11,10 +11,6 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "discount-progress-bar": {
-      "type": "discount-progress-bar",
-      "settings": {}
-    },
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
@@ -36,6 +32,10 @@
         "desktop_font_size": 12,
         "mobile_font_size": 9
       }
+    },
+    "discount-progress-bar": {
+      "type": "discount-progress-bar",
+      "settings": {}
     },
     "header": {
       "type": "header",
@@ -70,7 +70,7 @@
         "logo": "{{ shop.brand.logo }}",
         "logo_max_width": 215,
         "logo_mobile_max_width": 155,
-        "menu": "main",
+        "menu": "main-menu-copy",
         "sidebar_menu": "main",
         "customer_account_menu": "customer-account-main-menu",
         "menu_open_trigger": "hover",
@@ -82,9 +82,6 @@
         "sidebar_open_second_level_menus": true,
         "layout": "logo_center_navigation_inline",
         "show_icons": true,
-        "show_country_selector": true,
-        "show_country_name": false,
-        "show_country_flag": true,
         "show_locale_selector": false,
         "transparent_header_text_color": "#ffffff",
         "transparent_logo": "shopify://shop_images/Ellery_c3b15c7f-dc81-4439-b7a0-615378b26c34.png"
