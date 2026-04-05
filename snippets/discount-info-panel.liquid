@@ -131,7 +131,7 @@
 
     // Question mark click — delegate so it works for both header and cart-drawer instances
     document.addEventListener('click', function (e) {
-      if (e.target && e.target.id === 'ask-about-discount') {
+      if (e.target && e.target.classList.contains('ask-about-discount')) {
         openPanel();
       }
     });

@@ -6,7 +6,7 @@
   width: 80%;
 }
 
-#progress-description-text {
+.progress-description-text {
   font-family: 'Adobe Caslon Pro';
   color: black;
   font-size: 12px;

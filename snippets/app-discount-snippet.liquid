@@ -36,14 +36,14 @@
     .discount-app-{{ type }}.progress-bar-main .progress-container {
       display: none;
     }
-    .discount-app-{{ type }}.progress-bar-main #progress-description-text {
+    .discount-app-{{ type }}.progress-bar-main .progress-description-text {
       font-size: inherit;
     }
     .discount-app-{{ type }}.progress-bar-main .progress-description {
       width: 95%;
     }
     @media screen and (max-width: 641px) {
-      .discount-app-{{ type }}.progress-bar-main #progress-description-text {
+      .discount-app-{{ type }}.progress-bar-main .progress-description-text {
         font-size: 13px;
       }
     }
@@ -72,14 +72,13 @@
 {% comment %} main progress bar {% endcomment %}
 <div class="discount-app-{{ type }} progress-bar-main">
   <div class="progress-description">
-    <p id="progress-description-text"></p>
+    <p class="progress-description-text"></p>
     <img
-      id="ask-about-discount"
-      class="question-icon hide"
+      class="ask-about-discount question-icon hide"
       src="{{ 'question-mark.svg' | asset_url }}"
       alt="i" />
   </div>
-  <div id="progress-container" class="progress-container hide">
+  <div class="progress-container hide">
     <div class="line">
       <div class="progress"></div>
     </div>
@@ -116,9 +115,9 @@
 
     var circles         = document.querySelectorAll('.discount-app-' + TYPE + ' .circle');
     var progressLine    = document.querySelector('.discount-app-' + TYPE + ' .line .progress');
-    var progressContainer = document.querySelector('.discount-app-' + TYPE + ' #progress-container');
-    var progressDescription = document.querySelector('.discount-app-' + TYPE + ' #progress-description-text');
-    var askAboutDiscount = document.querySelector('.discount-app-' + TYPE + ' #ask-about-discount');
+    var progressContainer = document.querySelector('.discount-app-' + TYPE + ' .progress-container');
+    var progressDescription = document.querySelector('.discount-app-' + TYPE + ' .progress-description-text');
+    var askAboutDiscount = document.querySelector('.discount-app-' + TYPE + ' .ask-about-discount');
 
     var maxCartItems = 5;
     var stepProgress = [0, 15, 38, 64, 87, 100];
