@@ -1,9 +1,11 @@
 <style>
-  /* Make the entire header group wrapper sticky so the progress bar sticks with the header */
+  /* Shopify renders header group sections inside:
+     <div class="shopify-section-group shopify-section-group--header-group">
+     Making this wrapper sticky keeps announcement bar + progress bar + header all stuck together */
   .shopify-section-group--header-group {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 200 !important;
   }
 </style>
 
