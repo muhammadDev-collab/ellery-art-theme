@@ -51,10 +51,6 @@
 {% else %}
   <style>
     .discount-app-{{ type }}.progress-bar-main {
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 5;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,9 +58,6 @@
       flex-direction: column;
       height: 55px;
       row-gap: 4px;
-    }
-    .discount-app-{{ type }}.progress-bar-main ~ .shopify-section--header {
-      top: 55px;
     }
   </style>
 {% endif %}

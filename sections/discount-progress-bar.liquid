@@ -1,3 +1,12 @@
+<style>
+  /* Make the entire header group wrapper sticky so the progress bar sticks with the header */
+  .shopify-section-group--header-group {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+</style>
+
 {% render 'app-discount-snippet', type: 'header' %}
 
 {% schema %}
