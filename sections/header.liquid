@@ -61,22 +61,20 @@
     font-weight: var(--font-heading-weight);
   }
 
-  /* Reviews stacked layout: count above label */
+  /* Reviews inline: REVIEWS <sup>10711</sup> */
   .header__reviews-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
     color: currentColor;
     text-decoration: none;
-    line-height: 1;
+    white-space: nowrap;
   }
   .header__reviews-badge {
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     line-height: 1;
-    display: block;
-    margin-bottom: 1px;
+    vertical-align: super;
   }
   .header__reviews-label {
     font-size: var(--font-heading-size-xs, 0.7rem);
@@ -377,10 +375,10 @@
         {%- if section.settings.reviews_link != blank -%}
           <li class="md-max:hidden header__nav-reviews">
             <a href="{{ section.settings.reviews_link }}" class="header__reviews-btn link-faded">
-              {%- if section.settings.reviews_count != blank -%}
-                <span class="header__reviews-badge">{{ section.settings.reviews_count }}</span>
-              {%- endif -%}
               <span class="header__reviews-label">{{ section.settings.reviews_label | default: 'Reviews' }}</span>
+              {%- if section.settings.reviews_count != blank -%}
+                <sup class="header__reviews-badge">{{ section.settings.reviews_count }}</sup>
+              {%- endif -%}
             </a>
           </li>
         {%- endif -%}
