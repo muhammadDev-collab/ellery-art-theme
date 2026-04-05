@@ -107,8 +107,6 @@
 
 <!-- Link the custom JS file -->
 {% comment %} <script src="{{ 'custom-progress-bar.js' | asset_url }}" defer></script> {% endcomment %}
-{% assign translations = metaobjects["discount_offer_bar_translations"]['discount-offer-bar-translations'] %}
-
 <script id="app-discount-action">
   $(document).ready(function(){
     const circles = document.querySelectorAll('.discount-app-{{ type }} .circle');
@@ -116,17 +114,17 @@
     const progressContainer = document.querySelector('.discount-app-{{ type }} #progress-container');
     const progressDescription = document.querySelector('.discount-app-{{ type }} #progress-description-text');
     const askAboutDiscount = document.querySelector('.discount-app-{{ type }} #ask-about-discount');
-    
+
     // Maximum cart count to complete the progress
-    const maxCartItems = 5; // This is arbitrary, adjust as needed.
+    const maxCartItems = 5;
 
     const stepDescriptions = [
-        "{{ translations.step_1 | escape }}",
-        "{{ translations.step_2 | escape }}",
-        "{{ translations.step_3 | escape }}",
-        "{{ translations.step_4 | escape }}",
-        "{{ translations.step_5 | escape }}",
-        "{{ translations.step_6 | escape }}"
+        "{{ settings.progress_step_0 | escape }}",
+        "{{ settings.progress_step_1 | escape }}",
+        "{{ settings.progress_step_2 | escape }}",
+        "{{ settings.progress_step_3 | escape }}",
+        "{{ settings.progress_step_4 | escape }}",
+        "{{ settings.progress_step_5 | escape }}"
     ];
 
     // Update progress bar based on the cart count
