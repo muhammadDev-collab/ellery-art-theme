@@ -259,7 +259,6 @@
   }
   .cart-drawer__trending-card img {
     width: 100%;
-    aspect-ratio: 3/4;
     object-fit: cover;
     display: block;
   }
@@ -294,6 +293,97 @@
     font-size: 11px;
     font-weight: 600;
     color: #001bcf;
+  }
+
+  /* ── Checkout button ── */
+  .cart-drawer__checkout-btn {
+    width: 100%;
+    background-color: #163bbc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    gap: 0;
+    overflow: hidden;
+  }
+  .cart-drawer__checkout-btn:hover {
+    background-color: #1232a0;
+  }
+  .cart-drawer__checkout-label {
+    flex: 1;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .cart-drawer__checkout-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.35);
+    flex-shrink: 0;
+  }
+  .cart-drawer__checkout-prices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    min-width: 80px;
+    gap: 2px;
+    line-height: 1.2;
+  }
+  .cart-drawer__checkout-original {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.75;
+    text-decoration: line-through;
+  }
+  .cart-drawer__checkout-total {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* ── Continue shopping ── */
+  .cart-drawer__continue {
+    text-align: center;
+    margin-top: 12px;
+  }
+  .cart-drawer__continue-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: inherit;
+    text-decoration: underline;
+    padding: 0;
+    letter-spacing: 0.02em;
+  }
+  .cart-drawer__continue-btn:hover {
+    opacity: 0.6;
+  }
+
+  /* ── Payment icons ── */
+  .cart-drawer__payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding-bottom: 4px;
+  }
+  .cart-drawer__payment-icon {
+    height: 24px;
+    width: auto;
+    border-radius: 3px;
+    opacity: 0.8;
   }
 
   /* ── Cart item prices: force inline + strikethrough ── */
@@ -486,21 +576,51 @@
           </div>
         {%- endif -%}
 
-        <div class="button-group">
-          {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
-            {%- assign view_cart = 'cart.general.view_cart' | t -%}
-            {%- render 'button', href: routes.cart_url, content: view_cart, stretch: true -%}
-          {%- endif -%}
-          {%- if section.settings.show_checkout_button -%}
-            {%- capture checkout_button -%}
-              {{- 'cart.general.checkout' | t -}}
-              {%- if section.settings.show_price_in_checkout_button -%}
-                <span class="cart-drawer__button-price">{{- cart.total_price | money_without_trailing_zeros -}}</span>
+        {%- comment -%} Custom checkout button {%- endcomment -%}
+        {%- if section.settings.show_checkout_button -%}
+          {%- liquid
+            assign original_total = 0
+            for item in cart.items
+              assign item_original = item.variant.compare_at_price | default: item.original_price
+              if item_original < item.original_price
+                assign item_original = item.original_price
+              endif
+              assign item_original_total = item_original | times: item.quantity
+              assign original_total = original_total | plus: item_original_total
+            endfor
+            assign has_savings = false
+            if original_total > cart.total_price
+              assign has_savings = true
+            endif
+          -%}
+          <button type="submit" name="checkout" class="cart-drawer__checkout-btn">
+            <span class="cart-drawer__checkout-label">Proceed to Checkout</span>
+            <span class="cart-drawer__checkout-divider"></span>
+            <span class="cart-drawer__checkout-prices">
+              {%- if has_savings -%}
+                <span class="cart-drawer__checkout-original">{{ original_total | money_without_trailing_zeros }}</span>
               {%- endif -%}
-            {%- endcapture -%}
-            {%- render 'button', type: 'submit', content: checkout_button, name: 'checkout', stretch: true -%}
-          {%- endif -%}
+              <span class="cart-drawer__checkout-total">{{ cart.total_price | money_without_trailing_zeros }}</span>
+            </span>
+          </button>
+        {%- endif -%}
+
+        {%- comment -%} Continue shopping {%- endcomment -%}
+        <div class="cart-drawer__continue">
+          <button type="button" class="cart-drawer__continue-btn" onclick="document.getElementById('cart-drawer').hide()">
+            Continue Shopping
+          </button>
         </div>
+
+        {%- comment -%} Payment icons {%- endcomment -%}
+        {%- unless shop.enabled_payment_types == empty -%}
+          <div class="cart-drawer__payment-icons">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'cart-drawer__payment-icon' }}
+            {%- endfor -%}
+          </div>
+        {%- endunless -%}
+
       </form>
     </div>
   {%- endif -%}
