@@ -886,6 +886,22 @@
         "id": "discount_panel_content",
         "label": "Panel Content",
         "default": "<p>Buy 2 items from our collection and get 1 free. Add more to unlock additional free items!</p>"
+      },
+      {
+        "type": "header",
+        "content": "Product Price Info Panel"
+      },
+      {
+        "type": "text",
+        "id": "price_panel_heading",
+        "label": "Panel Heading",
+        "default": "Our Pricing"
+      },
+      {
+        "type": "richtext",
+        "id": "price_panel_content",
+        "label": "Panel Content",
+        "default": "<p>Buy 2 items and get 1 free. Buy 3 and get 2 free. Discount is automatically applied.</p>"
       }
     ]
   },
