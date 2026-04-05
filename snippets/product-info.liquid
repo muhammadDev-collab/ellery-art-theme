@@ -156,13 +156,8 @@
             {%- if product.selected_or_first_available_variant != nil -%}
               {%- liquid
                 assign pdp_variant = product.selected_or_first_available_variant
-                if settings.currency_code_enabled
-                  assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
-                  assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
-                else
-                  assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros
-                  assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros
-                endif
+                assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros
+                assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros
                 assign pdp_on_sale = false
                 if pdp_variant.compare_at_price > pdp_variant.price
                   assign pdp_on_sale = true
