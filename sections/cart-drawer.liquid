@@ -1,3 +1,29 @@
+<style>
+  /* Cart drawer background */
+  .cart-drawer.drawer {
+    background-color: #f0f0f0 !important;
+  }
+
+  /* Free shipping bar + progress bar white backgrounds with gap between */
+  .cart-free-shipping {
+    margin-bottom: 4px;
+  }
+  .discount-app-cart-drawer.progress-bar-main {
+    background-color: #ffffff !important;
+    margin-bottom: 4px;
+  }
+
+  /* Product cards white background */
+  .cart-drawer__items line-item,
+  .cart-drawer__items .line-item {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+    display: block;
+  }
+</style>
+
 <cart-drawer
   id="cart-drawer"
   aria-label="{{ 'cart.general.title' | t | escape_once }}"
@@ -7,15 +33,12 @@
 >
   <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
 
+  {%- render 'cart-free-shipping-bar' -%}
   {%- render 'app-discount-snippet', type: 'cart-drawer' -%}
 
   {%- if cart.empty? -%}
     <p class="h5 text-center">{{ 'cart.general.empty' | t }}</p>
   {%- else -%}
-    {%- if settings.cart_show_free_shipping_bar -%}
-      {%- render 'free-shipping-bar' -%}
-    {%- endif -%}
-
     <div class="cart-drawer__items">
       {%- for line_item in cart.items -%}
         {%- render 'line-item', line_item: line_item, show_quantity_selector: true -%}

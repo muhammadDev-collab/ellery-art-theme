@@ -860,6 +860,12 @@
     "name": "Discount Progress Bar",
     "settings": [
       {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold",
+        "info": "Enter the minimum order amount (in your store currency, e.g. 150) to unlock free shipping. Set to 0 to hide the bar."
+      },
+      {
         "type": "collection",
         "id": "discounted_collection",
         "label": "Discounted Collection",
