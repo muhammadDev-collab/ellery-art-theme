@@ -154,8 +154,37 @@
 
           {%- when 'price' -%}
             {%- if product.selected_or_first_available_variant != nil -%}
-              <div class="v-stack">
-                {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, context: 'product' -%}
+              {%- liquid
+                assign pdp_variant = product.selected_or_first_available_variant
+                if settings.currency_code_enabled
+                  assign pdp_compare_price = pdp_variant.compare_at_price | money_with_currency
+                  assign pdp_sale_price = pdp_variant.price | money_with_currency
+                else
+                  assign pdp_compare_price = pdp_variant.compare_at_price | money_without_trailing_zeros
+                  assign pdp_sale_price = pdp_variant.price | money_without_trailing_zeros
+                endif
+                assign pdp_on_sale = false
+                if pdp_variant.compare_at_price > pdp_variant.price
+                  assign pdp_on_sale = true
+                endif
+              -%}
+              <div class="v-stack product-pdp-price">
+                {%- if pdp_on_sale -%}
+                  <div class="pdp-price__original-row">
+                    <span class="pdp-price__original">{{ pdp_compare_price }}</span>
+                    <span class="pdp-price__regular-label">REGULAR</span>
+                  </div>
+                  <div class="pdp-price__sale-row">
+                    <span class="pdp-price__sale">{{ pdp_sale_price }}</span>
+                    <a href="#" class="pdp-price__question ask-about-discount" aria-label="Discount info">
+                      <img src="{{ 'question-mark.svg' | asset_url }}" alt="?" width="14" height="14">
+                    </a>
+                  </div>
+                {%- else -%}
+                  <div class="pdp-price__original-row">
+                    <span class="pdp-price__regular">{{ pdp_sale_price }}</span>
+                  </div>
+                {%- endif -%}
 
                 {%- if block.settings.show_taxes_notice -%}
                   <p class="text-sm text-subdued">
@@ -164,13 +193,61 @@
                     {%- else -%}
                       {{ 'product.general.taxes_excluded' | t }}
                     {%- endif -%}
-
                     {%- if shop.shipping_policy.body != blank -%}
                       {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                     {%- endif -%}
                   </p>
                 {%- endif -%}
               </div>
+
+              <style>
+                .product-pdp-price {
+                  gap: 4px;
+                }
+                .pdp-price__original-row {
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                }
+                .pdp-price__original {
+                  font-size: 1.1rem;
+                  color: #888;
+                  text-decoration: line-through;
+                }
+                .pdp-price__regular-label {
+                  font-size: 0.65rem;
+                  font-weight: 600;
+                  letter-spacing: 0.08em;
+                  color: #888;
+                  text-transform: uppercase;
+                }
+                .pdp-price__sale-row {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                }
+                .pdp-price__sale {
+                  font-size: 1.4rem;
+                  font-weight: 700;
+                  color: #163bbc;
+                }
+                .pdp-price__regular {
+                  font-size: 1.4rem;
+                  font-weight: 700;
+                  color: inherit;
+                }
+                .pdp-price__question {
+                  display: flex;
+                  align-items: center;
+                  opacity: 0.6;
+                  cursor: pointer;
+                }
+                .pdp-price__question:hover { opacity: 1; }
+                .pdp-price__question img {
+                  width: 14px;
+                  height: 14px;
+                }
+              </style>
             {%- endif -%}
 
           {%- when 'payment_terms' -%}
