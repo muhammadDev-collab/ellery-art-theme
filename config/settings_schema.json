@@ -855,5 +855,16 @@
         "info": "t:theme_settings.favicon.image_info"
       }
     ]
+  },
+  {
+    "name": "Discount Progress Bar",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "discounted_collection",
+        "label": "Discounted Collection",
+        "info": "Products from this collection will be counted toward the progress bar discount."
+      }
+    ]
   }
 ]
