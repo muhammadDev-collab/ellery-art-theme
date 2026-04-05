@@ -1,0 +1,666 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/he-leaves-the-99-3-piece-good-shepherd-triptych-bedroom_63eb57eb-babc-48af-8086-208db05c10d7.jpg",
+            "mobile_image": "shopify://shop_images/he-leaves-the-99-3-piece-good-shepherd-triptych-bedroom.jpg",
+            "subheading": "",
+            "title": "<em><strong>EASTER SALE — 30% OFF ALL CANVAS ART</strong></em>",
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "content_max_width": 780,
+            "button_1_text": "SHOP ALL ARTWORK",
+            "button_1_link": "shopify://collections/all-artwork",
+            "button_1_style": "link",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 55,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.2), rgba(4, 4, 4, 0.65) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "image-1"
+      ],
+      "settings": {
+        "allow_transparent_header": true,
+        "show_next_section_button": false,
+        "media_size": "lg",
+        "show_initial_transition": false,
+        "autoplay": true,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "scrolling-content": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_pHMxHV": {
+          "type": "text",
+          "settings": {
+            "text": "Limited Edition"
+          }
+        },
+        "text_UUmHw7": {
+          "type": "text",
+          "settings": {
+            "text": "Made in Sweden"
+          }
+        },
+        "text_rEmxpx": {
+          "type": "text",
+          "settings": {
+            "text": "UV-Resistant"
+          }
+        },
+        "text_JdawKd": {
+          "type": "text",
+          "settings": {
+            "text": "Free Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "text_pHMxHV",
+        "text_UUmHw7",
+        "text_rEmxpx",
+        "text_JdawKd"
+      ],
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.1,
+        "scroll_direction": "right",
+        "pause_on_hover": true,
+        "text_font": "heading",
+        "text_font_size_mobile": 10,
+        "text_font_size_desktop": 10,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 30,
+        "item_horizontal_spacing_desktop": 50,
+        "background": "#303030",
+        "text_color": "#ffffff"
+      }
+    },
+    "ss_circle_menu_rNj4NH": {
+      "type": "ss-circle-menu",
+      "blocks": {
+        "image_U79Rtf": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/IMG_1687.jpg",
+            "bubble_text": "Best Sellers",
+            "bubble_link": "shopify://collections/best-sellers"
+          }
+        },
+        "image_H7HrH8": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/safsdaf.jpg",
+            "bubble_text": "New Release",
+            "bubble_link": "shopify://collections/new-release"
+          }
+        },
+        "image_dwb9Xq": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/3333_a7b1c9b6-3898-4ca1-98d8-23de5f56a4c2.jpg",
+            "bubble_text": "Christian Art",
+            "bubble_link": "shopify://collections/christian-art"
+          }
+        },
+        "image_dNP4jF": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/333.jpg",
+            "bubble_text": "Abstract",
+            "bubble_link": "shopify://collections/abstract"
+          }
+        },
+        "image_gt3r4A": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/33333.jpg",
+            "bubble_text": "Animals",
+            "bubble_link": "shopify://collections/animals"
+          }
+        },
+        "image_bWgb7Y": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/IMG_1751.jpg",
+            "bubble_text": "Modern Art",
+            "bubble_link": "shopify://collections/modern-art"
+          }
+        }
+      },
+      "block_order": [
+        "image_U79Rtf",
+        "image_H7HrH8",
+        "image_dwb9Xq",
+        "image_dNP4jF",
+        "image_gt3r4A",
+        "image_bWgb7Y"
+      ],
+      "name": "SS - Circle Menu",
+      "settings": {
+        "slider_width": 100,
+        "slider_gap": 40,
+        "slider_gap_mobile": 12,
+        "icon_size": 90,
+        "icon_size_mobile": 68,
+        "icon_space": 2,
+        "icon_space_mobile": 2,
+        "icon_border_thickness": 0,
+        "icon_square": false,
+        "use_hover": true,
+        "text_custom": true,
+        "text_font": "libre_baskerville_n4",
+        "text_size": 12,
+        "text_size_mobile": 10,
+        "text_height": 130,
+        "text_mt": 8,
+        "icon_border_color": "#121212",
+        "icon_border_gradient": "",
+        "text_color": "#121212",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#121212",
+        "border_gradient": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1500,
+        "border_thickness": 0,
+        "lazy": true,
+        "hide_mobile": false,
+        "hide_desktop": false
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "products_count": 8,
+            "title": "BEST SELLERS",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-1"
+      ],
+      "custom_css": [
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "rich_text_ePWnFE": {
+      "type": "rich-text",
+      "blocks": {
+        "link_ern396": {
+          "type": "link",
+          "settings": {
+            "text": "SHOP BEST SELLERS",
+            "url": "shopify://collections/best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "link_ern396"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "featured_collections_DhYxRW": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_XAzVBt": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-release",
+            "products_count": 20,
+            "title": "NEW RELEASE",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_XAzVBt"
+      ],
+      "custom_css": [
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "rich_text_PRjmx3": {
+      "type": "rich-text",
+      "blocks": {
+        "link_QACjpp": {
+          "type": "link",
+          "settings": {
+            "text": "SHOP NEW RELEASE",
+            "url": "shopify://collections/new-release"
+          }
+        }
+      },
+      "block_order": [
+        "link_QACjpp"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "custom_liquid_qgJczp": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom_liquid.presets.custom_liquid.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div id='ss-trust-box'></div>",
+        "text_alignment": "center"
+      }
+    },
+    "ss_trust_box_pC3RAi": {
+      "type": "ss-trust-box",
+      "blocks": {
+        "text_QbTM47": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>TRUSTED BY 2,000+ CUSTOMERS WORLDWIDE</h2>",
+            "icon": "none",
+            "text_custom": true,
+            "text_font": "pt_serif_n7",
+            "text_size": 24,
+            "text_size_mobile": 21,
+            "text_height": 150,
+            "text_color": "#121212"
+          }
+        },
+        "review_VDNazd": {
+          "type": "review",
+          "settings": {
+            "rating_text": "<p>Based on 613 <span style=\"text-decoration:underline\">reviews</span></p>",
+            "rating_custom": true,
+            "rating_font": "bodoni_moda_i7",
+            "rating_size": 15,
+            "rating_size_mobile": 13,
+            "rating_height": 150,
+            "stars_count": 4.5,
+            "stars_size": 20,
+            "stars_size_mobile": 18,
+            "stars_url": "",
+            "rating_color": "#7c7c7c",
+            "rating_bg_color": "#ffffff",
+            "stars_color": "#ffffff",
+            "stars_bg_color": "#00b67a",
+            "stars_bg_half_color": "#dddddd"
+          }
+        }
+      },
+      "block_order": [
+        "text_QbTM47",
+        "review_VDNazd"
+      ],
+      "name": "SS - Trust box",
+      "settings": {
+        "section_position": "below_buy",
+        "layout_border_thickness": 0,
+        "layout_radius": 10,
+        "layout_content_align": "center",
+        "layout_content_align_mobile": "center",
+        "layout_padding_horizontal": 15,
+        "layout_padding_horizontal_mobile": 15,
+        "layout_padding_vertical": 15,
+        "layout_padding_vertical_mobile": 15,
+        "item_icon_size": 20,
+        "item_icon_size_mobile": 20,
+        "question_custom": false,
+        "question_font": "josefin_sans_n4",
+        "question_size": 15,
+        "question_size_mobile": 15,
+        "question_height": 150,
+        "icon_size": 10,
+        "icon_size_mobile": 10,
+        "answer_custom": false,
+        "answer_font": "josefin_sans_n4",
+        "answer_size": 14,
+        "answer_size_mobile": 14,
+        "answer_height": 150,
+        "answer_padding_top": 20,
+        "answer_align": "left",
+        "answer_align_mobile": "left",
+        "item_icon_color": "#121212",
+        "layout_border_color": "#d6d6d6",
+        "question_color": "#121212",
+        "icon_color": "#121212",
+        "answer_color": "#121212",
+        "background_color": "rgba(0,0,0,0)",
+        "background_gradient": "",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true,
+        "form_class": ""
+      }
+    },
+    "multiple-media-with-text": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/elegant-living-room-inte5rior-with-armchairs-coffee-table.jpg",
+            "rotation": 0
+          }
+        }
+      },
+      "block_order": [
+        "image-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "reveal_on_scroll": true,
+        "separate_section_with_border": false,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "<em><strong>DISCOVER OUR EXTRAORDINARY ART</strong></em>",
+        "content": "<p>Made with care and unconditionally loved by our customers, artwork that exceeds all expectations.</p>",
+        "button_1_text": "EXPLORE OUR GALLERY",
+        "button_1_link": "shopify://collections/all-artwork",
+        "button_1_style": "link",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid"
+      }
+    },
+    "shop_the_look_WyyNnA": {
+      "type": "shop-the-look",
+      "blocks": {
+        "look_xz3RKH": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/green-wallpaper-background-concept.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "emerald-gaze",
+            "product_1_horizontal_position": 48,
+            "product_1_vertical_position": 41,
+            "product_2": "",
+            "product_2_horizontal_position": 25,
+            "product_2_vertical_position": 40,
+            "product_3": "",
+            "product_3_horizontal_position": 65,
+            "product_3_vertical_position": 60,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        },
+        "look_rdrVBw": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/stylish-living-room-with-beige-sofa-plant-modern-art.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "reverie",
+            "product_1_horizontal_position": 47,
+            "product_1_vertical_position": 38,
+            "product_2": "",
+            "product_2_horizontal_position": 25,
+            "product_2_vertical_position": 40,
+            "product_3": "",
+            "product_3_horizontal_position": 65,
+            "product_3_vertical_position": 60,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        },
+        "look_cTPMhQ": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/white-wall-living-room-modern-home.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "ascend",
+            "product_1_horizontal_position": 42,
+            "product_1_vertical_position": 50,
+            "product_2": "",
+            "product_2_horizontal_position": 25,
+            "product_2_vertical_position": 40,
+            "product_3": "",
+            "product_3_horizontal_position": 65,
+            "product_3_vertical_position": 60,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        },
+        "look_PCkYDC": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/modern-home-interior-mockup-with-white-sofa-table-decoration-living-room.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "still-waters",
+            "product_1_horizontal_position": 51,
+            "product_1_vertical_position": 39,
+            "product_2": "",
+            "product_2_horizontal_position": 34,
+            "product_2_vertical_position": 65,
+            "product_3": "",
+            "product_3_horizontal_position": 66,
+            "product_3_vertical_position": 42,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        },
+        "look_AmVtX4": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/The_Last_Supper_3_piece_Christian_wall_art_displayed_in_a_modern_living_room.jpg",
+            "hot_spots_background": "#ffffff",
+            "product_1": "the-last-supper-3-pieces",
+            "product_1_horizontal_position": 49,
+            "product_1_vertical_position": 41,
+            "product_2": "",
+            "product_2_horizontal_position": 25,
+            "product_2_vertical_position": 40,
+            "product_3": "",
+            "product_3_horizontal_position": 65,
+            "product_3_vertical_position": 60,
+            "product_4": "",
+            "product_4_horizontal_position": 85,
+            "product_4_vertical_position": 85
+          }
+        }
+      },
+      "block_order": [
+        "look_xz3RKH",
+        "look_rdrVBw",
+        "look_cTPMhQ",
+        "look_PCkYDC",
+        "look_AmVtX4"
+      ],
+      "disabled": true,
+      "name": "t:sections.shop_the_look.presets.shop_the_look.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "Shop the wall",
+        "content": "",
+        "popover_title": "Shop the wall"
+      }
+    },
+    "collection_list_nK7AgD": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_iz3W4L": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "animals",
+            "image": "shopify://shop_images/pink-chair-is-front-pink-wall-with-picture-sunset-it.jpg",
+            "expand_collection": true,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "ANIMALS",
+            "button_link": "shopify://collections/animals",
+            "button_style": "outline",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_rNQxb6": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "abstract",
+            "image": "shopify://shop_images/elegant-rendering-interior-design.png",
+            "expand_collection": false,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "ABSTRACT",
+            "button_link": "shopify://collections/abstract",
+            "button_style": "outline",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_RqMamL": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "",
+            "collection": "christian-art",
+            "image": "shopify://shop_images/minimalist-living-room-with-beige-sofa.jpg",
+            "expand_collection": false,
+            "content_position": "place-self-end-center text-center",
+            "subheading": "",
+            "title": "",
+            "button_text": "CHRISTIAN ART",
+            "button_link": "shopify://collections/christian-art",
+            "button_style": "outline",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection_iz3W4L",
+        "collection_rNQxb6",
+        "collection_RqMamL"
+      ],
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": true,
+        "collections_per_row_desktop": 3,
+        "stack_collections_mobile": true,
+        "collections_per_row_mobile": "1",
+        "subheading": "",
+        "title": "SHOP BY COLLECTION",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "scrolling-content",
+    "ss_circle_menu_rNj4NH",
+    "featured-collections",
+    "rich_text_ePWnFE",
+    "featured_collections_DhYxRW",
+    "rich_text_PRjmx3",
+    "custom_liquid_qgJczp",
+    "ss_trust_box_pC3RAi",
+    "multiple-media-with-text",
+    "shop_the_look_WyyNnA",
+    "collection_list_nK7AgD"
+  ]
+}

@@ -1,0 +1,185 @@
+{% doc %}
+  @prompt
+    divider
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-divider-{{ ai_gen_id }} {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.spacing_top }}px 0 {{ block.settings.spacing_bottom }}px;
+  }
+
+  .ai-divider-line-{{ ai_gen_id }} {
+    width: {{ block.settings.width }}%;
+    height: {{ block.settings.thickness }}px;
+    background-color: {{ block.settings.color }};
+    border: none;
+    margin: 0;
+  }
+
+  .ai-divider-line-{{ ai_gen_id }}--dashed {
+    background: repeating-linear-gradient(
+      to right,
+      {{ block.settings.color }} 0,
+      {{ block.settings.color }} {{ block.settings.dash_length }}px,
+      transparent {{ block.settings.dash_length }}px,
+      transparent {{ block.settings.dash_length | plus: block.settings.dash_gap }}px
+    );
+  }
+
+  .ai-divider-line-{{ ai_gen_id }}--dotted {
+    background: repeating-linear-gradient(
+      to right,
+      {{ block.settings.color }} 0,
+      {{ block.settings.color }} {{ block.settings.thickness }}px,
+      transparent {{ block.settings.thickness }}px,
+      transparent {{ block.settings.thickness | plus: block.settings.dot_gap }}px
+    );
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-divider-{{ ai_gen_id }} {
+      padding: {{ block.settings.spacing_top | times: 0.7 }}px 0 {{ block.settings.spacing_bottom | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-divider-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.style == 'solid' %}
+    <hr class="ai-divider-line-{{ ai_gen_id }}">
+  {% elsif block.settings.style == 'dashed' %}
+    <div class="ai-divider-line-{{ ai_gen_id }} ai-divider-line-{{ ai_gen_id }}--dashed"></div>
+  {% elsif block.settings.style == 'dotted' %}
+    <div class="ai-divider-line-{{ ai_gen_id }} ai-divider-line-{{ ai_gen_id }}--dotted"></div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Divider",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Line style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Width",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Thickness",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+      "default": "#303030"
+    },
+    {
+      "type": "header",
+      "content": "Dashed style"
+    },
+    {
+      "type": "range",
+      "id": "dash_length",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Dash length",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "dash_gap",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between dashes",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Dotted style"
+    },
+    {
+      "type": "range",
+      "id": "dot_gap",
+      "min": 2,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between dots",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Divider"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "color_scheme": "",
+        "show_cart_note": false,
+        "allow_discount_application": false,
+        "show_order_weight": false,
+        "show_shipping_text": false,
+        "show_accelerated_buttons": false,
+        "show_shipping_estimator": false
+      }
+    },
+    "17695645328bef9b87": {
+      "type": "apps",
+      "blocks": {
+        "conversion_bear_trust_badges_widget_YUe9mD": {
+          "type": "shopify://apps/conversion-bear-trust-badges/blocks/widget/163a9b59-0ec2-4cb7-bf5c-31408b4a9420",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "conversion_bear_trust_badges_widget_YUe9mD"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17695645328bef9b87"
+  ]
+}

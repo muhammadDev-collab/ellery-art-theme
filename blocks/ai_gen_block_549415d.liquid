@@ -1,0 +1,469 @@
+{% doc %}
+  @prompt
+    price
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-price-block-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-price-container-{{ ai_gen_id }} {
+    display: flex;
+    align-items: {{ block.settings.alignment }};
+    gap: {{ block.settings.price_gap }}px;
+    flex-wrap: wrap;
+    justify-content: {{ block.settings.justify }};
+  }
+
+  .ai-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.price_size }}px;
+    font-weight: {{ block.settings.price_weight }};
+    color: {{ block.settings.price_color }};
+    line-height: 1.2;
+  }
+
+  .ai-price-{{ ai_gen_id }}--on-sale {
+    color: {{ block.settings.sale_price_color }};
+  }
+
+  .ai-compare-price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.compare_price_size }}px;
+    color: {{ block.settings.compare_price_color }};
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .ai-price-badge-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    padding: {{ block.settings.badge_padding_vertical }}px {{ block.settings.badge_padding_horizontal }}px;
+    background-color: {{ block.settings.badge_background }};
+    color: {{ block.settings.badge_text_color }};
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: 600;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ai-price-unit-{{ ai_gen_id }} {
+    font-size: {{ block.settings.unit_price_size }}px;
+    color: {{ block.settings.unit_price_color }};
+    margin-top: {{ block.settings.unit_price_spacing }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-price-container-{{ ai_gen_id }} {
+      width: {{ block.settings.mobile_width_percent }}%;
+    }
+
+    .ai-price-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.price_size }}px * 0.9);
+    }
+
+    .ai-compare-price-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.compare_price_size }}px * 0.9);
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-price-container-{{ ai_gen_id }} {
+      width: {{ block.settings.desktop_width_percent }}%;
+    }
+  }
+{% endstyle %}
+
+<price-display-{{ ai_gen_id }} class="ai-price-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if product %}
+    <div class="ai-price-container-{{ ai_gen_id }}">
+      {% if product.compare_at_price > product.price %}
+        <span class="ai-compare-price-{{ ai_gen_id }}">
+          {{ product.compare_at_price | money }}
+        </span>
+        <span class="ai-price-{{ ai_gen_id }} ai-price-{{ ai_gen_id }}--on-sale">
+          {{ product.price | money }}
+        </span>
+        {% if block.settings.show_sale_badge %}
+          <span class="ai-price-badge-{{ ai_gen_id }}">
+            {% if block.settings.sale_badge_text != blank %}
+              {{ block.settings.sale_badge_text }}
+            {% else %}
+              Sale
+            {% endif %}
+          </span>
+        {% endif %}
+      {% else %}
+        <span class="ai-price-{{ ai_gen_id }}">
+          {{ product.price | money }}
+        </span>
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_unit_price and product.selected_or_first_available_variant.unit_price_measurement %}
+      <div class="ai-price-unit-{{ ai_gen_id }}">
+        {{ product.selected_or_first_available_variant.unit_price | money }}
+        /
+        {% if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 %}
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}
+        {% endif %}
+        {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="ai-price-container-{{ ai_gen_id }}">
+      <span class="ai-compare-price-{{ ai_gen_id }}">€99.00</span>
+      <span class="ai-price-{{ ai_gen_id }} ai-price-{{ ai_gen_id }}--on-sale">€79.00</span>
+      {% if block.settings.show_sale_badge %}
+        <span class="ai-price-badge-{{ ai_gen_id }}">
+          {% if block.settings.sale_badge_text != blank %}
+            {{ block.settings.sale_badge_text }}
+          {% else %}
+            Sale
+          {% endif %}
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+</price-display-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PriceDisplay{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupVariantListener();
+      }
+
+      setupVariantListener() {
+        if (typeof window.Shopify === 'undefined' || !window.Shopify.ProductForm) return;
+
+        const productForm = document.querySelector('product-form');
+        if (!productForm) return;
+
+        productForm.addEventListener('variant:change', (event) => {
+          this.updatePrice(event.detail.variant);
+        });
+      }
+
+      updatePrice(variant) {
+        if (!variant) return;
+
+        const priceContainer = this.querySelector('.ai-price-container-{{ ai_gen_id }}');
+        if (!priceContainer) return;
+
+        const hasComparePrice = variant.compare_at_price && variant.compare_at_price > variant.price;
+        
+        let priceHTML = '';
+        
+        if (hasComparePrice) {
+          priceHTML = `
+            <span class="ai-compare-price-{{ ai_gen_id }}">${this.formatMoney(variant.compare_at_price)}</span>
+            <span class="ai-price-{{ ai_gen_id }} ai-price-{{ ai_gen_id }}--on-sale">${this.formatMoney(variant.price)}</span>
+          `;
+          
+          const showBadge = {{ block.settings.show_sale_badge | json }};
+          if (showBadge) {
+            const badgeText = {{ block.settings.sale_badge_text | json }} || 'Sale';
+            priceHTML += `<span class="ai-price-badge-{{ ai_gen_id }}">${badgeText}</span>`;
+          }
+        } else {
+          priceHTML = `<span class="ai-price-{{ ai_gen_id }}">${this.formatMoney(variant.price)}</span>`;
+        }
+        
+        priceContainer.innerHTML = priceHTML;
+
+        const unitPriceElement = this.querySelector('.ai-price-unit-{{ ai_gen_id }}');
+        if (unitPriceElement && variant.unit_price) {
+          let referenceValue = variant.unit_price_measurement.reference_value !== 1 
+            ? variant.unit_price_measurement.reference_value 
+            : '';
+          unitPriceElement.innerHTML = `${this.formatMoney(variant.unit_price)} / ${referenceValue}${variant.unit_price_measurement.reference_unit}`;
+          unitPriceElement.style.display = 'block';
+        } else if (unitPriceElement) {
+          unitPriceElement.style.display = 'none';
+        }
+      }
+
+      formatMoney(cents) {
+        if (typeof Shopify !== 'undefined' && Shopify.formatMoney) {
+          return Shopify.formatMoney(cents);
+        }
+        return `€${(cents / 100).toFixed(2)}`;
+      }
+    }
+
+    customElements.define('price-display-{{ ai_gen_id }}', PriceDisplay{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Price",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "justify",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "baseline"
+    },
+    {
+      "type": "range",
+      "id": "price_gap",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between elements",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_width_percent",
+      "label": "Mobile width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Current price"
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "price_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Color",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "sale_price_color",
+      "label": "Sale color",
+      "default": "#c82e2d"
+    },
+    {
+      "type": "header",
+      "content": "Compare at price"
+    },
+    {
+      "type": "range",
+      "id": "compare_price_size",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "compare_price_color",
+      "label": "Color",
+      "default": "#303030"
+    },
+    {
+      "type": "header",
+      "content": "Sale badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_badge",
+      "label": "Show sale badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sale_badge_text",
+      "label": "Badge text",
+      "default": "Sale"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_vertical",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_horizontal",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Background",
+      "default": "#c82e2d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Unit price"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_unit_price",
+      "label": "Show unit price",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "unit_price_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "unit_price_color",
+      "label": "Color",
+      "default": "#303030"
+    },
+    {
+      "type": "range",
+      "id": "unit_price_spacing",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Price"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+{% doc %}
+  @prompt
+    space
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-spacer-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-spacer-inner-{{ ai_gen_id }} {
+    height: {{ block.settings.desktop_height }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-spacer-inner-{{ ai_gen_id }} {
+      height: {{ block.settings.mobile_height }}px;
+    }
+  }
+{% endstyle %}
+
+<ai-spacer-{{ ai_gen_id }} class="ai-spacer-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-spacer-inner-{{ ai_gen_id }}"></div>
+</ai-spacer-{{ ai_gen_id }}>
+
+{% schema %}
+{
+  "name": "Spacer",
+  "tag": null,
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 10,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 10,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spacer"
+    }
+  ]
+}
+{% endschema %}

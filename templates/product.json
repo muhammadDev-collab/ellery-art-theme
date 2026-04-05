@@ -1,0 +1,686 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "scrolling_content_fjpB7d": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_FicfWy": {
+          "type": "text",
+          "settings": {
+            "text": "Original art"
+          }
+        },
+        "text_KEfLMt": {
+          "type": "text",
+          "settings": {
+            "text": "Limited Edition"
+          }
+        },
+        "text_KXprxW": {
+          "type": "text",
+          "settings": {
+            "text": "Certified Art"
+          }
+        },
+        "text_WLtdPA": {
+          "type": "text",
+          "settings": {
+            "text": "Handmade in Sweden"
+          }
+        },
+        "text_Lyyk8M": {
+          "type": "text",
+          "settings": {
+            "text": "Crafted with emotion"
+          }
+        },
+        "text_pjt9dp": {
+          "type": "text",
+          "settings": {
+            "text": "Free shipping"
+          }
+        }
+      },
+      "block_order": [
+        "text_FicfWy",
+        "text_KEfLMt",
+        "text_KXprxW",
+        "text_WLtdPA",
+        "text_Lyyk8M",
+        "text_pjt9dp"
+      ],
+      "disabled": true,
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.1,
+        "scroll_direction": "right",
+        "pause_on_hover": true,
+        "text_font": "heading",
+        "text_font_size_mobile": 10,
+        "text_font_size_desktop": 10,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 30,
+        "item_horizontal_spacing_desktop": 50,
+        "background": "#ededed",
+        "text_color": "#1c1c1c"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "section_vso_theme_sections_product_badge_PAxHCh": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/productBadge/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "block_top_spacing": -5,
+            "block_bottom_spacing": 0,
+            "section_text": "Order <strong>Today</strong> and pay later with <strong>Klarna</strong>",
+            "text_color": "#1c1c1c",
+            "font_size": 14,
+            "badge_image": "shopify://shop_images/klarna-svgrepo-com.svg",
+            "image_size": 25,
+            "image_radius": 0,
+            "bg_color": "#ffffff",
+            "border_color": "#1c1c1c",
+            "border_width": 0,
+            "padding_block": 0,
+            "border_radius": 6,
+            "section_gap": 12
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "section_vso_theme_sections_countdown_timer_YPkYay": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/countdownTimer/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "countdown_text": "<strong>30% OFF - LIMITED TIME</strong>",
+            "duration_minutes": 52,
+            "enable_persistence": true,
+            "empty_bar_color": "#e0e0e0",
+            "progress_bar_color": "#1c7931",
+            "text_color": "#333333",
+            "timer_color": "#333333",
+            "bar_height": 8,
+            "font_size": 14,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": true,
+            "selector_style": "block",
+            "swatch_selector_style": "block_swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "globo_color_swatch_product_swatches_detail_CPw7qJ": {
+          "type": "shopify://apps/globo-color-swatch/blocks/product-swatches-detail/4394f710-096c-4021-bbde-8ebb26057c11",
+          "settings": {}
+        },
+        "modal_mNQWbp": {
+          "type": "modal",
+          "disabled": true,
+          "settings": {
+            "button_title": "Size Guide",
+            "button_style": "link",
+            "stretch_button": false,
+            "button_background": "",
+            "button_text_color": "",
+            "modal_title": "Size Guide",
+            "modal_content": "{{ product.metafields.custom.size_chart.value.content | metafield_tag }}"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#000000",
+            "atc_button_text_color": "#ffffff",
+            "payment_button_background": "#f7f7f7",
+            "payment_button_text_color": ""
+          }
+        },
+        "section_vso_theme_sections_delivery_information_Lq3JXd": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/deliveryInformation/06016590-3938-4460-bd08-bd58cf996a58",
+          "disabled": true,
+          "settings": {
+            "ordered_label": "Ordered",
+            "shipped_label": "Shipped",
+            "delivered_label": "Delivered",
+            "shipped_min_days": 3,
+            "shipped_max_days": 4,
+            "delivered_min_days": 7,
+            "delivered_max_days": 8,
+            "text_color": "#000000",
+            "icon_color": "#ffffff",
+            "icon_background_color": "#111827",
+            "icon_size": 36,
+            "icon_padding": 10,
+            "label_font_size": 14,
+            "date_font_weight": "500",
+            "date_font_size": 12,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "section_vso_theme_sections_payment_icons_NaKMNe": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/paymentIcons/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "icon_size": 26,
+            "icon_gap": 12,
+            "alignment": "center",
+            "mobile_icon_size": 24,
+            "mobile_icon_gap": 8,
+            "mobile_alignment": "center",
+            "margin_top": 32,
+            "margin_bottom": 32
+          }
+        },
+        "section_vso_theme_sections_vso_benefit_boxes_V4gC4g": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/vsoBenefitBoxes/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "block_top_spacing": 0,
+            "block_bottom_spacing": 0,
+            "heading_font_size": 12,
+            "description_font_size": 11,
+            "text_color": "#1a1a1a",
+            "description_text_color": "#6b7280",
+            "inner_padding": 12,
+            "image_size": 32,
+            "background_color": "#fafafa",
+            "background_radius": 8,
+            "side_by_side_layout": false,
+            "section_gap": 12,
+            "feature_box_heading_1": "Fast Global Delivery ",
+            "feature_box_description_1": "Tracked shipping included",
+            "feature_box_heading_2": "14-day Returns ",
+            "feature_box_description_2": "Buy with confidence",
+            "feature_box_heading_3": "Premium Canvas Quality",
+            "feature_box_description_3": "Crafted to last",
+            "feature_box_heading_4": "Secure Checkout",
+            "feature_box_description_4": "Trusted payment methods"
+          }
+        },
+        "section_vso_theme_sections_product_video_gallery_CGXdRy": {
+          "type": "shopify://apps/section-vso-theme-sections/blocks/productVideoGallery/06016590-3938-4460-bd08-bd58cf996a58",
+          "settings": {
+            "block_top_spacing": 0,
+            "block_bottom_spacing": 0,
+            "video_title": "<strong>See it in action</strong>",
+            "video_title_font_color": "#2e2a39",
+            "video_title_font_size": 16,
+            "video_title_margin_bottom": 8,
+            "video_width": 90,
+            "video_radius": 4,
+            "border_color_type": "gradient",
+            "border_gradient": "linear-gradient(135deg, rgba(64, 64, 64, 1), rgba(96, 96, 96, 1) 50%, rgba(32, 32, 32, 1) 100%)",
+            "border_color": "#404040",
+            "border_width": 1,
+            "gallery_gap": 6,
+            "use_full_width": true,
+            "arrow_bg_color": "#404040",
+            "arrow_stroke_color": "#ffffff",
+            "use_circle_shape": false,
+            "use_strict_9_16_aspect_ratio": true,
+            "video_2": "shopify://files/videos/SnapInsta.to_AQNrSbJs0ErvoTSpY5Ypq9yZ0NHUXcU9sd0vzf7R0onIHFdoYIKZQ6k9m6dnkGv5BsdyiE78_CgP8pYls4j5nNUIdbVC8NvmhEUz954.mov",
+            "video_3": "shopify://files/videos/b3312f22add34fc4a49d61fc68657bdf.mov",
+            "video_4": "shopify://files/videos/SnapInsta.to_AQNKOMmdfJqTKSKZtLhNEMjy0ZYF28OScJfU3_CMgW7GCkDZ9LSmvV20T0-Mn7sxpwrhPcTH6ADnDeWx40OrZtXFxDawq_9K79B6qoU 2.mp4",
+            "video_6": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
+            "video_7": "shopify://files/videos/DailyInspoVideo.mov"
+          }
+        },
+        "accordion_H8Wz8j": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": true,
+            "icon": "none",
+            "title": "PRODUCT INFORMATION ",
+            "content": "<p><strong>Canvas Print</strong></p><ul><li>Printed on 350g premium matte canvas with a rich textured surface</li><li>Hand-stretched over solid Nordic pine wood frames</li><li>Delivered ready to hang with mounting included<br/></li></ul><p><strong>Floating Frame</strong></p><ul><li>Minimal floating frame designed to elevate the artwork</li><li>Creates a subtle gallery-style shadow gap</li><li>Available in black, white, oak, and dark oak<br/></li></ul><p><strong>Quality & Production</strong></p><ul><li>Each artwork is made to order to ensure the highest quality</li><li>Securely packaged to guarantee safe delivery</li><li>Designed for a true gallery-quality finish</li></ul>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_7pkFiz": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": true,
+            "icon": "none",
+            "title": "SHIPPING INFORMATION ",
+            "content": "<p>Made to order for the highest level of quality</p><ul><li>Sweden - 2 - 6 business days</li><li>EU - 3 - 7 business days</li><li>Rest of world - 4 - 10 business days</li></ul><p></p><p>Tracked shipping included<br/>Secure packaging for safe delivery</p>",
+            "liquid": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "section_vso_theme_sections_product_badge_PAxHCh",
+        "title",
+        "price",
+        "section_vso_theme_sections_countdown_timer_YPkYay",
+        "payment_terms",
+        "variant_picker",
+        "globo_color_swatch_product_swatches_detail_CPw7qJ",
+        "modal_mNQWbp",
+        "buy_buttons",
+        "section_vso_theme_sections_delivery_information_Lq3JXd",
+        "section_vso_theme_sections_payment_icons_NaKMNe",
+        "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
+        "section_vso_theme_sections_product_video_gallery_CGXdRy",
+        "accordion_H8Wz8j",
+        "accordion_7pkFiz"
+      ],
+      "custom_css": [
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "allow_transparent_header": false,
+        "transparent_header_use_primary_colors": false,
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 40,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 1.5
+      }
+    },
+    "ss_stats_2_rRfT8d": {
+      "type": "ss-stats-2",
+      "blocks": {
+        "heading_TD7CzY": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h4>Why People Love Ellery Art</h4>",
+            "heading_custom": false,
+            "heading_font": "josefin_sans_n4",
+            "heading_size": 20,
+            "heading_size_mobile": 18,
+            "heading_height": 130,
+            "heading_align": "left",
+            "heading_align_mobile": "center",
+            "heading_color": "#121212"
+          }
+        },
+        "item_GLyWde": {
+          "type": "item",
+          "settings": {
+            "count_from": "95",
+            "count_to": "99",
+            "suffix": "%",
+            "text": "<p>Satisfied with the quality of their prints.</p>"
+          }
+        },
+        "item_q4AzbY": {
+          "type": "item",
+          "settings": {
+            "count_from": "93",
+            "count_to": "96",
+            "suffix": "%",
+            "text": "<p>Appreciate the fast delivery and secure packaging.</p>"
+          }
+        },
+        "item_DeTqQ6": {
+          "type": "item",
+          "settings": {
+            "count_from": "94",
+            "count_to": "98",
+            "suffix": "%",
+            "text": "<p>Would recommend Ellery Art to friends and family.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TD7CzY",
+        "item_GLyWde",
+        "item_q4AzbY",
+        "item_DeTqQ6"
+      ],
+      "name": "SS - Stats #2",
+      "settings": {
+        "items_per_row": 3,
+        "items_gap": 24,
+        "items_mt": 40,
+        "items_mt_mobile": 16,
+        "item_padding_horizontal": 48,
+        "item_padding_horizontal_mobile": 0,
+        "item_padding_vertical": 0,
+        "item_padding_vertical_mobile": 12,
+        "item_border_thickness": 1,
+        "item_content_align": "left",
+        "item_content_align_mobile": "left",
+        "count_custom": false,
+        "count_font": "josefin_sans_n4",
+        "count_size": 56,
+        "count_size_mobile": 30,
+        "count_height": 130,
+        "count_speed": 2,
+        "item_width": 120,
+        "item_width_mobile": 100,
+        "item_gap": 24,
+        "item_gap_mobile": 24,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 11,
+        "text_height": 150,
+        "count_color": "#121212",
+        "text_color": "#121212",
+        "item_border_color": "#121212",
+        "background_style": "solid",
+        "background_color": "#ffffff",
+        "background_gradient": "linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": false,
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0
+      }
+    },
+    "custom_liquid_jwPn6j": {
+      "type": "custom-liquid",
+      "name": "Custom Reviews",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div id='ss-product-reviews-2'></div>",
+        "text_alignment": "center"
+      }
+    },
+    "product_reviews_2_HLGaCx": {
+      "type": "product-reviews-2",
+      "blocks": {
+        "item_c6yiUQ": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Minimalist, elegant, and timeless",
+            "text": "<p>\"The Last Supper\" fits perfectly in my living room, clean lines, soft tones, and a subtle texture that makes it feel original. Ellery Art has such a refined aesthetic</p>",
+            "author": "Emily R",
+            "time": "Germany"
+          }
+        },
+        "item_6FFcy8": {
+          "type": "item",
+          "settings": {
+            "stars_count": 4.5,
+            "verified_text": "Verified",
+            "title": "Even more beautiful in person",
+            "text": "<p>I was honestly blown away when my print arrived. The colors are incredibly vibrant and the paper quality feels premium. It looks like something straight from a gallery wall.</p>",
+            "author": "Sophia L",
+            "time": "Copenhagen"
+          }
+        },
+        "item_XFEd86": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Worth every penny!!",
+            "text": "<p>It arrived in perfect condition — carefully wrapped, no creases, no corners bent. Even the unboxing felt premium.</p>",
+            "author": "Nora",
+            "time": "Sweden"
+          }
+        },
+        "item_eR4kBn": {
+          "type": "item",
+          "settings": {
+            "stars_count": 4.5,
+            "verified_text": "Verified",
+            "title": "The print feels alive",
+            "text": "<p>I’ve bought prints online before and they never looked like the photos. This one actually does, maybe even better. I’m impressed</p>",
+            "author": "Ryan",
+            "time": "Madrid"
+          }
+        },
+        "item_qE3Ytf": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Feels personal",
+            "text": "<p>I don’t usually leave reviews, but I’ve been staring at it for weeks now. It feels like it belongs in my home</p>",
+            "author": "Marco V",
+            "time": "Stockholm"
+          }
+        },
+        "item_pUhQEp": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Good communication and quick delivery",
+            "text": "<p>I got an update at every step, and the print arrived in perfect condition. Great experience overall</p>",
+            "author": "Maya",
+            "time": "Amsterdam"
+          }
+        },
+        "item_JxqcJT": {
+          "type": "item",
+          "settings": {
+            "stars_count": 4.5,
+            "verified_text": "Verified",
+            "title": "Emotional!",
+            "text": "<p>The Last Supper was perfect</p>",
+            "author": "Sara",
+            "time": "Sweden"
+          }
+        },
+        "item_XJmUFa": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "I keep getting compliments",
+            "text": "<p>Friends always ask where I got the last supper. It’s perfect and really adds character , I’ll definitely order again soon.</p>",
+            "author": "Clara W",
+            "time": "Berlin"
+          }
+        }
+      },
+      "block_order": [
+        "item_c6yiUQ",
+        "item_6FFcy8",
+        "item_XFEd86",
+        "item_eR4kBn",
+        "item_qE3Ytf",
+        "item_pUhQEp",
+        "item_JxqcJT",
+        "item_XJmUFa"
+      ],
+      "name": "SS - Product reviews #2",
+      "settings": {
+        "reviews_position": "below_buy",
+        "use_metafield": false,
+        "slider_view": 2,
+        "slider_view_mobile": 1.3,
+        "slider_gap": 16,
+        "slider_gap_mobile": 10,
+        "item_padding_horizontal": 20,
+        "item_padding_horizontal_mobile": 20,
+        "item_padding_vertical": 20,
+        "item_padding_vertical_mobile": 20,
+        "item_radius": 4,
+        "item_border_thickness": 0,
+        "item_shadow": true,
+        "stars_size": 14,
+        "stars_size_mobile": 13,
+        "use_verified_tag": true,
+        "verified_icon_size": 14,
+        "verified_icon_size_mobile": 14,
+        "verified_custom": false,
+        "verified_font": "josefin_sans_n4",
+        "verified_size": 10,
+        "verified_size_mobile": 10,
+        "verified_height": 100,
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 12,
+        "title_size_mobile": 12,
+        "title_height": 150,
+        "title_mt": 16,
+        "title_mt_mobile": 16,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 12,
+        "text_size_mobile": 12,
+        "text_height": 150,
+        "text_mt": 12,
+        "text_mt_mobile": 12,
+        "author_custom": false,
+        "author_font": "josefin_sans_n4",
+        "author_size": 12,
+        "author_size_mobile": 12,
+        "author_height": 130,
+        "publication_mt": 12,
+        "publication_mt_mobile": 12,
+        "time_custom": false,
+        "time_font": "josefin_sans_n4",
+        "time_size": 12,
+        "time_size_mobile": 12,
+        "time_height": 130,
+        "arrow_size": 32,
+        "arrow_size_mobile": 32,
+        "arrow_icon_size": 7,
+        "arrow_icon_size_mobile": 7,
+        "arrow_border_thickness": 0,
+        "arrow_radius": 100,
+        "arrow_hover_effect": "color",
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": false,
+        "bottom_text": "<p>Rated <strong>4.7</strong> / 5 based on 500+ reviews</p>",
+        "bottom_text_custom": false,
+        "bottom_text_font": "josefin_sans_n4",
+        "bottom_text_size": 13,
+        "bottom_text_size_mobile": 13,
+        "bottom_text_height": 150,
+        "bottom_text_mt": 16,
+        "bottom_text_mt_mobile": 16,
+        "bottom_text_align": "center",
+        "bottom_text_align_mobile": "center",
+        "title_color": "#1f2936",
+        "text_color": "#191919",
+        "author_color": "#636464",
+        "time_color": "#636464",
+        "item_bg_color": "#f8f9fa",
+        "item_border_color": "#e2e7ec",
+        "stars_color": "#ffffff",
+        "stars_bg_color": "#00b67a",
+        "verified_color": "#6c6c85",
+        "verified_text_color": "#6c6c85",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#7b7b7b",
+        "arrow_bg_color": "#ededed",
+        "arrow_bg_hover_color": "#f5f5f5",
+        "arrow_border_color": "#c7c7c7",
+        "arrow_border_hover_color": "#c7c7c7",
+        "bottom_text_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "custom_css": [
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": true,
+        "recommendations_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "<strong>You may also like </strong>",
+        "content": ""
+      }
+    },
+    "1774524948d3fc03ed": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_GkDcmn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "no_reviews",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "hide_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_GkDcmn"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "scrolling_content_fjpB7d",
+    "main",
+    "ss_stats_2_rRfT8d",
+    "custom_liquid_jwPn6j",
+    "product_reviews_2_HLGaCx",
+    "related-products",
+    "1774524948d3fc03ed"
+  ]
+}

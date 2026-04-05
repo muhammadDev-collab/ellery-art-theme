@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "se"
+  },
+  "parent": "header-group.json",
+  "sections": {
+    "announcement-bar": {
+      "settings": {},
+      "blocks": {
+        "message-1": {
+          "settings": {
+            "text": "<strong>30% OFF SITEWIDE + FREE SHIPPING ABOVE 1500 SEK</strong>"
+          }
+        }
+      }
+    }
+  }
+}

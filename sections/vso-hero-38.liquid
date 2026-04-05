@@ -1,0 +1,3065 @@
+{%- comment -%}
+  WARNING: UNAUTHORIZED MODIFICATION PROHIBITED
+  This code is proprietary property of Versio Studio. Any unauthorized tampering,
+  alteration, or distribution of this file is strictly forbidden and will be prosecuted to the maximum extent permitted by law.
+  All modifications are logged.
+
+  If you require assistance or have questions regarding this code, please contact support@versio.studio.
+{%- endcomment -%}
+
+{%- style -%}
+  .vd-l { display: none !important; }
+  #shopify-section-{{ section.id }} {
+    --section-border-radius: {{ section.settings.section_border_radius_mobile }}px;
+    --section-horizontal-padding: var(--page-margin, 16px);
+    margin-top: {{ section.settings.margin_top_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    border-radius: var(--section-border-radius);
+    overflow: hidden;
+  }
+
+  {% if section.settings.enable_advanced_settings %}
+    #shopify-section-{{ section.id }} {
+      --section-horizontal-padding: {{ section.settings.section_horizontal_padding_mobile }}px;
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      {% if section.settings.section_bg_type == 'gradient' %}
+        background: {{ section.settings.section_bg_gradient }};
+      {% else %}
+        background-color: {{ section.settings.section_bg_color }};
+      {% endif %}
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      --section-border-radius: {{ section.settings.section_border_radius }}px;
+      --section-horizontal-padding: 0px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+      {% if section.settings.full_width_desktop %}
+        {% if section.settings.section_bg_type == 'gradient' %}
+          background: {{ section.settings.section_bg_gradient }};
+        {% else %}
+          background-color: {{ section.settings.section_bg_color }};
+        {% endif %}
+      {% endif %}
+    }
+  }
+
+  {% if section.settings.enable_advanced_settings == false and section.settings.full_width_desktop == false %}
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} {
+        --section-horizontal-padding: 40px;
+      }
+    }
+  {% endif %}
+
+  {% if section.settings.enable_advanced_settings == false and section.settings.full_width_desktop %}
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} {
+        --section-container-max-width: var(--page-content-width, var(--page-width, 1440px));
+        --section-outer-gutter: max(0px, calc((100vw - var(--section-container-max-width)) / 2));
+        --section-horizontal-padding: max(0px, calc(var(--page-margin, 40px) - var(--section-outer-gutter)));
+      }
+    }
+  {% endif %}
+
+  {% if section.settings.enable_advanced_settings %}
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} {
+        --section-horizontal-padding: {{ section.settings.section_horizontal_padding }}px;
+      }
+    }
+  {% endif %}
+
+  #shopify-section-{{ section.id }} > .vso-hero-38__container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--page-content-width, var(--page-width, 1440px));
+    {% if section.settings.enable_advanced_settings %}
+      max-width: {{ section.settings.section_max_width }}rem;
+    {% endif %}
+    border-radius: var(--section-border-radius);
+    overflow: hidden;
+    padding-left: var(--section-horizontal-padding);
+    padding-right: var(--section-horizontal-padding);
+    padding-top: {{ section.settings.section_padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+    border: 0;
+    {% if section.settings.enable_advanced_settings %}
+      border: {{ section.settings.section_border_width_mobile }}px solid {{ section.settings.section_border_color }};
+    {% endif %}
+  }
+
+  {% if section.settings.full_width_desktop == false %}
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} > .vso-hero-38__container {
+        width: calc(100% - (2 * var(--page-margin, 40px)));
+      }
+    }
+  {% endif %}
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} > .vso-hero-38__container {
+      background: transparent;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} > .vso-hero-38__container {
+      {% if section.settings.full_width_desktop %}
+        background: transparent;
+      {% else %}
+        {% if section.settings.section_bg_type == 'gradient' %}
+          background: {{ section.settings.section_bg_gradient }};
+        {% else %}
+          background-color: {{ section.settings.section_bg_color }};
+        {% endif %}
+      {% endif %}
+      padding-top: {{ section.settings.section_padding_top }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom }}px;
+      border: 0;
+      {% if section.settings.enable_advanced_settings %}
+        border: {{ section.settings.section_border_width }}px solid {{ section.settings.section_border_color }};
+      {% endif %}
+    }
+  }
+
+  #shopify-section-{{ section.id }} .vso-hero-38__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .vso-hero-38__middle-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ section.settings.middle_section_gap_mobile }}px;
+    align-items: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .vso-hero-38__middle-section {
+      grid-template-columns: 1fr 1fr;
+      gap: {{ section.settings.middle_section_gap }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .vso-hero-38__left-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .vso-hero-38__right-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .vso-hero-38__benefits-grid {
+    display: grid;
+    {% if section.settings.benefits_two_columns_mobile %}
+      grid-template-columns: repeat(2, 1fr);
+    {% else %}
+      grid-template-columns: repeat({{ section.settings.benefits_columns_mobile }}, 1fr);
+    {% endif %}
+    gap: {{ section.settings.benefits_gap_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .vso-hero-38__benefits-grid {
+      grid-template-columns: repeat({{ section.settings.benefits_columns }}, 1fr);
+      gap: {{ section.settings.benefits_gap }}px;
+    }
+  }
+
+  {% for block in section.blocks %}
+    {% if block.type == 'heading' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__heading-block {
+        text-align: {{ block.settings.heading_alignment_mobile }};
+        margin-top: {{ block.settings.margin_top_mobile }}px;
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__heading-block {
+          text-align: {{ block.settings.heading_alignment }};
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__subheading {
+        color: {{ block.settings.subheading_color }};
+        margin: 0 0 {{ block.settings.subheading_spacing }}px 0;
+        {% if block.settings.subheading_custom_font %}
+          font-size: {{ block.settings.subheading_font_size_mobile }}px;
+          line-height: {{ block.settings.subheading_line_height }}%;
+          font-family: {{ block.settings.subheading_font.family }}, {{ block.settings.subheading_font.fallback_families }};
+          font-style: {{ block.settings.subheading_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.subheading_font_weight }};
+            letter-spacing: {{ block.settings.subheading_letter_spacing }}px;
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.subheading_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__subheading {
+            font-size: {{ block.settings.subheading_font_size }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__heading {
+        {% if block.settings.heading_color_type == 'gradient' %}
+          background: {{ block.settings.heading_gradient }};
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        {% else %}
+          color: {{ block.settings.heading_color }};
+        {% endif %}
+        margin: 0;
+        {% if block.settings.heading_custom_font %}
+          font-size: {{ block.settings.heading_font_size_mobile }}px;
+          line-height: {{ block.settings.heading_line_height }}%;
+          font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+          font-style: {{ block.settings.heading_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.heading_font_weight }};
+            letter-spacing: {{ block.settings.heading_letter_spacing }}px;
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.heading_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__heading {
+            font-size: {{ block.settings.heading_font_size }}px;
+          }
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if block.type == 'paragraph' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__paragraph {
+        text-align: {{ block.settings.paragraph_alignment_mobile }};
+        margin-top: {{ block.settings.margin_top_mobile }}px;
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__paragraph {
+          text-align: {{ block.settings.paragraph_alignment }};
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__paragraph-text {
+        color: {{ block.settings.paragraph_color }};
+        margin: 0;
+        {% if block.settings.paragraph_custom_font %}
+          font-size: {{ block.settings.paragraph_font_size_mobile }}px;
+          line-height: {{ block.settings.paragraph_line_height }}%;
+          font-family: {{ block.settings.paragraph_font.family }}, {{ block.settings.paragraph_font.fallback_families }};
+          font-style: {{ block.settings.paragraph_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.paragraph_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.paragraph_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__paragraph-text {
+            font-size: {{ block.settings.paragraph_font_size }}px;
+          }
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if block.type == 'testimonial' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__testimonial {
+        background-color: {{ block.settings.testimonial_bg_color }};
+        border: {{ block.settings.testimonial_border_width }}px solid {{ block.settings.testimonial_border_color }};
+        border-radius: {{ block.settings.testimonial_border_radius_mobile }}px;
+        padding: 0;
+        margin-top: {{ block.settings.margin_top_mobile }}px;
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow: hidden;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__testimonial {
+          border-radius: {{ block.settings.testimonial_border_radius }}px;
+          padding: 0;
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+          flex-direction: row;
+          align-items: stretch;
+          overflow: hidden;
+          gap: {{ block.settings.testimonial_gap }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-media {
+        width: 100%;
+        border-radius: 0;
+        overflow: hidden;
+        flex-shrink: 0;
+        display: block;
+        line-height: 0;
+        font-size: 0;
+        position: relative;
+      }
+      @media screen and (max-width: 749px) {
+        [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-media {
+          height: {{ block.settings.mobile_image_height | default: 180 }}px;
+        }
+      }
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-media picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-media {
+          flex: 0 0 30%;
+          align-self: stretch;
+          height: auto;
+          min-height: 100%;
+          line-height: 0;
+          font-size: 0;
+          display: block;
+          position: relative;
+        }
+        [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-media picture {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: {{ block.settings.testimonial_padding_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-content {
+          padding: {{ block.settings.testimonial_padding }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-quote {
+        color: {{ block.settings.quote_color }};
+        margin: 0;
+        {% if block.settings.quote_custom_font %}
+          font-size: {{ block.settings.quote_font_size_mobile }}px;
+          line-height: {{ block.settings.quote_line_height }}%;
+          font-family: {{ block.settings.quote_font.family }}, {{ block.settings.quote_font.fallback_families }};
+          font-style: {{ block.settings.quote_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.quote_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.quote_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-quote {
+            font-size: {{ block.settings.quote_font_size }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-author {
+        color: {{ block.settings.author_color }};
+        margin: 0;
+        {% if block.settings.author_custom_font %}
+          font-size: {{ block.settings.author_font_size_mobile }}px;
+          line-height: {{ block.settings.author_line_height }}%;
+          font-family: {{ block.settings.author_font.family }}, {{ block.settings.author_font.fallback_families }};
+          font-style: {{ block.settings.author_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.author_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.author_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__testimonial-author {
+            font-size: {{ block.settings.author_font_size }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__verified-badge {
+        display: flex;
+        align-items: center;
+        gap: {{ block.settings.badge_gap }}px;
+        color: {{ block.settings.badge_color }};
+        {% if block.settings.badge_custom_font %}
+          font-size: {{ block.settings.badge_font_size_mobile }}px;
+          line-height: {{ block.settings.badge_line_height }}%;
+          font-family: {{ block.settings.badge_font.family }}, {{ block.settings.badge_font.fallback_families }};
+          font-style: {{ block.settings.badge_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.badge_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.badge_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__verified-badge {
+            font-size: {{ block.settings.badge_font_size }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__verified-badge > * {
+        margin: 0;
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__verified-icon {
+        width: {{ block.settings.badge_icon_size }}px;
+        height: {{ block.settings.badge_icon_size }}px;
+        flex-shrink: 0;
+        fill: {{ block.settings.badge_icon_color }};
+      }
+    {% endif %}
+
+    {% if block.type == 'benefit' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__benefit {
+        display: flex;
+        flex-direction: column;
+        gap: {{ section.settings.benefit_element_gap }}px;
+        text-align: {{ section.settings.benefit_alignment_mobile }};
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__benefit {
+          text-align: {{ section.settings.benefit_alignment }};
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__benefit-number {
+        {% if section.settings.benefit_number_color_type == 'gradient' %}
+          background: {{ section.settings.benefit_number_gradient }};
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        {% else %}
+          color: {{ section.settings.benefit_number_color }};
+        {% endif %}
+        margin: 0;
+        {% if section.settings.enable_counter_animation %}
+          font-variant-numeric: tabular-nums;
+        {% endif %}
+        {% if section.settings.benefit_number_custom_font %}
+          font-size: {{ section.settings.benefit_number_font_size_mobile }}px;
+          line-height: {{ section.settings.benefit_number_line_height }}%;
+          font-family: {{ section.settings.benefit_number_font.family }}, {{ section.settings.benefit_number_font.fallback_families }};
+          font-style: {{ section.settings.benefit_number_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ section.settings.benefit_number_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if section.settings.benefit_number_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__benefit-number {
+            font-size: {{ section.settings.benefit_number_font_size }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__benefit-text {
+        color: {{ section.settings.benefit_text_color }};
+        margin: 0;
+        {% if section.settings.benefit_text_custom_font %}
+          font-size: {{ section.settings.benefit_text_font_size_mobile }}px;
+          line-height: {{ section.settings.benefit_text_line_height }}%;
+          font-family: {{ section.settings.benefit_text_font.family }}, {{ section.settings.benefit_text_font.fallback_families }};
+          font-style: {{ section.settings.benefit_text_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ section.settings.benefit_text_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if section.settings.benefit_text_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__benefit-text {
+            font-size: {{ section.settings.benefit_text_font_size }}px;
+          }
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if block.type == 'disclaimer' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__disclaimer {
+        text-align: {{ block.settings.disclaimer_alignment_mobile }};
+        margin-top: {{ block.settings.margin_top_mobile }}px;
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__disclaimer {
+          text-align: {{ block.settings.disclaimer_alignment }};
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__disclaimer-text {
+        color: {{ block.settings.disclaimer_color }};
+        margin: 0;
+        font-style: italic;
+        {% if block.settings.disclaimer_custom_font %}
+          font-size: {{ block.settings.disclaimer_font_size_mobile }}px;
+          line-height: {{ block.settings.disclaimer_line_height }}%;
+          font-family: {{ block.settings.disclaimer_font.family }}, {{ block.settings.disclaimer_font.fallback_families }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.disclaimer_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.disclaimer_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__disclaimer-text {
+            font-size: {{ block.settings.disclaimer_font_size }}px;
+          }
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if block.type == 'button' %}
+      [data-block-id="{{ block.id }}"].vso-hero-38__button-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: {{ block.settings.button_subtext_spacing }}px;
+        text-align: center;
+        margin-top: {{ block.settings.margin_top_mobile }}px;
+        margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+      }
+      @media screen and (min-width: 750px) {
+        [data-block-id="{{ block.id }}"].vso-hero-38__button-wrapper {
+          margin-top: {{ block.settings.margin_top }}px;
+          margin-bottom: {{ block.settings.margin_bottom }}px;
+        }
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: {{ block.settings.button_padding_vertical_mobile }}px {{ block.settings.button_padding_horizontal_mobile }}px;
+        background-color: {{ block.settings.button_bg_color }};
+        color: {{ block.settings.button_text_color }};
+        text-decoration: none;
+        border-radius: {{ block.settings.button_border_radius }}px;
+        border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+        transition: all 0.3s ease;
+        cursor: pointer;
+        {% if block.settings.button_custom_font %}
+          font-size: {{ block.settings.button_font_size_mobile }}px;
+          line-height: {{ block.settings.button_line_height }}%;
+          font-family: {{ block.settings.button_font.family }}, {{ block.settings.button_font.fallback_families }};
+          font-style: {{ block.settings.button_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.button_font_weight }};
+            letter-spacing: {{ block.settings.button_letter_spacing }}px;
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.button_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__button {
+            font-size: {{ block.settings.button_font_size }}px;
+            padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+          }
+        }
+      {% endif %}
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__button:hover {
+        background-color: {{ block.settings.button_bg_color_hover }};
+        color: {{ block.settings.button_text_color_hover }};
+        border-color: {{ block.settings.button_border_color_hover }};
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__button-subtext-wrapper {
+        display: flex;
+        align-items: center;
+        gap: {{ block.settings.subtext_icon_gap }}px;
+        justify-content: center;
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__button-subtext-icon {
+        width: {{ block.settings.subtext_icon_size }}px;
+        height: {{ block.settings.subtext_icon_size }}px;
+        flex-shrink: 0;
+      }
+
+      [data-block-id="{{ block.id }}"] .vso-hero-38__button-subtext {
+        color: {{ block.settings.button_subtext_color }};
+        margin: 0;
+        {% if block.settings.button_subtext_custom_font %}
+          font-size: {{ block.settings.button_subtext_font_size_mobile }}px;
+          line-height: {{ block.settings.button_subtext_line_height }}%;
+          font-family: {{ block.settings.button_subtext_font.family }}, {{ block.settings.button_subtext_font.fallback_families }};
+          font-style: {{ block.settings.button_subtext_font.style }};
+          {% if section.settings.enable_advanced_settings %}
+            font-weight: {{ block.settings.button_subtext_font_weight }};
+          {% endif %}
+        {% endif %}
+      }
+      {% if block.settings.button_subtext_custom_font %}
+        @media screen and (min-width: 750px) {
+          [data-block-id="{{ block.id }}"] .vso-hero-38__button-subtext {
+            font-size: {{ block.settings.button_subtext_font_size }}px;
+          }
+        }
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  #shopify-section-{{ section.id }} .vso-node { display: none; }
+  #shopify-section-{{ section.id }} .vso-node--v2 { display: block; }
+
+  /* Concept theme compatibility: prevent global reveal styles from hiding the section */
+  #shopify-section-{{ section.id }}.vso-node--v2 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__container,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__content,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__middle-section,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__left-column,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__right-column,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__heading,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__subheading,
+  #shopify-section-{{ section.id }}.vso-node--v2 .vso-hero-38__paragraph-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+{%- endstyle -%}
+
+{%- if request.design_mode -%}
+  <div class="vso-require-script">
+    <div class="vso-warning">
+      <div class="vso-warning__left">
+        <div class="vso-warning__badge">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+            <path d="M10 6.75a.75.75 0 0 1 .75.75v3.5a.75.75 0 1 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Z" fill="currentColor"/>
+            <path d="M11 13.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" fill="currentColor"/>
+            <path fill-rule="evenodd" d="M10 3.5c-1.045 0-1.784.702-2.152 1.447a449.26 449.26 0 0 1-2.005 3.847l-.028.052a403.426 403.426 0 0 0-2.008 3.856c-.372.752-.478 1.75.093 2.614.57.863 1.542 1.184 2.464 1.184h7.272c.922 0 1.895-.32 2.464-1.184.57-.864.465-1.862.093-2.614-.21-.424-1.113-2.147-2.004-3.847l-.032-.061a429.497 429.497 0 0 1-2.005-3.847c-.368-.745-1.107-1.447-2.152-1.447Zm-.808 2.112c.404-.816 1.212-.816 1.616 0 .202.409 1.112 2.145 2.022 3.88a418.904 418.904 0 0 1 2.018 3.875c.404.817 0 1.633-1.212 1.633h-7.272c-1.212 0-1.617-.816-1.212-1.633.202-.408 1.113-2.147 2.023-3.883a421.932 421.932 0 0 0 2.017-3.872Z" fill="currentColor"/>
+          </svg>
+          <span>Action Required</span>
+        </div>
+        <h2 class="vso-warning__title">App Embeds Are Disabled</h2>
+        <p class="vso-warning__subtitle">Enable the Versio Sections app embed in your theme editor to use this section.</p>
+        <div class="vso-warning__steps">
+          <div class="vso-warning__step">
+            <span class="vso-warning__step-number">1</span>
+            <span>Click the <strong>App embeds</strong> icon (puzzle piece) at the top of the left sidebar</span>
+          </div>
+          <div class="vso-warning__step">
+            <span class="vso-warning__step-number">2</span>
+            <span>Toggle on <strong>Versio Sections</strong></span>
+          </div>
+          <div class="vso-warning__step">
+            <span class="vso-warning__step-number">3</span>
+            <span>Click <strong>Save</strong> in the top right</span>
+          </div>
+        </div>
+      </div>
+      <div class="vso-warning__image">
+        <img src="https://cdn.shopify.com/s/files/1/0970/2880/0861/files/1.png?v=1773296966" alt="How to enable app embeds" loading="lazy" width="640" height="880" />
+      </div>
+    </div>
+  </div>
+  <style>
+    .vso-hidden {
+      display: none !important;
+      height: 0 !important;
+      overflow: hidden !important;
+      visibility: hidden !important;
+      width: 0 !important;
+      opacity: 0 !important;
+    }
+    .vso-require-script .vso-warning {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 900px;
+      margin: 24px auto;
+      background: #ffffff;
+      border: 1px solid #e2e2e2;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .vso-warning__left {
+      flex: 1;
+      min-width: 0;
+    }
+    .vso-warning__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef2f2;
+      color: #dc2626;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      border: 1px solid #fecaca;
+    }
+    .vso-warning__badge svg {
+      flex-shrink: 0;
+    }
+    .vso-warning__title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 6px 0;
+      line-height: 1.3;
+    }
+    .vso-warning__subtitle {
+      font-size: 13px;
+      color: #777;
+      margin: 0 0 20px 0;
+      line-height: 1.5;
+      max-width: 340px;
+    }
+    .vso-warning__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .vso-warning__step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.4;
+    }
+    .vso-warning__step strong {
+      color: #1a1a1a;
+    }
+    .vso-warning__step-number {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      background: #f3f3f3;
+      color: #555;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e0e0e0;
+    }
+    .vso-warning__image {
+      flex: 1;
+      min-width: 0;
+    }
+    .vso-warning__image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    @media screen and (max-width: 749px) {
+      .vso-require-script .vso-warning {
+        margin: 16px;
+        padding: 24px 20px;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .vso-warning__title {
+        font-size: 18px;
+      }
+      .vso-warning__subtitle {
+        max-width: none;
+      }
+      .vso-warning__image {
+        flex: none;
+        max-width: 100%;
+      }
+    }
+  </style>
+{%- endif -%}
+
+
+<div class="vso-hero-38__container vso-node vso-hidden">
+  <div class="vso-hero-38__content">
+
+      <div class="vso-hero-38__middle-section">
+
+        <div class="vso-hero-38__left-column">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'heading' -%}
+              <div class="vso-hero-38__heading-block" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                {% if block.settings.subheading != blank %}
+                  {%- if block.settings.subheading_custom_font -%}
+                    <div class="vso-hero-38__subheading">{{ block.settings.subheading }}</div>
+                  {%- else -%}
+                    {%- assign subheading_tag = block.settings.subheading_as | default: 'p' -%}
+                    <{{ subheading_tag }} class="vso-hero-38__subheading">{{ block.settings.subheading }}</{{ subheading_tag }}>
+                  {%- endif -%}
+                {% endif %}
+
+                {% if block.settings.heading != blank %}
+                  {%- if block.settings.heading_custom_font -%}
+                    <div class="vso-hero-38__heading">{{ block.settings.heading }}</div>
+                  {%- else -%}
+                    {%- assign heading_tag = block.settings.heading_as | default: 'h2' -%}
+                    <{{ heading_tag }} class="vso-hero-38__heading">{{ block.settings.heading }}</{{ heading_tag }}>
+                  {%- endif -%}
+                {% endif %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'paragraph' -%}
+              <div class="vso-hero-38__paragraph" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                {% if block.settings.paragraph_text != blank %}
+                  {%- if block.settings.paragraph_custom_font -%}
+                    <div class="vso-hero-38__paragraph-text">{{ block.settings.paragraph_text }}</div>
+                  {%- else -%}
+                    {%- assign paragraph_tag = block.settings.paragraph_as | default: 'p' -%}
+                    <{{ paragraph_tag }} class="vso-hero-38__paragraph-text">{{ block.settings.paragraph_text }}</{{ paragraph_tag }}>
+                  {%- endif -%}
+                {% endif %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'testimonial' -%}
+              <div class="vso-hero-38__testimonial" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                {% liquid
+                  assign has_desktop_image = false
+                  assign has_mobile_image = false
+                  if block.settings.image != blank
+                    assign has_desktop_image = true
+                  endif
+                  if block.settings.enable_mobile_image and block.settings.mobile_image != blank
+                    assign has_mobile_image = true
+                  endif
+                %}
+                {% if has_desktop_image or has_mobile_image %}
+                  <div class="vso-hero-38__testimonial-media">
+                    {% liquid
+                      assign desktop_image = block.settings.image
+                      assign fallback_image = desktop_image
+                      if fallback_image == blank and has_mobile_image
+                        assign fallback_image = block.settings.mobile_image
+                      endif
+                    %}
+                    <picture>
+                      {% if has_mobile_image %}
+                        <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 800 }}">
+                      {% endif %}
+                      <img
+                        src="{{ fallback_image | image_url: width: 800 }}"
+                        alt="{{ block.settings.author_name | escape }}"
+                        class="vso-hero-38__testimonial-image"
+                        width="800"
+                        height="600"
+                        loading="lazy"
+                      >
+                    </picture>
+                  </div>
+                {% endif %}
+
+                <div class="vso-hero-38__testimonial-content">
+                  {% if block.settings.quote != blank %}
+                    {%- if block.settings.quote_custom_font -%}
+                      <div class="vso-hero-38__testimonial-quote">{{ block.settings.quote }}</div>
+                    {%- else -%}
+                      {%- assign quote_tag = block.settings.quote_as | default: 'p' -%}
+                      <{{ quote_tag }} class="vso-hero-38__testimonial-quote">{{ block.settings.quote }}</{{ quote_tag }}>
+                    {%- endif -%}
+                  {% endif %}
+
+                  {% if block.settings.author_name != blank %}
+                    {%- if block.settings.author_custom_font -%}
+                      <div class="vso-hero-38__testimonial-author">{{ block.settings.author_name }}</div>
+                    {%- else -%}
+                      {%- assign author_tag = block.settings.author_as | default: 'p' -%}
+                      <{{ author_tag }} class="vso-hero-38__testimonial-author">{{ block.settings.author_name }}</{{ author_tag }}>
+                    {%- endif -%}
+                  {% endif %}
+
+                  {% if block.settings.verified_buyer_text != blank %}
+                    <div class="vso-hero-38__verified-badge">
+                      <svg class="vso-hero-38__verified-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z"></path>
+                      </svg>
+                      {%- if block.settings.badge_custom_font -%}
+                        <span>{{ block.settings.verified_buyer_text }}</span>
+                      {%- else -%}
+                        {%- assign badge_tag = block.settings.badge_as | default: 'p' -%}
+                        <{{ badge_tag }}>{{ block.settings.verified_buyer_text }}</{{ badge_tag }}>
+                      {%- endif -%}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="vso-hero-38__right-column">
+          <div class="vso-hero-38__benefits-grid"
+               {% if section.settings.enable_counter_animation %}data-animate-counters="true"{% endif %}>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'benefit' -%}
+                <div class="vso-hero-38__benefit" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                  {% if section.settings.enable_counter_animation and block.settings.counter_target > 0 %}
+                    {%- if section.settings.benefit_number_custom_font -%}
+                      <div class="vso-hero-38__benefit-number"
+                           data-counter-target="{{ block.settings.counter_target }}"
+                           data-counter-suffix="{{ block.settings.counter_suffix | escape }}">
+                        0{{ block.settings.counter_suffix }}
+                      </div>
+                    {%- else -%}
+                      {%- assign benefit_number_tag = section.settings.benefit_number_as | default: 'p' -%}
+                      <{{ benefit_number_tag }} class="vso-hero-38__benefit-number"
+                           data-counter-target="{{ block.settings.counter_target }}"
+                           data-counter-suffix="{{ block.settings.counter_suffix | escape }}">
+                        0{{ block.settings.counter_suffix }}
+                      </{{ benefit_number_tag }}>
+                    {%- endif -%}
+                  {% elsif block.settings.benefit_number != blank %}
+                    {%- if section.settings.benefit_number_custom_font -%}
+                      <div class="vso-hero-38__benefit-number">{{ block.settings.benefit_number }}</div>
+                    {%- else -%}
+                      {%- assign benefit_number_tag = section.settings.benefit_number_as | default: 'p' -%}
+                      <{{ benefit_number_tag }} class="vso-hero-38__benefit-number">{{ block.settings.benefit_number }}</{{ benefit_number_tag }}>
+                    {%- endif -%}
+                  {% endif %}
+
+                  {% if block.settings.benefit_text != blank %}
+                    {%- if section.settings.benefit_text_custom_font -%}
+                      <div class="vso-hero-38__benefit-text">{{ block.settings.benefit_text }}</div>
+                    {%- else -%}
+                      {%- assign benefit_text_tag = section.settings.benefit_text_as | default: 'p' -%}
+                      <{{ benefit_text_tag }} class="vso-hero-38__benefit-text">{{ block.settings.benefit_text }}</{{ benefit_text_tag }}>
+                    {%- endif -%}
+                  {% endif %}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'disclaimer' -%}
+              <div class="vso-hero-38__disclaimer" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                {% if block.settings.disclaimer_text != blank %}
+                  {%- if block.settings.disclaimer_custom_font -%}
+                    <div class="vso-hero-38__disclaimer-text">{{ block.settings.disclaimer_text }}</div>
+                  {%- else -%}
+                    {%- assign disclaimer_tag = block.settings.disclaimer_as | default: 'p' -%}
+                    <{{ disclaimer_tag }} class="vso-hero-38__disclaimer-text">{{ block.settings.disclaimer_text }}</{{ disclaimer_tag }}>
+                  {%- endif -%}
+                {% endif %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'button' -%}
+          <div class="vso-hero-38__button-wrapper" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+            {% if block.settings.button_text != blank %}
+              <a href="{{ block.settings.button_link | default: '#' }}" class="vso-hero-38__button">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+
+            {% if block.settings.button_subtext != blank %}
+              <div class="vso-hero-38__button-subtext-wrapper">
+                {% if block.settings.subtext_icon != blank %}
+                  <img
+                    src="{{ block.settings.subtext_icon | image_url: width: 50 }}"
+                    alt=""
+                    class="vso-hero-38__button-subtext-icon"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                  >
+                {% endif %}
+                {%- if block.settings.button_subtext_custom_font -%}
+                  <span class="vso-hero-38__button-subtext">{{ block.settings.button_subtext }}</span>
+                {%- else -%}
+                  {%- assign button_subtext_tag = block.settings.button_subtext_as | default: 'p' -%}
+                  <{{ button_subtext_tag }} class="vso-hero-38__button-subtext">{{ block.settings.button_subtext }}</{{ button_subtext_tag }}>
+                {%- endif -%}
+              </div>
+            {% endif %}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+  </div>
+</div>
+
+
+{% if section.settings.enable_counter_animation %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var statsContainer = document.querySelector('#shopify-section-{{ section.id }} [data-animate-counters="true"]');
+    if (!statsContainer) return;
+
+    var animationDuration = 4000;
+    var counters = statsContainer.querySelectorAll('[data-counter-target]');
+
+    function animateCounter(counter, duration) {
+      var target = parseInt(counter.getAttribute('data-counter-target'));
+      if (isNaN(target) || target <= 0) return;
+      var suffix = counter.getAttribute('data-counter-suffix') || '';
+      var startTime = performance.now();
+
+      function updateCounter(currentTime) {
+        var elapsed = currentTime - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var easedProgress = progress * (2 - progress);
+        var currentValue = Math.round(easedProgress * target);
+        counter.textContent = currentValue + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      }
+
+      requestAnimationFrame(updateCounter);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var counter = entry.target;
+          if (!counter.hasAttribute('data-animated')) {
+            counter.setAttribute('data-animated', 'true');
+            animateCounter(counter, animationDuration);
+          }
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    counters.forEach(function(counter) {
+      observer.observe(counter);
+    });
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "VSO - Hero 38",
+  "tag": "section",
+  "class": "section vso-node vso-node--v2 vso-hero-38",
+  "settings": [
+    { "type": "header", "content": "Section Settings" },
+    {
+      "type": "checkbox",
+      "id": "enable_advanced_settings",
+      "label": "Enable advanced settings",
+      "default": false,
+      "info": "Shows additional settings for spacing, layout, and typography."
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "label": "Content max width",
+      "min": 60,
+      "max": 200,
+      "step": 2,
+      "unit": "rem",
+      "default": 120,
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "section_horizontal_padding",
+      "label": "Desktop side spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24,
+      "info": "Adds spacing on the left and right sides of this section on desktop.",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "section_horizontal_padding_mobile",
+      "label": "Mobile side spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 15,
+      "info": "Adds spacing on the left and right sides of this section on mobile.",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+
+    { "type": "header", "content": "Section Background" },
+    {
+      "type": "select",
+      "id": "section_bg_type",
+      "label": "Section background type",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "gradient", "label": "Gradient" }
+      ],
+      "default": "solid",
+      "info": "Background type for the section"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section background color",
+      "default": "#F5EFEA",
+      "visible_if": "{{ section.settings.section_bg_type == 'solid' }}",
+      "info": "Background color for the section"
+    },
+    {
+      "type": "color_background",
+      "id": "section_bg_gradient",
+      "label": "Section background gradient",
+      "default": "linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%)",
+      "visible_if": "{{ section.settings.section_bg_type == 'gradient' }}",
+      "info": "Background gradient for the section"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_desktop",
+      "label": "Full width on desktop",
+      "default": false,
+      "info": "Make section background full width on desktop"
+    },
+    {
+      "type": "range",
+      "id": "section_border_radius",
+      "label": "Desktop border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "section_border_radius_mobile",
+      "label": "Mobile border radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "section_border_width_mobile",
+      "label": "Mobile border width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "color",
+      "id": "section_border_color",
+      "label": "Border color",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+
+    { "type": "header", "content": "Layout Settings", "visible_if": "{{ section.settings.enable_advanced_settings == true }}" },
+    {
+      "type": "range",
+      "id": "middle_section_gap",
+      "label": "Desktop middle section gap",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60,
+      "info": "Gap between left and right columns on desktop",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "middle_section_gap_mobile",
+      "label": "Mobile middle section gap",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 20,
+      "info": "Gap between testimonial and benefits grid on mobile",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+
+    { "type": "header", "content": "Section Padding" },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Desktop padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Desktop padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+
+    { "type": "header", "content": "Section Margin" },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Desktop margin top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Desktop margin bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "label": "Mobile margin top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "label": "Mobile margin bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+
+    { "type": "header", "content": "Benefits Grid Settings" },
+    {
+      "type": "checkbox",
+      "id": "enable_counter_animation",
+      "label": "Enable counter animation",
+      "default": true,
+      "info": "Benefit numbers will animate from 0 to their target value when visible. Set the target number and suffix in each benefit block."
+    },
+    {
+      "type": "checkbox",
+      "id": "benefits_two_columns_mobile",
+      "label": "Two columns on mobile",
+      "default": false,
+      "info": "Display benefits in a 2x2 grid layout on mobile devices."
+    },
+    {
+      "type": "range",
+      "id": "benefits_columns",
+      "label": "Desktop columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "info": "Number of columns for benefits grid on desktop",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "select",
+      "id": "benefits_columns_mobile",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "1", "label": "Single column" },
+        { "value": "2", "label": "Two columns" }
+      ],
+      "default": "1",
+      "info": "Layout for benefits grid on mobile",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "benefits_gap",
+      "label": "Desktop benefits gap",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32,
+      "info": "Gap between benefit blocks",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "benefits_gap_mobile",
+      "label": "Mobile benefits gap",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "info": "Gap between benefit blocks on mobile",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_element_gap",
+      "label": "Benefit element spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8,
+      "info": "Space between number and text in each benefit",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "select",
+      "id": "benefit_alignment",
+      "label": "Desktop benefit alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "select",
+      "id": "benefit_alignment_mobile",
+      "label": "Mobile benefit alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.enable_advanced_settings == true }}"
+    },
+
+    { "type": "header", "content": "Benefit Number Style" },
+    {
+      "type": "checkbox",
+      "id": "benefit_number_custom_font",
+      "label": "Enable custom font settings",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "benefit_number_as",
+      "label": "Render as",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "p", "label": "Paragraph (p)" }
+      ],
+      "default": "h2",
+      "visible_if": "{{ section.settings.benefit_number_custom_font == false }}"
+    },
+    {
+      "type": "font_picker",
+      "id": "benefit_number_font",
+      "label": "Font family",
+      "default": "poppins_n6",
+      "visible_if": "{{ section.settings.benefit_number_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_number_font_size",
+      "label": "Desktop font size",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 52,
+      "visible_if": "{{ section.settings.benefit_number_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_number_font_size_mobile",
+      "label": "Mobile font size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 42,
+      "visible_if": "{{ section.settings.benefit_number_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_number_font_weight",
+      "label": "Font weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600,
+      "visible_if": "{{ section.settings.benefit_number_custom_font and section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_number_line_height",
+      "label": "Line height",
+      "min": 100,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ section.settings.benefit_number_custom_font }}"
+    },
+    {
+      "type": "select",
+      "id": "benefit_number_color_type",
+      "label": "Color type",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "gradient", "label": "Gradient" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "benefit_number_color",
+      "label": "Color",
+      "default": "#E84756",
+      "visible_if": "{{ section.settings.benefit_number_color_type == 'solid' }}"
+    },
+    {
+      "type": "color_background",
+      "id": "benefit_number_gradient",
+      "label": "Gradient",
+      "default": "linear-gradient(135deg, #EC4899 0%, #F472B6 100%)",
+      "visible_if": "{{ section.settings.benefit_number_color_type == 'gradient' }}"
+    },
+
+    { "type": "header", "content": "Benefit Text Style" },
+    {
+      "type": "checkbox",
+      "id": "benefit_text_custom_font",
+      "label": "Enable custom font settings",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "benefit_text_as",
+      "label": "Render as",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "p", "label": "Paragraph (p)" }
+      ],
+      "default": "p",
+      "visible_if": "{{ section.settings.benefit_text_custom_font == false }}"
+    },
+    {
+      "type": "font_picker",
+      "id": "benefit_text_font",
+      "label": "Font family",
+      "default": "poppins_n4",
+      "visible_if": "{{ section.settings.benefit_text_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_font_size",
+      "label": "Desktop font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15,
+      "visible_if": "{{ section.settings.benefit_text_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_font_size_mobile",
+      "label": "Mobile font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14,
+      "visible_if": "{{ section.settings.benefit_text_custom_font }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_font_weight",
+      "label": "Font weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400,
+      "visible_if": "{{ section.settings.benefit_text_custom_font and section.settings.enable_advanced_settings == true }}"
+    },
+    {
+      "type": "range",
+      "id": "benefit_text_line_height",
+      "label": "Line height",
+      "min": 100,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "default": 150,
+      "visible_if": "{{ section.settings.benefit_text_custom_font }}"
+    },
+    {
+      "type": "color",
+      "id": "benefit_text_color",
+      "label": "Color",
+      "default": "#181818"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Subheading" },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "label": "Subheading text",
+          "default": "SCIENCE-BACKED SKINCARE BY VERSIO"
+        },
+        {
+          "type": "checkbox",
+          "id": "subheading_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "subheading_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.subheading_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "subheading_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.subheading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "subheading_font_size",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.subheading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "subheading_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 12,
+          "visible_if": "{{ block.settings.subheading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "subheading_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.subheading_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "subheading_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 140,
+          "visible_if": "{{ block.settings.subheading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "subheading_letter_spacing",
+          "label": "Letter spacing",
+          "min": 0,
+          "max": 4,
+          "step": 0.5,
+          "unit": "px",
+          "default": 1,
+          "visible_if": "{{ block.settings.subheading_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "color",
+          "id": "subheading_color",
+          "label": "Color",
+          "default": "#E84756"
+        },
+        {
+          "type": "range",
+          "id": "subheading_spacing",
+          "label": "Spacing below",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        },
+
+        { "type": "header", "content": "Heading" },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading text",
+          "default": "Unlock Your Skin's Full Potential With Versio"
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "heading_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "h2",
+          "visible_if": "{{ block.settings.heading_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "heading_font",
+          "label": "Font family",
+          "default": "poppins_n6",
+          "visible_if": "{{ block.settings.heading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "label": "Desktop font size",
+          "min": 24,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 48,
+          "visible_if": "{{ block.settings.heading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 20,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "default": 32,
+          "visible_if": "{{ block.settings.heading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 600,
+          "visible_if": "{{ block.settings.heading_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "heading_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 120,
+          "visible_if": "{{ block.settings.heading_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "heading_letter_spacing",
+          "label": "Letter spacing",
+          "min": -2,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "default": 0,
+          "visible_if": "{{ block.settings.heading_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "select",
+          "id": "heading_color_type",
+          "label": "Color type",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "gradient", "label": "Gradient" }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Color",
+          "default": "#000000",
+          "visible_if": "{{ block.settings.heading_color_type == 'solid' }}"
+        },
+        {
+          "type": "color_background",
+          "id": "heading_gradient",
+          "label": "Gradient",
+          "default": "linear-gradient(135deg, #EC4899 0%, #F472B6 100%)",
+          "visible_if": "{{ block.settings.heading_color_type == 'gradient' }}"
+        },
+
+        { "type": "header", "content": "Alignment" },
+        {
+          "type": "select",
+          "id": "heading_alignment",
+          "label": "Desktop text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "heading_alignment_mobile",
+          "label": "Mobile text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Desktop margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Mobile margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Paragraph Content" },
+        {
+          "type": "richtext",
+          "id": "paragraph_text",
+          "label": "Paragraph text",
+          "default": "<p>Versio's revolutionary skincare formula harnesses the power of advanced peptides, hyaluronic acid, and botanical extracts to transform your complexion. Our clinically-tested products deliver visible results, helping you achieve radiant, youthful-looking skin in just weeks.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "paragraph_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "paragraph_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.paragraph_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "paragraph_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.paragraph_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "paragraph_font_size",
+          "label": "Desktop font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 16,
+          "visible_if": "{{ block.settings.paragraph_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "paragraph_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.paragraph_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "paragraph_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.paragraph_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "paragraph_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 150,
+          "visible_if": "{{ block.settings.paragraph_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "paragraph_color",
+          "label": "Color",
+          "default": "#333333"
+        },
+
+        { "type": "header", "content": "Alignment" },
+        {
+          "type": "select",
+          "id": "paragraph_alignment",
+          "label": "Desktop text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "paragraph_alignment_mobile",
+          "label": "Mobile text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Desktop margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Mobile margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Testimonial Content" },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer image",
+          "info": "Upload customer photo"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_mobile_image",
+          "label": "Use different image on mobile",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Shown on screens below 750px",
+          "visible_if": "{{ block.settings.enable_mobile_image }}"
+        },
+        {
+          "type": "range",
+          "id": "mobile_image_height",
+          "label": "Mobile image height",
+          "min": 120,
+          "max": 320,
+          "step": 10,
+          "unit": "px",
+          "default": 180
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote text",
+          "default": "<p>Versio has completely transformed my skincare routine. Within 3 weeks, I noticed my skin looking brighter, more hydrated, and incredibly smooth. My fine lines have visibly diminished and my confidence has soared. This is truly revolutionary skincare!</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "quote_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "quote_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.quote_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "quote_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.quote_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "quote_font_size",
+          "label": "Desktop font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 15,
+          "visible_if": "{{ block.settings.quote_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "quote_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.quote_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "quote_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.quote_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "quote_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 160,
+          "visible_if": "{{ block.settings.quote_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "quote_color",
+          "label": "Color",
+          "default": "#000000"
+        },
+
+        { "type": "header", "content": "Author" },
+        {
+          "type": "inline_richtext",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Sarah L."
+        },
+        {
+          "type": "checkbox",
+          "id": "author_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "author_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.author_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "author_font",
+          "label": "Font family",
+          "default": "poppins_n6",
+          "visible_if": "{{ block.settings.author_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "author_font_size",
+          "label": "Desktop font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 16,
+          "visible_if": "{{ block.settings.author_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "author_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.author_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "author_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 600,
+          "visible_if": "{{ block.settings.author_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "author_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 140,
+          "visible_if": "{{ block.settings.author_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "author_color",
+          "label": "Color",
+          "default": "#000000"
+        },
+
+        { "type": "header", "content": "Verified Badge" },
+        {
+          "type": "inline_richtext",
+          "id": "verified_buyer_text",
+          "label": "Verified badge text",
+          "default": "Verified Customer"
+        },
+        {
+          "type": "range",
+          "id": "badge_icon_size",
+          "label": "Icon size",
+          "min": 14,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "badge_icon_color",
+          "label": "Icon color",
+          "default": "#E84756"
+        },
+        {
+          "type": "range",
+          "id": "badge_gap",
+          "label": "Gap between icon and text",
+          "min": 4,
+          "max": 16,
+          "step": 2,
+          "unit": "px",
+          "default": 6
+        },
+        {
+          "type": "checkbox",
+          "id": "badge_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "badge_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.badge_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "badge_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.badge_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "badge_font_size",
+          "label": "Desktop font size",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.badge_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "badge_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 11,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 13,
+          "visible_if": "{{ block.settings.badge_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "badge_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.badge_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "badge_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 140,
+          "visible_if": "{{ block.settings.badge_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "badge_color",
+          "label": "Color",
+          "default": "#E84756"
+        },
+
+        { "type": "header", "content": "Testimonial Styling" },
+        {
+          "type": "color",
+          "id": "testimonial_bg_color",
+          "label": "Background color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_border_width",
+          "label": "Border width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "testimonial_border_color",
+          "label": "Border color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_border_radius",
+          "label": "Desktop border radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "testimonial_border_radius_mobile",
+          "label": "Mobile border radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "testimonial_padding",
+          "label": "Desktop padding",
+          "min": 10,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "testimonial_padding_mobile",
+          "label": "Mobile padding",
+          "min": 10,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Desktop margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Mobile margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "header", "content": "Benefit Content" },
+        {
+          "type": "inline_richtext",
+          "id": "benefit_number",
+          "label": "Benefit title",
+          "default": "94%",
+          "visible_if": "{{ section.settings.enable_counter_animation == false }}"
+        },
+        {
+          "type": "range",
+          "id": "counter_target",
+          "label": "Counter target number",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 94,
+          "info": "The number to animate to when counter animation is enabled.",
+          "visible_if": "{{ section.settings.enable_counter_animation }}"
+        },
+        {
+          "type": "text",
+          "id": "counter_suffix",
+          "label": "Counter suffix",
+          "default": "%",
+          "info": "Text after the number (e.g., %, k+, +)",
+          "visible_if": "{{ section.settings.enable_counter_animation }}"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "benefit_text",
+          "label": "Benefit description",
+          "default": "Of users saw visible results with Versio skincare"
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "disclaimer",
+      "name": "Disclaimer",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Disclaimer Content" },
+        {
+          "type": "richtext",
+          "id": "disclaimer_text",
+          "label": "Disclaimer text",
+          "default": "<p>Results based on a 4-week clinical study with 50 Versio users aged 30–55. Participants reported visible improvements in skin firmness, reduced fine lines, enhanced radiance, and improved overall skin texture with consistent use of Versio products.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "disclaimer_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "disclaimer_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.disclaimer_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "disclaimer_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.disclaimer_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_font_size",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 12,
+          "visible_if": "{{ block.settings.disclaimer_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 9,
+          "max": 14,
+          "step": 1,
+          "unit": "px",
+          "default": 11,
+          "visible_if": "{{ block.settings.disclaimer_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.disclaimer_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 150,
+          "visible_if": "{{ block.settings.disclaimer_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "disclaimer_color",
+          "label": "Color",
+          "default": "#888888"
+        },
+
+        { "type": "header", "content": "Alignment" },
+        {
+          "type": "select",
+          "id": "disclaimer_alignment",
+          "label": "Desktop text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "disclaimer_alignment_mobile",
+          "label": "Mobile text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Desktop margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 32
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Mobile margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Button Content" },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "SHOP VERSIO"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+
+        { "type": "header", "content": "Button Style" },
+        {
+          "type": "checkbox",
+          "id": "button_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "font_picker",
+          "id": "button_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.button_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "label": "Desktop font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 16,
+          "visible_if": "{{ block.settings.button_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.button_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.button_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "button_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 140,
+          "visible_if": "{{ block.settings.button_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_letter_spacing",
+          "label": "Letter spacing",
+          "min": 0,
+          "max": 4,
+          "step": 0.5,
+          "unit": "px",
+          "default": 1,
+          "visible_if": "{{ block.settings.button_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Background color",
+          "default": "#1A1A1A"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color_hover",
+          "label": "Hover background color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_hover",
+          "label": "Hover text color",
+          "default": "#FFFFFF"
+        },
+
+        { "type": "header", "content": "Button Layout" },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "label": "Border radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "label": "Desktop vertical padding",
+          "min": 8,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "label": "Desktop horizontal padding",
+          "min": 20,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 48
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical_mobile",
+          "label": "Mobile vertical padding",
+          "min": 8,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal_mobile",
+          "label": "Mobile horizontal padding",
+          "min": 20,
+          "max": 60,
+          "step": 4,
+          "unit": "px",
+          "default": 40
+        },
+
+        { "type": "header", "content": "Button Border" },
+        {
+          "type": "range",
+          "id": "button_border_width",
+          "label": "Border width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Border color",
+          "default": "#000000",
+          "visible_if": "{{ block.settings.button_border_width > 0 }}"
+        },
+        {
+          "type": "color",
+          "id": "button_border_color_hover",
+          "label": "Hover border color",
+          "default": "#333333",
+          "visible_if": "{{ block.settings.button_border_width > 0 }}"
+        },
+
+        { "type": "header", "content": "Button Subtext" },
+        {
+          "type": "inline_richtext",
+          "id": "button_subtext",
+          "label": "Subtext",
+          "default": "60-Day Money-Back Guarantee"
+        },
+        {
+          "type": "image_picker",
+          "id": "subtext_icon",
+          "label": "Subtext icon",
+          "info": "Upload an icon (e.g., shield)"
+        },
+        {
+          "type": "range",
+          "id": "subtext_icon_size",
+          "label": "Icon size",
+          "min": 12,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "subtext_icon_gap",
+          "label": "Gap between icon and text",
+          "min": 4,
+          "max": 16,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "button_subtext_spacing",
+          "label": "Spacing above subtext",
+          "min": 8,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "checkbox",
+          "id": "button_subtext_custom_font",
+          "label": "Enable custom font settings",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "button_subtext_as",
+          "label": "Render as",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph (p)" }
+          ],
+          "default": "p",
+          "visible_if": "{{ block.settings.button_subtext_custom_font == false }}"
+        },
+        {
+          "type": "font_picker",
+          "id": "button_subtext_font",
+          "label": "Font family",
+          "default": "poppins_n4",
+          "visible_if": "{{ block.settings.button_subtext_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_subtext_font_size",
+          "label": "Desktop font size",
+          "min": 11,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 14,
+          "visible_if": "{{ block.settings.button_subtext_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_subtext_font_size_mobile",
+          "label": "Mobile font size",
+          "min": 11,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 13,
+          "visible_if": "{{ block.settings.button_subtext_custom_font }}"
+        },
+        {
+          "type": "range",
+          "id": "button_subtext_font_weight",
+          "label": "Font weight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "visible_if": "{{ block.settings.button_subtext_custom_font and section.settings.enable_advanced_settings == true }}"
+        },
+        {
+          "type": "range",
+          "id": "button_subtext_line_height",
+          "label": "Line height",
+          "min": 100,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 140,
+          "visible_if": "{{ block.settings.button_subtext_custom_font }}"
+        },
+        {
+          "type": "color",
+          "id": "button_subtext_color",
+          "label": "Color",
+          "default": "#000000"
+        },
+
+        { "type": "header", "content": "Block Spacing" },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Desktop margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Desktop margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Mobile margin top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 32
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Mobile margin bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "VSO - Hero 38",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "paragraph" },
+        { "type": "testimonial" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "disclaimer" },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}

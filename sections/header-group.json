@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message-1": {
+          "type": "message",
+          "settings": {
+            "text": "<strong>30% OFF SITEWIDE + FREE SHIPPING ABOVE €150</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "message-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "enable_sticky": true,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 12,
+        "mobile_font_size": 9
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_wQ68Mx": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Shop",
+            "images_position": "right",
+            "image_1_heading": "",
+            "image_1_text": "",
+            "image_1_link": "",
+            "image_2_heading": "",
+            "image_2_text": "",
+            "image_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_wQ68Mx"
+      ],
+      "custom_css": [
+        ".mega-menu {display: flex; justify-content: space-between;}",
+        ".mega-menu__promo a:first-child {display: flex; justify-content: center; flex-grow: 1;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "show_separation_border": false,
+        "reduce_padding": true,
+        "logo": "{{ shop.brand.logo }}",
+        "logo_max_width": 215,
+        "logo_mobile_max_width": 155,
+        "menu": "main",
+        "sidebar_menu": "main",
+        "customer_account_menu": "customer-account-main-menu",
+        "menu_open_trigger": "hover",
+        "menu_text_font": "heading",
+        "enable_search": true,
+        "sidebar_color_scheme": "",
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": true,
+        "sidebar_open_second_level_menus": true,
+        "layout": "logo_center_navigation_inline",
+        "show_icons": true,
+        "show_country_selector": true,
+        "show_country_name": false,
+        "show_country_flag": true,
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff",
+        "transparent_logo": "shopify://shop_images/Ellery_c3b15c7f-dc81-4439-b7a0-615378b26c34.png"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
