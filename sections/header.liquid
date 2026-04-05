@@ -86,16 +86,7 @@
     font-weight: var(--font-heading-weight);
   }
 
-  /* Cart divider + price */
-  .header__cart-divider {
-    display: inline-block;
-    width: 1px;
-    height: 18px;
-    background: currentColor;
-    opacity: 0.3;
-    margin: 0 2px;
-    vertical-align: middle;
-  }
+  /* Cart price block */
   .header__cart-price {
     display: flex;
     flex-direction: column;
@@ -118,7 +109,28 @@
     gap: 6px;
   }
 
-  /* Mobile: hide primary-nav area entirely (hamburger moved to secondary-nav) */
+  /* Desktop: hide the standalone price li (price shown separately but we keep it in flow) */
+  @media screen and (min-width: 1000px) {
+    .header__mobile-hamburger {
+      display: none !important;
+    }
+    /* On desktop show a divider before the cart price via pseudo-element */
+    .header__cart-price-li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header__cart-price-li::before {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 18px;
+      background: currentColor;
+      opacity: 0.3;
+    }
+  }
+
+  /* Mobile */
   @media screen and (max-width: 999px) {
     #shopify-section-{{ section.id }} .header__primary-nav {
       display: none !important;
@@ -126,17 +138,6 @@
     .header__mobile-hamburger {
       display: flex;
       align-items: center;
-    }
-    .header__cart-price {
-      display: flex !important;
-    }
-    .header__cart-divider {
-      display: inline-block !important;
-    }
-  }
-  @media screen and (min-width: 1000px) {
-    .header__mobile-hamburger {
-      display: none !important;
     }
   }
 
@@ -378,16 +379,25 @@
           </li>
         {%- endif -%}
 
-        {%- if section.settings.enable_search -%}
-          <li class="header__search-link">
-            <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}">
-              <span class="sr-only">{{ 'header.general.search' | t }}</span>
-              {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
-            </a>
+        {%- comment -%} Cart price — separate li so mobile order works {%- endcomment -%}
+        {%- unless cart.empty? -%}
+          {%- assign cart_compare_price = 0 -%}
+          {%- assign cart_total = cart.total_price -%}
+          {%- for item in cart.items -%}
+            {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
+            {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
+          {%- endfor -%}
+          <li class="header__cart-price-li">
+            <div class="header__cart-price">
+              {%- if cart_compare_price > cart_total -%}
+                <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
+              {%- endif -%}
+              <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
+            </div>
           </li>
-        {%- endif -%}
+        {%- endunless -%}
 
-        {%- comment -%} Divider + cart price + cart icon {%- endcomment -%}
+        {%- comment -%} Cart icon {%- endcomment -%}
         <li class="relative header__cart-link">
           <a
             href="{{ routes.cart_url }}"
@@ -398,23 +408,6 @@
             class="header__cart-link-inner"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
-
-            {%- unless cart.empty? -%}
-              {%- assign cart_compare_price = 0 -%}
-              {%- assign cart_total = cart.total_price -%}
-              {%- for item in cart.items -%}
-                {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
-                {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
-              {%- endfor -%}
-              <span class="header__cart-divider" aria-hidden="true"></span>
-              <div class="header__cart-price">
-                {%- if cart_compare_price > cart_total -%}
-                  <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
-                {%- endif -%}
-                <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
-              </div>
-            {%- endunless -%}
-
             <div class="header__cart-icon-wrap">
               {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
               {%- unless cart.empty? -%}
@@ -424,7 +417,17 @@
           </a>
         </li>
 
-        {%- comment -%} Mobile hamburger — last item on the right {%- endcomment -%}
+        {%- comment -%} Search {%- endcomment -%}
+        {%- if section.settings.enable_search -%}
+          <li class="header__search-link">
+            <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}">
+              <span class="sr-only">{{ 'header.general.search' | t }}</span>
+              {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
+            </a>
+          </li>
+        {%- endif -%}
+
+        {%- comment -%} Hamburger — last on mobile {%- endcomment -%}
         {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 -%}
           <li class="header__mobile-hamburger">
             <button type="button" aria-controls="sidebar-menu">
