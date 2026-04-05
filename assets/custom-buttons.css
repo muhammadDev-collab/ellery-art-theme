@@ -1,0 +1,115 @@
+/* ============================================================
+   Global button override — blue #163bbc with slide hover
+   ============================================================ */
+
+/* Override CSS variable so ALL .button elements use our blue */
+:root,
+.color-scheme {
+  --btn-blue: 22, 59, 188;          /* #163bbc as R G B */
+  --btn-blue-hex: #163bbc;
+  --btn-white: 255, 255, 255;
+}
+
+/* ── Base: solid blue fill ── */
+.button,
+.shopify-challenge__button,
+.shopify-payment-button__button--unbranded {
+  background-color: var(--btn-blue-hex) !important;
+  color: #fff !important;
+  border: 2px solid var(--btn-blue-hex) !important;
+  border-radius: 4px !important;
+  /* Slide overlay layer — white fills from left on hover */
+  --initial-gradient: linear-gradient(to right, #fff 0%, #fff 100%) !important;
+  --hover-gradient: linear-gradient(transparent, transparent) !important;
+  background-image:
+    linear-gradient(to right, #fff 0%, #fff 100%),
+    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex)) !important;
+  background-size: 0% 100%, 100% 100% !important;
+  background-position: left center, left center !important;
+  background-repeat: no-repeat !important;
+  transition:
+    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    border-color 0.3s ease !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* ── Hover: slide white from left → right, text turns blue ── */
+@media screen and (pointer: fine) {
+  .button:not([disabled]):hover,
+  .shopify-challenge__button:not([disabled]):hover,
+  .shopify-payment-button__button--unbranded:not([disabled]):hover {
+    background-size: 100% 100%, 100% 100% !important;
+    color: var(--btn-blue-hex) !important;
+    border-color: var(--btn-blue-hex) !important;
+    background-position: left center, left center !important;
+  }
+}
+
+/* ── Cart drawer checkout button (custom element, not .button class) ── */
+.cart-drawer__checkout-btn {
+  background-color: var(--btn-blue-hex);
+  color: #fff;
+  border: 2px solid var(--btn-blue-hex);
+  background-image:
+    linear-gradient(to right, #fff 0%, #fff 100%),
+    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex));
+  background-size: 0% 100%, 100% 100%;
+  background-position: left center, left center;
+  background-repeat: no-repeat;
+  transition:
+    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    border-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+@media screen and (pointer: fine) {
+  .cart-drawer__checkout-btn:not([disabled]):hover {
+    background-size: 100% 100%, 100% 100%;
+    background-position: left center, left center;
+    color: var(--btn-blue-hex);
+    border-color: var(--btn-blue-hex);
+  }
+
+  .cart-drawer__checkout-btn:not([disabled]):hover .cart-drawer__checkout-label,
+  .cart-drawer__checkout-btn:not([disabled]):hover .cart-drawer__checkout-total,
+  .cart-drawer__checkout-btn:not([disabled]):hover .cart-drawer__checkout-original {
+    color: var(--btn-blue-hex);
+  }
+
+  .cart-drawer__checkout-btn:not([disabled]):hover .cart-drawer__checkout-divider {
+    background: rgba(22, 59, 188, 0.3);
+  }
+}
+
+/* ── Shopify dynamic checkout buttons (Buy it now, etc.) ── */
+.shopify-payment-button__button--branded {
+  border-radius: 4px !important;
+}
+
+/* ── Button outline variant stays consistent ── */
+.button--outline {
+  background-color: transparent !important;
+  background-image:
+    linear-gradient(var(--btn-blue-hex), var(--btn-blue-hex)),
+    linear-gradient(transparent, transparent) !important;
+  background-size: 0% 100%, 100% 100% !important;
+  background-position: left center, left center !important;
+  background-repeat: no-repeat !important;
+  color: var(--btn-blue-hex) !important;
+  border: 2px solid var(--btn-blue-hex) !important;
+  transition:
+    background-size 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86) !important;
+}
+
+@media screen and (pointer: fine) {
+  .button--outline:not([disabled]):hover {
+    background-size: 100% 100%, 100% 100% !important;
+    background-position: left center, left center !important;
+    color: #fff !important;
+  }
+}
