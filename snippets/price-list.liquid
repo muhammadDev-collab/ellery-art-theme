@@ -72,7 +72,13 @@
       LINE ITEM CASE (used on cart, order page...)
       --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
-    <sale-price class="{% if line_item.original_price > line_item.final_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+    {%- liquid
+      assign line_item_compare_price = line_item.variant.compare_at_price
+      if line_item.original_price > line_item.final_price
+        assign line_item_compare_price = line_item.original_price
+      endif
+    -%}
+    <sale-price class="{% if line_item_compare_price > line_item.final_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
       {%- if settings.currency_code_enabled -%}
@@ -82,14 +88,14 @@
       {%- endif -%}
     </sale-price>
 
-    {%- if line_item.original_price > line_item.final_price -%}
+    {%- if line_item_compare_price > line_item.final_price -%}
       <compare-at-price class="{{ compare_at_price_classes }}">
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- line_item.original_price | money_with_currency -}}
+          {{- line_item_compare_price | money_with_currency -}}
         {%- else -%}
-          {{- line_item.original_price | money_without_trailing_zeros -}}
+          {{- line_item_compare_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
