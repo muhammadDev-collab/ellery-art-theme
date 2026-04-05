@@ -53,29 +53,37 @@
 
   /* Match secondary nav font size to primary nav */
   .header__secondary-nav a,
-  .header__secondary-nav button,
-  .header__secondary-nav span:not(.sr-only) {
-    font-size: var(--text-xs);
+  .header__secondary-nav button {
+    font-size: var(--font-heading-size-xs, 0.7rem);
+    letter-spacing: var(--font-heading-letter-spacing);
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
   }
 
-  /* Reviews badge */
+  /* Reviews stacked layout: count above label */
   .header__reviews-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 0;
     color: currentColor;
-    font-family: inherit;
     text-decoration: none;
+    line-height: 1;
   }
   .header__reviews-badge {
     font-size: 9px;
     font-weight: 700;
-    vertical-align: super;
     line-height: 1;
+    display: block;
+    margin-bottom: 1px;
+  }
+  .header__reviews-label {
+    font-size: var(--font-heading-size-xs, 0.7rem);
+    letter-spacing: var(--font-heading-letter-spacing);
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
   }
 
   /* Cart divider + price */
@@ -96,9 +104,13 @@
     font-size: var(--text-xs);
   }
   .header__cart-compare-price {
-    color: #001bcf;
+    opacity: 0.45;
     font-size: 0.9em;
     text-decoration: line-through;
+  }
+  .header__cart-sale-price {
+    color: #001bcf;
+    font-weight: 600;
   }
   .header__cart-link-inner {
     display: flex;
@@ -335,11 +347,11 @@
         {%- comment -%} Reviews button {%- endcomment -%}
         {%- if section.settings.reviews_link != blank -%}
           <li class="md-max:hidden">
-            <a href="{{ section.settings.reviews_link }}" class="header__reviews-btn {% if section.settings.menu_text_font == 'heading' %}h6{% endif %} link-faded">
-              {{ section.settings.reviews_label | default: 'Reviews' }}
+            <a href="{{ section.settings.reviews_link }}" class="header__reviews-btn link-faded">
               {%- if section.settings.reviews_count != blank -%}
-                <sup class="header__reviews-badge">{{ section.settings.reviews_count }}</sup>
+                <span class="header__reviews-badge">{{ section.settings.reviews_count }}</span>
               {%- endif -%}
+              <span class="header__reviews-label">{{ section.settings.reviews_label | default: 'Reviews' }}</span>
             </a>
           </li>
         {%- endif -%}
@@ -377,7 +389,7 @@
                 {%- if cart_compare_price > cart_total -%}
                   <s class="header__cart-compare-price">{{ cart_compare_price | money }}</s>
                 {%- endif -%}
-                <span>{{ cart_total | money }}</span>
+                <span class="header__cart-sale-price">{{ cart_total | money }}</span>
               </div>
             {%- endunless -%}
 
