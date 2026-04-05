@@ -409,9 +409,9 @@
               <span class="header__cart-divider" aria-hidden="true"></span>
               <div class="header__cart-price">
                 {%- if cart_compare_price > cart_total -%}
-                  <s class="header__cart-compare-price">{{ cart_compare_price | money }}</s>
+                  <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
                 {%- endif -%}
-                <span class="header__cart-sale-price">{{ cart_total | money }}</span>
+                <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
               </div>
             {%- endunless -%}
 

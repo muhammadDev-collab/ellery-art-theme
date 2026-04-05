@@ -36,8 +36,8 @@
                 assign gift_card_balance = gift_card.balance | money_with_currency
                 assign gift_card_initial_value = gift_card.initial_value | money_with_currency
               else
-                assign gift_card_balance = gift_card.balance | money
-                assign gift_card_initial_value = gift_card.initial_value | money
+                assign gift_card_balance = gift_card.balance | money_without_trailing_zeros
+                assign gift_card_initial_value = gift_card.initial_value | money_without_trailing_zeros
               endif
 
               if gift_card.balance == gift_card.initial_value

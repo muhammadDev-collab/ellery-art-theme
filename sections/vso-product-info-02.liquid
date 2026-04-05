@@ -2435,8 +2435,8 @@
                   {%- liquid
                     assign vso_price = vso_current_variant.price | default: 0
                     assign vso_compare_at = vso_current_variant.compare_at_price | default: 0
-                    assign vso_price_formatted = vso_price | money
-                    assign vso_compare_at_formatted = vso_compare_at | money
+                    assign vso_price_formatted = vso_price | money_without_trailing_zeros
+                    assign vso_compare_at_formatted = vso_compare_at | money_without_trailing_zeros
                     if settings.currency_code_enabled_product_pages
                       assign vso_price_formatted = vso_price | money_with_currency
                       assign vso_compare_at_formatted = vso_compare_at | money_with_currency
@@ -2588,8 +2588,8 @@
                             {%- liquid
                               assign vso_variant_price = variant.price
                               assign vso_variant_compare_at = variant.compare_at_price
-                              assign vso_variant_price_formatted = vso_variant_price | money
-                              assign vso_variant_compare_at_formatted = vso_variant_compare_at | money
+                              assign vso_variant_price_formatted = vso_variant_price | money_without_trailing_zeros
+                              assign vso_variant_compare_at_formatted = vso_variant_compare_at | money_without_trailing_zeros
                               if settings.currency_code_enabled_product_pages
                                 assign vso_variant_price_formatted = vso_variant_price | money_with_currency
                                 assign vso_variant_compare_at_formatted = vso_variant_compare_at | money_with_currency
@@ -2864,7 +2864,7 @@
                   {%- if settings.currency_code_enabled_product_pages -%}
                     {{ vso_current_variant.price | money_with_currency }}
                   {%- else -%}
-                    {{ vso_current_variant.price | money }}
+                    {{ vso_current_variant.price | money_without_trailing_zeros }}
                   {%- endif -%}
                 </span>
               </div>

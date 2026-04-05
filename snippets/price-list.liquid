@@ -51,7 +51,7 @@
       {%- if settings.currency_code_enabled -%}
         {{- variant.price | money_with_currency -}}
       {%- else -%}
-        {{- variant.price | money -}}
+        {{- variant.price | money_without_trailing_zeros -}}
       {%- endif -%}
     </sale-price>
 
@@ -62,7 +62,7 @@
         {%- if settings.currency_code_enabled -%}
           {{- variant.compare_at_price | money_with_currency -}}
         {%- else -%}
-          {{- variant.compare_at_price | money -}}
+          {{- variant.compare_at_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
@@ -78,7 +78,7 @@
       {%- if settings.currency_code_enabled -%}
         {{- line_item.final_price | money_with_currency -}}
       {%- else -%}
-        {{- line_item.final_price | money -}}
+        {{- line_item.final_price | money_without_trailing_zeros -}}
       {%- endif -%}
     </sale-price>
 
@@ -89,7 +89,7 @@
         {%- if settings.currency_code_enabled -%}
           {{- line_item.original_price | money_with_currency -}}
         {%- else -%}
-          {{- line_item.original_price | money -}}
+          {{- line_item.original_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
@@ -110,8 +110,8 @@
         assign variant_price = variant.price | money_with_currency
         assign variant_compare_at_price = variant.compare_at_price | money_with_currency
       else
-        assign variant_price = variant.price | money
-        assign variant_compare_at_price = variant.compare_at_price | money
+        assign variant_price = variant.price | money_without_trailing_zeros
+        assign variant_compare_at_price = variant.compare_at_price | money_without_trailing_zeros
       endif
     -%}
 
@@ -159,7 +159,7 @@
       {%- if settings.currency_code_enabled -%}
         {{- 4999 | money_with_currency -}}
       {%- else -%}
-        {{- 4999 | money -}}
+        {{- 4999 | money_without_trailing_zeros -}}
       {%- endif -%}
     </sale-price>
   {%- endif -%}
