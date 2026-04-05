@@ -864,46 +864,6 @@
         "id": "discounted_collection",
         "label": "Discounted Collection",
         "info": "Products from this collection will be counted toward the progress bar discount."
-      },
-      {
-        "type": "header",
-        "content": "Step Descriptions"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_0",
-        "label": "Step 0 (empty cart)",
-        "default": "Limited Time Offer: Buy 2 Get 1 Free"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_1",
-        "label": "Step 1",
-        "default": "Add one more to get one free"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_2",
-        "label": "Step 2",
-        "default": "Great! Now pick your free art"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_3",
-        "label": "Step 3",
-        "default": "Add one more to get two free"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_4",
-        "label": "Step 4",
-        "default": "Now pick your second free art"
-      },
-      {
-        "type": "text",
-        "id": "progress_step_5",
-        "label": "Step 5 (complete)",
-        "default": "Great job! Checkout before they sell out"
       }
     ]
   }
