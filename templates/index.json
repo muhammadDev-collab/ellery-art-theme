@@ -15,13 +15,13 @@
         "image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/he-leaves-the-99-3-piece-good-shepherd-triptych-bedroom_63eb57eb-babc-48af-8086-208db05c10d7.jpg",
+            "image": "shopify://shop_images/5_a6c7742b-50b2-4609-8df7-647183a93cf9.png",
             "mobile_image": "shopify://shop_images/he-leaves-the-99-3-piece-good-shepherd-triptych-bedroom.jpg",
             "subheading": "",
-            "title": "<em><strong>EASTER SALE — 30% OFF ALL CANVAS ART</strong></em>",
+            "title": "<strong>EASTER SALE — 30% OFF ALL CANVAS ART</strong>",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 780,
+            "content_max_width": 400,
             "button_1_text": "SHOP ALL ARTWORK",
             "button_1_link": "shopify://collections/all-artwork",
             "button_1_style": "link",
@@ -46,7 +46,7 @@
       "settings": {
         "allow_transparent_header": false,
         "show_next_section_button": false,
-        "media_size": "lg",
+        "media_size": "auto",
         "show_initial_transition": false,
         "autoplay": true,
         "autoplay_pause_on_video": true,
