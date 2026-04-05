@@ -30,6 +30,10 @@
 
         {%- when 'logo_center_navigation_below' -%}
           --header-grid: ". logo secondary-nav" "primary-nav primary-nav primary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
+
+        {%- else -%}
+          /* logo_center_navigation_inline: menu left, logo center, secondary-nav right */
+          --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
       {%- endcase -%}
     }
   }
