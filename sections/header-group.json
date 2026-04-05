@@ -82,10 +82,15 @@
         "sidebar_open_second_level_menus": true,
         "layout": "logo_center_navigation_inline",
         "show_icons": true,
-        "show_country_selector": true,
+        "show_country_selector": false,
         "show_country_name": false,
         "show_country_flag": true,
         "show_locale_selector": false,
+        "about_us_link": "/pages/about",
+        "about_us_label": "About Us",
+        "reviews_link": "/pages/reviews",
+        "reviews_label": "Reviews",
+        "reviews_count": "10711",
         "transparent_header_text_color": "#ffffff",
         "transparent_logo": "shopify://shop_images/Ellery_c3b15c7f-dc81-4439-b7a0-615378b26c34.png"
       }

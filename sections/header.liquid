@@ -95,14 +95,39 @@
     line-height: 1.2;
     font-size: var(--text-xs);
   }
-  .header__cart-price s {
-    opacity: 0.5;
+  .header__cart-compare-price {
+    color: #001bcf;
     font-size: 0.9em;
+    text-decoration: line-through;
   }
   .header__cart-link-inner {
     display: flex;
     align-items: center;
     gap: 6px;
+  }
+
+  /* Cart icon with count badge */
+  .header__cart-icon-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .header__cart-count {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background: #001bcf;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 2px;
   }
 
   {%- if section.settings.logo != blank -%}
@@ -277,10 +302,6 @@
 
     <nav class="header__secondary-nav" aria-label="{{ 'header.general.secondary_navigation' | t | escape }}">
       {%- liquid
-        if section.settings.show_country_selector and localization.available_countries.size > 1
-          assign show_country_selector = true
-        endif
-
         if section.settings.show_locale_selector and localization.available_languages.size > 1
           assign show_locale_selector = true
         endif
@@ -348,19 +369,24 @@
               {%- assign cart_compare_price = 0 -%}
               {%- assign cart_total = cart.total_price -%}
               {%- for item in cart.items -%}
-                {%- assign cart_compare_price = cart_compare_price | plus: item.variant.compare_at_price | times: item.quantity -%}
+                {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
+                {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
               {%- endfor -%}
+              <span class="header__cart-divider md-max:hidden" aria-hidden="true"></span>
               <div class="header__cart-price md-max:hidden">
                 {%- if cart_compare_price > cart_total -%}
-                  <s>{{ cart_compare_price | money }}</s>
+                  <s class="header__cart-compare-price">{{ cart_compare_price | money }}</s>
                 {%- endif -%}
                 <span>{{ cart_total | money }}</span>
               </div>
-              <span class="header__cart-divider md-max:hidden" aria-hidden="true"></span>
             {%- endunless -%}
 
-            {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
-            <cart-dot class="header__cart-dot {% unless cart.empty? %}is-visible{% endunless %}"></cart-dot>
+            <div class="header__cart-icon-wrap">
+              {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
+              {%- unless cart.empty? -%}
+                <span class="header__cart-count"><cart-count>{{ cart.item_count }}</cart-count></span>
+              {%- endunless -%}
+            </div>
           </a>
         </li>
       </ul>
