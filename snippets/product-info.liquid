@@ -171,9 +171,9 @@
                   </div>
                   <div class="pdp-price__sale-row">
                     <span class="pdp-price__sale">{{ pdp_sale_price }}</span>
-                    <a href="#" class="pdp-price__question ask-about-discount" aria-label="Discount info">
+                    <button type="button" class="pdp-price__question" id="pdp-price-panel-trigger" aria-label="Price info">
                       <img src="{{ 'question-mark.svg' | asset_url }}" alt="?" width="14" height="14">
-                    </a>
+                    </button>
                   </div>
                 {%- else -%}
                   <div class="pdp-price__original-row">
@@ -200,7 +200,7 @@
                   font-weight: 700 !important;
                 }
                 .product-pdp-price {
-                  gap: 4px;
+                  gap: 2px;
                 }
                 .pdp-price__original-row {
                   display: flex;
@@ -212,6 +212,7 @@
                   font-weight:bold;
                   color: #888;
                   text-decoration: line-through;
+                  line-height:1;
                 }
                 .pdp-price__regular-label {
                   font-size: 15px;
@@ -219,11 +220,13 @@
                   letter-spacing: 0;
                   color: #888;
                   text-transform: uppercase;
+                  line-height:1;
                 }
                 .pdp-price__sale-row {
                   display: flex;
                   align-items: center;
                   gap: 8px;
+                  line-height:1;
                 }
                 .pdp-price__sale {
                   font-size: 1.4rem;
@@ -246,7 +249,109 @@
                   width: 14px;
                   height: 14px;
                 }
+                /* Price info panel */
+                .pdp-price-panel__overlay {
+                  display: none;
+                  position: fixed;
+                  inset: 0;
+                  background: rgba(0,0,0,0.4);
+                  z-index: 999;
+                }
+                .pdp-price-panel__overlay.active { display: block; }
+                .pdp-price-popup {
+                  position: fixed;
+                  top: 0;
+                  right: 0;
+                  width: 360px;
+                  max-width: 90vw;
+                  height: 100%;
+                  background: #fff;
+                  z-index: 1000;
+                  transform: translateX(100%);
+                  transition: transform 0.35s ease;
+                  display: flex;
+                  flex-direction: column;
+                  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+                }
+                .pdp-price-popup.visible { transform: translateX(0); }
+                .pdp-price-panel__header {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  padding: 20px 48px;
+                }
+                .pdp-price-panel__heading {
+                  font-size: 16px;
+                  font-weight: 600;
+                  margin: 0;
+                  text-align: center;
+                  letter-spacing: 0.03em;
+                  text-transform: uppercase;
+                }
+                .pdp-price-panel__close {
+                  position: absolute;
+                  right: 16px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  padding: 4px;
+                  display: flex;
+                  align-items: center;
+                  color: currentColor;
+                }
+                .pdp-price-panel__close:hover { opacity: 0.6; }
+                .pdp-price-panel__divider {
+                  height: 1px;
+                  background: #e5e5e5;
+                  margin: 0;
+                }
+                .pdp-price-panel__body {
+                  padding: 24px 20px;
+                  overflow-y: auto;
+                  flex: 1;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #333;
+                }
+                .pdp-price-panel__body p { margin-top: 0; margin-bottom: 12px; }
+                .pdp-price-panel__body p:last-child { margin-bottom: 0; }
               </style>
+
+              {%- if block.settings.price_panel_heading != blank or block.settings.price_panel_content != blank -%}
+                <div class="pdp-price-panel__overlay" id="pdp-price-overlay"></div>
+                <div class="pdp-price-popup" id="pdp-price-panel" role="dialog" aria-modal="true">
+                  <div class="pdp-price-panel__header">
+                    <h2 class="pdp-price-panel__heading">{{ block.settings.price_panel_heading }}</h2>
+                    <button class="pdp-price-panel__close" id="pdp-price-panel-close" aria-label="Close">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="pdp-price-panel__divider"></div>
+                  <div class="pdp-price-panel__body">{{ block.settings.price_panel_content }}</div>
+                </div>
+
+                <script>
+                  (function () {
+                    var trigger  = document.getElementById('pdp-price-panel-trigger');
+                    var panel    = document.getElementById('pdp-price-panel');
+                    var overlay  = document.getElementById('pdp-price-overlay');
+                    var closeBtn = document.getElementById('pdp-price-panel-close');
+                    if (!trigger || !panel) return;
+                    function openPanel()  { panel.classList.add('visible'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+                    function closePanel() { panel.classList.remove('visible'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+                    trigger.addEventListener('click', openPanel);
+                    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+                    if (overlay)  overlay.addEventListener('click', closePanel);
+                    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
+                  })();
+                </script>
+              {%- endif -%}
             {%- endif -%}
 
           {%- when 'payment_terms' -%}
