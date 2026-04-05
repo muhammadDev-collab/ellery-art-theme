@@ -167,13 +167,15 @@
             {% if button_disabled %}disabled{% endif %}
           >
             <span class="atc-btn-custom__label">{{ button_content }}</span>
-            <span class="atc-btn-custom__divider"></span>
-            <span class="atc-btn-custom__prices">
-              {%- if atc_on_sale -%}
-                <span class="atc-btn-custom__compare">{{ atc_compare | money_without_trailing_zeros }}</span>
-              {%- endif -%}
-              <span class="atc-btn-custom__price">{{ atc_price | money_without_trailing_zeros }}</span>
-            </span>
+            {%- unless button_disabled -%}
+              <span class="atc-btn-custom__divider"></span>
+              <span class="atc-btn-custom__prices">
+                {%- if atc_compare > 0 -%}
+                  <span class="atc-btn-custom__compare">{{ atc_compare | money_without_trailing_zeros }}</span>
+                {%- endif -%}
+                <span class="atc-btn-custom__price">{{ atc_price | money_without_trailing_zeros }}</span>
+              </span>
+            {%- endunless -%}
           </button>
 
           <script>
@@ -204,7 +206,7 @@
                 priceEl.textContent = formatMoney(price);
 
                 // Update or toggle compare price
-                if (compare && compare > price) {
+                if (compare && compare > 0) {
                   if (!compareEl) {
                     compareEl = document.createElement('span');
                     compareEl.className = 'atc-btn-custom__compare';
