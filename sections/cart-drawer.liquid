@@ -197,7 +197,9 @@
   /* ── Trending section ── */
   .cart-drawer__trending {
     margin-top: 12px;
-    padding-bottom: 12px;
+    background: white;
+    padding: 10px;
+    border-radius: 05px;
   }
   .cart-drawer__trending-header {
     display: flex;
@@ -277,6 +279,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .cart-drawer__trending-card-prices {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
   .cart-drawer__trending-card-compare {
     font-size: 10px;
     color: #999;
@@ -286,6 +294,20 @@
     font-size: 11px;
     font-weight: 600;
     color: #001bcf;
+  }
+
+  /* ── Cart item prices: force inline + strikethrough ── */
+  .cart-drawer__items .price-list {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .cart-drawer__items compare-at-price {
+    text-decoration: line-through !important;
+    -webkit-text-decoration: line-through !important;
+    display: inline !important;
   }
 </style>
 
@@ -373,10 +395,12 @@
                   {%- endif -%}
                   <div class="cart-drawer__trending-card-info">
                     <p class="cart-drawer__trending-card-title">{{ product.title }}</p>
-                    {%- if variant.compare_at_price > variant.price -%}
-                      <span class="cart-drawer__trending-card-compare">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
-                    {%- endif -%}
-                    <span class="cart-drawer__trending-card-price">{{ variant.price | money_without_trailing_zeros }}</span>
+                    <div class="cart-drawer__trending-card-prices">
+                      {%- if variant.compare_at_price > variant.price -%}
+                        <span class="cart-drawer__trending-card-compare">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
+                      {%- endif -%}
+                      <span class="cart-drawer__trending-card-price">{{ variant.price | money_without_trailing_zeros }}</span>
+                    </div>
                   </div>
                 </a>
               {%- endfor -%}
