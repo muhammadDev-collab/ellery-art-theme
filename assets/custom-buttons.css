@@ -133,6 +133,25 @@
   z-index: 1;
 }
 
+/* ── Variant picker: block swatches blue border ── */
+.block-swatch {
+  background-color: #ffffff;
+  border-color: #e5e5e5;
+}
+.block-swatch:hover:not(.is-disabled) {
+  border-color: #163bbc;
+}
+:checked + .block-swatch,
+.block-swatch.is-selected {
+  border-color: #163bbc !important;
+  color: #163bbc !important;
+}
+
+/* Size variant: selected state via CSS :checked sibling */
+input[type="radio"]:checked + .size-variant-item {
+  border-color: #163bbc !important;
+}
+
 /* ── Shopify dynamic branded checkout buttons (rounded corners only) ── */
 .shopify-payment-button__button--branded {
   border-radius: 4px !important;

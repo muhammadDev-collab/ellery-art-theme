@@ -189,6 +189,138 @@
             endcase
           -%}
 
+          {%- assign is_size_option = false -%}
+          {%- if size_label_list contains option_downcase and is_main_product -%}
+            {%- assign is_size_option = true -%}
+          {%- endif -%}
+
+          {%- if is_size_option -%}
+            <style>
+              .size-variant-list {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+              }
+              .size-variant-item {
+                display: grid;
+                grid-template-columns: 60px 1px 1fr 1px auto;
+                align-items: center;
+                background: #ffffff;
+                border: 2px solid #e5e5e5;
+                border-radius: 6px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: border-color 0.2s;
+                min-height: 52px;
+              }
+              .size-variant-item:hover { border-color: #163bbc; }
+              .size-variant-item.is-selected { border-color: #163bbc; }
+              .size-variant-item.is-disabled { opacity: 0.4; cursor: not-allowed; }
+              .size-variant-item.is-disabled:hover { border-color: #e5e5e5; }
+              .size-variant__short {
+                text-align: center;
+                font-size: 13px;
+                font-weight: 700;
+                padding: 0 10px;
+                color: #111;
+              }
+              .size-variant__divider {
+                width: 1px;
+                height: 30px;
+                background: #e5e5e5;
+                flex-shrink: 0;
+              }
+              .size-variant__label {
+                text-align: center;
+                font-size: 12px;
+                color: #444;
+                padding: 0 10px;
+              }
+              .size-variant__prices {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                padding: 0 14px;
+                gap: 1px;
+              }
+              .size-variant__compare {
+                font-size: 11px;
+                color: #999;
+                text-decoration: line-through;
+                line-height: 1;
+              }
+              .size-variant__price {
+                font-size: 13px;
+                font-weight: 700;
+                color: #163bbc;
+                line-height: 1;
+              }
+              .size-variant__price--regular {
+                font-size: 13px;
+                font-weight: 700;
+                color: #111;
+                line-height: 1;
+              }
+            </style>
+
+            {%- assign param_name = form_id | append: '-option' | append: option.position -%}
+            <div class="size-variant-list">
+              {%- for option_value in option.values -%}
+                {%- unless hide_sold_out_variants and option_value.available == false and option_value.selected == false -%}
+                  {%- assign ov_id = 'option-value-size-' | append: section.id | append: '-' | append: forloop.index -%}
+                  {%- assign ov_parts = option_value.name | split: '|' -%}
+                  {%- assign ov_short = ov_parts[0] | strip -%}
+                  {%- assign ov_long = ov_parts[1] | strip -%}
+                  {%- assign ov_variant = option_value.variant -%}
+                  {%- assign ov_on_sale = false -%}
+                  {%- if ov_variant.compare_at_price > ov_variant.price -%}
+                    {%- assign ov_on_sale = true -%}
+                  {%- endif -%}
+
+                  <input class="sr-only" type="radio"
+                    name="{{ param_name }}"
+                    id="{{ ov_id }}"
+                    value="{{ option_value.id }}"
+                    form="{{ form_id }}"
+                    data-option-position="{{ option.position }}"
+                    {% if option_value.selected %}checked{% endif %}
+                    {% if option_value.available == false and hide_sold_out_variants == false %}disabled{% endif %}
+                  >
+                  <label for="{{ ov_id }}"
+                    class="size-variant-item {% if option_value.selected %}is-selected{% endif %} {% if option_value.available == false %}is-disabled{% endif %}">
+                    <span class="size-variant__short">{{ ov_short }}</span>
+                    <span class="size-variant__divider"></span>
+                    <span class="size-variant__label">{{ ov_long | default: ov_short }}</span>
+                    <span class="size-variant__divider"></span>
+                    <span class="size-variant__prices">
+                      {%- if ov_on_sale -%}
+                        <span class="size-variant__compare">{{ ov_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                        <span class="size-variant__price">{{ ov_variant.price | money_without_trailing_zeros }}</span>
+                      {%- else -%}
+                        <span class="size-variant__price--regular">{{ ov_variant.price | money_without_trailing_zeros }}</span>
+                      {%- endif -%}
+                    </span>
+                  </label>
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+
+            <script>
+              (function () {
+                document.querySelectorAll('.size-variant-list input[type="radio"]').forEach(function (input) {
+                  input.addEventListener('change', function () {
+                    var list = this.closest('.size-variant-list');
+                    list.querySelectorAll('.size-variant-item').forEach(function (item) {
+                      item.classList.remove('is-selected');
+                    });
+                    this.nextElementSibling.classList.add('is-selected');
+                  });
+                });
+              })();
+            </script>
+
+          {%- else -%}
           <div class="variant-picker__option-values {{ list_classes }}">
             {% liquid
               assign name = form_id | append: '-option' | append: option.position
@@ -211,6 +343,7 @@
               endfor
             %}
           </div>
+          {%- endif -%}
         {%- endif -%}
       </fieldset>
     {%- endfor -%}
