@@ -192,8 +192,8 @@
         "section_vso_theme_sections_payment_icons_NaKMNe": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/paymentIcons/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
-            "icon_size": 26,
-            "icon_gap": 12,
+            "icon_size": 16,
+            "icon_gap": 4,
             "alignment": "center",
             "mobile_icon_size": 24,
             "mobile_icon_gap": 8,
