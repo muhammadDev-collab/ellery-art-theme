@@ -344,14 +344,14 @@
     {%- endif -%}
 
     {%- comment -%} Trending section {%- endcomment -%}
-    {%- if section.settings.trending_collection != blank -%}
-      {%- assign trending_col = collections[section.settings.trending_collection] -%}
+    {%- if settings.cart_drawer_trending_collection != blank -%}
+      {%- assign trending_col = collections[settings.cart_drawer_trending_collection] -%}
       {%- if trending_col.products.size > 0 -%}
         <div class="cart-drawer__trending">
           <div class="cart-drawer__trending-header">
             <div class="cart-drawer__trending-titles">
-              <p class="cart-drawer__trending-heading">{{ section.settings.trending_heading | default: 'Trending Right Now' }}</p>
-              <p class="cart-drawer__trending-subheading">{{ section.settings.trending_subheading | default: 'These are selling out fast' }}</p>
+              <p class="cart-drawer__trending-heading">{{ settings.cart_drawer_trending_heading | default: 'TRENDING RIGHT NOW' }}</p>
+              <p class="cart-drawer__trending-subheading">{{ settings.cart_drawer_trending_subheading | default: 'These are selling out fast' }}</p>
             </div>
             <div class="cart-drawer__trending-arrows">
               <button class="cart-drawer__trending-arrow" id="cart-trend-prev" aria-label="Previous">

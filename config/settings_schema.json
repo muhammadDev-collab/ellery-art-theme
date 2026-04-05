@@ -888,5 +888,32 @@
         "default": "<p>Buy 2 items from our collection and get 1 free. Add more to unlock additional free items!</p>"
       }
     ]
+  },
+  {
+    "name": "Cart Drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Trending Section"
+      },
+      {
+        "type": "collection",
+        "id": "cart_drawer_trending_collection",
+        "label": "Trending Collection",
+        "info": "Products from this collection will appear in the trending slider inside the cart drawer."
+      },
+      {
+        "type": "text",
+        "id": "cart_drawer_trending_heading",
+        "label": "Trending Heading",
+        "default": "TRENDING RIGHT NOW"
+      },
+      {
+        "type": "text",
+        "id": "cart_drawer_trending_subheading",
+        "label": "Trending Subheading",
+        "default": "These are selling out fast"
+      }
+    ]
   }
 ]
