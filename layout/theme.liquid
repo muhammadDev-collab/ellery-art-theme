@@ -121,5 +121,9 @@
         {%- sections 'footer-group' -%}
       {%- endif -%}
     </main>
+
+    {%- if request.page_type != 'password' -%}
+      {%- render 'discount-info-panel' -%}
+    {%- endif -%}
   </body>
 </html>

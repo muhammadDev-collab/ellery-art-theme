@@ -1,0 +1,147 @@
+<div class="discount-info-panel__overlay" id="discount-info-overlay"></div>
+
+<div class="discount-info-popup" id="discount-info-panel" role="dialog" aria-modal="true" aria-label="{{ settings.discount_panel_heading | escape }}">
+  <div class="discount-info-panel__header">
+    <h2 class="discount-info-panel__heading">{{ settings.discount_panel_heading }}</h2>
+    <button class="discount-info-panel__close" id="discount-panel-close" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="discount-info-panel__divider"></div>
+
+  <div class="discount-info-panel__body">
+    {{ settings.discount_panel_content }}
+  </div>
+</div>
+
+<style>
+  .discount-info-panel__overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  .discount-info-panel__overlay.active {
+    display: block;
+  }
+
+  .discount-info-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 90vw;
+    height: 100%;
+    background: #fff;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .discount-info-popup.visible {
+    transform: translateX(0);
+  }
+
+  .discount-info-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px 48px;
+  }
+
+  .discount-info-panel__heading {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .discount-info-panel__close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: currentColor;
+  }
+
+  .discount-info-panel__close:hover {
+    opacity: 0.6;
+  }
+
+  .discount-info-panel__divider {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 0;
+  }
+
+  .discount-info-panel__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .discount-info-panel__body p {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .discount-info-panel__body p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  (function () {
+    var panel   = document.getElementById('discount-info-panel');
+    var overlay = document.getElementById('discount-info-overlay');
+    var closeBtn = document.getElementById('discount-panel-close');
+
+    function openPanel() {
+      panel.classList.add('visible');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel() {
+      panel.classList.remove('visible');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Question mark click — delegate so it works for both header and cart-drawer instances
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.id === 'ask-about-discount') {
+        openPanel();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+    if (overlay)  overlay.addEventListener('click', closePanel);
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+  })();
+</script>

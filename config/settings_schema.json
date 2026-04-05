@@ -864,6 +864,22 @@
         "id": "discounted_collection",
         "label": "Discounted Collection",
         "info": "Products from this collection will be counted toward the progress bar discount."
+      },
+      {
+        "type": "header",
+        "content": "Discount Info Panel"
+      },
+      {
+        "type": "text",
+        "id": "discount_panel_heading",
+        "label": "Panel Heading",
+        "default": "Discount Info"
+      },
+      {
+        "type": "richtext",
+        "id": "discount_panel_content",
+        "label": "Panel Content",
+        "default": "<p>Buy 2 items from our collection and get 1 free. Add more to unlock additional free items!</p>"
       }
     ]
   }
