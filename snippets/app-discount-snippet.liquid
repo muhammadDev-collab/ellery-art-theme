@@ -121,12 +121,6 @@
       window.addEventListener('resize', setBarHeight);
     }
 
-    var circles         = document.querySelectorAll('.discount-app-' + TYPE + ' .circle');
-    var progressLine    = document.querySelector('.discount-app-' + TYPE + ' .line .progress');
-    var progressContainer = document.querySelector('.discount-app-' + TYPE + ' .progress-container');
-    var progressDescription = document.querySelector('.discount-app-' + TYPE + ' .progress-description-text');
-    var askAboutDiscount = document.querySelector('.discount-app-' + TYPE + ' .ask-about-discount');
-
     var maxCartItems = 5;
     var stepProgress = [0, 15, 38, 64, 87, 100];
 
@@ -141,6 +135,13 @@
 
     function updateProgressBar(cartCount) {
       var step = Math.min(cartCount, maxCartItems);
+
+      // Query elements fresh each time so we work even if the drawer was lazy-rendered
+      var circles           = document.querySelectorAll('.discount-app-' + TYPE + ' .circle');
+      var progressLine      = document.querySelector('.discount-app-' + TYPE + ' .line .progress');
+      var progressContainer = document.querySelector('.discount-app-' + TYPE + ' .progress-container');
+      var progressDescription = document.querySelector('.discount-app-' + TYPE + ' .progress-description-text');
+      var askAboutDiscount  = document.querySelector('.discount-app-' + TYPE + ' .ask-about-discount');
 
       circles.forEach(function (circle, index) {
         if (index < step) {
