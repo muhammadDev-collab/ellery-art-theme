@@ -60,19 +60,25 @@
     }
   }
 
-  /* ── Mobile: review widget + title above gallery ── */
+  /* ── Mobile: Judge.me preview badge + title above gallery ── */
   @media screen and (max-width: 999px) {
-    /* Hide the app (@app) and title blocks inside product-info on mobile
+    /* Hide the preview_badge and title blocks inside product-info on mobile
        since we render them above the gallery instead */
-    #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-type="app"],
+    {%- for block in section.blocks -%}
+      {%- if block.type contains 'preview_badge' -%}
+        #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-id="{{ block.id }}"],
+      {%- endif -%}
+    {%- endfor -%}
     #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-type="title"] {
       display: none;
     }
 
-    /* Style the mobile-above-gallery container */
+    /* Mobile above-gallery container: centered column */
     #shopify-section-{{ section.id }} .product-mobile-above-gallery {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 0.5rem;
     }
   }
@@ -98,13 +104,13 @@
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
 
-        {%- comment -%} Mobile-only: review widget + title rendered above the gallery {%- endcomment -%}
+        {%- comment -%} Mobile-only: Judge.me preview badge + title rendered above the gallery {%- endcomment -%}
         <div class="product-mobile-above-gallery" style="grid-area: product-mobile-header">
           {%- for block in section.blocks -%}
             {%- if block.settings.show_below_gallery -%}
               {%- continue -%}
             {%- endif -%}
-            {%- if block.type == '@app' -%}
+            {%- if block.type contains 'preview_badge' -%}
               <div class="product-info__block-item" data-block-type="app">
                 {%- render block -%}
               </div>
