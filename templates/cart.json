@@ -23,15 +23,6 @@
     },
     "17695645328bef9b87": {
       "type": "apps",
-      "blocks": {
-        "conversion_bear_trust_badges_widget_YUe9mD": {
-          "type": "shopify://apps/conversion-bear-trust-badges/blocks/widget/163a9b59-0ec2-4cb7-bf5c-31408b4a9420",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "conversion_bear_trust_badges_widget_YUe9mD"
-      ],
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
