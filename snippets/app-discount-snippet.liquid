@@ -96,14 +96,23 @@
 
 <script>
   (function () {
-    // Expose collection handle globally once
+    var TYPE = {{ type | json }};
+
+    var stepDescriptions = [
+      "{{ step_0 | escape }}",
+      "{{ step_1 | escape }}",
+      "{{ step_2 | escape }}",
+      "{{ step_3 | escape }}",
+      "{{ step_4 | escape }}",
+      "{{ step_5 | escape }}"
+    ];
+
+    // ── Expose collection handle globally once ──────────────────────────────
     {% if settings.discounted_collection != blank %}
       window.discountedCollectionHandle = "{{ settings.discounted_collection.handle }}";
     {% endif %}
 
-    var TYPE = {{ type | json }};
-
-    // Set --discount-progress-bar-height so the header's sticky top offset is correct
+    // ── Set header CSS custom property for sticky offset ───────────────────
     if (TYPE === 'header') {
       function setBarHeight() {
         var barEl = document.querySelector('.discount-app-header.progress-bar-main');
@@ -118,140 +127,153 @@
       window.addEventListener('resize', setBarHeight);
     }
 
-    var maxCartItems = 5;
-    var stepProgress = [0, 15, 38, 64, 87, 100];
+    // ── Shared global controller ────────────────────────────────────────────
+    // All instances (header, cart-drawer, cart) share one controller so that
+    // a single cart change updates every bar simultaneously.
+    if (!window.discountProgressBarCtrl) {
+      window.discountProgressBarCtrl = {
+        maxCartItems : 5,
+        stepProgress : [0, 15, 38, 64, 87, 100],
+        // Map of TYPE → stepDescriptions array, populated as each snippet loads
+        descriptions : {},
 
-    var stepDescriptions = [
-      "{{ step_0 | escape }}",
-      "{{ step_1 | escape }}",
-      "{{ step_2 | escape }}",
-      "{{ step_3 | escape }}",
-      "{{ step_4 | escape }}",
-      "{{ step_5 | escape }}"
-    ];
+        // Update a single bar identified by its TYPE string
+        updateOne: function (type, step) {
+          var descs     = this.descriptions[type] || [];
+          var circles   = document.querySelectorAll('.discount-app-' + type + ' .circle');
+          var line      = document.querySelector('.discount-app-' + type + ' .line .progress');
+          var container = document.querySelector('.discount-app-' + type + ' .progress-container');
+          var descEl    = document.querySelector('.discount-app-' + type + ' .progress-description-text');
+          var iconEl    = document.querySelector('.discount-app-' + type + ' .ask-about-discount');
 
-    function updateProgressBar(cartCount) {
-      var step = Math.min(cartCount, maxCartItems);
-
-      // Query elements fresh each time so we work even if the drawer was lazy-rendered
-      var circles           = document.querySelectorAll('.discount-app-' + TYPE + ' .circle');
-      var progressLine      = document.querySelector('.discount-app-' + TYPE + ' .line .progress');
-      var progressContainer = document.querySelector('.discount-app-' + TYPE + ' .progress-container');
-      var progressDescription = document.querySelector('.discount-app-' + TYPE + ' .progress-description-text');
-      var askAboutDiscount  = document.querySelector('.discount-app-' + TYPE + ' .ask-about-discount');
-
-      circles.forEach(function (circle, index) {
-        if (index < step) {
-          circle.classList.add('blue');
-          if (circle.classList.contains('special')) {
-            circle.innerHTML = '<span>&#10003;</span>';
-          }
-        } else {
-          circle.classList.remove('blue');
-          if (circle.classList.contains('special')) {
-            circle.innerHTML = index === 2 ? '+1' : '+2';
-          }
-        }
-      });
-
-      if (progressLine) progressLine.style.width = stepProgress[step] + '%';
-      if (progressDescription) progressDescription.textContent = stepDescriptions[step];
-
-      if (askAboutDiscount) {
-        askAboutDiscount.classList.remove('hide');
-        askAboutDiscount.classList.add('show');
-      }
-
-      if (progressContainer) {
-        if (cartCount > 0) {
-          progressContainer.classList.remove('hide');
-          progressContainer.classList.add('show');
-        } else {
-          progressContainer.classList.remove('show');
-          progressContainer.classList.add('hide');
-        }
-      }
-    }
-
-    function fetchDiscountCollection(handle) {
-      var cacheKey       = 'discountCollection_' + handle;
-      var cacheExpiryKey = 'discountCollectionExpiry_' + handle;
-      var cached         = localStorage.getItem(cacheKey);
-      var expiry         = localStorage.getItem(cacheExpiryKey);
-      var now            = Date.now();
-
-      if (cached && expiry && now < parseInt(expiry, 10)) {
-        return Promise.resolve(JSON.parse(cached));
-      }
-
-      function fetchPage(page, accumulated) {
-        return fetch('/collections/' + handle + '/products.json?page=' + page + '&limit=250')
-          .then(function (r) { return r.json(); })
-          .then(function (data) {
-            var ids = accumulated.concat(data.products.map(function (p) { return p.id; }));
-            if (data.products.length < 250) {
-              localStorage.setItem(cacheKey, JSON.stringify(ids));
-              localStorage.setItem(cacheExpiryKey, now + 3600 * 1000);
-              return ids;
+          circles.forEach(function (circle, index) {
+            if (index < step) {
+              circle.classList.add('blue');
+              if (circle.classList.contains('special')) {
+                circle.innerHTML = '<span>&#10003;</span>';
+              }
+            } else {
+              circle.classList.remove('blue');
+              if (circle.classList.contains('special')) {
+                circle.innerHTML = index === 2 ? '+1' : '+2';
+              }
             }
-            return fetchPage(page + 1, ids);
           });
-      }
 
-      return fetchPage(1, []).catch(function (e) { console.error('Error fetching collection:', e); return []; });
-    }
+          if (line)    line.style.width = this.stepProgress[step] + '%';
+          if (descEl)  descEl.textContent = descs[step] || '';
+          if (iconEl)  { iconEl.classList.remove('hide'); iconEl.classList.add('show'); }
 
-    function fetchCart() {
-      return fetch('/cart.js')
-        .then(function (r) { return r.json(); })
-        .catch(function (e) { console.error('Error fetching cart:', e); return { items: [] }; });
-    }
+          if (container) {
+            if (step > 0) {
+              container.classList.remove('hide'); container.classList.add('show');
+            } else {
+              container.classList.remove('show'); container.classList.add('hide');
+            }
+          }
+        },
 
-    function countEligibleProducts(cart, productIds) {
-      var count = 0;
-      cart.items.forEach(function (item) {
-        if (productIds.indexOf(item.product_id) !== -1) {
-          count += item.quantity;
+        // Update ALL registered bars with the same cart count
+        updateAll: function (cartCount) {
+          var step = Math.min(cartCount, this.maxCartItems);
+          var self = this;
+          Object.keys(this.descriptions).forEach(function (type) {
+            self.updateOne(type, step);
+          });
+        },
+
+        // Fetch the discounted collection product IDs (cached 1 hour)
+        fetchCollection: function (handle) {
+          var cacheKey    = 'discountCollection_' + handle;
+          var expiryKey   = 'discountCollectionExpiry_' + handle;
+          var cached      = localStorage.getItem(cacheKey);
+          var expiry      = localStorage.getItem(expiryKey);
+          var now         = Date.now();
+
+          if (cached && expiry && now < parseInt(expiry, 10)) {
+            return Promise.resolve(JSON.parse(cached));
+          }
+
+          var self = this;
+          function fetchPage(page, acc) {
+            return fetch('/collections/' + handle + '/products.json?page=' + page + '&limit=250')
+              .then(function (r) { return r.json(); })
+              .then(function (data) {
+                var ids = acc.concat(data.products.map(function (p) { return p.id; }));
+                if (data.products.length < 250) {
+                  localStorage.setItem(cacheKey, JSON.stringify(ids));
+                  localStorage.setItem(expiryKey, String(now + 3600 * 1000));
+                  return ids;
+                }
+                return fetchPage(page + 1, ids);
+              });
+          }
+          return fetchPage(1, []).catch(function (e) { console.error('Discount collection fetch error:', e); return []; });
+        },
+
+        // Fetch the live cart
+        fetchCart: function () {
+          return fetch('/cart.js')
+            .then(function (r) { return r.json(); })
+            .catch(function (e) { console.error('Cart fetch error:', e); return { items: [] }; });
+        },
+
+        // Count eligible items in cart
+        countEligible: function (cart, productIds) {
+          var count = 0;
+          cart.items.forEach(function (item) {
+            if (productIds.indexOf(item.product_id) !== -1) count += item.quantity;
+          });
+          return count;
+        },
+
+        // Main refresh — fetches cart + collection then updates ALL bars
+        refresh: function () {
+          var handle = window.discountedCollectionHandle;
+          if (!handle) return;
+          var self = this;
+          Promise.all([self.fetchCollection(handle), self.fetchCart()])
+            .then(function (results) {
+              self.updateAll(self.countEligible(results[1], results[0]));
+            })
+            .catch(function (e) { console.error('Discount bar refresh error:', e); });
+        },
+
+        // Attach global event listeners exactly once
+        _listenersAttached: false,
+        attachListeners: function () {
+          if (this._listenersAttached) return;
+          this._listenersAttached = true;
+          var self = this;
+
+          var refresh = function () { self.refresh(); };
+
+          document.addEventListener('cart:updated',     refresh);
+          document.addEventListener('cart:refresh',     refresh);
+          document.addEventListener('cart-drawer:open', refresh);
+          document.addEventListener('variant:changed',  refresh);
+
+          document.addEventListener('submit', function (e) {
+            var form = e.target;
+            if (form && (form.action || '').indexOf('/cart/add') !== -1) {
+              setTimeout(refresh, 800);
+            }
+          });
         }
-      });
-      return count;
+      };
     }
 
-    function checkCartForDiscounts() {
-      var handle = window.discountedCollectionHandle;
-      if (!handle) return;
+    // Register this instance's descriptions and kick off listeners + initial refresh
+    var ctrl = window.discountProgressBarCtrl;
+    ctrl.descriptions[TYPE] = stepDescriptions;
+    ctrl.attachListeners();
 
-      Promise.all([fetchDiscountCollection(handle), fetchCart()])
-        .then(function (results) {
-          var eligibleCount = countEligibleProducts(results[1], results[0]);
-          updateProgressBar(eligibleCount);
-        })
-        .catch(function (e) { console.error('Error checking cart discounts:', e); });
-    }
-
-    // Run immediately if DOM is ready, otherwise wait for it
+    // Run initial refresh once DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', checkCartForDiscounts);
+      document.addEventListener('DOMContentLoaded', function () { ctrl.refresh(); });
     } else {
-      checkCartForDiscounts();
+      ctrl.refresh();
     }
-
-    // Listen to Shopify / theme cart update events
-    document.addEventListener('cart:updated', checkCartForDiscounts);
-    document.addEventListener('cart:refresh', checkCartForDiscounts);
-
-    // Theme-specific: Prestige emits these custom events on cart change
-    // Re-run on drawer open so text is always fresh when the drawer becomes visible
-    document.addEventListener('cart-drawer:open', checkCartForDiscounts);
-    document.addEventListener('variant:changed', checkCartForDiscounts);
-
-    // Also poll via fetch after any add-to-cart form submit
-    document.addEventListener('submit', function (e) {
-      var form = e.target;
-      if (form && (form.action || '').indexOf('/cart/add') !== -1) {
-        setTimeout(checkCartForDiscounts, 800);
-      }
-    });
 
   })();
 </script>
