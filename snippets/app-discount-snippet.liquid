@@ -33,9 +33,6 @@
       row-gap: 4px;
       border-radius: 3px;
     }
-    .discount-app-{{ type }}.progress-bar-main .progress-container {
-      display: none;
-    }
     .discount-app-{{ type }}.progress-bar-main .progress-description-text {
       font-size: inherit;
     }
@@ -232,16 +229,19 @@
         .catch(function (e) { console.error('Error checking cart discounts:', e); });
     }
 
-    // Run on page load
-    document.addEventListener('DOMContentLoaded', function () {
+    // Run immediately if DOM is ready, otherwise wait for it
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkCartForDiscounts);
+    } else {
       checkCartForDiscounts();
-    });
+    }
 
     // Listen to Shopify / theme cart update events
     document.addEventListener('cart:updated', checkCartForDiscounts);
     document.addEventListener('cart:refresh', checkCartForDiscounts);
 
     // Theme-specific: Prestige emits these custom events on cart change
+    // Re-run on drawer open so text is always fresh when the drawer becomes visible
     document.addEventListener('cart-drawer:open', checkCartForDiscounts);
     document.addEventListener('variant:changed', checkCartForDiscounts);
 
