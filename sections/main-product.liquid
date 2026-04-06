@@ -62,13 +62,7 @@
 
   /* ── Mobile: Judge.me preview badge + title above gallery ── */
   @media screen and (max-width: 999px) {
-    /* Hide the preview_badge and title blocks inside product-info on mobile
-       since we render them above the gallery instead */
-    {%- for block in section.blocks -%}
-      {%- if block.type contains 'preview_badge' -%}
-        #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-id="{{ block.id }}"],
-      {%- endif -%}
-    {%- endfor -%}
+    /* Hide the title block inside product-info on mobile (rendered above instead) */
     #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-type="title"] {
       display: none;
     }
@@ -80,6 +74,12 @@
       align-items: center;
       text-align: center;
       gap: 0.5rem;
+    }
+
+    /* Badge placeholder inherits center alignment */
+    #shopify-section-{{ section.id }} .product-mobile-above-gallery__badge {
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -104,17 +104,14 @@
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
 
-        {%- comment -%} Mobile-only: Judge.me preview badge + title rendered above the gallery {%- endcomment -%}
+        {%- comment -%} Mobile-only: title rendered above the gallery. Judge.me badge is moved here via JS. {%- endcomment -%}
         <div class="product-mobile-above-gallery" style="grid-area: product-mobile-header">
+          <div class="product-mobile-above-gallery__badge"></div>
           {%- for block in section.blocks -%}
             {%- if block.settings.show_below_gallery -%}
               {%- continue -%}
             {%- endif -%}
-            {%- if block.type contains 'preview_badge' -%}
-              <div class="product-info__block-item" data-block-type="app">
-                {%- render block -%}
-              </div>
-            {%- elsif block.type == 'title' -%}
+            {%- if block.type == 'title' -%}
               <div class="product-info__block-item" data-block-type="title">
                 {%- if product != blank -%}
                   {%- if request.page_type == 'product' -%}
@@ -127,6 +124,30 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
+
+        {%- comment -%} Move Judge.me preview badge above gallery on mobile via JS {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type contains 'preview_badge' -%}
+            <script>
+              (function () {
+                var BLOCK_ID = {{ block.id | json }};
+                function moveBadge() {
+                  if (window.innerWidth >= 1000) return;
+                  var badge = document.querySelector('.product-info__block-item[data-block-id="' + BLOCK_ID + '"]');
+                  var target = document.querySelector('.product-mobile-above-gallery__badge');
+                  if (badge && target && !target.hasChildNodes()) {
+                    target.appendChild(badge);
+                  }
+                }
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', moveBadge);
+                } else {
+                  moveBadge();
+                }
+              })();
+            </script>
+          {%- endif -%}
+        {%- endfor -%}
 
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
