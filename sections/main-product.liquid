@@ -59,6 +59,25 @@
       {%- endif -%}
     }
   }
+
+  /* ── Mobile: review widget + title above gallery ── */
+  @media screen and (max-width: 999px) {
+    /* Hide the app (@app) and title blocks inside product-info on mobile
+       since we render them above the gallery instead */
+    #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-type="app"],
+    #shopify-section-{{ section.id }} .product-info .product-info__block-item[data-block-type="title"] {
+      display: none;
+    }
+
+    /* Style the mobile-above-gallery container */
+    #shopify-section-{{ section.id }} .product-mobile-above-gallery {
+      padding-inline: var(--container-gutter, 1rem);
+      padding-block-end: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
 </style>
 
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
@@ -73,6 +92,31 @@
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
+
+        {%- comment -%} Mobile-only: review widget + title rendered above the gallery {%- endcomment -%}
+        <div class="product-mobile-above-gallery md:hidden">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.show_below_gallery -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- if block.type == '@app' -%}
+              <div class="product-info__block-item" data-block-type="app">
+                {%- render block -%}
+              </div>
+            {%- elsif block.type == 'title' -%}
+              <div class="product-info__block-item" data-block-type="title">
+                {%- if product != blank -%}
+                  {%- if request.page_type == 'product' -%}
+                    <h1 class="product-title {{ block.settings.heading_tag }}">{{ product.title }}</h1>
+                  {%- else -%}
+                    <h2 class="product-title {{ block.settings.heading_tag }}"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
             product: product,
