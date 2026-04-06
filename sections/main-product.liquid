@@ -43,7 +43,7 @@
 
   #shopify-section-{{ section.id }} {
     background-color: #f0f0f0;
-    --product-grid: "product-gallery" "product-info" {% if has_content_below_gallery %}"product-content"{% endif %} / minmax(0, 1fr);
+    --product-grid: "product-mobile-header" "product-gallery" "product-info" {% if has_content_below_gallery %}"product-content"{% endif %} / minmax(0, 1fr);
 
     {%- if allow_transparent_header -%}
       --product-gallery-zoom-button-inset-block-start: calc(var(--sticky-area-height, 0px) + 1.25rem); /* 1.25rem is the default block padding, we want the zoom button to be at least 1.25rem away from the sticky header */
@@ -71,11 +71,16 @@
 
     /* Style the mobile-above-gallery container */
     #shopify-section-{{ section.id }} .product-mobile-above-gallery {
-      padding-inline: var(--container-gutter, 1rem);
-      padding-block-end: 0.75rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+    }
+  }
+
+  /* Hide the mobile-header area on desktop — not needed there */
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} .product-mobile-above-gallery {
+      display: none;
     }
   }
 </style>
@@ -94,7 +99,7 @@
       <div class="product">
 
         {%- comment -%} Mobile-only: review widget + title rendered above the gallery {%- endcomment -%}
-        <div class="product-mobile-above-gallery md:hidden">
+        <div class="product-mobile-above-gallery" style="grid-area: product-mobile-header">
           {%- for block in section.blocks -%}
             {%- if block.settings.show_below_gallery -%}
               {%- continue -%}
