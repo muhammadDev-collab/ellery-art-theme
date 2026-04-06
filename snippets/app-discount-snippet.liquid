@@ -228,11 +228,15 @@
         },
 
         // Main refresh — fetches cart + collection then updates ALL bars
-        refresh: function () {
+        // Accepts an optional pre-fetched cart object (from cart:change event detail)
+        refresh: function (cartData) {
           var handle = window.discountedCollectionHandle;
           if (!handle) return;
           var self = this;
-          Promise.all([self.fetchCollection(handle), self.fetchCart()])
+          var cartPromise = cartData
+            ? Promise.resolve(cartData)
+            : self.fetchCart();
+          Promise.all([self.fetchCollection(handle), cartPromise])
             .then(function (results) {
               self.updateAll(self.countEligible(results[1], results[0]));
             })
@@ -247,11 +251,18 @@
           var self = this;
 
           var refresh = function () { self.refresh(); };
+          var refreshWithCart = function (e) {
+            // cart:change carries the updated cart in event.detail.cart — use it directly
+            // to avoid an extra /cart.js round-trip
+            self.refresh(e && e.detail && e.detail.cart ? e.detail.cart : null);
+          };
 
-          document.addEventListener('cart:updated',     refresh);
-          document.addEventListener('cart:refresh',     refresh);
-          document.addEventListener('cart-drawer:open', refresh);
-          document.addEventListener('variant:changed',  refresh);
+          document.addEventListener('cart:updated',                       refresh);
+          document.addEventListener('cart:refresh',                       refresh);
+          document.addEventListener('cart-drawer:open',                   refresh);
+          document.addEventListener('variant:changed',                    refresh);
+          // Theme fires cart:change on documentElement after line-item quantity updates
+          document.documentElement.addEventListener('cart:change',        refreshWithCart);
 
           document.addEventListener('submit', function (e) {
             var form = e.target;
