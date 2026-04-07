@@ -8021,7 +8021,6 @@ shopify-account::part(signed-out-avatar) {
 
 .h6, :where(.prose h6) {
  font-size: 10px;
-    line-height: 1.1;
     font-weight: 700;
 }
 
