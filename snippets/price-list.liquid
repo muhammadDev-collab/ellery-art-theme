@@ -127,7 +127,7 @@
 
       {%- if is_variant_on_sale -%}
         <compare-at-price class="{{ compare_at_price_classes }}">
-          {{- variant_compare_at_price -}} <span class="price-regular-label">Regular</span>
+          {{- variant_compare_at_price -}}<span class="price-regular-label">Regular</span>
         </compare-at-price>
       {%- endif -%}
 
@@ -145,7 +145,7 @@
     {%- else -%}
       {%- if variant.price < variant.compare_at_price -%}
         <compare-at-price class="{{ compare_at_price_classes }}">
-          {{- variant_compare_at_price -}} <span class="price-regular-label">Regular</span>
+          {{- variant_compare_at_price -}}<span class="price-regular-label">Regular</span>
         </compare-at-price>
       {%- endif -%}
 
