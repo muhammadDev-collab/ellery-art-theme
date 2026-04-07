@@ -530,8 +530,8 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
   --circle-button-size: 2.75rem;
   width: var(--circle-button-size);
   height: var(--circle-button-size);
-  background: rgb(var(--circle-button-background));
-  color: rgb(var(--circle-button-text-color));
+  background: white;
+  color: black;
   border-radius: var(--rounded-full);
   box-shadow: 0 .125rem .625rem rgb(var(--circle-button-text-color) / .15);
   place-items: center;
