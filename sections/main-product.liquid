@@ -60,18 +60,18 @@
     }
   }
 
-  /* ── Mobile: thumbnails small, single row, cover ── */
+  /* ── Mobile: thumbnails small, centered, no scroll ── */
   @media screen and (max-width: 999px) {
     #shopify-section-{{ section.id }} {
       --product-gallery-thumbnail-size: 2.25rem;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__thumbnail-scroller {
-      grid-auto-flow: column;
-      grid-template-rows: var(--product-gallery-thumbnail-size);
-      grid-auto-rows: var(--product-gallery-thumbnail-size);
-      overflow-x: auto;
-      overflow-y: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow: visible;
+      scroll-snap-type: none;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__thumbnail {
