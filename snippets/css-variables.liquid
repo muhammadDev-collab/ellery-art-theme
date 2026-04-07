@@ -184,6 +184,36 @@
     font-weight: 700 !important;
   }
 
+  /* ── Price styling: Adobe Caslon Pro italic everywhere ── */
+  price-list sale-price,
+  price-list compare-at-price {
+    font-family: 'Adobe Caslon Pro', Georgia, serif !important;
+    font-style: italic !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  /* Sale / discounted price — red */
+  price-list sale-price.text-on-sale {
+    color: #af182b !important;
+  }
+
+  /* Original / compare-at price — grey */
+  price-list compare-at-price {
+    color: #808080 !important;
+  }
+
+  /* "Regular" label inherits the same styling */
+  .price-regular-label {
+    font-family: 'Adobe Caslon Pro', Georgia, serif !important;
+    font-style: italic !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.5px !important;
+    color: #808080 !important;
+  }
+
   /* ── h6 + product titles: DIN Next LT Pro Cond 400 ── */
   h6, .h6,
   .product-title,
