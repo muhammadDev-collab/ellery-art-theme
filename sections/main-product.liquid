@@ -73,18 +73,7 @@
       overflow: visible;
       scroll-snap-type: none;
     }
-@media screen(max-width:749px){
-#shopify-section-{{ section.id }} .product-gallery__thumbnail-scroller {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        overflow: visible;
-        scroll-snap-type: none;
-        max-width:89%;
-        margin:0 auto;
-    }
 
-}
     #shopify-section-{{ section.id }} .product-gallery__thumbnail {
       width: var(--product-gallery-thumbnail-size);
       height: var(--product-gallery-thumbnail-size);
@@ -97,7 +86,18 @@
       object-fit: cover;
     }
   }
+@media screen(max-width:749px){
+#shopify-section-{{ section.id }} .product-gallery__thumbnail-scroller {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        scroll-snap-type: none;
+        max-width:89%;
+        margin:0 auto;
+    }
 
+}
   /* ── Mobile: Judge.me preview badge + title above gallery ── */
   @media screen and (max-width: 999px) {
     /* Hide the title block inside product-info on mobile (rendered above instead) */
