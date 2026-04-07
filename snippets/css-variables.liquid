@@ -6,6 +6,39 @@
 {%- assign language_code = localization.language.iso_code | split: '-' | first -%}
 
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('{{ 'DINNextLTPro-Bold.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('{{ 'DINNextLTPro-BoldItalic.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Adobe Caslon Pro';
+    src: url('{{ 'ACaslonPro-Regular.otf' | asset_url }}') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Adobe Caslon Pro';
+    src: url('{{ 'ACaslonPro-Italic.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'ACaslonPro-Italic.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
   {%- assign heading_font_italic = settings.heading_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_italic = settings.text_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_bold = settings.text_font | font_modify: 'weight', 'bolder' -%}
@@ -74,12 +107,12 @@
      */
 
     /* Font properties */
-    --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-    --heading-font-weight: {{ settings.heading_font.weight }};
-    --heading-font-style: {{ settings.heading_font.style }};
+    --heading-font-family: 'DIN Next LT Pro', {{ settings.heading_font.fallback_families }};
+    --heading-font-weight: 700;
+    --heading-font-style: normal;
     --heading-text-transform: {{ settings.heading_text_transform }};
     --heading-letter-spacing: {% if language_code == 'ar' %}0{% else %}{{ settings.heading_letter_spacing | divided_by: 100.0 }}{% endif %}em;
-    --text-font-family: {{ settings.text_font.family }}, {{ settings.text_font.fallback_families }};
+    --text-font-family: 'Adobe Caslon Pro', {{ settings.text_font.fallback_families }};
     --text-font-weight: {{ settings.text_font.weight }};
     --text-font-style: {{ settings.text_font.style }};
     --text-letter-spacing: {% if language_code == 'ar' %}0{% else %}{{ settings.text_font_letter_spacing | divided_by: 100.0 }}{% endif %}em;
