@@ -184,9 +184,18 @@
     font-weight: 700 !important;
   }
 
-  /* ── Price styling: Adobe Caslon Pro italic everywhere ── */
+  /* ── Price list: column layout, centered ── */
+  price-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2px !important;
+  }
+
+  /* ── Price typography: Adobe Caslon Pro italic ── */
   price-list sale-price,
-  price-list compare-at-price {
+  price-list compare-at-price,
+  .price-regular-label {
     font-family: 'Adobe Caslon Pro', Georgia, serif !important;
     font-style: italic !important;
     font-size: 14px !important;
@@ -200,17 +209,8 @@
   }
 
   /* Original / compare-at price — grey */
-  price-list compare-at-price {
-    color: #808080 !important;
-  }
-
-  /* "Regular" label inherits the same styling */
+  price-list compare-at-price,
   .price-regular-label {
-    font-family: 'Adobe Caslon Pro', Georgia, serif !important;
-    font-style: italic !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    letter-spacing: -0.5px !important;
     color: #808080 !important;
   }
 

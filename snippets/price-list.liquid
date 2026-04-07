@@ -121,9 +121,14 @@
 
     {%- if product.price_varies -%}
       {%- assign is_variant_on_sale = false -%}
-
       {%- if variant.price < variant.compare_at_price -%}
         {%- assign is_variant_on_sale = true -%}
+      {%- endif -%}
+
+      {%- if is_variant_on_sale -%}
+        <compare-at-price class="{{ compare_at_price_classes }}">
+          {{- variant_compare_at_price -}} <span class="price-regular-label">Regular</span>
+        </compare-at-price>
       {%- endif -%}
 
       {%- if settings.product_price_strategy == 'from_price' -%}
@@ -138,16 +143,16 @@
         </sale-price>
       {%- endif -%}
     {%- else -%}
+      {%- if variant.price < variant.compare_at_price -%}
+        <compare-at-price class="{{ compare_at_price_classes }}">
+          {{- variant_compare_at_price -}} <span class="price-regular-label">Regular</span>
+        </compare-at-price>
+      {%- endif -%}
+
       <sale-price class="{% if variant.price < variant.compare_at_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
         {{- variant_price -}}
       </sale-price>
-    {%- endif -%}
-
-    {%- if variant.price < variant.compare_at_price -%}
-      <compare-at-price class="{{ compare_at_price_classes }}">
-        <span class="price-regular-label">Regular </span>{{- variant_compare_at_price -}}
-      </compare-at-price>
     {%- endif -%}
   {%- else -%}
     {%- comment -%}
