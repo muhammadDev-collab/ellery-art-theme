@@ -8140,15 +8140,4 @@ ul {
   overflow: hidden;
 }
 
-@media screen(max-width:749px) {
 
-  .product-gallery__thumbnail-scroller {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        overflow: visible;
-        scroll-snap-type: none;
-        max-width: 89%;
-        margin: 0 auto;
-    }
-}

@@ -73,7 +73,18 @@
       overflow: visible;
       scroll-snap-type: none;
     }
+@media screen(max-width:749px){
+.product-gallery__thumbnail-scroller {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        scroll-snap-type: none;
+        max-width:89%;
+        margin:0 auto;
+    }
 
+}
     #shopify-section-{{ section.id }} .product-gallery__thumbnail {
       width: var(--product-gallery-thumbnail-size);
       height: var(--product-gallery-thumbnail-size);
