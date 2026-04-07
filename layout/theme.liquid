@@ -27,8 +27,7 @@
     {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-    {{ 'ACaslonPro-Regular.otf' | asset_url | preload_tag: as: 'font', type: 'font/otf', crossorigin: 'anonymous' }}
-    {{ 'DINNextLTPro-Bold.woff' | asset_url | preload_tag: as: 'font', type: 'font/woff', crossorigin: 'anonymous' }}
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
 
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}

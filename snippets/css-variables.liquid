@@ -6,49 +6,6 @@
 {%- assign language_code = localization.language.iso_code | split: '-' | first -%}
 
 <style>
-  @font-face {
-    font-family: 'DIN Next LT Pro';
-    src: url('{{ 'DINNextLTPro-Bold.woff' | asset_url }}') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'DIN Next LT Pro';
-    src: url('{{ 'DINNextLTPro-BoldItalic.woff' | asset_url }}') format('woff');
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'DIN Next LT Pro Cond';
-    src: url('{{ 'DINNextLTPro-Condensed.woff' | asset_url }}') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Adobe Caslon Pro';
-    src: url('{{ 'ACaslonPro-Regular.woff2' | asset_url }}') format('woff2'),
-         url('{{ 'ACaslonPro-Regular.woff' | asset_url }}') format('woff'),
-         url('{{ 'ACaslonPro-Regular.otf' | asset_url }}') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Adobe Caslon Pro';
-    src: url('{{ 'ACaslonPro-Italic.woff2' | asset_url }}') format('woff2'),
-         url('{{ 'ACaslonPro-Italic.woff' | asset_url }}') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-  }
-
   {%- assign heading_font_italic = settings.heading_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_italic = settings.text_font | font_modify: 'style', 'italic' -%}
   {%- assign text_font_bold = settings.text_font | font_modify: 'weight', 'bolder' -%}
