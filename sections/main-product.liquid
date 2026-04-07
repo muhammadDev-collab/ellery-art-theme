@@ -76,10 +76,16 @@
       gap: 0.5rem;
     }
 
-    /* Badge placeholder inherits center alignment */
+    /* Badge placeholder: centered */
     #shopify-section-{{ section.id }} .product-mobile-above-gallery__badge {
       display: flex;
       justify-content: center;
+      width: 100%;
+    }
+
+    /* After JS moves the badge, hide its original empty wrapper in product-info */
+    #shopify-section-{{ section.id }} .product-info .product-info__block-item:has(.jdgm-prev-badge) {
+      display: none;
     }
   }
 
@@ -104,7 +110,7 @@
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
 
-        {%- comment -%} Mobile-only: title rendered above the gallery. Judge.me badge is moved here via JS. {%- endcomment -%}
+        {%- comment -%} Mobile-only: Judge.me badge + title above the gallery {%- endcomment -%}
         <div class="product-mobile-above-gallery" style="grid-area: product-mobile-header">
           <div class="product-mobile-above-gallery__badge"></div>
           {%- for block in section.blocks -%}
@@ -125,29 +131,23 @@
           {%- endfor -%}
         </div>
 
-        {%- comment -%} Move Judge.me preview badge above gallery on mobile via JS {%- endcomment -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type contains 'preview_badge' -%}
-            <script>
-              (function () {
-                var BLOCK_ID = {{ block.id | json }};
-                function moveBadge() {
-                  if (window.innerWidth >= 1000) return;
-                  var badge = document.querySelector('.product-info__block-item[data-block-id="' + BLOCK_ID + '"]');
-                  var target = document.querySelector('.product-mobile-above-gallery__badge');
-                  if (badge && target && !target.hasChildNodes()) {
-                    target.appendChild(badge);
-                  }
-                }
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', moveBadge);
-                } else {
-                  moveBadge();
-                }
-              })();
-            </script>
-          {%- endif -%}
-        {%- endfor -%}
+        <script>
+          (function () {
+            function moveBadge() {
+              if (window.innerWidth >= 1000) return;
+              var badge = document.querySelector('.jdgm-prev-badge');
+              var target = document.querySelector('.product-mobile-above-gallery__badge');
+              if (badge && target) {
+                target.appendChild(badge.closest('.product-info__block-item') || badge);
+              }
+            }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', moveBadge);
+            } else {
+              moveBadge();
+            }
+          })();
+        </script>
 
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
