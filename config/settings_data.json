@@ -35,7 +35,7 @@
     "product_card_text_font": "heading",
     "show_product_rating": false,
     "show_quick_buy": false,
-    "show_discount": false,
+    "show_discount": true,
     "discount_mode": "saving",
     "cart_type": "drawer",
     "cart_icon": "shopping_bag_sharp",
