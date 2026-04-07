@@ -6088,9 +6088,9 @@ shopify-account::part(signed-out-avatar) {
 }
 
 .product-gallery {
-  --product-gallery-gap: 1.5rem;
-  --product-gallery-thumbnail-list-gap: 1rem .5rem;
-  --product-gallery-thumbnail-size: 3.5rem;
+  --product-gallery-gap: 0rem;
+  --product-gallery-thumbnail-list-gap: 05px 05px;
+  --product-gallery-thumbnail-size: 2.2rem;
   flex-direction: var(--product-gallery-flex-direction, column);
   align-items: start;
   gap: var(--product-gallery-gap) var(--product-gap, 0px);
