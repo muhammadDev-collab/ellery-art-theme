@@ -67,13 +67,23 @@
       display: none;
     }
 
-    /* Mobile above-gallery container: centered column */
+    /* Mobile above-gallery container: full-width column */
     #shopify-section-{{ section.id }} .product-mobile-above-gallery {
+      padding-top:20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 0.5rem;
+    }
+
+    /* Show breadcrumb on mobile (theme hides it by default below 1000px) */
+    #shopify-section-{{ section.id }} .product-mobile-breadcrumb {
+      display: block;
+      width: 100%;
+      text-align: left;
+      align-self: flex-start;
+      margin-bottom: 0.25rem;
     }
 
     /* Badge placeholder: centered */
@@ -110,8 +120,23 @@
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
 
-        {%- comment -%} Mobile-only: Judge.me badge + title above the gallery {%- endcomment -%}
+        {%- comment -%} Mobile-only: breadcrumb + Judge.me badge + title above the gallery {%- endcomment -%}
         <div class="product-mobile-above-gallery" style="grid-area: product-mobile-header">
+          <nav class="breadcrumb product-mobile-breadcrumb" aria-label="{{ 'general.breadcrumb.label' | t | escape }}">
+            <ol class="breadcrumb__list unstyled-list">
+              <li class="breadcrumb__list-item">
+                <a href="{{ routes.root_url }}" class="smallcaps link-faded">{{ 'general.breadcrumb.home' | t }}</a>
+              </li>
+              {%- if product.collections.size > 0 -%}
+                <li class="breadcrumb__list-item">
+                  <a href="{{ product.collections.first.url }}" class="smallcaps link-faded">{{ product.collections.first.title }}</a>
+                </li>
+              {%- endif -%}
+              <li class="breadcrumb__list-item">
+                <span class="smallcaps link-faded" aria-current="page">{{ product.title }}</span>
+              </li>
+            </ol>
+          </nav>
           <div class="product-mobile-above-gallery__badge"></div>
           {%- for block in section.blocks -%}
             {%- if block.settings.show_below_gallery -%}
