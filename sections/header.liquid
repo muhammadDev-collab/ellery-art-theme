@@ -181,10 +181,10 @@
   .header__cart-link-inner {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 3px;
   }
 
-  /* Desktop order: About Us | Reviews | Search | divider+Price | Cart */
+  /* Desktop order: About Us | Reviews | Search | Cart (price+icon) */
   @media screen and (min-width: 1000px) {
     .header__mobile-hamburger {
       display: none !important;
@@ -192,23 +192,7 @@
     .header__nav-about   { order: 1; font-weight:bold; }
     .header__nav-reviews { order: 2; }
     .header__search-link { order: 3; }
-    .header__cart-price-li { order: 4; }
-    .header__cart-link   { order: 5; }
-
-    /* Divider before price */
-    .header__cart-price-li {
-      display: flex;
-      align-items: center;
-    }
-    .header__cart-price-li::before {
-      content: '';
-      display: inline-block;
-      width: 1px;
-      height: 18px;
-      background: currentColor;
-      opacity: 0.3;
-      margin-right: 8px;
-    }
+    .header__cart-link   { order: 4; }
   }
 
   /* Mobile */
@@ -459,26 +443,8 @@
           </li>
         {%- endif -%}
 
-        {%- comment -%} Cart price — separate li so mobile order works {%- endcomment -%}
-        {%- unless cart.empty? -%}
-          {%- assign cart_compare_price = 0 -%}
-          {%- assign cart_total = cart.total_price -%}
-          {%- for item in cart.items -%}
-            {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
-            {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
-          {%- endfor -%}
-          <li class="header__cart-price-li">
-            <div class="header__cart-price">
-              {%- if cart_compare_price > cart_total -%}
-                <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
-              {%- endif -%}
-              <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
-            </div>
-          </li>
-        {%- endunless -%}
-
-        {%- comment -%} Cart icon {%- endcomment -%}
-        <li class="relative header__cart-link">
+        {%- comment -%} Cart price + icon wrapped together {%- endcomment -%}
+        <li class="header__cart-link relative">
           <a
             href="{{ routes.cart_url }}"
             {% if settings.cart_type != 'page' and request.page_type != 'cart' %}
@@ -488,6 +454,20 @@
             class="header__cart-link-inner"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
+            {%- unless cart.empty? -%}
+              {%- assign cart_compare_price = 0 -%}
+              {%- assign cart_total = cart.total_price -%}
+              {%- for item in cart.items -%}
+                {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
+                {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
+              {%- endfor -%}
+              <div class="header__cart-price">
+                {%- if cart_compare_price > cart_total -%}
+                  <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
+                {%- endif -%}
+                <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
+              </div>
+            {%- endunless -%}
             <div class="header__cart-icon-wrap">
               {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
               {%- unless cart.empty? -%}
