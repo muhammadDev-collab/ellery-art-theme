@@ -288,7 +288,7 @@
         "allow_transparent_header": false,
         "transparent_header_use_primary_colors": false,
         "container_size": "lg",
-        "product_info_size": 40,
+        "product_info_size": 35,
         "show_sticky_add_to_cart": true,
         "center_basic_info": false,
         "desktop_media_layout": "carousel_thumbnails_bottom",
