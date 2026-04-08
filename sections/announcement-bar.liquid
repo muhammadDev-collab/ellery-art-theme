@@ -32,53 +32,9 @@
     }
   </style>
 
-  <style>
-    .announcement-bar {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .announcement-bar__currency {
-      position: absolute;
-      left: 16px;
-      display: flex;
-      align-items: center;
-      z-index: 2;
-    }
-    .announcement-bar__currency .localization-selector button,
-    .announcement-bar__currency .localization-selector summary {
-      font-size: var(--announcement-bar-font-size);
-      color: currentColor;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    @media screen and (max-width: 699px) {
-      .announcement-bar__currency {
-        display: none;
-      }
-    }
-  </style>
-
   <height-observer variable="announcement-bar">
     <div class="announcement-bar color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
       {%- assign carousel_id = 'carousel-' | append: section.id -%}
-
-      {%- if localization.available_countries.size > 1 -%}
-        <div class="announcement-bar__currency">
-          {%- render 'localization-selector',
-            type: 'country',
-            placement: 'bottom-start',
-            show_country_name: false,
-            show_country_flag: true,
-            id_prefix: 'announcement-bar'
-          -%}
-        </div>
-      {%- endif -%}
 
       {%- if section.blocks.size > 1 -%}
         <carousel-prev-button aria-controls="{{ carousel_id }}" class="contents">
