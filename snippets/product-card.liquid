@@ -160,7 +160,7 @@
             {%- if show_title -%}
               {%- assign xdetails = product.metafields.custom.xdetails.value -%}
               {%- if xdetails != blank -%}
-                <span style="font-family: 'Barlow', sans-serif; color: #707075; font-size: 12px; display: block;">{{ xdetails }}</span>
+                <span class="product-card__xdetails">{{ xdetails }}</span>
               {%- endif -%}
               <a
                 href="{{ product.url }}"
