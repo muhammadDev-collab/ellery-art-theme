@@ -217,16 +217,17 @@
   .cart-drawer__trending-titles {}
   .cart-drawer__trending-heading {
     text-transform: uppercase;
-    font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif;
+    font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif !important;
     font-weight: 500;
     line-height: 1.1;
     font-size: 14px;
     margin: 0;
   }
   .cart-drawer__trending-subheading {
-    font-size: 11px;
+    font-size: 16px;
     color: #666;
     margin: 2px 0 0;
+    font-family:"Barlow, sans-serif" !important;
   }
   .cart-drawer__trending-arrows {
     display: flex;
@@ -383,13 +384,13 @@
   }
 
   /* ── Hide vendor in cart drawer ── */
-  .cart-drawer__items .line-item-info [class*="vendor"],
-  .cart-drawer__items .line-item-info .smallcaps:not(.text-subdued) {
+  #cart-drawer a.vendor,
+  #cart-drawer span.vendor {
     display: none !important;
   }
 
   /* ── Hide "Regular" price label ── */
-  .cart-drawer__items .price-regular-label {
+  #cart-drawer .price-regular-label {
     display: none !important;
   }
 
