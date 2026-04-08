@@ -382,6 +382,17 @@
     opacity: 0.8;
   }
 
+  /* ── Hide vendor in cart drawer ── */
+  .cart-drawer__items .line-item-info [class*="vendor"],
+  .cart-drawer__items .line-item-info .smallcaps:not(.text-subdued) {
+    display: none !important;
+  }
+
+  /* ── Hide "Regular" price label ── */
+  .cart-drawer__items .price-regular-label {
+    display: none !important;
+  }
+
   /* ── Cart item prices: force inline + strikethrough ── */
   .cart-drawer__items .price-list {
     display: flex;
