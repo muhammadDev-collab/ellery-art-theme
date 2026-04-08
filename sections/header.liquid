@@ -197,6 +197,21 @@
     .header__nav-reviews { order: 2; }
     .header__search-link { order: 3; }
     .header__cart-link   { order: 4; }
+
+    /* Divider after search, before cart */
+    .header__cart-link {
+      display: flex;
+      align-items: center;
+    }
+    .header__cart-link::before {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 18px;
+      background: currentColor;
+      opacity: 0.3;
+      margin-right: 8px;
+    }
   }
 
   /* Mobile */
