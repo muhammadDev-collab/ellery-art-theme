@@ -99,23 +99,24 @@
     margin: 0 auto;
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
-    padding-left: {{ padding_horizontal_mobile }}rem;
-    padding-right: {{ padding_horizontal_mobile }}rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .stats-items-{{ section.id }} {
     display: grid;
     grid-template-columns: repeat({{ items_per_row }}, 1fr);
     margin-top: {{ items_mt_mobile }}px;
+    gap: 4px;
   }
 
   .stats-item-{{ section.id }} {
     display: flex;
-    gap: {{ item_gap_mobile }}px;
+    gap: 4px;
     align-items: center;
     justify-content: {{ item_content_horizontal_align_mobile }};
     transition: all 0.25s ease 0s;
-    padding: {{ item_padding_vertical_mobile }}px {{ item_padding_horizontal_mobile }}px;
+    padding: {{ item_padding_vertical_mobile }}px 0;
     text-decoration: none;
   }
 
