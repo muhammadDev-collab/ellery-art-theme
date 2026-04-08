@@ -3,6 +3,31 @@
     #shopify-section-{{ section.id }} {
       --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
       --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
+      --product-list-card-width: calc((100%) / 2.3);
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        --product-list-card-width: calc((100%) / 3.3);
+      }
+    }
+
+    @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} {
+        --product-list-card-width: calc((100%) / 5.3);
+      }
+    }
+
+    /* Grey background behind the scrolling cards */
+    #shopify-section-{{ section.id }} .fc-carousel-wrap {
+      background-color: #f0f0f0;
+      padding: 1rem 0;
+    }
+
+    /* Kill any arrows that may appear */
+    #shopify-section-{{ section.id }} .prev-next-button,
+    #shopify-section-{{ section.id }} .floating-controls-container__control {
+      display: none !important;
     }
 
     /* Per-collection header row */
@@ -62,20 +87,21 @@
           </div>
 
           <!-- Horizontal product carousel, no arrows -->
-          <scroll-carousel
-            id="{{ product_carousel_id }}"
-            group-cells
-            allow-drag
-            class="product-list product-list--carousel scroll-area bleed md:unbleed"
-          >
-            {%- for product in block_collection.products limit: block.settings.products_count -%}
-              {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
-            {%- else -%}
-              {%- for i in (1..block.settings.products_count) -%}
-                {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
+          <div class="fc-carousel-wrap">
+            <scroll-carousel
+              id="{{ product_carousel_id }}"
+              allow-drag
+              class="product-list product-list--carousel scroll-area bleed md:unbleed"
+            >
+              {%- for product in block_collection.products limit: block.settings.products_count -%}
+                {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
+              {%- else -%}
+                {%- for i in (1..block.settings.products_count) -%}
+                  {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
+                {%- endfor -%}
               {%- endfor -%}
-            {%- endfor -%}
-          </scroll-carousel>
+            </scroll-carousel>
+          </div>
 
         </div>
       {%- endfor -%}
