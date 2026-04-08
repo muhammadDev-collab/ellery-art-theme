@@ -144,7 +144,7 @@
 :checked + .block-swatch,
 .block-swatch.is-selected {
   border-color: #163bbc !important;
-  color: #163bbc !important;
+  color: #000000 !important;
 }
 
 /* Size variant: selected state via CSS :checked sibling */
