@@ -1,19 +1,25 @@
 {%- if section.blocks.size > 0 -%}
   <style>
     #shopify-section-{{ section.id }} {
-      --product-list-items-per-row: 4;
+      --product-list-items-per-row: 2;
       --product-list-horizontal-spacing-factor: {{ section.settings.horizontal_spacing_factor }};
       --product-list-vertical-spacing-factor: {{ section.settings.vertical_spacing_factor }};
     }
 
-    /* Per-collection header row */
-    .fc-collection-header-{{ section.id }} {
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
+      }
+    }
+
+    /* Collection header: View All left, Title right */
+    .fc-header-{{ section.id }} {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
-    .fc-collection-header-{{ section.id }} .fc-view-all {
+    .fc-header-{{ section.id }} .fc-view-all {
       font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif;
       font-size: 13px;
       font-weight: 400;
@@ -24,13 +30,19 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .fc-collection-header-{{ section.id }} .fc-view-all:hover {
+    .fc-header-{{ section.id }} .fc-view-all:hover {
       color: #001bcf;
     }
-    .fc-collection-header-{{ section.id }} .fc-title {
+    .fc-header-{{ section.id }} .fc-title {
       text-align: right;
       flex: 1;
       margin-left: 1rem;
+    }
+
+    /* Hide arrows */
+    #shopify-section-{{ section.id }} .prev-next-button,
+    #shopify-section-{{ section.id }} .floating-controls-container__control {
+      display: none !important;
     }
   </style>
 
@@ -38,49 +50,56 @@
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
+      <div class="section-stack">
 
-      {%- if section.settings.subheading != blank -%}
-        <p class="h6 text-center" style="margin-bottom:1.5rem;">{{- section.settings.subheading -}}</p>
-      {%- endif -%}
-
-      {%- for block in section.blocks -%}
-        {%- assign block_collection = block.settings.collection -%}
-        {%- assign block_title = block.settings.title | default: block_collection.title | default: 'Collection' -%}
-        {%- assign button_link = block.settings.link_url | default: block_collection.url | default: '#' -%}
-        {%- assign link_text = block.settings.link_text | default: 'View all' -%}
-        {%- assign product_carousel_id = 'fc-carousel-' | append: block.id -%}
-        {%- assign should_reveal = false -%}
-        {%- if settings.stagger_products_apparition and forloop.first -%}
-          {%- assign should_reveal = true -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="v-stack justify-self-center gap-4 text-center sm:gap-5">
+            <p class="h6 text-center">{{- section.settings.subheading -}}</p>
+          </div>
         {%- endif -%}
 
-        <div {{ block.shopify_attributes }}>
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          {%- assign block_title = block.settings.title | default: block_collection.title | default: 'Collection' -%}
+          {%- assign button_link = block.settings.link_url | default: block_collection.url | default: '#' -%}
+          {%- assign link_text = block.settings.link_text | default: 'View all' -%}
+          {%- assign product_carousel_id = 'fc-product-carousel-' | append: block.id -%}
 
-          <!-- Header: View All (left) | Title (right) -->
-          <div class="fc-collection-header-{{ section.id }}">
-            <a href="{{ button_link }}" class="fc-view-all">{{ link_text }}</a>
-            <h2 class="fc-title h2">{{ block_title }}</h2>
+          <div {{ block.shopify_attributes }}>
+
+            <!-- Header row -->
+            <div class="fc-header-{{ section.id }}">
+              <a href="{{ button_link }}" class="fc-view-all">{{ link_text }}</a>
+              <h2 class="fc-title h2">{{ block_title }}</h2>
+            </div>
+
+            <!-- Carousel (no arrows) -->
+            {%- assign should_reveal = false -%}
+            {%- if settings.stagger_products_apparition and forloop.first -%}
+              {%- assign should_reveal = true -%}
+            {%- endif -%}
+
+            <product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
+              <scroll-carousel
+                id="{{ product_carousel_id }}"
+                group-cells
+                allow-drag
+                class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
+              >
+                {%- for product in block_collection.products limit: block.settings.products_count -%}
+                  {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
+                {%- else -%}
+                  {%- for i in (1..block.settings.products_count) -%}
+                    {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+              </scroll-carousel>
+            </product-list>
+
           </div>
+        {%- endfor -%}
 
-          <!-- Horizontal product carousel, no arrows -->
-          <scroll-carousel
-            id="{{ product_carousel_id }}"
-            group-cells
-            allow-drag
-            class="product-list product-list--carousel scroll-area bleed md:unbleed"
-          >
-            {%- for product in block_collection.products limit: block.settings.products_count -%}
-              {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
-            {%- else -%}
-              {%- for i in (1..block.settings.products_count) -%}
-                {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
-              {%- endfor -%}
-            {%- endfor -%}
-          </scroll-carousel>
-
-        </div>
-      {%- endfor -%}
-
+      </div>
     </div>
   </div>
 {%- endif -%}
@@ -113,6 +132,15 @@
       "id": "hide_product_information",
       "label": "t:global.product_list.hide_product_information",
       "info": "t:global.product_list.hide_product_information_info"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 2,
+      "max": 6,
+      "label": "t:global.product_list.products_per_row_desktop",
+      "info": "t:global.product_list.products_per_row_desktop_info",
+      "default": 4
     },
     {
       "type": "header",
