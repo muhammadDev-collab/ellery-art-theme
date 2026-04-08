@@ -17,7 +17,7 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign badge_types = types | default: 'custom, sold_out, discount' | split: ','
+  assign badge_types = types | default: 'custom, sold_out' | split: ','
   assign variant = variant | default: product.selected_or_first_available_variant
 -%}
 
