@@ -173,8 +173,13 @@
 
   /* ── Force custom fonts — overrides Shopify font picker ── */
   body,
-  p, span, a, li, td, th,
+  p, a, li, td, th,
   input, textarea, select, button {
+    font-family: 'Adobe Caslon Pro', Georgia, serif !important;
+  }
+
+  /* spans inherit body font unless overridden — badges handled separately */
+  span:not(.badge):not(.badge--custom):not(.badge--on-sale):not(.badge--sold-out):not(.price-regular-label) {
     font-family: 'Adobe Caslon Pro', Georgia, serif !important;
   }
 
