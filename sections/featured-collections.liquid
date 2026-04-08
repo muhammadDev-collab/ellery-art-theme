@@ -11,106 +11,114 @@
         --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
       }
     }
+
+    /* Per-collection header row */
+    .fc-collection-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .fc-collection-header__view-all {
+      font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: currentColor;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .fc-collection-header__view-all:hover {
+      color: #001bcf;
+    }
+    .fc-collection-header__title {
+      text-align: right;
+      flex: 1;
+    }
+
+    /* Outer slider: all collections side-by-side in one scrollable row */
+    .fc-collections-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 2rem;
+    }
+    .fc-collections-slider::-webkit-scrollbar {
+      display: none;
+    }
+    .fc-collections-slider__item {
+      flex: 0 0 85vw;
+      max-width: 85vw;
+      scroll-snap-align: start;
+    }
+    @media screen and (min-width: 700px) {
+      .fc-collections-slider__item {
+        flex: 0 0 70vw;
+        max-width: 70vw;
+      }
+    }
+    @media screen and (min-width: 1000px) {
+      .fc-collections-slider__item {
+        flex: 0 0 calc(100% / {{ section.blocks.size | at_most: 2 }});
+        max-width: calc(100% / {{ section.blocks.size | at_most: 2 }});
+      }
+    }
   </style>
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
-      {%- assign wrapper_carousel_id = 'featured-collections-carousel-' | append: section.id -%}
 
-      <div class="section-stack">
-        {%- liquid
-          assign hide_section_header = false
+      {%- if section.settings.subheading != blank -%}
+        <p class="h6 text-center" style="margin-bottom:1.5rem;">{{- section.settings.subheading -}}</p>
+      {%- endif -%}
 
-          if section.blocks.size <= 1 and section.settings.hide_collection_title and section.settings.subheading == blank
-            assign hide_section_header = true
-          endif
-        -%}
+      <div class="fc-collections-slider">
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          {%- assign block_title = block.settings.title | default: block_collection.title | default: 'Collection' -%}
+          {%- assign button_link = block.settings.link_url | default: block_collection.url | default: '#' -%}
+          {%- assign link_text = block.settings.link_text | default: 'View all' -%}
 
-        {%- unless hide_section_header -%}
-          <div class="v-stack justify-self-center gap-4 text-center sm:gap-5">
-            {%- if section.settings.subheading != blank -%}
-              <p class="h6 text-center">{{- section.settings.subheading -}}</p>
-            {%- endif -%}
+          <div class="fc-collections-slider__item" {{ block.shopify_attributes }}>
 
-            {%- if section.blocks.size > 1 -%}
-              <carousel-navigation align-selected class="featured-collections-navigation scroll-area bleed" aria-controls="{{ wrapper_carousel_id }}">
-                {%- for block in section.blocks -%}
-                  <button class="h2" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                    {{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}
-                  </button>
-                {%- endfor -%}
-              </carousel-navigation>
-            {%- elsif section.settings.hide_collection_title != true -%}
-              <h2 class="h2">{{ section.blocks.first.settings.title | default: section.blocks.first.settings.collection.title | default: 'Collection' }}</h2>
-            {%- endif -%}
-          </div>
-        {%- endunless -%}
-
-        <featured-collections-carousel id="{{ wrapper_carousel_id }}" class="featured-collections-carousel">
-          {%- for block in section.blocks -%}
-            <div class="featured-collections-carousel__item {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
-              {%- capture product_list -%}
-                {%- assign should_reveal = false -%}
-
-                {%- if settings.stagger_products_apparition and forloop.first -%}
-                  {%- assign should_reveal = true -%}
-                {%- endif -%}
-
-                {%- for product in block.settings.collection.products limit: block.settings.products_count -%}
-                  {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
-                {%- else -%}
-                  {%- for i in (1..block.settings.products_count) -%}
-                    {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
-                  {%- endfor -%}
-                {%- endfor -%}
-              {%- endcapture -%}
-
-              {%- if section.settings.stack_products -%}
-                <product-list class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} justify-center">
-                  {{- product_list -}}
-                </product-list>
-              {%- else -%}
-                {%- assign product_carousel_id = 'featured-collections-product-list-carousel-' | append: block.id -%}
-
-                <product-list class="floating-controls-container floating-controls-container--inside floating-controls-container--on-hover">
-                  <carousel-prev-button class="floating-controls-container__control" aria-controls="{{ product_carousel_id }}">
-                    <button type="button" class="prev-next-button prev-next-button--prev circle-button hover:animate-icon-inline" disabled>
-                      <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                      {%- render 'icon' with 'arrow-left', direction_aware: true -%}
-                    </button>
-                  </carousel-prev-button>
-
-                  <scroll-carousel
-                    id="{{ product_carousel_id }}"
-                    group-cells
-                    allow-drag
-                    class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
-                  >
-                    {{- product_list -}}
-                  </scroll-carousel>
-
-                  <carousel-next-button class="floating-controls-container__control" aria-controls="{{ product_carousel_id }}">
-                    <button type="button" class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline">
-                      <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                      {%- render 'icon' with 'arrow-right', direction_aware: true -%}
-                    </button>
-                  </carousel-next-button>
-                </product-list>
-              {%- endif -%}
-
-              {%- if block.settings.link_text != blank -%}
-                {%- assign button_link = block.settings.link_url | default: block.settings.collection.url | default: '#' -%}
-
-                <div class="justify-self-center">
-                  {%- render 'button', href: button_link, content: block.settings.link_text -%}
-                </div>
-              {%- endif -%}
+            <!-- Header: View All (left) | Collection Title (right) -->
+            <div class="fc-collection-header">
+              <a href="{{ button_link }}" class="fc-collection-header__view-all">{{ link_text }}</a>
+              <h2 class="fc-collection-header__title h2">{{ block_title }}</h2>
             </div>
-          {%- endfor -%}
-        </featured-collections-carousel>
+
+            <!-- Product carousel (no arrows) -->
+            {%- assign product_carousel_id = 'fc-product-carousel-' | append: block.id -%}
+            {%- assign should_reveal = false -%}
+            {%- if settings.stagger_products_apparition and forloop.first -%}
+              {%- assign should_reveal = true -%}
+            {%- endif -%}
+
+            <scroll-carousel
+              id="{{ product_carousel_id }}"
+              group-cells
+              allow-drag
+              class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
+            >
+              {%- for product in block_collection.products limit: block.settings.products_count -%}
+                {%- render 'product-card', product: product, reveal: should_reveal, position: forloop.index, hide_product_information: section.settings.hide_product_information, block: block -%}
+              {%- else -%}
+                {%- for i in (1..block.settings.products_count) -%}
+                  {%- render 'product-card-placeholder', reveal: should_reveal, loop_index: forloop.index0, hide_product_information: section.settings.hide_product_information -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </scroll-carousel>
+
+          </div>
+        {%- endfor -%}
       </div>
+
     </div>
   </div>
 {%- endif -%}
@@ -149,27 +157,13 @@
       "content": "t:global.product_list.product_list_category"
     },
     {
-      "type": "checkbox",
-      "id": "stack_products",
-      "label": "t:global.product_list.stack_products",
-      "default": false
-    },
-    {
-      "type": "select",
+      "type": "range",
       "id": "products_per_row_mobile",
+      "min": 1,
+      "max": 2,
+      "step": 1,
       "label": "t:global.product_list.products_per_row_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "1"
-        },
-        {
-          "value": "2",
-          "label": "2"
-        }
-      ],
-      "default": "2",
-      "visible_if": "{{ section.settings.stack_products }}"
+      "default": 2
     },
     {
       "type": "range",
@@ -178,8 +172,7 @@
       "max": 6,
       "label": "t:global.product_list.products_per_row_desktop",
       "info": "t:global.product_list.products_per_row_desktop_info",
-      "default": 4,
-      "visible_if": "{{ section.settings.stack_products }}"
+      "default": 4
     },
     {
       "type": "header",
@@ -213,13 +206,6 @@
       "id": "subheading",
       "label": "t:global.text.subheading",
       "default": "Featured collection"
-    },
-    {
-      "type": "checkbox",
-      "id": "hide_collection_title",
-      "label": "t:sections.featured_collections.hide_collection_title",
-      "info": "t:sections.featured_collections.hide_collection_title_info",
-      "default": false
     }
   ],
   "blocks": [
