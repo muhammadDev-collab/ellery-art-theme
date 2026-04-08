@@ -150,7 +150,7 @@
         "item_padding_horizontal": 48,
         "item_padding_horizontal_mobile": 0,
         "item_padding_vertical": 0,
-        "item_padding_vertical_mobile": 12,
+        "item_padding_vertical_mobile": 0,
         "item_border_thickness": 0,
         "item_content_align": "center",
         "item_content_align_mobile": "center",
