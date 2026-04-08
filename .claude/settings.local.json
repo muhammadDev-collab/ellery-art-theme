@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"line-height\" /c/Users/dell/ellery-art-theme/sections/*.liquid --include=\"*.liquid\")"
+    ]
+  }
+}

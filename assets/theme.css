@@ -55,7 +55,7 @@ button, input, optgroup, select, textarea {
   font-size: 100%;
   font-weight: inherit;
   font-style: inherit;
-  line-height: inherit;
+  line-height: 1;
   text-transform: inherit;
   color: inherit;
   margin: 0;
@@ -373,6 +373,7 @@ height-observer {
   appearance: none;
   text-transform: var(--button-text-transform);
   font: var(--button-font);
+  line-height: 1;
   letter-spacing: var(--button-letter-spacing);
   text-shadow: none;
   text-align: center;
