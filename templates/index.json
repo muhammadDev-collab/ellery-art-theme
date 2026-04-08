@@ -307,7 +307,7 @@
         "collection-1"
       ],
       "custom_css": [
-        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -363,7 +363,7 @@
         "collection_XAzVBt"
       ],
       "custom_css": [
-        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
