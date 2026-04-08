@@ -17,7 +17,7 @@ html {
 
 body {
   background: rgb(var(--page-background));
-  font: var(--text-font-style) var(--text-font-weight) var(--text-base) / 1.65 var(--text-font-family);
+  font: var(--text-font-style) var(--text-font-weight) var(--text-base) / 1 var(--text-font-family);
   letter-spacing: var(--text-letter-spacing);
   margin: 0;
   position: relative;
@@ -27,6 +27,11 @@ hr {
   border-top-width: 1px;
   justify-self: stretch;
   height: 0;
+}
+
+/* Restore readable line-height for content text only */
+p, .prose p, li, .prose li, blockquote {
+  line-height: 1.6;
 }
 
 a {
