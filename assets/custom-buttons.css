@@ -157,6 +157,15 @@ input[type="radio"]:checked + .size-variant-item {
   border-radius: 4px !important;
 }
 
+/* ── Button text font ── */
+.button,
+.shopify-challenge__button,
+.shopify-payment-button__button--unbranded,
+.cart-drawer__checkout-btn {
+  font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif !important;
+  font-size: 16px !important;
+}
+
 /* ── Neutralize theme's features--button-transition gradient system ── */
 .features--button-transition .button:not([disabled]):hover,
 .features--button-transition .shopify-challenge__button:not([disabled]):hover,
