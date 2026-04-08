@@ -87,7 +87,7 @@
             "heading_tag": "h3"
           }
         },
-        "vendor": {
+        "vendor_hYYEd4": {
           "type": "vendor",
           "settings": {}
         },
@@ -270,7 +270,7 @@
       "block_order": [
         "judge_me_reviews_preview_badge_WNRCtn",
         "title",
-        "vendor",
+        "vendor_hYYEd4",
         "price",
         "section_vso_theme_sections_countdown_timer_YPkYay",
         "payment_terms",
