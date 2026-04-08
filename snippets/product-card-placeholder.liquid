@@ -66,7 +66,7 @@
     {%- if show_title or show_prices or show_vendor -%}
       <div class="v-stack justify-items-center gap-2">
         {%- if show_vendor -%}
-          <a href="#" id= "badge-t" class="vendor smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}">
+          <a href="#" class="vendor smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}"  id= "badge-t">
             {{- 'general.on_boarding.product_vendor' | t -}}
           </a>
         {%- endif -%}
