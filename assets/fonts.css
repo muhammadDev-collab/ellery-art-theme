@@ -185,6 +185,8 @@
         url('DINNextLTPro-MediumCond.woff') format('woff');
     font-weight: 500;
     font-style: normal;
+    ascent-override: 90%;
+    descent-override: 0%;
 }
 
 @font-face {

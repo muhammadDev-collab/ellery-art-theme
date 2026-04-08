@@ -164,6 +164,7 @@ input[type="radio"]:checked + .size-variant-item {
 .cart-drawer__checkout-btn {
   font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif !important;
   font-size: 16px !important;
+  line-height: 1 !important;
 }
 
 /* ── Neutralize theme's features--button-transition gradient system ── */
