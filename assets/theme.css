@@ -31,7 +31,6 @@ hr {
 
 /* Restore readable line-height for content text only */
 p, .prose p, li, .prose li, blockquote {
-  line-height:normal;
 }
 
 a {
