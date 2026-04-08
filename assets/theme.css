@@ -5,7 +5,7 @@
   border-color: rgb(var(--border-color));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1;
+ 
 }
 
 html {
@@ -55,7 +55,7 @@ button, input, optgroup, select, textarea {
   font-size: 100%;
   font-weight: inherit;
   font-style: inherit;
-  line-height: 1;
+  
   text-transform: inherit;
   color: inherit;
   margin: 0;
@@ -373,7 +373,7 @@ height-observer {
   appearance: none;
   text-transform: var(--button-text-transform);
   font: var(--button-font);
-  line-height: 1;
+  
   letter-spacing: var(--button-letter-spacing);
   text-shadow: none;
   text-align: center;
@@ -3663,7 +3663,7 @@ tr[onclick]:hover {
 .breadcrumb__list {
   align-items: center;
   column-gap: .5rem;
-  line-height: 1;
+  
   display: flex;
 }
 
@@ -7035,7 +7035,7 @@ shopify-account::part(signed-out-avatar) {
 
 .timeline__nav > button {
   height: var(--text-h4);
-  line-height: 1;
+  
   transition: opacity .25s ease-in-out, font-size .25s ease-in-out;
   position: relative;
 }
