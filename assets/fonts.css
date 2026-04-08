@@ -186,7 +186,7 @@
     font-weight: 500;
     font-style: normal;
     ascent-override: 50%;
-    descent-override: 0%;
+    descent-override: 50%;
     line-gap-override: 0%;
 }
 
