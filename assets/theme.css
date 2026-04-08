@@ -5067,7 +5067,7 @@ product-rerender {
 
 @media screen and (min-width: 700px) {
   .header__secondary-nav {
-    column-gap: 1.25rem;
+    column-gap: 2.25rem;
   }
 }
 
