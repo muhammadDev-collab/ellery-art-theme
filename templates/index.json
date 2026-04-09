@@ -313,13 +313,10 @@
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,
         "hide_product_information": false,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 0.2,
         "vertical_spacing_factor": 1,
-        "subheading": "",
-        "hide_collection_title": false
+        "subheading": ""
       }
     },
     "rich_text_ePWnFE": {
@@ -336,6 +333,7 @@
       "block_order": [
         "link_ern396"
       ],
+      "disabled": true,
       "name": "t:sections.rich_text.presets.rich_text.name",
       "settings": {
         "color_scheme": "",
@@ -369,13 +367,10 @@
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,
         "hide_product_information": false,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": "",
-        "hide_collection_title": false
+        "subheading": ""
       }
     },
     "rich_text_PRjmx3": {
