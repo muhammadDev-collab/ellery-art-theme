@@ -4269,7 +4269,7 @@ product-rerender {
 .cart-drawer__items {
   gap: 1.5rem;
   padding-block-start: var(--drawer-body-padding-block);
-  padding-block-end: var(--drawer-body-padding-block);
+  padding-block-end: 05px;
   display: grid;
 }
 
