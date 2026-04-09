@@ -2286,7 +2286,7 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-title {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .product-card__xdetails {
@@ -7784,7 +7784,7 @@ shopify-account::part(signed-out-avatar) {
 }
 
 .gap-1 {
-  gap: 15px;
+  gap: 8px;
 }
 
 .gap-1\.5 {
