@@ -121,36 +121,44 @@
     background: transparent;
   }
 
-  /* ── Trash icon on minus/first button ── */
+  /* ── Trash icon (delete button) ── */
   .cart-drawer__items quantity-selector > a:first-child {
     overflow: hidden;
     font-size: 0;
     color: transparent !important;
-    background-color: #f0f0f0 !important;
+    background-color: #e8e8e8 !important;
     border-radius: 50% !important;
-    width: 26px !important;
-    height: 26px !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='none' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    background-size: 14px !important;
+    background-size: 10px !important;
+    flex-shrink: 0 !important;
   }
   .cart-drawer__items quantity-selector > a:first-child svg { display: none !important; }
 
-  /* ── + button: circle with #f0f0f0 bg ── */
+  /* ── Plus button ── */
   .cart-drawer__items quantity-selector > a:last-child {
-    background-color: #f0f0f0 !important;
+    background-color: #e8e8e8 !important;
     border-radius: 50% !important;
-    width: 26px !important;
-    height: 26px !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-shrink: 0 !important;
   }
-  .cart-drawer__items quantity-selector > a:last-child svg { stroke: #333 !important; }
+  .cart-drawer__items quantity-selector > a:last-child svg {
+    stroke: #333 !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
 
   /* ── Quantity input ── */
   .cart-drawer__items .quantity-selector__input {
