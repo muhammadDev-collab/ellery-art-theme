@@ -466,6 +466,11 @@
                 payment_button_background: block.settings.payment_button_background,
                 payment_button_text_color: block.settings.payment_button_text_color
             -%}
+            {%- if settings.free_shipping_threshold != blank and settings.free_shipping_threshold != 0 -%}
+              <p class="product-form__free-shipping">
+                <strong>Free shipping</strong> over {{ settings.free_shipping_threshold | money_without_trailing_zeros }} &mdash; {{ localization.country.name }}
+              </p>
+            {%- endif -%}
 
           {%- when 'pickup_availability' -%}
             {%- if product != blank -%}

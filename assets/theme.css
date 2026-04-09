@@ -2321,6 +2321,18 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
   font-weight: 700;
 }
 
+.product-form__free-shipping {
+  font-size: 13px;
+  color: #444;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.product-form__free-shipping strong {
+  font-weight: 700;
+  color: #121212;
+}
+
 .product-card__xdetails {
   font-family: 'Barlow', sans-serif;
   color: #707075;
