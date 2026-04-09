@@ -2321,6 +2321,60 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
   font-weight: 700;
 }
 
+.product-trust-block {
+  background-color: #e4e4e4;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.product-trust-block__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-trust-block__item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: #121212;
+  line-height: 1.4;
+}
+
+.product-trust-block__tick {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.product-trust-block__payments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-trust-block__payments li {
+  display: flex;
+  align-items: center;
+}
+
+.product-trust-block__payments svg,
+.product-trust-block__payments img {
+  height: 20px;
+  width: auto;
+  border-radius: 3px;
+}
+
 .product-form__free-shipping {
   font-size: 11px;
   color: #444;

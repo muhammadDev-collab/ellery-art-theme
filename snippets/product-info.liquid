@@ -471,6 +471,33 @@
                 <strong>Free shipping</strong> over {{ settings.free_shipping_threshold | money_without_trailing_zeros }} &mdash; {{ localization.country.name }}
               </p>
             {%- endif -%}
+            <div class="product-trust-block">
+              <ul class="product-trust-block__list">
+                <li class="product-trust-block__item">
+                  <svg class="product-trust-block__tick" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5L6.5 12.5L13.5 4.5" stroke="#ad9c82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span><strong>Buy 2 Get 1 Free</strong> [Limited Run]</span>
+                </li>
+                <li class="product-trust-block__item">
+                  <svg class="product-trust-block__tick" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5L6.5 12.5L13.5 4.5" stroke="#ad9c82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Certificate of authenticity included</span>
+                </li>
+                <li class="product-trust-block__item">
+                  <svg class="product-trust-block__tick" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5L6.5 12.5L13.5 4.5" stroke="#ad9c82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Delivery within a week | Super easy returns</span>
+                </li>
+                <li class="product-trust-block__item">
+                  <svg class="product-trust-block__tick" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5L6.5 12.5L13.5 4.5" stroke="#ad9c82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Secure payment</span>
+                  {%- if shop.enabled_payment_types.size > 0 -%}
+                    <ul class="product-trust-block__payments unstyled-list">
+                      {%- for type in shop.enabled_payment_types -%}
+                        <li>{{- type | payment_type_svg_tag -}}</li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </li>
+              </ul>
+            </div>
 
           {%- when 'pickup_availability' -%}
             {%- if product != blank -%}
