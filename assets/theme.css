@@ -2289,6 +2289,37 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
   margin-bottom: 6px;
 }
 
+/* Limited edition stock bar */
+.product-card__stock-bar {
+  width: 100%;
+  margin-top: 6px;
+}
+.product-card__stock-bar-track {
+  width: 100%;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.product-card__stock-bar-fill {
+  height: 100%;
+  background: #ad9c82;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.product-card__stock-label {
+  font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif;
+  font-size: 10px;
+  color: #707075;
+  margin: 3px 0 0;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+.product-card__stock-label strong {
+  color: #ad9c82;
+  font-weight: 700;
+}
+
 .product-card__xdetails {
   font-family: 'Barlow', sans-serif;
   color: #707075;

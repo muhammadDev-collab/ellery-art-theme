@@ -183,6 +183,27 @@
             {%- if show_prices -%}
               {%- render 'price-list', product: product, context: 'card' -%}
             {%- endif -%}
+
+            {%- if vendor_lower contains 'limited' -%}
+              {%- assign total_inventory = product.selected_or_first_available_variant.inventory_quantity -%}
+              {%- assign total_sold = product.variants | map: 'inventory_quantity' | sum -%}
+              {%- comment -%} Use total variants inventory for the bar {%- endcomment -%}
+              {%- assign all_inventory = 0 -%}
+              {%- for v in product.variants -%}
+                {%- assign all_inventory = all_inventory | plus: v.inventory_quantity -%}
+              {%- endfor -%}
+              {%- if all_inventory > 0 -%}
+                {%- assign bar_max = all_inventory | plus: 20 -%}
+                {%- assign bar_pct = all_inventory | times: 100 | divided_by: bar_max -%}
+                <div class="product-card__stock-bar">
+                  <div class="product-card__stock-bar-track">
+                    <div class="product-card__stock-bar-fill" style="width: {{ bar_pct }}%"></div>
+                  </div>
+                  <p class="product-card__stock-label">Only <strong>{{ all_inventory }}</strong> of {{ bar_max }} left</p>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
           </div>
         {%- endif -%}
       </div>
