@@ -2322,15 +2322,17 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-form__free-shipping {
-  font-size: 13px;
+  font-size: 11px;
   color: #444;
   margin-top: 10px;
   text-align: center;
+font-family: 'DIN Next LT Pro Light' !important;
 }
 
 .product-form__free-shipping strong {
-  font-weight: 700;
+  font-weight: 500;
   color: #121212;
+      font-family: 'DIN Next LT Pro Medium' !important;
 }
 
 .product-card__xdetails {
