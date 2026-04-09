@@ -23,11 +23,6 @@
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
-    #shopify-section-{{ section.id }} .container {
-      max-width: 100% !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
 
     /* Header: full width, white background */
     .fc-header-{{ section.id }} {
@@ -74,14 +69,6 @@
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
-    <div class="container">
-      <div class="section-stack">
-
-        {%- if section.settings.subheading != blank -%}
-          <div class="v-stack justify-self-center gap-4 text-center sm:gap-5">
-            <p class="h6 text-center">{{- section.settings.subheading -}}</p>
-          </div>
-        {%- endif -%}
 
         {%- for block in section.blocks -%}
           {%- assign block_collection = block.settings.collection -%}
@@ -92,7 +79,7 @@
 
           <div {{ block.shopify_attributes }}>
 
-            <!-- Header row -->
+            <!-- Header: full width, white bg, outside container -->
             <div class="fc-header-{{ section.id }}">
               <h2 class="fc-title h2">{{ block_title }}</h2>
               <a href="{{ button_link }}" class="fc-view-all">{{ link_text }}</a>
@@ -126,8 +113,6 @@
           </div>
         {%- endfor -%}
 
-      </div>
-    </div>
   </div>
 {%- endif -%}
 
