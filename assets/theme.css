@@ -2340,7 +2340,7 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 .product-trust-block__item {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   font-size: 13px;
   color: #121212;
@@ -2348,31 +2348,34 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-trust-block__tick {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
 }
 
 .product-trust-block__payments {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   list-style: none;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .product-trust-block__payments li {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .product-trust-block__payments svg,
 .product-trust-block__payments img {
-  height: 20px;
+  height: 16px;
   width: auto;
-  border-radius: 3px;
+  border-radius: 2px;
+  display: block;
 }
 
 .product-form__free-shipping {

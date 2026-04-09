@@ -471,7 +471,9 @@
                 <strong>Free shipping</strong> over {{ settings.free_shipping_threshold | money_without_trailing_zeros }} &mdash; {{ localization.country.name }}
               </p>
             {%- endif -%}
-            <div class="product-trust-block">
+
+          {%- when 'trust_block' -%}
+            <div class="product-trust-block" {{ block.shopify_attributes }}>
               <ul class="product-trust-block__list">
                 <li class="product-trust-block__item">
                   <svg class="product-trust-block__tick" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 8.5L6.5 12.5L13.5 4.5" stroke="#ad9c82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
