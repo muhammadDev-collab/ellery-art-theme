@@ -971,7 +971,7 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
   --drawer-body-padding-inline: 1.25rem;
   --drawer-footer-padding-block: 1rem;
   --drawer-footer-padding-inline: 1.25rem;
-  --drawer-max-width: min(92vw, 28.125rem);
+  --drawer-max-width: min(92vw, 25.125rem);
 }
 
 .drawer::part(base) {
@@ -1043,7 +1043,7 @@ shopify-accelerated-checkout, shopify-accelerated-checkout-cart {
     --drawer-header-padding-block: 1.125rem;
     --drawer-header-padding-inline: 2rem;
     --drawer-body-padding-block: 2rem;
-    --drawer-body-padding-inline: 2rem;
+    --drawer-body-padding-inline: 1rem;
     --drawer-footer-padding-block: 2rem;
     --drawer-footer-padding-inline: 2rem;
   }
