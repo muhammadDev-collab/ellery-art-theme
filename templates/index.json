@@ -361,7 +361,7 @@
         "collection_XAzVBt"
       ],
       "custom_css": [
-        "[class*=\"vendor\"] {background-color: #eeeeee !important; padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
+        "[class*=\"vendor\"]:not(.vendor--limited-edition):not(.vendor--perfect-trio) {background-color: #eeeeee !important; padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
