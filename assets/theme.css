@@ -2342,9 +2342,14 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
   align-items: center;
   flex-wrap: nowrap;
   gap: 8px;
-  font-size: 13px;
+  font-size: 11px;
   color: #121212;
   line-height: 1.4;
+  font-family: 'DIN Next LT Pro Light' !important;
+}
+.product-trust-block__item strong {
+  font-family: 'DIN Next LT Pro Medium' !important;
+    font-weight: 500;
 }
 
 .product-trust-block__tick {
