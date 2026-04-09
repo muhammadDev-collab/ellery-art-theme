@@ -167,7 +167,7 @@ input[type="radio"]:checked + .size-variant-item {
 .shopify-payment-button__button--unbranded *,
 .cart-drawer__checkout-btn * {
   font-family: 'DIN Next LT Pro Cond', Arial Narrow, sans-serif !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 
 /* ── Neutralize theme's features--button-transition gradient system ── */
