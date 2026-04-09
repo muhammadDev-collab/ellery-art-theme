@@ -152,6 +152,12 @@
       <div class="v-stack justify-items-center gap-2">
         {%- if show_vendor and product.vendor != blank -%}
           {%- capture vendor_class -%}smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}{% endcapture %}
+          {%- assign vendor_lower = product.vendor | downcase -%}
+          {%- if vendor_lower == 'perfect trio' -%}
+            {%- assign vendor_class = vendor_class | append: ' vendor--perfect-trio' -%}
+          {%- elsif vendor_lower == 'limited edition' -%}
+            {%- assign vendor_class = vendor_class | append: ' vendor--limited-edition' -%}
+          {%- endif -%}
           {%- render 'vendor' with product.vendor, class: vendor_class -%}
         {%- endif -%}
 
