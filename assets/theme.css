@@ -6324,6 +6324,25 @@ shopify-account::part(signed-out-avatar) {
     width: 45vw;
     margin-inline: auto;
   }
+
+  .product-gallery__thumbnail-scroller {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory !important;
+    max-height: none !important;
+    grid-auto-flow: unset !important;
+    grid-template-columns: unset !important;
+    grid-auto-columns: unset !important;
+  }
+
+  .product-gallery__thumbnail {
+    flex-shrink: 0 !important;
+    scroll-snap-align: start;
+  }
 }
 
 @media screen and (min-width: 1000px) {
