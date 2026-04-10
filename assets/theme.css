@@ -6248,6 +6248,8 @@ shopify-account::part(signed-out-avatar) {
   grid-auto-columns: minmax(0, 1fr);
   width: 100%;
   display: grid;
+  min-width: 0;
+  flex: 1 1 0%;
 }
 
 .product-gallery__carousel {
@@ -6349,6 +6351,14 @@ shopify-account::part(signed-out-avatar) {
   .product-gallery__thumbnail-list {
     position: sticky;
     inset-block-start: calc(var(--sticky-area-height)  + 20px);
+    width: calc(var(--product-gallery-thumbnail-size) + 20px);
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  .product-gallery__thumbnail-scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .product-gallery__media {
