@@ -2338,14 +2338,19 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-trust-block__item {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 8px;
-  font-size: 11px;
-  color: #121212;
-  line-height: 1.4;
-  font-family: 'DIN Next LT Pro Light' !important;
+  display: grid;
+    align-items: start;
+    flex-wrap: nowrap;
+    gap: 8px;
+    font-size: 11px;
+    color: #121212;
+    line-height: 1.4;
+    font-family: DIN Next LT Pro Light !important;
+    overflow: auto hidden;
+    grid-auto-flow: column;
+    justify-items: start;
+    justify-content: start;
+    scrollbar-width: none;
 }
 .product-trust-block__item strong {
   font-family: 'DIN Next LT Pro Medium' !important;
