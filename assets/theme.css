@@ -6290,7 +6290,7 @@ shopify-account::part(signed-out-avatar) {
   overflow: auto;
   justify-items: center;
     justify-content: center;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
 }
 
 .product-gallery__thumbnail-scroller::-webkit-scrollbar {
