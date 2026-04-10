@@ -6180,7 +6180,17 @@ shopify-account::part(signed-out-avatar) {
   gap: 120px;
   display: grid;
 }
+@media(max-width:749px){
 
+.product {
+  grid: var(--product-grid, none);
+  align-items: start;
+  gap: 0px;
+  display: grid;
+}
+
+
+}
 @media screen and (min-width: 1000px) {
   .shopify-section--main-product .section-spacing[allow-transparent-header] .container {
     --container-max-width: none;
