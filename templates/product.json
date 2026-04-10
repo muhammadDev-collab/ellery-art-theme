@@ -158,18 +158,18 @@
         "section_vso_theme_sections_product_badge_PAxHCh": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/productBadge/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
-            "block_top_spacing": -5,
+            "block_top_spacing": 0,
             "block_bottom_spacing": 0,
             "section_text": "Order <strong>Today</strong> and pay later with <strong>Klarna</strong>",
             "text_color": "#1c1c1c",
-            "font_size": 14,
+            "font_size": 10,
             "badge_image": "shopify://shop_images/klarna-svgrepo-com.svg",
-            "image_size": 25,
+            "image_size": 20,
             "image_radius": 0,
             "bg_color": "#ffffff",
             "border_color": "#1c1c1c",
             "border_width": 0,
-            "padding_block": 0,
+            "padding_block": 3,
             "border_radius": 6,
             "section_gap": 12
           }
