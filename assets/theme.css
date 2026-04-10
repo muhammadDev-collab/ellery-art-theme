@@ -6177,7 +6177,7 @@ shopify-account::part(signed-out-avatar) {
 .product {
   grid: var(--product-grid, none);
   align-items: start;
-  gap: 0px;
+  gap: 0px 120px;
   display: grid;
 }
 
