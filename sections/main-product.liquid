@@ -68,21 +68,29 @@
 
     #shopify-section-{{ section.id }} .product-gallery__thumbnail-scroller {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      overflow: visible;
-      scroll-snap-type: none;
-      max-width:89%;
-      margin:0 auto;
-      margin-bottom:16px;
-  
+      flex-wrap: nowrap;
+      flex-direction: row;
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 6px;
+      padding: 4px 16px;
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery__thumbnail-scroller::-webkit-scrollbar {
+      display: none;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__thumbnail {
       width: var(--product-gallery-thumbnail-size);
       height: 40px;
       flex-shrink: 0;
-      border-radius:06px;
+      scroll-snap-align: start;
+      border-radius: 6px;
     }
 
     #shopify-section-{{ section.id }} .product-gallery__thumbnail img {
