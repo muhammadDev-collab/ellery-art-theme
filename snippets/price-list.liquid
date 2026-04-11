@@ -104,11 +104,7 @@
       --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
     {%- liquid
-      if product.price_varies and settings.product_price_strategy != 'from_price'
-        assign variant = product.variants | sort: 'price' | last | default: product.selected_or_first_available_variant
-      else
-        assign variant = product.variants | sort: 'price' | first | default: product.selected_or_first_available_variant
-      endif
+      assign variant = product.variants | first | default: product.selected_or_first_available_variant
 
       if settings.currency_code_enabled
         assign variant_price = variant.price | money_with_currency
