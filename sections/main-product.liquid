@@ -150,6 +150,19 @@
       display: none;
     }
   }
+
+  /* ── Desktop breadcrumb above gallery ── */
+  #shopify-section-{{ section.id }} .product-desktop-breadcrumb {
+    display: none;
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} .product-desktop-breadcrumb {
+      display: block;
+      grid-column: 1 / -1;
+      padding-bottom: 12px;
+    }
+  }
 </style>
 
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
@@ -220,6 +233,25 @@
             }
           })();
         </script>
+
+        {%- comment -%} Desktop-only: breadcrumb above the gallery {%- endcomment -%}
+        <nav class="breadcrumb product-desktop-breadcrumb" aria-label="{{ 'general.breadcrumb.label' | t | escape }}">
+          <ol class="breadcrumb__list unstyled-list">
+            <li class="breadcrumb__list-item">
+              <a href="{{ routes.root_url }}" class="link-faded" aria-label="{{ 'general.breadcrumb.home' | t }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-top:-2px"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+              </a>
+            </li>
+            {%- if product.collections.size > 0 -%}
+              <li class="breadcrumb__list-item">
+                <a href="{{ product.collections.first.url }}" class="smallcaps link-faded">{{ product.collections.first.title }}</a>
+              </li>
+            {%- endif -%}
+            <li class="breadcrumb__list-item">
+              <span class="smallcaps link-faded" aria-current="page">{{ product.title }}</span>
+            </li>
+          </ol>
+        </nav>
 
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
