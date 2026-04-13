@@ -409,6 +409,49 @@
         "text_alignment": "center"
       }
     },
+    "ss_social_proof_4pmFnd": {
+      "type": "ss-social-proof",
+      "blocks": {
+        "press_item_iTD4Q8": {
+          "type": "press_item",
+          "settings": {
+            "quote": "The art and the purpose behind it really makes people talk",
+            "publication_name": "BuzzFeed"
+          }
+        },
+        "press_item_i4JePD": {
+          "type": "press_item",
+          "settings": {
+            "quote": "Some of the best art in the world. Plain and simple.",
+            "publication_name": "Variety"
+          }
+        },
+        "press_item_AbWYLe": {
+          "type": "press_item",
+          "settings": {
+            "quote": "Art so good that you will actually wanna have friends over",
+            "publication_name": "Wired"
+          }
+        }
+      },
+      "block_order": [
+        "press_item_iTD4Q8",
+        "press_item_i4JePD",
+        "press_item_AbWYLe"
+      ],
+      "name": "Social Proof",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "heading": "+200,000 CUSTOMERS FOR A REASON",
+        "review_text": "Based on 10810",
+        "review_link_text": "reviews",
+        "review_link": "",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "logo_max_height": 36
+      }
+    },
     "ss_trust_box_pC3RAi": {
       "type": "ss-trust-box",
       "blocks": {
@@ -740,6 +783,7 @@
     "featured_collections_DhYxRW",
     "rich_text_PRjmx3",
     "custom_liquid_qgJczp",
+    "ss_social_proof_4pmFnd",
     "ss_trust_box_pC3RAi",
     "multiple-media-with-text",
     "shop_the_look_WyyNnA",
