@@ -2351,7 +2351,7 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
     justify-items: start;
     justify-content: start;
     scrollbar-width: none;
-    
+
 }
 .product-trust-block__item strong {
   font-family: 'DIN Next LT Pro Medium' !important;
@@ -6227,7 +6227,7 @@ shopify-account::part(signed-out-avatar) {
   }
 }
 
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 749px) {
   .product {
     --product-gap: 5rem;
   }
