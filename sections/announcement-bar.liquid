@@ -36,14 +36,6 @@
     <div class="announcement-bar color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
       {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-      {%- if section.blocks.size > 1 -%}
-        <carousel-prev-button aria-controls="{{ carousel_id }}" class="contents">
-          <button type="button" class="tap-area">
-            <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-            {%- render 'icon' with 'arrow-left', width: 12, direction_aware: true -%}
-          </button>
-        </carousel-prev-button>
-      {%- endif -%}
 
       <announcement-bar-carousel
         allow-swipe
@@ -56,7 +48,7 @@
         <p class="prose heading is-selected" style="display:flex;align-items:center;justify-content:center;gap:6px;">
           <span style="display:inline-flex;align-items:center;gap:2px;">
             {%- for i in (1..5) -%}
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#00b67a;border-radius:2px;">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#00b67a;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="#ffffff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </span>
             {%- endfor -%}
@@ -68,14 +60,6 @@
         {%- endfor -%}
       </announcement-bar-carousel>
 
-      {%- if section.blocks.size > 1 -%}
-        <carousel-next-button aria-controls="{{ carousel_id }}" class="contents">
-          <button type="button" class="tap-area">
-            <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-            {%- render 'icon' with 'arrow-right', width: 12, direction_aware: true -%}
-          </button>
-        </carousel-next-button>
-      {%- endif -%}
     </div>
   </height-observer>
 
