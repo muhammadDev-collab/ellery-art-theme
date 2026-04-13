@@ -910,6 +910,28 @@
     "settings": [
       {
         "type": "header",
+        "content": "USP Points"
+      },
+      {
+        "type": "richtext",
+        "id": "cart_drawer_usp_1",
+        "label": "USP 1",
+        "default": "<p>Certificate of authenticity included</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "cart_drawer_usp_2",
+        "label": "USP 2",
+        "default": "<p>4.8/5 TrustScore on Trustpilot</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "cart_drawer_usp_3",
+        "label": "USP 3",
+        "default": "<p>Buy 2 Get 1 Free | Buy 3 Get 2 Free<br>Automatically applied on the artwork<br>(Frames and mat boards are not included)</p>"
+      },
+      {
+        "type": "header",
         "content": "Trending Section"
       },
       {
