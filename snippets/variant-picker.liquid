@@ -295,7 +295,7 @@
                 {%- unless hide_sold_out_variants and option_value.available == false and option_value.selected == false -%}
                   {%- assign visible_index = visible_index | plus: 1 -%}
                   {%- assign ov_id = 'option-value-size-' | append: section.id | append: '-' | append: forloop.index -%}
-                  {%- assign ov_parts = option_value.name | split: '|' -%}
+                  {%- assign ov_parts = option_value.name | split: '│' -%}
                   {%- assign ov_short = ov_parts[0] | strip -%}
                   {%- assign ov_long = ov_parts[1] | strip -%}
                   {%- assign ov_variant = option_value.variant -%}
