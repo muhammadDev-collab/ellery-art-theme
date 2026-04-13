@@ -89,6 +89,9 @@
         "text_rEmxpx",
         "text_JdawKd"
       ],
+      "custom_css": [
+        "p{line-height: 1.1 !important;;}"
+      ],
       "settings": {
         "separate_section_with_border": false,
         "scrolling_speed": 0.1,
