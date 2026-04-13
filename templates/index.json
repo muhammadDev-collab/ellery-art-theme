@@ -90,7 +90,7 @@
         "text_JdawKd"
       ],
       "custom_css": [
-        "p{line-height: 1.1 !important;;}"
+        "p {line-height: 1.1 !important;}"
       ],
       "settings": {
         "separate_section_with_border": false,
@@ -104,7 +104,7 @@
         "section_vertical_spacing_desktop": 10,
         "item_horizontal_spacing_mobile": 30,
         "item_horizontal_spacing_desktop": 50,
-        "background": "#303030",
+        "background": "#000000",
         "text_color": "#ffffff"
       }
     },
