@@ -358,8 +358,8 @@
         "item_padding_vertical": 0,
         "item_padding_vertical_mobile": 12,
         "item_border_thickness": 1,
-        "item_content_align": "left",
-        "item_content_align_mobile": "left",
+        "item_content_align": "center",
+        "item_content_align_mobile": "center",
         "count_custom": false,
         "count_font": "josefin_sans_n4",
         "count_size": 56,
@@ -613,7 +613,7 @@
     "related-products": {
       "type": "related-products",
       "custom_css": [
-        "[class*=\"vendor\"] { padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "",
