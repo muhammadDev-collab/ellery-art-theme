@@ -196,95 +196,138 @@
 
           {%- if is_size_option -%}
             <style>
+              /* ── Size variant list ── */
               .size-variant-list {
                 display: flex;
                 flex-direction: column;
                 gap: 2px;
                 width: 100%;
               }
+
+              /* ── Row: mobile first ── */
               .size-variant-item {
                 display: grid;
-                grid-template-columns: 60px 1px 90px 1fr 1px auto;
+                grid-template-columns: 40px 1px minmax(0, 80px) 1fr 1px minmax(60px, auto);
                 align-items: center;
                 background: #ffffff;
                 border: 1px solid #e5e5e5;
-                border-radius: 0px;
+                border-radius: 0;
                 overflow: hidden;
                 cursor: pointer;
                 transition: border-color 0.2s;
-                min-height: 42px;
+                min-height: 44px;
               }
-              @media(max-width:749px){
-              .size-variant-item {
-                    display: grid;
-    grid-template-columns: 33px 1px 85px 1fr 1px auto;
-    align-items: center;
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 0px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.2s;
 
-              
+              /* ── Row: tablet and up ── */
+              @media screen and (min-width: 750px) {
+                .size-variant-item {
+                  grid-template-columns: 60px 1px minmax(0, 100px) 1fr 1px minmax(80px, auto);
+                  min-height: 46px;
+                }
               }
-              
-              }
+
               .size-variant-item:hover { border-color: #163bbc; }
-              .size-variant-item.is-selected { border-color: #163bbc; }
+              .size-variant-item.is-selected { border-color: #163bbc; border-width: 2px; }
               .size-variant-item.is-disabled { opacity: 0.4; cursor: not-allowed; }
               .size-variant-item.is-disabled:hover { border-color: #e5e5e5; }
+
+              /* ── Short (size code) ── */
               .size-variant__short {
                 text-align: center;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 700;
-                padding: 0 10px;
+                padding: 0 6px;
                 color: #111;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
+              @media screen and (min-width: 750px) {
+                .size-variant__short {
+                  font-size: 13px;
+                  padding: 0 10px;
+                }
+              }
+
+              /* ── Divider ── */
               .size-variant__divider {
                 width: 1px;
-                height: 30px;
+                height: 28px;
                 background: #e5e5e5;
                 flex-shrink: 0;
+                align-self: center;
               }
+
+              /* ── Badge (Most Popular / Best Value) ── */
               .size-variant__badge {
-                text-align: left;
-                font-size: 11px;
+                font-size: 10px;
                 font-weight: 600;
                 font-style: normal;
                 letter-spacing: 0;
                 text-transform: none;
                 color: #888;
-                padding: 0 10px;
+                padding: 0 6px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
+              @media screen and (min-width: 750px) {
+                .size-variant__badge {
+                  font-size: 11px;
+                  padding: 0 10px;
+                }
+              }
+
+              /* ── Label (long name) ── */
               .size-variant__label {
-                   font-style: italic;
-    position: relative;
-    font-size: 14px;
-   
+                font-style: italic;
+                font-size: 12px;
+                padding: 0 6px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
               }
+              @media screen and (min-width: 750px) {
+                .size-variant__label {
+                  font-size: 14px;
+                  padding: 0 8px;
+                }
+              }
+
+              /* ── Prices ── */
               .size-variant__prices {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                padding: 0 14px;
+                padding: 0 10px;
                 gap: 1px;
-                padding-left: 85px;
+                white-space: nowrap;
               }
+              @media screen and (min-width: 750px) {
+                .size-variant__prices {
+                  padding: 0 14px;
+                }
+              }
+
               .size-variant__compare {
-                font-size: 11px;
+                font-size: 10px;
                 color: #999;
                 text-decoration: line-through;
               }
               .size-variant__price {
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 700;
                 color: #163bbc;
               }
               .size-variant__price--regular {
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 700;
                 color: #111;
+              }
+              @media screen and (min-width: 750px) {
+                .size-variant__compare { font-size: 11px; }
+                .size-variant__price,
+                .size-variant__price--regular { font-size: 13px; }
               }
             </style>
 
