@@ -179,7 +179,7 @@
         "liquid_w4jTbX"
       ],
       "custom_css": [
-        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"vendor\"] { padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "",
@@ -911,7 +911,7 @@
     "related-products": {
       "type": "related-products",
       "custom_css": [
-        "[class*=\"vendor\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"vendor\"] { padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "",
