@@ -204,26 +204,17 @@
                 width: 100%;
               }
 
-              /* ── Row: mobile first ── */
+              /* ── Row ── */
               .size-variant-item {
-                display: grid;
-                grid-template-columns: 40px 1px minmax(0, 80px) 1fr 1px minmax(60px, auto);
-                align-items: center;
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
                 background: #ffffff;
                 border: 1px solid #e5e5e5;
                 border-radius: 0;
                 cursor: pointer;
                 transition: border-color 0.2s;
                 min-height: 44px;
-                padding-block: 6px;
-              }
-
-              /* ── Row: tablet and up ── */
-              @media screen and (min-width: 750px) {
-                .size-variant-item {
-                  grid-template-columns: 36px 1px minmax(0, 72px) 1fr 1px minmax(70px, auto);
-                  min-height: 46px;
-                }
               }
 
               .size-variant-item:hover { border-color: #163bbc; }
@@ -233,59 +224,50 @@
 
               /* ── Short (size code) ── */
               .size-variant__short {
-                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                width: 44px;
                 font-size: 12px;
                 font-weight: 700;
-                padding: 0 6px;
                 color: #111;
                 white-space: nowrap;
-              }
-              @media screen and (min-width: 750px) {
-                .size-variant__short {
-                  font-size: 13px;
-                  padding: 0 10px;
-                }
+                padding: 8px 4px;
               }
 
               /* ── Divider ── */
               .size-variant__divider {
                 width: 1px;
-                height: 28px;
                 background: #e5e5e5;
                 flex-shrink: 0;
-                align-self: center;
+                align-self: stretch;
               }
 
               /* ── Badge (Most Popular / Best Value) ── */
               .size-variant__badge {
+                display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                width: 80px;
                 font-size: 10px;
                 font-weight: 600;
                 font-style: normal;
                 letter-spacing: 0;
                 text-transform: none;
                 color: #888;
-                padding: 0 6px;
-                white-space: nowrap;
-              }
-              @media screen and (min-width: 750px) {
-                .size-variant__badge {
-                  font-size: 11px;
-                  padding: 0 10px;
-                }
+                padding: 8px 8px;
               }
 
               /* ── Label (long name) ── */
               .size-variant__label {
+                display: flex;
+                align-items: center;
+                flex: 1 1 0;
                 font-style: italic;
-                font-size: 12px;
-                padding: 0 6px;
-                white-space: nowrap;
-              }
-              @media screen and (min-width: 750px) {
-                .size-variant__label {
-                  font-size: 14px;
-                  padding: 0 8px;
-                }
+                font-size: 13px;
+                padding: 8px 8px;
+                min-width: 0;
               }
 
               /* ── Prices ── */
@@ -293,14 +275,11 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                padding: 0 10px;
+                justify-content: center;
+                flex-shrink: 0;
+                padding: 8px 12px;
                 gap: 1px;
                 white-space: nowrap;
-              }
-              @media screen and (min-width: 750px) {
-                .size-variant__prices {
-                  padding: 0 14px;
-                }
               }
 
               .size-variant__compare {
@@ -317,11 +296,6 @@
                 font-size: 12px;
                 font-weight: 700;
                 color: #111;
-              }
-              @media screen and (min-width: 750px) {
-                .size-variant__compare { font-size: 11px; }
-                .size-variant__price,
-                .size-variant__price--regular { font-size: 13px; }
               }
             </style>
 

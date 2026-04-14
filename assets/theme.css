@@ -6183,7 +6183,7 @@ shopify-account::part(signed-out-avatar) {
 .product {
   grid: var(--product-grid, none);
   align-items: start;
-  gap: 120px;
+  gap: 40px;
   display: grid;
 }
 @media(max-width:749px){
