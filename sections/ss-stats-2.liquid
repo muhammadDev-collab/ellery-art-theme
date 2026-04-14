@@ -84,6 +84,7 @@
   {{ count_font | font_face: font_display: 'swap' }}
   {{ text_font | font_face: font_display: 'swap' }}
 
+  /* ── Section wrapper ── */
   .section-{{ section.id }} {
     border-top: solid {{ border_color }} {{ border_thickness }}px;
     border-bottom: solid {{ border_color }} {{ border_thickness }}px;
@@ -95,45 +96,60 @@
     overflow: hidden;
   }
 
+  /* ── Inner settings ── */
   .section-{{ section.id }}-settings {
     margin: 0 auto;
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
+  /* ── Stats grid: 1 col on smallest, then auto based on items_per_row ── */
   .stats-items-{{ section.id }} {
     display: grid;
-    grid-template-columns: repeat({{ items_per_row }}, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     margin-top: {{ items_mt_mobile }}px;
-    gap: 4px;
+    gap: 0;
   }
 
+  /* 2 columns from 480px */
+  @media screen and (min-width: 480px) {
+    .stats-items-{{ section.id }} {
+      grid-template-columns: repeat({{ items_per_row | at_most: 2 }}, 1fr);
+    }
+  }
+
+  /* ── Each stat item: stacked (number on top, label below) on mobile ── */
   .stats-item-{{ section.id }} {
     display: flex;
-    gap: 4px;
-    align-items: center;
-    justify-content: {{ item_content_horizontal_align_mobile }};
+    flex-direction: column;
+    align-items: {{ item_content_horizontal_align_mobile }};
+    justify-content: center;
+    text-align: {{ item_content_align_mobile }};
     transition: all 0.25s ease 0s;
-    padding: {{ item_padding_vertical_mobile }}px 0;
+    padding: 16px 12px;
     text-decoration: none;
+    gap: 4px;
   }
 
   .stats-item-{{ section.id }}:not(:last-child) {
-    border-bottom: 0px;
-    border-right: {{ item_border_thickness }}px solid {{ item_border_color }};
+    border-bottom: {{ item_border_thickness }}px solid {{ item_border_color }};
+    border-right: 0;
   }
 
+  /* ── Count wrapper ── */
   .stats-count-wrapper-{{ section.id }} {
     display: flex;
-    gap: 5px;
-    width: {{ item_width_mobile }}px;
-    flex-shrink: 0;
-    align-items: center;
+    flex-direction: row;
+    gap: 3px;
+    align-items: baseline;
     justify-content: {{ item_content_horizontal_align_mobile }};
+    width: auto;
+    flex-shrink: 0;
   }
 
+  /* ── Count number ── */
   .stats-count-text-{{ section.id }} {
     margin: 0;
     text-align: {{ item_content_align_mobile }};
@@ -143,8 +159,10 @@
     text-transform: unset;
     text-decoration: none;
     transition: all 0.25s ease 0s;
+    white-space: nowrap;
   }
 
+  /* ── Item label text ── */
   .stats-item-text-{{ section.id }} {
     width: 100%;
     text-align: {{ item_content_align_mobile }};
@@ -160,7 +178,7 @@
     transition: all 0.25s ease 0s;
   }
 
-  @media(min-width: 1024px) {
+  @media screen and (min-width: 1024px) {
 
     .section-{{ section.id }} {
       margin-top: {{ margin_top }}px;
@@ -171,7 +189,6 @@
     }
 
     .section-{{ section.id }}-settings {
-      padding: 0 5rem;
       padding-top: {{ padding_top }}px;
       padding-bottom: {{ padding_bottom }}px;
       padding-left: {{ padding_horizontal }}rem;
@@ -185,19 +202,21 @@
     }
 
     .stats-item-{{ section.id }} {
-      justify-content: {{ item_content_horizontal_align }};
-      padding: {{ item_padding_vertical }}px {{ item_padding_horizontal }}px {{ item_padding_vertical }}px 0;
+      flex-direction: column;
+      align-items: {{ item_content_horizontal_align }};
+      justify-content: center;
+      padding: {{ item_padding_vertical }}px {{ item_padding_horizontal }}px;
       gap: {{ item_gap }}px;
     }
 
     .stats-item-{{ section.id }}:not(:last-child) {
-      border-bottom: 0px;
+      border-bottom: 0;
       border-right: {{ item_border_thickness }}px solid {{ item_border_color }};
     }
 
     .stats-count-wrapper-{{ section.id }} {
       justify-content: {{ item_content_horizontal_align }};
-      width: {{ item_width }}px;
+      width: auto;
     }
 
     .stats-count-text-{{ section.id }} {
