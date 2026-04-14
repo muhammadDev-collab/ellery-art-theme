@@ -134,7 +134,6 @@
   }
 
   .stats-item-{{ section.id }}:not(:last-child) {
-    border-bottom: {{ item_border_thickness }}px solid {{ item_border_color }};
     border-right: 0;
   }
 
@@ -231,6 +230,22 @@
     .stats-item-text-{{ section.id }} * {
       font-size: {{ text_size }}px;
     }
+  }
+  @media(max-width:749px){
+
+.stats-items-{{ section.id }} {
+
+display: flex;
+    margin-top: 16px;
+    gap: 0;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+
+
+
+}
+
   }
 {%- endstyle -%}
 
