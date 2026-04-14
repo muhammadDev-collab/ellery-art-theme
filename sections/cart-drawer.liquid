@@ -13,12 +13,12 @@
     --background: 240, 240, 240;
   }
 
-  /* ── Header: top spacing + close button, no divider ── */
+  /* ── Header: hide built-in close button, use custom one instead ── */
   .cart-drawer.drawer::part(header) {
     border-block-end: none !important;
     min-height: 0 !important;
     padding: 0 !important;
-  
+    display: none !important;
   }
   .cart-drawer__top {
     display: flex;
