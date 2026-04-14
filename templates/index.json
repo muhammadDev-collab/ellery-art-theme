@@ -715,7 +715,7 @@
             "title": "",
             "button_text": "ANIMALS",
             "button_link": "shopify://collections/animals",
-            "button_style": "outline",
+            "button_style": "solid",
             "overlay_color": "#000000",
             "overlay_opacity": 30
           }
@@ -732,7 +732,7 @@
             "title": "",
             "button_text": "ABSTRACT",
             "button_link": "shopify://collections/abstract",
-            "button_style": "outline",
+            "button_style": "solid",
             "overlay_color": "#000000",
             "overlay_opacity": 30
           }
@@ -749,7 +749,7 @@
             "title": "",
             "button_text": "CHRISTIAN ART",
             "button_link": "shopify://collections/christian-art",
-            "button_style": "outline",
+            "button_style": "solid",
             "overlay_color": "#000000",
             "overlay_opacity": 30
           }
@@ -762,7 +762,7 @@
       ],
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "separate_section_with_border": true,
         "image_size": "auto",
         "show_text_outside": false,
