@@ -227,7 +227,7 @@
               }
 
               .size-variant-item:hover { border-color: #163bbc; }
-              .size-variant-item.is-selected { border-color: #163bbc; border-width: 2px; }
+              .size-variant-item.is-selected { border-color: #163bbc; outline: 1px solid #163bbc; }
               .size-variant-item.is-disabled { opacity: 0.4; cursor: not-allowed; }
               .size-variant-item.is-disabled:hover { border-color: #e5e5e5; }
 
@@ -239,8 +239,6 @@
                 padding: 0 6px;
                 color: #111;
                 white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
               }
               @media screen and (min-width: 750px) {
                 .size-variant__short {
