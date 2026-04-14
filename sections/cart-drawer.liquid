@@ -375,6 +375,20 @@ font-style: italic;  }
     opacity: 1;
   }
 
+  /* ── Footer slot: ensure full visibility ── */
+  .cart-drawer.drawer::part(footer) {
+    padding-block-end: 0 !important;
+    overflow-y: auto !important;
+    max-height: 60vh;
+  }
+
+  .cart-drawer__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
   /* ── Payment icons ── */
   .cart-drawer__payment-icons {
     display: flex;
