@@ -12,7 +12,7 @@
     "collection-banner": {
       "type": "collection-banner",
       "custom_css": [
-        "[class*=\"h1\"] {background-color: #f5f5f5 !important; padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
+        "[class*=\"h1\"] {padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
