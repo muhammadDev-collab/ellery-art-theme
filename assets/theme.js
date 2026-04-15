@@ -110,6 +110,47 @@ initialize_fn = function() {
       <slot part="scroller"></slot>
     `)
   );
+  if (this.hasAttribute("slide-mode")) {
+    const interval = parseFloat(this.getAttribute("slide-interval") || "3") * 1000;
+    const items = Array.from(this.firstElementChild.children);
+    const totalItems = items.length;
+    if (totalItems === 0) return;
+    let currentIndex = 0;
+    const scroller = this.firstElementChild;
+    scroller.style.cssText = "display: flex; overflow: hidden; width: 100%;";
+    items.forEach((item) => {
+      item.style.cssText = "flex: 0 0 100%; width: 100%; transition: none;";
+    });
+    const slideToNext = () => {
+      currentIndex = (currentIndex + 1) % totalItems;
+      const dir = __privateGet(this, _MarqueeText_instances, direction_get);
+      const slideIn = dir === -1 ? ["100%", "0%"] : ["-100%", "0%"];
+      const slideOut = dir === -1 ? ["0%", "-100%"] : ["0%", "100%"];
+      const incoming = items[currentIndex];
+      const outgoing = items[(currentIndex - 1 + totalItems) % totalItems];
+      incoming.style.cssText = `flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(${slideIn[0]});`;
+      outgoing.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
+      animate(incoming, { transform: slideIn.map(v => `translateX(${v})`) }, { duration: 0.5, easing: "ease-in-out" });
+      animate(outgoing, { transform: slideOut.map(v => `translateX(${v})`) }, { duration: 0.5, easing: "ease-in-out" }).finished.then(() => {
+        outgoing.style.cssText = "flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(-200%);";
+        incoming.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
+      });
+    };
+    items.forEach((item, i) => {
+      if (i === 0) {
+        item.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
+      } else {
+        item.style.cssText = "flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(-200%);";
+      }
+    });
+    scroller.style.cssText = "position: relative; overflow: hidden; width: 100%;";
+    let slideTimer = setInterval(slideToNext, interval);
+    if (this.hasAttribute("pause-on-hover")) {
+      this.addEventListener("pointerenter", () => { clearInterval(slideTimer); });
+      this.addEventListener("pointerleave", () => { slideTimer = setInterval(slideToNext, interval); });
+    }
+    return;
+  }
   const fragment = document.createDocumentFragment();
   const duplicateCount = Math.ceil(this.clientWidth / this.firstElementChild.clientWidth);
   for (let i = 1; i <= duplicateCount; ++i) {

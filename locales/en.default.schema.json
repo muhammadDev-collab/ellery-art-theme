@@ -1551,6 +1551,8 @@
         "to_right": "Left to right"
       },
       "pause_on_hover": "Pause on hover",
+      "slide_mode": "Slide mode (one item at a time)",
+      "slide_interval": "Seconds between slides",
       "typography_category": "Typography",
       "typography_category_info": "Font size gradually increases on intermediate screen sizes.",
       "text_font": "Text font",

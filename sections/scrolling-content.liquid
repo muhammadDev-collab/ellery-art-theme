@@ -20,6 +20,10 @@
       {% if section.settings.pause_on_hover %}
         pause-on-hover
       {% endif %}
+      {% if section.settings.slide_mode %}
+        slide-mode
+        slide-interval="{{ section.settings.slide_interval }}"
+      {% endif %}
       class="scrolling-content"
     >
       <div class="scrolling-content__item">
@@ -91,6 +95,22 @@
       "id": "pause_on_hover",
       "label": "t:sections.scrolling_content.pause_on_hover",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "slide_mode",
+      "label": "t:sections.scrolling_content.slide_mode",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "slide_interval",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.scrolling_content.slide_interval",
+      "default": 3
     },
     {
       "type": "header",

@@ -6750,7 +6750,7 @@ shopify-account::part(signed-out-avatar) {
 
 .scrolling-content__image > img {
   max-width: none;
-  height: 60px;
+  height: 49px;
   width: auto;
   object-fit: contain;
 }

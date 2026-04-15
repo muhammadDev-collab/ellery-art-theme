@@ -1551,6 +1551,8 @@
         "to_right": "Gauche vers la droite"
       },
       "pause_on_hover": "Pause au survol",
+      "slide_mode": "Mode diaporama (un élément à la fois)",
+      "slide_interval": "Secondes entre les diapositives",
       "typography_category": "Typographie",
       "typography_category_info": "Les tailles de police augmentent progressivement sur les tailles d'écran intermédiaires.",
       "text_font": "Police du texte",
