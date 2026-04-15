@@ -105,33 +105,44 @@ initialize_fn = function() {
   if (this.children[0]?.childElementCount === 0) {
     return;
   }
-  this.attachShadow({ mode: "open" }).appendChild(
-    document.createRange().createContextualFragment(`
-      <slot part="scroller"></slot>
-    `)
-  );
-  const scroller = __privateGet(this, _MarqueeText_instances, scroller_get);
-  const items = Array.from(this.firstElementChild.children);
-  const totalItems = items.length;
-  if (totalItems === 0) return;
-  const itemWidth = items[0].offsetWidth;
-  const interval = parseFloat(this.getAttribute("scroll-interval") || "2") * 1000;
-  const slideDuration = Math.max(0.2, 1 / parseFloat(this.getAttribute("speed") || "0.3"));
-  const dir = __privateGet(this, _MarqueeText_instances, direction_get); // -1 = left, 1 = right
-  let offset = 0;
-  // Duplicate items so the loop never runs out
-  const clone = this.firstElementChild.cloneNode(true);
+  const host = this;
+  const row = host.firstElementChild; // .scrolling-content__item
+  const images = Array.from(row.children); // all .scrolling-content__image divs
+  if (images.length === 0) return;
+  const interval = parseFloat(host.getAttribute("scroll-interval") || "2") * 1000;
+  const slideDuration = Math.max(0.2, 1 / parseFloat(host.getAttribute("speed") || "0.3"));
+  // Make host a clipping container, row a sliding track
+  host.style.overflow = "hidden";
+  host.style.display = "block";
+  row.style.cssText = "display: flex; align-items: center; will-change: transform;";
+  // Measure one image's full width (including its gap margins)
+  const firstImg = images[0];
+  const imgStyle = getComputedStyle(firstImg);
+  const imgOuterWidth = firstImg.offsetWidth
+    + parseFloat(imgStyle.marginLeft || 0)
+    + parseFloat(imgStyle.marginRight || 0);
+  // Append a clone of the row after itself so we always have content to scroll into
+  const clone = row.cloneNode(true);
   clone.setAttribute("aria-hidden", "true");
-  clone.style.cssText = `position: absolute; inset-inline-start: ${totalItems * itemWidth}px; top: 0;`;
-  this.firstElementChild.appendChild(clone);
+  clone.style.cssText = "display: flex; align-items: center; flex-shrink: 0; position: absolute; left: 0; top: 0; transform: translateX(" + (images.length * imgOuterWidth) + "px);";
+  host.appendChild(clone);
+  // Wrap both in a track div so we translate one element
+  const track = document.createElement("div");
+  track.style.cssText = "display: flex; align-items: center; position: relative; will-change: transform;";
+  host.insertBefore(track, row);
+  track.appendChild(row);
+  track.appendChild(clone);
+  const totalWidth = images.length * imgOuterWidth;
+  let offset = 0;
   const step = () => {
-    offset += dir === -1 ? itemWidth : -itemWidth;
-    // Reset silently when we've scrolled one full set
-    if (Math.abs(offset) >= totalItems * itemWidth) {
+    const from = offset;
+    offset -= imgOuterWidth; // always scroll left by one image
+    // When we've scrolled a full set, silently reset to 0
+    if (Math.abs(offset) >= totalWidth) {
       offset = 0;
-      scroller.style.transform = `translateX(${offset}px)`;
     }
-    animate(scroller, { transform: [`translateX(${offset - (dir === -1 ? itemWidth : -itemWidth)}px)`, `translateX(${offset}px)`] }, { duration: slideDuration, easing: "ease-in-out" }).finished.then(() => {
+    animate(track, { transform: [`translateX(${from}px)`, `translateX(${offset}px)`] }, { duration: slideDuration, easing: "ease-in-out" }).finished.then(() => {
+      track.style.transform = `translateX(${offset}px)`;
       setTimeout(step, interval);
     });
   };

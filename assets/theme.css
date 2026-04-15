@@ -6718,8 +6718,6 @@ shopify-account::part(signed-out-avatar) {
 }
 
 .scrolling-content {
-  text-align: start;
-  white-space: nowrap;
   -webkit-user-select: none;
   user-select: none;
   display: block;
@@ -6727,38 +6725,34 @@ shopify-account::part(signed-out-avatar) {
   overflow: hidden;
 }
 
-.scrolling-content[direction="right"] {
-  text-align: end;
-}
-
-.scrolling-content::part(scroller) {
-  min-width: max-content;
-  display: inline-flex;
-  position: relative;
-}
-
 .scrolling-content__item {
-  flex-shrink: 0;
-  align-items: center;
   display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-
-.scrolling-content__item > * {
+.scrolling-content__item > *,
+.scrolling-content__item[aria-hidden="true"] > * {
   margin-inline-start: calc(var(--scrolling-content-content-gap) / 2);
   margin-inline-end: calc(var(--scrolling-content-content-gap) / 2);
+  flex-shrink: 0;
+}
+
+.scrolling-content__image {
+  flex-shrink: 0;
 }
 
 .scrolling-content__image > img {
-  max-width: none;
-  height: 49px;
+  display: block;
+  height: 50px;
   width: auto;
+  max-width: none;
   object-fit: contain;
 }
 
 @media screen and (min-width: 700px) {
   .scrolling-content__image > img {
-    height: 50px;
+    height: 60px;
   }
 }
 
