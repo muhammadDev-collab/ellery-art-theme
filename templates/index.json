@@ -752,7 +752,7 @@
         "overlap_image": false,
         "content_alignment": "center",
         "text_alignment": "start",
-        "spacing": "md",
+        "spacing": "xs",
         "subheading": "",
         "title": "SHOP BY COLLECTION",
         "content": "<p> </p>"
