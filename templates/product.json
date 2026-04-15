@@ -235,6 +235,10 @@
             "video_6": "shopify://files/videos/DailyInspoVideo.mov"
           }
         },
+        "separator_wk3YaC": {
+          "type": "separator",
+          "settings": {}
+        },
         "accordion_H8Wz8j": {
           "type": "accordion",
           "settings": {
@@ -273,6 +277,7 @@
         "section_vso_theme_sections_delivery_information_Lq3JXd",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
         "in_the_wild_JfpLWB",
+        "separator_wk3YaC",
         "accordion_H8Wz8j",
         "accordion_7pkFiz"
       ],
