@@ -440,10 +440,10 @@
           </button>
         </buy-buttons>
 
-        {%- assign shipping_min = section.settings.free_shipping_amount -%}
+        {%- assign shipping_min = settings.free_shipping_threshold | times: 100 -%}
         <div class="product-sticky-trust sm-min:hidden">
           <p class="product-sticky-trust__shipping">
-            <strong>Free shipping</strong>{% if shipping_min != blank %} over {{ shipping_min }}{% endif %} for Sweden
+            <strong>Free shipping</strong>{% if shipping_min > 0 %} over {{ shipping_min | money_without_trailing_zeros }}{% endif %} for Sweden
           </p>
           <p class="product-sticky-trust__badge">
             <span class="product-sticky-trust__check" aria-hidden="true">&#10003;</span>
@@ -541,13 +541,6 @@
       "id": "show_sticky_add_to_cart",
       "label": "t:sections.main_product.show_sticky_add_to_cart",
       "default": true
-    },
-    {
-      "type": "text",
-      "id": "free_shipping_amount",
-      "label": "Free shipping minimum amount",
-      "placeholder": "e.g. 500 kr",
-      "info": "Shown in the sticky bar on mobile, e.g. '500 kr'. Leave blank to hide the amount."
     },
     {
       "type": "checkbox",
