@@ -755,7 +755,7 @@
         "spacing": "xs",
         "subheading": "",
         "title": "SHOP BY COLLECTION",
-        "content": "<p> </p>"
+        "content": ""
       }
     },
     "collection_list_nK7AgD": {
@@ -818,6 +818,7 @@
         "collection_rNQxb6",
         "collection_RqMamL"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
         "color_scheme": "scheme-1",
