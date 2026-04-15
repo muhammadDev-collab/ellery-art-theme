@@ -775,6 +775,191 @@
         "title": "SHOP BY COLLECTION",
         "content": ""
       }
+    },
+    "vso_testimonials_14_zfFbeR": {
+      "type": "vso-testimonials-14",
+      "blocks": {
+        "review_summary_zmzFpX": {
+          "type": "review_summary",
+          "settings": {
+            "show_block": true,
+            "text": "Rated 4.8 / 5",
+            "custom_font": false,
+            "font": "sans_serif_n4",
+            "size_desktop": 14,
+            "size_mobile": 13,
+            "line_height": 140,
+            "font_weight": 500,
+            "text_color": "#000000",
+            "stars_count": 5,
+            "bg_color": "#efefef",
+            "stars_color": "#815c4aff",
+            "empty_stars_color": "#BDBDBD",
+            "stars_size": 16,
+            "gap": 8,
+            "padding_y": 8,
+            "padding_x": 14,
+            "radius": 8,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 14,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 14
+          }
+        },
+        "heading_D94d8V": {
+          "type": "heading",
+          "settings": {
+            "heading": "Customer Reviews",
+            "heading_custom_font": false,
+            "heading_as": "h2",
+            "heading_font": "sans_serif_n4",
+            "heading_size_desktop": 40,
+            "heading_size_mobile": 32,
+            "heading_line_height": 130,
+            "heading_color": "#000000",
+            "heading_font_weight": 700,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 0,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 0
+          }
+        },
+        "star_card_qD4rb4": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "card_image": "shopify://shop_images/FloatFramevitCanvasMockup-R-5x7_0fc47f2c-b3f6-4e76-a0cb-7301ffb0aa6b.jpg",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_MXTLDb": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_3ka87c": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_iFjzmB": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_MVmWQz": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        }
+      },
+      "block_order": [
+        "review_summary_zmzFpX",
+        "heading_D94d8V",
+        "star_card_qD4rb4",
+        "star_card_MXTLDb",
+        "star_card_3ka87c",
+        "star_card_iFjzmB",
+        "star_card_MVmWQz"
+      ],
+      "name": "VSO - Testimonials 14",
+      "settings": {
+        "enable_advanced_settings": false,
+        "background_style": "gradient",
+        "background_color": "#F7F7F7",
+        "background_gradient": "linear-gradient(180deg, rgba(247, 247, 247, 1), rgba(255, 255, 255, 1) 100%)",
+        "full_width_desktop": true,
+        "section_border_radius": 12,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 40,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "block_background_color": "#ffffff",
+        "block_padding": 24,
+        "enable_full_width_card_image": false,
+        "card_image_max_height_desktop": 260,
+        "card_image_max_height_mobile": 200,
+        "block_elements_gap": 10,
+        "block_border_radius": 8,
+        "desktop_card_width": 350,
+        "desktop_blocks_gap": 32,
+        "mobile_blocks_gap": 16,
+        "enable_equal_height": false,
+        "block_border_width": 0,
+        "block_border_color": "#e0e0e0",
+        "enable_card_shadow": true,
+        "card_shadow_color": "#696969",
+        "star_size": 18,
+        "star_color": "#030303",
+        "custom_block_title_font": false,
+        "block_title_as": "h3",
+        "block_title_font": "sans_serif_n4",
+        "block_title_size_desktop": 18,
+        "block_title_size_mobile": 16,
+        "block_title_line_height": 130,
+        "block_title_color": "#111111",
+        "custom_block_description_font": false,
+        "block_description_as": "p",
+        "block_description_font": "sans_serif_n4",
+        "block_description_size_desktop": 16,
+        "block_description_size_mobile": 14,
+        "block_description_line_height": 150,
+        "block_description_color": "#232323",
+        "block_description_font_weight": 400,
+        "author_circle_size": 40,
+        "author_circle_size_mobile": 36,
+        "author_circle_background_color": "#111111",
+        "author_circle_text_color": "#ffffff",
+        "author_container_gap": 8,
+        "block_author_size_desktop": 14,
+        "block_author_size_mobile": 13,
+        "block_author_line_height": 140,
+        "block_author_color": "#333333",
+        "block_author_font_weight": 600,
+        "block_verified_size_desktop": 12,
+        "block_verified_size_mobile": 11,
+        "block_verified_line_height": 130,
+        "block_verified_color": "#888888",
+        "block_verified_font_weight": 400,
+        "show_navigation_desktop": true,
+        "show_navigation_mobile": true,
+        "nav_arrow_size": 50,
+        "nav_arrow_bg_color": "#ffffff",
+        "nav_arrow_icon_color": "#6b7280",
+        "nav_arrow_border_width": 0,
+        "nav_arrow_border_color": "#e5e7eb",
+        "nav_arrow_shadow_enable": true,
+        "nav_arrow_shadow_color": "#000000",
+        "nav_arrow_gap": 10,
+        "nav_arrow_top_spacing": 0
+      }
     }
   },
   "order": [
@@ -791,6 +976,7 @@
     "ss_trust_box_pC3RAi",
     "multiple-media-with-text",
     "shop_the_look_WyyNnA",
-    "collection_list_nK7AgD"
+    "collection_list_nK7AgD",
+    "vso_testimonials_14_zfFbeR"
   ]
 }
