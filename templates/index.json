@@ -97,6 +97,8 @@
         "scrolling_speed": 0.1,
         "scroll_direction": "right",
         "pause_on_hover": true,
+        "slide_mode": true,
+        "slide_interval": 3,
         "text_font": "heading",
         "text_font_size_mobile": 10,
         "text_font_size_desktop": 20,
