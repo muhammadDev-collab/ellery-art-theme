@@ -112,48 +112,51 @@ initialize_fn = function() {
   );
   if (this.hasAttribute("slide-mode")) {
     const interval = parseFloat(this.getAttribute("slide-interval") || "3") * 1000;
-    const itemsPerPage = 5;
-    const allItems = Array.from(this.firstElementChild.children);
-    const totalItems = allItems.length;
-    if (totalItems === 0) return;
-    // Build pages: each page is a group of itemsPerPage items
-    const pages = [];
-    for (let i = 0; i < totalItems; i += itemsPerPage) {
-      pages.push(allItems.slice(i, i + itemsPerPage));
-    }
-    const totalPages = pages.length;
-    const container = this.firstElementChild;
-    // Wrap each page group in a page div
-    const pageDivs = pages.map((group, pi) => {
-      const page = document.createElement("div");
-      page.className = "scrolling-content__page";
-      page.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: ${pi === 0 ? "relative" : "absolute"}; inset: 0; width: 100%; transform: translateX(${pi === 0 ? "0%" : "100%"});`;
-      group.forEach(item => page.appendChild(item));
-      return page;
+    const host = this;
+    const row = this.firstElementChild; // the single .scrolling-content__item div
+    // Make the row fill full width with all logos spaced evenly
+    row.style.cssText = "display: flex; align-items: center; justify-content: space-around; width: 100%; box-sizing: border-box;";
+    // Remove per-item margins so justify-content controls spacing
+    Array.from(row.children).forEach(child => {
+      child.style.marginInlineStart = "0";
+      child.style.marginInlineEnd = "0";
     });
-    // Clear container and add page divs
-    container.innerHTML = "";
-    container.style.cssText = "position: relative; overflow: hidden; width: 100%; display: flex; align-items: center;";
-    pageDivs.forEach(p => container.appendChild(p));
-    let currentPage = 0;
-    const slideToNext = () => {
-      const outgoing = pageDivs[currentPage];
-      currentPage = (currentPage + 1) % totalPages;
-      const incoming = pageDivs[currentPage];
-      const dir = __privateGet(this, _MarqueeText_instances, direction_get);
+    // Wrap the host as a clipping container
+    host.style.overflow = "hidden";
+    host.style.display = "block";
+    host.style.width = "100%";
+    // Clone the row so we can slide a copy back in each loop
+    let animating = false;
+    const dir = __privateGet(host, _MarqueeText_instances, direction_get);
+    const runLoop = () => {
+      if (animating) return;
+      animating = true;
+      const clone = row.cloneNode(true);
+      clone.style.cssText = "display: flex; align-items: center; justify-content: space-around; width: 100%; box-sizing: border-box; position: absolute; inset: 0;";
       const enterFrom = dir === -1 ? "100%" : "-100%";
-      const exitTo = dir === -1 ? "-100%" : "100%";
-      incoming.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: absolute; inset: 0; width: 100%; transform: translateX(${enterFrom});`;
-      animate(incoming, { transform: [`translateX(${enterFrom})`, "translateX(0%)"] }, { duration: 0.6, easing: "ease-in-out" });
-      animate(outgoing, { transform: ["translateX(0%)", `translateX(${exitTo})`] }, { duration: 0.6, easing: "ease-in-out" }).finished.then(() => {
-        outgoing.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: absolute; inset: 0; width: 100%; transform: translateX(100%);`;
-        incoming.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: relative; inset: 0; width: 100%; transform: translateX(0%);`;
+      const exitTo   = dir === -1 ? "-100%" : "100%";
+      clone.style.transform = `translateX(${enterFrom})`;
+      host.style.position = "relative";
+      row.style.position = "relative";
+      host.appendChild(clone);
+      animate(clone, { transform: [`translateX(${enterFrom})`, "translateX(0%)"] }, { duration: 0.6, easing: "ease-in-out" });
+      animate(row,   { transform: ["translateX(0%)", `translateX(${exitTo})`]   }, { duration: 0.6, easing: "ease-in-out" }).finished.then(() => {
+        host.removeChild(row);
+        clone.style.position = "relative";
+        clone.style.transform = "";
+        // swap: clone becomes the live row for next iteration
+        row.style.transform = "";
+        host.appendChild(row);
+        row.style.position = "absolute";
+        row.style.inset = "0";
+        row.style.transform = "translateX(100%)";
+        animating = false;
       });
     };
-    let slideTimer = setInterval(slideToNext, interval);
+    let slideTimer = setInterval(runLoop, interval);
     if (this.hasAttribute("pause-on-hover")) {
       this.addEventListener("pointerenter", () => { clearInterval(slideTimer); });
-      this.addEventListener("pointerleave", () => { slideTimer = setInterval(slideToNext, interval); });
+      this.addEventListener("pointerleave", () => { slideTimer = setInterval(runLoop, interval); });
     }
     return;
   }

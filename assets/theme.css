@@ -6743,6 +6743,28 @@ shopify-account::part(signed-out-avatar) {
   display: flex;
 }
 
+.scrolling-content[slide-mode] {
+  width: 100%;
+  white-space: normal;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrolling-content[slide-mode] .scrolling-content__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.scrolling-content[slide-mode] .scrolling-content__item > * {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  flex-shrink: 0;
+}
+
 .scrolling-content__item > * {
   margin-inline-start: calc(var(--scrolling-content-content-gap) / 2);
   margin-inline-end: calc(var(--scrolling-content-content-gap) / 2);
