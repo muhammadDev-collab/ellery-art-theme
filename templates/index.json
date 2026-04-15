@@ -420,6 +420,7 @@
           "type": "press_item",
           "settings": {
             "quote": "The art and the purpose behind it really makes people talk",
+            "logo": "shopify://shop_images/BuzzFeed_News_logo_2018_svg.png",
             "publication_name": "BuzzFeed"
           }
         },
@@ -427,6 +428,7 @@
           "type": "press_item",
           "settings": {
             "quote": "Some of the best art in the world. Plain and simple.",
+            "logo": "shopify://shop_images/jux_logo_white.png",
             "publication_name": "Variety"
           }
         },
