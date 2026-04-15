@@ -113,8 +113,8 @@
     {% endif %}
   {% else %}
     <div class="ai-price-container-{{ ai_gen_id }}">
-      <span class="ai-compare-price-{{ ai_gen_id }}">€99.00</span>
-      <span class="ai-price-{{ ai_gen_id }} ai-price-{{ ai_gen_id }}--on-sale">€79.00</span>
+      <span class="ai-compare-price-{{ ai_gen_id }}">{{ 9900 | money_without_trailing_zeros }}</span>
+      <span class="ai-price-{{ ai_gen_id }} ai-price-{{ ai_gen_id }}--on-sale">{{ 7900 | money_without_trailing_zeros }}</span>
       {% if block.settings.show_sale_badge %}
         <span class="ai-price-badge-{{ ai_gen_id }}">
           {% if block.settings.sale_badge_text != blank %}

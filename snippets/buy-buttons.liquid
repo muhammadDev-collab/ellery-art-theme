@@ -183,8 +183,8 @@
               function formatMoney(cents) {
                 var amount = cents / 100;
                 return window.Shopify && Shopify.formatMoney
-                  ? Shopify.formatMoney(cents, '€{% raw %}{{amount_no_decimals}}{% endraw %}')
-                  : '€' + Math.round(amount);
+                  ? Shopify.formatMoney(cents, {{ shop.money_format | json }})
+                  : {{ shop.currency_symbol | json }} + Math.round(amount);
               }
 
               document.addEventListener('variant:change', function (e) {
