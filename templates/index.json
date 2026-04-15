@@ -743,6 +743,7 @@
         "image_with_text_YmWQNY",
         "image_with_text_KJNAGc"
       ],
+      "custom_css": [],
       "name": "t:sections.multi_column.presets.multi_column.name",
       "settings": {
         "color_scheme": "scheme-1",
@@ -750,7 +751,7 @@
         "columns_per_row": 3,
         "stack_on_mobile": false,
         "overlap_image": false,
-        "content_alignment": "center",
+        "content_alignment": "start",
         "text_alignment": "start",
         "spacing": "xs",
         "subheading": "",
