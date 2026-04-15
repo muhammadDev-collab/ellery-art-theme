@@ -779,10 +779,21 @@
     "vso_testimonials_14_zfFbeR": {
       "type": "vso-testimonials-14",
       "blocks": {
+        "star_card_qD4rb4": {
+          "type": "star_card",
+          "settings": {
+            "title": "Love The Art",
+            "description": "<em>Fits perfect it my livingroom</em>",
+            "card_image": "shopify://shop_images/FloatFramevitCanvasMockup-R-5x7_0fc47f2c-b3f6-4e76-a0cb-7301ffb0aa6b.jpg",
+            "author": "Sarah M.",
+            "author_subtitle": "2025 / 05 / 03",
+            "verified_text": "Verified Rating"
+          }
+        },
         "star_card_4H4fCw": {
           "type": "star_card",
           "settings": {
-            "title": "",
+            "title": "Great Art",
             "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
             "author": "Sarah M.",
             "author_subtitle": "3 days ago",
@@ -874,17 +885,6 @@
             "spacing_bottom_mobile": 0
           }
         },
-        "star_card_qD4rb4": {
-          "type": "star_card",
-          "settings": {
-            "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "card_image": "shopify://shop_images/FloatFramevitCanvasMockup-R-5x7_0fc47f2c-b3f6-4e76-a0cb-7301ffb0aa6b.jpg",
-            "author": "Sarah M.",
-            "author_subtitle": "3 days ago",
-            "verified_text": "Verified Rating"
-          }
-        },
         "star_card_MXTLDb": {
           "type": "star_card",
           "settings": {
@@ -927,6 +927,7 @@
         }
       },
       "block_order": [
+        "star_card_qD4rb4",
         "star_card_4H4fCw",
         "star_card_z8MwJX",
         "star_card_yDG6aV",
@@ -934,7 +935,6 @@
         "star_card_HVzLQk",
         "review_summary_zmzFpX",
         "heading_D94d8V",
-        "star_card_qD4rb4",
         "star_card_MXTLDb",
         "star_card_3ka87c",
         "star_card_iFjzmB",
