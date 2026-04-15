@@ -561,6 +561,7 @@
       "block_order": [
         "image-1"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "reveal_on_scroll": true,
@@ -700,6 +701,63 @@
         "popover_title": "Shop the wall"
       }
     },
+    "multi_column_NyGtUQ": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_M3D8nM": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/2_8699ecab-9d71-4613-811c-ddb758bf90bf.png",
+            "title": "<em>FAITH ON YOUR WALLS</em>",
+            "heading_tag": "h4",
+            "content": "<p>Bring peace, purpose, and inspiration into your space.</p>",
+            "link_url": "shopify://collections/christian-art",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "image_with_text_YmWQNY": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/1_0a6e50b9-c243-4bc5-9a15-ad4881fa3654.png",
+            "title": "<em>SHAPE YOUR SPACE</em>",
+            "heading_tag": "h4",
+            "content": "<p>Modern forms and colors that elevate any room.</p>",
+            "link_url": "shopify://collections/abstract",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "image_with_text_KJNAGc": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/2_63176965-8f97-4b97-9f1e-b37c2f3edbde.png",
+            "title": "<em>ART WITH CHARACTER</em>",
+            "heading_tag": "h4",
+            "content": "<p>Playful, bold, and full of personality.</p>",
+            "link_url": "shopify://collections/animals",
+            "link_text": "SHOP NOW"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_M3D8nM",
+        "image_with_text_YmWQNY",
+        "image_with_text_KJNAGc"
+      ],
+      "name": "t:sections.multi_column.presets.multi_column.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "SHOP BY COLLECTION",
+        "content": "<p> </p>"
+      }
+    },
     "collection_list_nK7AgD": {
       "type": "collection-list",
       "blocks": {
@@ -765,11 +823,11 @@
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,
         "image_size": "auto",
-        "show_text_outside": false,
-        "space_items": true,
+        "show_text_outside": true,
+        "space_items": false,
         "stack_collections": true,
         "collections_per_row_desktop": 3,
-        "stack_collections_mobile": true,
+        "stack_collections_mobile": false,
         "collections_per_row_mobile": "1",
         "subheading": "",
         "title": "SHOP BY COLLECTION",
@@ -791,6 +849,7 @@
     "ss_trust_box_pC3RAi",
     "multiple-media-with-text",
     "shop_the_look_WyyNnA",
+    "multi_column_NyGtUQ",
     "collection_list_nK7AgD"
   ]
 }
