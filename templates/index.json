@@ -58,36 +58,13 @@
     "scrolling-content": {
       "type": "scrolling-content",
       "blocks": {
-        "text_pHMxHV": {
-          "type": "text",
-          "settings": {
-            "text": "Limited Edition"
-          }
-        },
-        "text_UUmHw7": {
-          "type": "text",
-          "settings": {
-            "text": "Made in Sweden"
-          }
-        },
-        "text_rEmxpx": {
-          "type": "text",
-          "settings": {
-            "text": "UV-Resistant"
-          }
-        },
-        "text_JdawKd": {
-          "type": "text",
-          "settings": {
-            "text": "Free Shipping"
-          }
+        "image_jD9FDA": {
+          "type": "image",
+          "settings": {}
         }
       },
       "block_order": [
-        "text_pHMxHV",
-        "text_UUmHw7",
-        "text_rEmxpx",
-        "text_JdawKd"
+        "image_jD9FDA"
       ],
       "custom_css": [
         "p {line-height: 1.2 !important;}"
