@@ -124,7 +124,7 @@
             "selector_style": "block",
             "swatch_selector_style": "swatch",
             "variant_image_options": "",
-            "size_chart_page": ""
+            "size_chart_page": "sizing-chart"
           }
         },
         "modal_mNQWbp": {
@@ -235,13 +235,17 @@
             "video_6": "shopify://files/videos/DailyInspoVideo.mov"
           }
         },
+        "separator_wk3YaC": {
+          "type": "separator",
+          "settings": {}
+        },
         "accordion_H8Wz8j": {
           "type": "accordion",
           "settings": {
             "show_below_gallery": true,
             "icon": "none",
             "title": "PRODUCT INFORMATION ",
-            "content": "<p><strong>Canvas Print</strong></p><ul><li>Printed on 350g premium matte canvas with a rich textured surface</li><li>Hand-stretched over solid Nordic pine wood frames</li><li>Delivered ready to hang with mounting included<br/></li></ul><p><strong>Floating Frame</strong></p><ul><li>Minimal floating frame designed to elevate the artwork</li><li>Creates a subtle gallery-style shadow gap</li><li>Available in black, white, oak, and dark oak<br/></li></ul><p><strong>Quality & Production</strong></p><ul><li>Each artwork is made to order to ensure the highest quality</li><li>Securely packaged to guarantee safe delivery</li><li>Designed for a true gallery-quality finish</li></ul>",
+            "content": "<p><strong>Canvas Print</strong></p><ul><li>Printed on 350g premium matte canvas with a rich textured surface</li><li>Hand-stretched over solid Nordic pine wood frames</li><li>Delivered ready to hang with mounting included<br/></li></ul><p><strong>Floating Frame</strong></p><ul><li>Minimal floating frame designed to elevate the artwork</li><li>Creates a subtle gallery-style shadow gap</li><li>Available in black, white, oak, and dark oak<br/></li></ul>",
             "liquid": "",
             "page": ""
           }
@@ -273,6 +277,7 @@
         "section_vso_theme_sections_delivery_information_Lq3JXd",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
         "in_the_wild_JfpLWB",
+        "separator_wk3YaC",
         "accordion_H8Wz8j",
         "accordion_7pkFiz"
       ],
@@ -626,26 +631,47 @@
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": "",
-        "title": "<strong>You may also like </strong>",
+        "title": "You may also like",
         "content": ""
       }
     },
     "1774524948d3fc03ed": {
       "type": "apps",
       "blocks": {
-        "judge_me_reviews_review_widget_GkDcmn": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "judge_me_reviews_videos_carousel_qqNH3h": {
+          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "disabled": true,
           "settings": {
-            "review_data": "no_reviews",
-            "max_width": 1200,
-            "show_shop_reviews": true,
-            "empty_state": "hide_widget"
+            "show_sample_reviews": false,
+            "reviews_selection": "all",
+            "products": [],
+            "star_rating": "all",
+            "review_type": "all",
+            "max_reviews": 20,
+            "show_reviewer_name": true,
+            "stars_size": "small",
+            "text_size": "small",
+            "arrows_position": "hidden",
+            "max_width": 1100,
+            "corner_styling": "square",
+            "header_text_color": "#000000",
+            "card_color": "#7D7D7D",
+            "stars_color": "",
+            "text_color": "#FFFFFF",
+            "arrows_color": "#000000",
+            "show_drop_shadow": false,
+            "show_border": false,
+            "border_color": "#108474",
+            "autoplay_media": true,
+            "transition_speed": 5,
+            "carousel_style": "highlight",
+            "header_text": "SUPER HAPPY CUSTOMERS",
+            "show_average_rating": true
           }
         }
       },
       "block_order": [
-        "judge_me_reviews_review_widget_GkDcmn"
+        "judge_me_reviews_videos_carousel_qqNH3h"
       ],
       "settings": {
         "color_scheme": "",

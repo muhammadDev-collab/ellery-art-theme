@@ -19,7 +19,7 @@
           "settings": {
             "icon": "plant",
             "image": "shopify://shop_images/4497622.png",
-            "heading": "<h5><strong>LIMITED EDITION</strong></h5>",
+            "heading": "<h5>LIMITED EDITION</h5>",
             "text": "<p>Limited Edition, no restocks ever</p>",
             "image_block_bg": "#ffffff",
             "image_svg_color": ""
@@ -30,7 +30,7 @@
           "settings": {
             "icon": "plant",
             "image": "shopify://shop_images/Pngtree_made_in_sweden_stamp_design_3573703.png",
-            "heading": "<h5><strong>MADE IN SWEDEN</strong></h5>",
+            "heading": "<h5>MADE IN SWEDEN</h5>",
             "text": "<p>All our art are made and produced in Sweden</p>",
             "image_block_bg": "#ffffff",
             "image_svg_color": ""
@@ -41,7 +41,7 @@
           "settings": {
             "icon": "plant",
             "image": "shopify://shop_images/online-certificate.png",
-            "heading": "<h5><strong>CERTIFIED</strong></h5>",
+            "heading": "<h5>CERTIFIED</h5>",
             "text": "<p>Certificate of Authenticity included</p>",
             "image_block_bg": "#ffffff",
             "image_svg_color": ""
@@ -52,7 +52,7 @@
           "settings": {
             "icon": "plant",
             "image": "shopify://shop_images/fast-delivery.png",
-            "heading": "<h5><strong>FAST DELIVERY</strong></h5>",
+            "heading": "<h5>FAST DELIVERY</h5>",
             "text": "<p>99% of all orders arrives fast in 3-5 business days</p>",
             "image_block_bg": "#ffffff",
             "image_svg_color": ""
@@ -63,7 +63,7 @@
           "settings": {
             "icon": "plant",
             "image": "shopify://shop_images/badge.png",
-            "heading": "<p><strong>UV-RESISTANT</strong></p>",
+            "heading": "<h5>UV-RESISTANT</h5>",
             "text": "<p>Retains brilliance and surfaces from the sun</p>",
             "image_block_bg": "#ffffff",
             "image_svg_color": ""
@@ -144,7 +144,7 @@
         "newsletter": {
           "type": "newsletter",
           "settings": {
-            "title": "<strong>Members Club</strong>",
+            "title": "Members Club",
             "content": "<p>Sign up for instant discount! Plus hear about early access, new products and more.</p>",
             "button_background": "",
             "button_text_color": ""
@@ -153,7 +153,7 @@
         "text_L3Yney": {
           "type": "text",
           "settings": {
-            "title": "<strong>Our Mission</strong>",
+            "title": "Our Mission",
             "content": "<p>Our goal is to make high-quality art accessible to everyone, with pieces that fit all tastes and budgets. Whether you're looking to add a personal touch to your home or office, we're here to help you find the perfect piece.</p>",
             "enable_follow_on_shop": false
           }
@@ -163,7 +163,7 @@
           "settings": {
             "menu": "footer",
             "show_menu_title": true,
-            "menu_title": "<strong>CUSTOMER SERVICE</strong>"
+            "menu_title": "CUSTOMER SERVICE"
           }
         }
       },

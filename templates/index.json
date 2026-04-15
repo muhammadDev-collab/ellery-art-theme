@@ -420,28 +420,31 @@
           "type": "press_item",
           "settings": {
             "quote": "The art and the purpose behind it really makes people talk",
+            "logo": "shopify://shop_images/BuzzFeed_News_logo_2018_svg.png",
             "publication_name": "BuzzFeed"
-          }
-        },
-        "press_item_i4JePD": {
-          "type": "press_item",
-          "settings": {
-            "quote": "Some of the best art in the world. Plain and simple.",
-            "publication_name": "Variety"
           }
         },
         "press_item_AbWYLe": {
           "type": "press_item",
           "settings": {
             "quote": "Art so good that you will actually wanna have friends over",
+            "logo": "shopify://shop_images/VOGUE_LOGO_svg.png",
             "publication_name": "Wired"
+          }
+        },
+        "press_item_i4JePD": {
+          "type": "press_item",
+          "settings": {
+            "quote": "Some of the best art in the world. Plain and simple.",
+            "logo": "shopify://shop_images/jux_logo_white.png",
+            "publication_name": "Variety"
           }
         }
       },
       "block_order": [
         "press_item_iTD4Q8",
-        "press_item_i4JePD",
-        "press_item_AbWYLe"
+        "press_item_AbWYLe",
+        "press_item_i4JePD"
       ],
       "name": "Social Proof",
       "settings": {
@@ -561,6 +564,7 @@
       "block_order": [
         "image-1"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "reveal_on_scroll": true,
@@ -573,7 +577,7 @@
         "media_mobile_alignment_offset": 0,
         "text_alignment": "center",
         "subheading": "",
-        "title": "<em><strong>DISCOVER OUR EXTRAORDINARY ART</strong></em>",
+        "title": "DISCOVER OUR EXTRAORDINARY ART",
         "content": "<p>Made with care and unconditionally loved by our customers, artwork that exceeds all expectations.</p>",
         "button_1_text": "EXPLORE OUR GALLERY",
         "button_1_link": "shopify://collections/all-artwork",
@@ -700,6 +704,64 @@
         "popover_title": "Shop the wall"
       }
     },
+    "multi_column_NyGtUQ": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_M3D8nM": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/2_8699ecab-9d71-4613-811c-ddb758bf90bf.png",
+            "title": "<em>FAITH ON YOUR WALLS</em>",
+            "heading_tag": "h4",
+            "content": "<p>Bring peace, purpose, and inspiration into your space.</p>",
+            "link_url": "shopify://collections/christian-art",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "image_with_text_YmWQNY": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/1_0a6e50b9-c243-4bc5-9a15-ad4881fa3654.png",
+            "title": "<em>SHAPE YOUR SPACE</em>",
+            "heading_tag": "h4",
+            "content": "<p>Modern forms and colors that elevate any room.</p>",
+            "link_url": "shopify://collections/abstract",
+            "link_text": "SHOP NOW"
+          }
+        },
+        "image_with_text_KJNAGc": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/2_63176965-8f97-4b97-9f1e-b37c2f3edbde.png",
+            "title": "<em>ART WITH CHARACTER</em>",
+            "heading_tag": "h4",
+            "content": "<p>Playful, bold, and full of personality.</p>",
+            "link_url": "shopify://collections/animals",
+            "link_text": "SHOP NOW"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_M3D8nM",
+        "image_with_text_YmWQNY",
+        "image_with_text_KJNAGc"
+      ],
+      "custom_css": [],
+      "name": "t:sections.multi_column.presets.multi_column.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "SHOP BY COLLECTION",
+        "content": ""
+      }
+    },
     "collection_list_nK7AgD": {
       "type": "collection-list",
       "blocks": {
@@ -760,20 +822,51 @@
         "collection_rNQxb6",
         "collection_RqMamL"
       ],
+      "disabled": true,
       "name": "t:sections.collection_list.presets.collection_list.name",
       "settings": {
         "color_scheme": "scheme-1",
         "separate_section_with_border": true,
         "image_size": "auto",
-        "show_text_outside": false,
-        "space_items": true,
+        "show_text_outside": true,
+        "space_items": false,
         "stack_collections": true,
         "collections_per_row_desktop": 3,
-        "stack_collections_mobile": true,
+        "stack_collections_mobile": false,
         "collections_per_row_mobile": "1",
         "subheading": "",
         "title": "SHOP BY COLLECTION",
         "content": ""
+      }
+    },
+    "featured_collections_t4MA3z": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_g4maKG": {
+          "type": "collection",
+          "settings": {
+            "collection": "abstract",
+            "products_count": 8,
+            "title": "ABSTRACT ART",
+            "link_url": "",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_g4maKG"
+      ],
+      "custom_css": [
+        "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
       }
     }
   },
@@ -791,6 +884,8 @@
     "ss_trust_box_pC3RAi",
     "multiple-media-with-text",
     "shop_the_look_WyyNnA",
-    "collection_list_nK7AgD"
+    "multi_column_NyGtUQ",
+    "collection_list_nK7AgD",
+    "featured_collections_t4MA3z"
   ]
 }
