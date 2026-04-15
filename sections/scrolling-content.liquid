@@ -3,8 +3,6 @@
     #shopify-section-{{ section.id }} {
       --section-vertical-spacing: clamp({{ section.settings.section_vertical_spacing_mobile }}px, calc({{ section.settings.section_vertical_spacing_mobile }}px + ({{ section.settings.section_vertical_spacing_desktop }} - {{ section.settings.section_vertical_spacing_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.section_vertical_spacing_desktop }}px);
       --scrolling-content-content-gap: clamp({{ section.settings.item_horizontal_spacing_mobile }}px, calc({{ section.settings.item_horizontal_spacing_mobile }}px + ({{ section.settings.item_horizontal_spacing_desktop }} - {{ section.settings.item_horizontal_spacing_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.item_horizontal_spacing_desktop }}px);
-
-      font-size: clamp({{ section.settings.text_font_size_mobile }}px, calc({{ section.settings.text_font_size_mobile }}px + ({{ section.settings.text_font_size_desktop }} - {{ section.settings.text_font_size_mobile }}) * ((100vw - 375px) / (1400 - 375))), {{ section.settings.text_font_size_desktop }}px);
     }
   </style>
 
@@ -16,33 +14,16 @@
   >
     <marquee-text
       speed="{{ section.settings.scrolling_speed }}"
-      direction="{{ section.settings.scroll_direction }}"
-      {% if section.settings.pause_on_hover %}
-        pause-on-hover
-      {% endif %}
-      {% if section.settings.slide_mode %}
-        slide-mode
-        slide-interval="{{ section.settings.slide_interval }}"
-      {% endif %}
+      direction="left"
       class="scrolling-content"
     >
       <div class="scrolling-content__item">
         {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'image' -%}
-              {%- if block.settings.image -%}
-                <div class="scrolling-content__image" {{ block.shopify_attributes }}>
-                  {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: '(max-width: 699px) 120px, 200px', widths: '120,200,240,400' -}}
-                </div>
-              {%- endif -%}
-
-            {%- when 'text' -%}
-              {%- if block.settings.text != blank -%}
-                <p class="scrolling-content__text {% if section.settings.text_font == 'heading' %}heading{% endif %}" {{ block.shopify_attributes }}>
-                  {{- block.settings.text -}}
-                </p>
-              {%- endif -%}
-          {%- endcase -%}
+          {%- if block.type == 'image' and block.settings.image -%}
+            <div class="scrolling-content__image" {{ block.shopify_attributes }}>
+              {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: '(max-width: 699px) 120px, 200px', widths: '120,200,240,400', loading: 'lazy' -}}
+            </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </marquee-text>
@@ -53,7 +34,7 @@
 {
   "name": "t:sections.scrolling_content.name",
   "class": "shopify-section--scrolling-content",
-  "max_blocks": 10,
+  "max_blocks": 20,
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "custom.overlay"]
@@ -73,85 +54,6 @@
       "step": 0.1,
       "label": "t:sections.scrolling_content.scrolling_speed",
       "default": 0.3
-    },
-    {
-      "type": "select",
-      "id": "scroll_direction",
-      "label": "t:sections.scrolling_content.scroll_direction",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:sections.scrolling_content.scroll_direction_options.to_left"
-        },
-        {
-          "value": "right",
-          "label": "t:sections.scrolling_content.scroll_direction_options.to_right"
-        }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "checkbox",
-      "id": "pause_on_hover",
-      "label": "t:sections.scrolling_content.pause_on_hover",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "slide_mode",
-      "label": "t:sections.scrolling_content.slide_mode",
-      "default": false
-    },
-    {
-      "type": "range",
-      "id": "slide_interval",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "unit": "s",
-      "label": "t:sections.scrolling_content.slide_interval",
-      "default": 3
-    },
-    {
-      "type": "header",
-      "content": "t:sections.scrolling_content.typography_category",
-      "info": "t:sections.scrolling_content.typography_category_info"
-    },
-    {
-      "type": "select",
-      "id": "text_font",
-      "label": "t:sections.scrolling_content.text_font",
-      "options": [
-        {
-          "value": "heading",
-          "label": "t:sections.scrolling_content.text_font_options.heading"
-        },
-        {
-          "value": "body",
-          "label": "t:sections.scrolling_content.text_font_options.body"
-        }
-      ],
-      "default": "heading"
-    },
-    {
-      "type": "range",
-      "id": "text_font_size_mobile",
-      "min": 10,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.scrolling_content.font_size_mobile",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "text_font_size_desktop",
-      "min": 10,
-      "max": 110,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.scrolling_content.font_size_desktop",
-      "default": 96
     },
     {
       "type": "header",
@@ -215,18 +117,6 @@
   ],
   "blocks": [
     {
-      "type": "text",
-      "name": "t:sections.scrolling_content.blocks.text.name",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "text",
-          "label": "t:global.text.text",
-          "default": "Share something"
-        }
-      ]
-    },
-    {
       "type": "image",
       "name": "t:sections.scrolling_content.blocks.image.name",
       "settings": [
@@ -246,21 +136,7 @@
   "presets": [
     {
       "name": "t:sections.scrolling_content.presets.scrolling_content.name",
-      "category": "t:global.categories.content",
-      "blocks": [
-        {
-          "type": "text",
-          "settings": {
-            "text": "Welcome to our shop"
-          }
-        },
-        {
-          "type": "text",
-          "settings": {
-            "text": "Discover our products"
-          }
-        }
-      ]
+      "category": "t:global.categories.content"
     }
   ]
 }
