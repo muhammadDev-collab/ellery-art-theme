@@ -70,6 +70,24 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
+    @media screen and (max-width: 700px) {
+    #shopify-section-{{ section.id }} .ss-social-proof__press-grid {
+          overflow: auto hidden;
+    display: flex;
+    gap: 32px 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: center;
+    scrollbar-width: none;
+    }
+      #shopify-section-{{ section.id }} .ss-social-proof__press-item {
+         display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    min-width: 78%;
+    }
+  }
 
   #shopify-section-{{ section.id }} .ss-social-proof__press-item {
     display: flex;
