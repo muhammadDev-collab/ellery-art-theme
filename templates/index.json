@@ -749,7 +749,7 @@
       "custom_css": [],
       "name": "t:sections.multi_column.presets.multi_column.name",
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "separate_section_with_border": true,
         "columns_per_row": 3,
         "stack_on_mobile": false,
@@ -838,6 +838,36 @@
         "title": "SHOP BY COLLECTION",
         "content": ""
       }
+    },
+    "featured_collections_t4MA3z": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_g4maKG": {
+          "type": "collection",
+          "settings": {
+            "collection": "abstract",
+            "products_count": 8,
+            "title": "ABSTRACT ART",
+            "link_url": "",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_g4maKG"
+      ],
+      "custom_css": [
+        "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
     }
   },
   "order": [
@@ -855,6 +885,7 @@
     "multiple-media-with-text",
     "shop_the_look_WyyNnA",
     "multi_column_NyGtUQ",
-    "collection_list_nK7AgD"
+    "collection_list_nK7AgD",
+    "featured_collections_t4MA3z"
   ]
 }
