@@ -112,38 +112,44 @@ initialize_fn = function() {
   );
   if (this.hasAttribute("slide-mode")) {
     const interval = parseFloat(this.getAttribute("slide-interval") || "3") * 1000;
-    const items = Array.from(this.firstElementChild.children);
-    const totalItems = items.length;
+    const itemsPerPage = 5;
+    const allItems = Array.from(this.firstElementChild.children);
+    const totalItems = allItems.length;
     if (totalItems === 0) return;
-    let currentIndex = 0;
-    const scroller = this.firstElementChild;
-    scroller.style.cssText = "display: flex; overflow: hidden; width: 100%;";
-    items.forEach((item) => {
-      item.style.cssText = "flex: 0 0 100%; width: 100%; transition: none;";
+    // Build pages: each page is a group of itemsPerPage items
+    const pages = [];
+    for (let i = 0; i < totalItems; i += itemsPerPage) {
+      pages.push(allItems.slice(i, i + itemsPerPage));
+    }
+    const totalPages = pages.length;
+    const container = this.firstElementChild;
+    // Wrap each page group in a page div
+    const pageDivs = pages.map((group, pi) => {
+      const page = document.createElement("div");
+      page.className = "scrolling-content__page";
+      page.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: ${pi === 0 ? "relative" : "absolute"}; inset: 0; width: 100%; transform: translateX(${pi === 0 ? "0%" : "100%"});`;
+      group.forEach(item => page.appendChild(item));
+      return page;
     });
+    // Clear container and add page divs
+    container.innerHTML = "";
+    container.style.cssText = "position: relative; overflow: hidden; width: 100%; display: flex; align-items: center;";
+    pageDivs.forEach(p => container.appendChild(p));
+    let currentPage = 0;
     const slideToNext = () => {
-      currentIndex = (currentIndex + 1) % totalItems;
+      const outgoing = pageDivs[currentPage];
+      currentPage = (currentPage + 1) % totalPages;
+      const incoming = pageDivs[currentPage];
       const dir = __privateGet(this, _MarqueeText_instances, direction_get);
-      const slideIn = dir === -1 ? ["100%", "0%"] : ["-100%", "0%"];
-      const slideOut = dir === -1 ? ["0%", "-100%"] : ["0%", "100%"];
-      const incoming = items[currentIndex];
-      const outgoing = items[(currentIndex - 1 + totalItems) % totalItems];
-      incoming.style.cssText = `flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(${slideIn[0]});`;
-      outgoing.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
-      animate(incoming, { transform: slideIn.map(v => `translateX(${v})`) }, { duration: 0.5, easing: "ease-in-out" });
-      animate(outgoing, { transform: slideOut.map(v => `translateX(${v})`) }, { duration: 0.5, easing: "ease-in-out" }).finished.then(() => {
-        outgoing.style.cssText = "flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(-200%);";
-        incoming.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
+      const enterFrom = dir === -1 ? "100%" : "-100%";
+      const exitTo = dir === -1 ? "-100%" : "100%";
+      incoming.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: absolute; inset: 0; width: 100%; transform: translateX(${enterFrom});`;
+      animate(incoming, { transform: [`translateX(${enterFrom})`, "translateX(0%)"] }, { duration: 0.6, easing: "ease-in-out" });
+      animate(outgoing, { transform: ["translateX(0%)", `translateX(${exitTo})`] }, { duration: 0.6, easing: "ease-in-out" }).finished.then(() => {
+        outgoing.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: absolute; inset: 0; width: 100%; transform: translateX(100%);`;
+        incoming.style.cssText = `display: flex; align-items: center; gap: var(--scrolling-content-content-gap, 40px); position: relative; inset: 0; width: 100%; transform: translateX(0%);`;
       });
     };
-    items.forEach((item, i) => {
-      if (i === 0) {
-        item.style.cssText = "flex: 0 0 100%; width: 100%; position: relative;";
-      } else {
-        item.style.cssText = "flex: 0 0 100%; width: 100%; position: absolute; inset: 0; transform: translateX(-200%);";
-      }
-    });
-    scroller.style.cssText = "position: relative; overflow: hidden; width: 100%;";
     let slideTimer = setInterval(slideToNext, interval);
     if (this.hasAttribute("pause-on-hover")) {
       this.addEventListener("pointerenter", () => { clearInterval(slideTimer); });
