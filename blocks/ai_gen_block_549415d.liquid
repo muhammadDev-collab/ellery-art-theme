@@ -193,7 +193,7 @@
         if (typeof Shopify !== 'undefined' && Shopify.formatMoney) {
           return Shopify.formatMoney(cents);
         }
-        return `€${(cents / 100).toFixed(2)}`;
+        return {{ shop.currency_symbol | json }} + (cents / 100).toFixed(2);
       }
     }
 
