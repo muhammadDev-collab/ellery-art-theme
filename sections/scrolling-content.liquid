@@ -14,6 +14,7 @@
   >
     <marquee-text
       speed="{{ section.settings.scrolling_speed }}"
+      scroll-interval="{{ section.settings.scroll_interval }}"
       direction="left"
       class="scrolling-content"
     >
@@ -45,6 +46,16 @@
       "id": "separate_section_with_border",
       "label": "t:global.section.separate_section_with_border",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_interval",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Seconds between each scroll",
+      "default": 2
     },
     {
       "type": "range",

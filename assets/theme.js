@@ -110,27 +110,32 @@ initialize_fn = function() {
       <slot part="scroller"></slot>
     `)
   );
-  const fragment = document.createDocumentFragment();
-  const duplicateCount = Math.ceil(this.clientWidth / this.firstElementChild.clientWidth);
-  for (let i = 1; i <= duplicateCount; ++i) {
-    for (let y = 0; y < 2; ++y) {
-      const node = this.firstElementChild.cloneNode(true);
-      const value = 100 * i * (y % 2 === 0 ? -1 : 1);
-      node.setAttribute("aria-hidden", "true");
-      node.style.cssText = `position: absolute; inset-inline-start: calc(${value}%);`;
-      fragment.appendChild(node);
+  const scroller = __privateGet(this, _MarqueeText_instances, scroller_get);
+  const items = Array.from(this.firstElementChild.children);
+  const totalItems = items.length;
+  if (totalItems === 0) return;
+  const itemWidth = items[0].offsetWidth;
+  const interval = parseFloat(this.getAttribute("scroll-interval") || "2") * 1000;
+  const slideDuration = Math.max(0.2, 1 / parseFloat(this.getAttribute("speed") || "0.3"));
+  const dir = __privateGet(this, _MarqueeText_instances, direction_get); // -1 = left, 1 = right
+  let offset = 0;
+  // Duplicate items so the loop never runs out
+  const clone = this.firstElementChild.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+  clone.style.cssText = `position: absolute; inset-inline-start: ${totalItems * itemWidth}px; top: 0;`;
+  this.firstElementChild.appendChild(clone);
+  const step = () => {
+    offset += dir === -1 ? itemWidth : -itemWidth;
+    // Reset silently when we've scrolled one full set
+    if (Math.abs(offset) >= totalItems * itemWidth) {
+      offset = 0;
+      scroller.style.transform = `translateX(${offset}px)`;
     }
-  }
-  this.append(fragment);
-  __privateSet(this, _currentAnimation, animate(
-    __privateGet(this, _MarqueeText_instances, scroller_get),
-    { transform: ["translateX(0)", `translateX(calc(var(--transform-logical-flip) * ${__privateGet(this, _MarqueeText_instances, direction_get) * 100}%))`] },
-    {
-      duration: 1 / parseFloat(this.getAttribute("speed")) * (__privateGet(this, _MarqueeText_instances, scroller_get).clientWidth / 300),
-      easing: "linear",
-      repeat: Infinity
-    }
-  ));
+    animate(scroller, { transform: [`translateX(${offset - (dir === -1 ? itemWidth : -itemWidth)}px)`, `translateX(${offset}px)`] }, { duration: slideDuration, easing: "ease-in-out" }).finished.then(() => {
+      setTimeout(step, interval);
+    });
+  };
+  setTimeout(step, interval);
 };
 if (!window.customElements.get("marquee-text")) {
   window.customElements.define("marquee-text", MarqueeText);
