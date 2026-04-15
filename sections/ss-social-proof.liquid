@@ -103,7 +103,18 @@
     opacity: 0.75;
     margin: 0;
   }
+@media(max-width:749px){
 
+ #shopify-section-{{ section.id }} .ss-social-proof__press-quote {
+   font-size: 16px !important;
+    line-height: 1.5;
+    color: inherit;
+    opacity: 0.75;
+    margin: 0;
+    max-width: 70%;
+    margin: 0 auto;
+  }
+}
   #shopify-section-{{ section.id }} .ss-social-proof__press-logo img {
     max-height: {{ section.settings.logo_max_height }}px;
     width: 130px;
