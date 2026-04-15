@@ -58,15 +58,15 @@
     "scrolling-content": {
       "type": "scrolling-content",
       "blocks": {
-        "image_jD9FDA": {
+        "image_CLLVYg": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_b1c7b3c9-83d3-40a0-93f2-b378a86e631a.png"
+            "image": "shopify://shop_images/Untitled_design_2.png"
           }
         }
       },
       "block_order": [
-        "image_jD9FDA"
+        "image_CLLVYg"
       ],
       "custom_css": [
         "p {line-height: 1.2 !important;}"
