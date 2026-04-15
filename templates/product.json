@@ -638,46 +638,40 @@
     "1774524948d3fc03ed": {
       "type": "apps",
       "blocks": {
-        "judge_me_reviews_reviews_grid_widget_mPtNgL": {
-          "type": "shopify://apps/judge-me-reviews/blocks/reviews_grid_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "judge_me_reviews_videos_carousel_qqNH3h": {
+          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "show_sample_reviews": false,
-            "review_selection": "all",
+            "reviews_selection": "all",
             "products": [],
-            "show_media_only": false,
-            "display_order": "media_first",
-            "columns_desktop": 3,
-            "rows_desktop": 3,
-            "columns_mobile": "2",
-            "rows_mobile": 6,
-            "show_stars": true,
+            "star_rating": "all",
+            "review_type": "all",
+            "max_reviews": 20,
             "show_reviewer_name": true,
-            "show_review_title_on_hover_desktop": true,
+            "stars_size": "small",
+            "text_size": "small",
+            "arrows_position": "hidden",
             "max_width": 1100,
-            "corner_styling": "soft",
-            "card_spacing": "medium",
+            "corner_styling": "square",
             "header_text_color": "#000000",
-            "star_and_reviewer_name_color": "#F9F9F9",
-            "drop_shadow_color": "#000000",
-            "overlay_and_background_color": "#000000",
-            "content_color": "#F9F9F9",
-            "header_text": "From our customers",
+            "card_color": "#7D7D7D",
+            "stars_color": "",
+            "text_color": "#FFFFFF",
+            "arrows_color": "#000000",
+            "show_drop_shadow": false,
+            "show_border": false,
+            "border_color": "#108474",
+            "autoplay_media": true,
+            "transition_speed": 5,
+            "carousel_style": "highlight",
+            "header_text": "SUPER HAPPY CUSTOMERS",
             "show_average_rating": true
-          }
-        },
-        "judge_me_reviews_review_widget_GkDcmn": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "no_reviews",
-            "max_width": 1200,
-            "show_shop_reviews": true,
-            "empty_state": "hide_widget"
           }
         }
       },
       "block_order": [
-        "judge_me_reviews_reviews_grid_widget_mPtNgL",
-        "judge_me_reviews_review_widget_GkDcmn"
+        "judge_me_reviews_videos_carousel_qqNH3h"
       ],
       "settings": {
         "color_scheme": "",
