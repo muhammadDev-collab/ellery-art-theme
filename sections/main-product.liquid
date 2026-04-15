@@ -172,17 +172,45 @@
       inset-block-end: 0 !important;
       inset-block-start: auto !important;
       background: rgb(var(--background)) !important;
-      padding: 12px 16px !important;
+      padding: 12px 16px 10px !important;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
       display: block !important;
+    }
+
+    .product-sticky-bar__action {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .product-sticky-bar .buy-buttons {
       width: 100%;
     }
 
-    .product-sticky-bar .buy-buttons .button {
+    .product-sticky-bar .buy-buttons .atc-btn-custom {
       width: 100%;
+    }
+
+    .product-sticky-trust {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .product-sticky-trust__shipping,
+    .product-sticky-trust__badge {
+      margin: 0;
+      font-size: 11px;
+      line-height: 1.4;
+      text-align: center;
+      color: currentColor;
+      opacity: 0.85;
+    }
+
+    .product-sticky-trust__check {
+      color: #2a7a2a;
+      font-weight: 700;
+      margin-right: 3px;
     }
   }
 
@@ -371,30 +399,58 @@
         </div>
       </div>
 
-      <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ product_form_id }}">
-        {%- liquid
-          assign button_disabled = false
-          assign button_style = 'solid'
-
-          if product.selected_or_first_available_variant == null
-            assign button_disabled = true
-            assign button_style = 'outline'
-            assign button_content = 'product.general.unavailable_button' | t
-          elsif product.selected_or_first_available_variant.available == false
-            assign button_disabled = true
-            assign button_style = 'outline'
-            assign button_content = 'product.general.sold_out_button' | t
-          else
-            if product.template_suffix contains 'pre-order'
-              assign button_content = 'product.general.pre_order_button' | t
+      <div class="product-sticky-bar__action">
+        <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ product_form_id }}">
+          {%- liquid
+            assign sticky_disabled = false
+            assign sticky_variant = product.selected_or_first_available_variant
+            if sticky_variant == null
+              assign sticky_disabled = true
+              assign sticky_btn_content = 'product.general.unavailable_button' | t
+            elsif sticky_variant.available == false
+              assign sticky_disabled = true
+              assign sticky_btn_content = 'product.general.sold_out_button' | t
             else
-              assign button_content = 'product.general.add_to_cart_button' | t
+              if product.template_suffix contains 'pre-order'
+                assign sticky_btn_content = 'product.general.pre_order_button' | t
+              else
+                assign sticky_btn_content = 'product.general.add_to_cart_button' | t
+              endif
             endif
-          endif
-        -%}
+            assign sticky_compare = sticky_variant.compare_at_price
+            assign sticky_price = sticky_variant.price
+          -%}
 
-        {%- render 'button', content: button_content, style: button_style, type: 'submit', form: product_form_id, disabled: button_disabled -%}
-      </buy-buttons>
+          <button
+            type="submit"
+            form="{{ product_form_id }}"
+            class="atc-btn-custom button"
+            {% if sticky_disabled %}disabled{% endif %}
+          >
+            <span class="atc-btn-custom__label">{{ sticky_btn_content }}</span>
+            {%- unless sticky_disabled -%}
+              <span class="atc-btn-custom__divider"></span>
+              <span class="atc-btn-custom__prices">
+                {%- if sticky_compare > sticky_price -%}
+                  <span class="atc-btn-custom__compare">{{ sticky_compare | money_without_trailing_zeros }}</span>
+                {%- endif -%}
+                <span class="atc-btn-custom__price">{{ sticky_price | money_without_trailing_zeros }}</span>
+              </span>
+            {%- endunless -%}
+          </button>
+        </buy-buttons>
+
+        {%- assign shipping_min = section.settings.free_shipping_amount -%}
+        <div class="product-sticky-trust sm-min:hidden">
+          <p class="product-sticky-trust__shipping">
+            <strong>Free shipping</strong>{% if shipping_min != blank %} over {{ shipping_min }}{% endif %} for Sweden
+          </p>
+          <p class="product-sticky-trust__badge">
+            <span class="product-sticky-trust__check" aria-hidden="true">&#10003;</span>
+            Proudly made in Sweden &mdash; No surprise fees
+          </p>
+        </div>
+      </div>
     </product-sticky-bar>
   </product-rerender>
 {%- endif -%}
@@ -485,6 +541,13 @@
       "id": "show_sticky_add_to_cart",
       "label": "t:sections.main_product.show_sticky_add_to_cart",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_amount",
+      "label": "Free shipping minimum amount",
+      "placeholder": "e.g. 500 kr",
+      "info": "Shown in the sticky bar on mobile, e.g. '500 kr'. Leave blank to hide the amount."
     },
     {
       "type": "checkbox",
