@@ -28,7 +28,7 @@
             {%- when 'image' -%}
               {%- if block.settings.image -%}
                 <div class="scrolling-content__image" {{ block.shopify_attributes }}>
-                  {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: '(max-width: 699px) 90px, 180px', widths: '90,180,270,360,540' -}}
+                  {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: '(max-width: 699px) 120px, 200px', widths: '120,200,240,400' -}}
                 </div>
               {%- endif -%}
 

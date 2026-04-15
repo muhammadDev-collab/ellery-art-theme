@@ -6749,7 +6749,16 @@ shopify-account::part(signed-out-avatar) {
 }
 
 .scrolling-content__image > img {
-  max-width: 1.5em;
+  max-width: none;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media screen and (min-width: 700px) {
+  .scrolling-content__image > img {
+    height: 80px;
+  }
 }
 
 .main-search-form {
