@@ -16,7 +16,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/5_a6c7742b-50b2-4609-8df7-647183a93cf9.png",
-            "mobile_image": "shopify://shop_images/he-leaves-the-99-3-piece-good-shepherd-triptych-bedroom.jpg",
+            "mobile_image": "shopify://shop_images/5_c88ebc54-1810-4986-a6d9-da192bee8bd9.png",
             "subheading": "",
             "title": "Limited Edition That Sell Out Fast",
             "mobile_text_position": "place-self-end-start text-start",
@@ -58,36 +58,36 @@
     "scrolling-content": {
       "type": "scrolling-content",
       "blocks": {
-        "text_pHMxHV": {
-          "type": "text",
+        "image_CLLVYg": {
+          "type": "image",
           "settings": {
-            "text": "Limited Edition"
+            "image": "shopify://shop_images/Untitled_design_2.png"
           }
         },
-        "text_UUmHw7": {
-          "type": "text",
+        "image_EaEDqm": {
+          "type": "image",
           "settings": {
-            "text": "Made in Sweden"
+            "image": "shopify://shop_images/Untitled_design_2.png"
           }
         },
-        "text_rEmxpx": {
-          "type": "text",
+        "image_VbCD3e": {
+          "type": "image",
           "settings": {
-            "text": "UV-Resistant"
+            "image": "shopify://shop_images/Untitled_design_2.png"
           }
         },
-        "text_JdawKd": {
-          "type": "text",
+        "image_LYdNXP": {
+          "type": "image",
           "settings": {
-            "text": "Free Shipping"
+            "image": "shopify://shop_images/Untitled_design_2.png"
           }
         }
       },
       "block_order": [
-        "text_pHMxHV",
-        "text_UUmHw7",
-        "text_rEmxpx",
-        "text_JdawKd"
+        "image_CLLVYg",
+        "image_EaEDqm",
+        "image_VbCD3e",
+        "image_LYdNXP"
       ],
       "custom_css": [
         "p {line-height: 1.2 !important;}"
@@ -100,7 +100,7 @@
         "text_font": "heading",
         "text_font_size_mobile": 10,
         "text_font_size_desktop": 20,
-        "section_vertical_spacing_mobile": 12,
+        "section_vertical_spacing_mobile": 32,
         "section_vertical_spacing_desktop": 10,
         "item_horizontal_spacing_mobile": 30,
         "item_horizontal_spacing_desktop": 50,
