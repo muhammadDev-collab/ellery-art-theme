@@ -779,6 +779,56 @@
     "vso_testimonials_14_zfFbeR": {
       "type": "vso-testimonials-14",
       "blocks": {
+        "star_card_4H4fCw": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_z8MwJX": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_yDG6aV": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_iJXtgE": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_HVzLQk": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
         "review_summary_zmzFpX": {
           "type": "review_summary",
           "settings": {
@@ -877,6 +927,11 @@
         }
       },
       "block_order": [
+        "star_card_4H4fCw",
+        "star_card_z8MwJX",
+        "star_card_yDG6aV",
+        "star_card_iJXtgE",
+        "star_card_HVzLQk",
         "review_summary_zmzFpX",
         "heading_D94d8V",
         "star_card_qD4rb4",
