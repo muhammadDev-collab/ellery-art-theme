@@ -327,7 +327,7 @@
             "right_font_weight": "600",
             "right_text_offset": 30,
             "text_transform": "uppercase",
-            "letter_spacing": 0.5,
+            "letter_spacing": 0,
             "min_height_desktop": 40,
             "min_height_mobile": 30,
             "padding_desktop": 5,
