@@ -488,13 +488,13 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
-        "heading": "+200,000 CUSTOMERS FOR A REASON",
-        "review_text": "Based on 10810",
+        "heading": "+2,000 CUSTOMERS FOR A REASON",
+        "review_text": "Based on + 230",
         "review_link_text": "reviews",
         "review_link": "",
         "padding_top": 48,
         "padding_bottom": 48,
-        "logo_max_height": 36
+        "logo_max_height": 20
       }
     },
     "ss_trust_box_pC3RAi": {
@@ -522,9 +522,9 @@
             "rating_size": 15,
             "rating_size_mobile": 13,
             "rating_height": 150,
-            "stars_count": 4.5,
+            "stars_count": 5,
             "stars_size": 20,
-            "stars_size_mobile": 18,
+            "stars_size_mobile": 10,
             "stars_url": "",
             "rating_color": "#7c7c7c",
             "rating_bg_color": "#ffffff",
