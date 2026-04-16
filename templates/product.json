@@ -9,21 +9,6 @@
  */
 {
   "sections": {
-    "scrolling_content_fjpB7d": {
-      "type": "scrolling-content",
-      "disabled": true,
-      "settings": {
-        "separate_section_with_border": false,
-        "scroll_interval": 2,
-        "scrolling_speed": 0.1,
-        "section_vertical_spacing_mobile": 10,
-        "section_vertical_spacing_desktop": 10,
-        "item_horizontal_spacing_mobile": 30,
-        "item_horizontal_spacing_desktop": 50,
-        "background": "#ededed",
-        "text_color": "#1c1c1c"
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -181,7 +166,7 @@
             "video_2": "shopify://files/videos/b3312f22add34fc4a49d61fc68657bdf_31cf9684-c9bc-4e93-aa16-97f13542663d.mov",
             "video_3": "shopify://files/videos/SnapInsta.to_AQNKOMmdfJqTKSKZtLhNEMjy0ZYF28OScJfU3_CMgW7GCkDZ9LSmvV20T0-Mn7sxpwrhPcTH6ADnDeWx40OrZtXFxDawq_9K79B6qoU 2.mp4",
             "video_4": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
-            "video_5": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
+            "video_5": "shopify://files/videos/1088f611a76c44629582e0325baa5f6e 2.MOV",
             "video_6": "shopify://files/videos/DailyInspoVideo.mov"
           }
         },
@@ -746,7 +731,6 @@
     }
   },
   "order": [
-    "scrolling_content_fjpB7d",
     "main",
     "ss_stats_2_rRfT8d",
     "17763430357da84433",
