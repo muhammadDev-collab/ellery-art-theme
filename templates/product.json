@@ -263,7 +263,7 @@
             "heading_size": 20,
             "heading_size_mobile": 18,
             "heading_height": 130,
-            "heading_align": "left",
+            "heading_align": "center",
             "heading_align_mobile": "center",
             "heading_color": "#121212"
           }
@@ -345,7 +345,7 @@
         "padding_bottom": 36,
         "padding_horizontal": 5,
         "padding_horizontal_mobile": 2.5,
-        "full_width": false,
+        "full_width": true,
         "content_width": 1200,
         "border_thickness": 0,
         "section_radius": 0
@@ -567,24 +567,67 @@
         "lazy": true
       }
     },
+    "17763430357da84433": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9edb91b_YNN9mH": {
+          "type": "ai_gen_block_9edb91b",
+          "settings": {
+            "left_text": "BUY 2 GET 1 FREE",
+            "left_bg_color": "#ededed",
+            "left_text_color": "#000000",
+            "left_font_size_desktop": 20,
+            "left_font_size_mobile": 18,
+            "left_font_weight": "400",
+            "left_text_offset": 10,
+            "right_text": "BUNDLE WITH A BESTSELLER",
+            "right_bg_color": "#ededed",
+            "right_text_color": "#868686",
+            "right_font_size_desktop": 20,
+            "right_font_size_mobile": 12,
+            "right_font_weight": "600",
+            "right_text_offset": 30,
+            "text_transform": "uppercase",
+            "letter_spacing": 0.5,
+            "min_height_desktop": 40,
+            "min_height_mobile": 30,
+            "padding_desktop": 5,
+            "padding_mobile": 5,
+            "show_divider": false,
+            "divider_color": "#ffffff",
+            "enable_hover": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9edb91b_YNN9mH"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    },
     "related-products": {
       "type": "related-products",
       "custom_css": [
         "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
         "hide_product_information": false,
         "stack_products": false,
         "recommendations_count": 8,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
+        "vertical_spacing_factor": 0.2,
         "subheading": "",
-        "title": "BUY 2 GET 1 FREE",
-        "content": "<h6> BUNDLE WITH A BESTSELLER </h6>"
+        "title": "",
+        "content": ""
       }
     },
     "1774524948d3fc03ed": {
@@ -849,6 +892,7 @@
     "ss_stats_2_rRfT8d",
     "custom_liquid_jwPn6j",
     "product_reviews_2_HLGaCx",
+    "17763430357da84433",
     "related-products",
     "1774524948d3fc03ed",
     "rich_text_XPHxNG",
