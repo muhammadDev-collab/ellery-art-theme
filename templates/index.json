@@ -339,7 +339,7 @@
             "collection": "best-sellers",
             "products_count": 8,
             "title": "BEST SELLERS",
-            "link_url": "",
+            "link_url": "shopify://collections/best-sellers",
             "link_text": "View all"
           }
         }
