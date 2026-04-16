@@ -885,8 +885,8 @@
           "settings": {
             "collection": "animals",
             "products_count": 8,
-            "title": "ABSTRACT ART",
-            "link_url": "",
+            "title": "ANIMAL ART",
+            "link_url": "shopify://collections/animals",
             "link_text": "View all"
           }
         }
