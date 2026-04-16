@@ -35,15 +35,15 @@
         "section_vso_theme_sections_countdown_timer_YPkYay": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/countdownTimer/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
-            "countdown_text": "<strong>30% OFF - LIMITED TIME</strong>",
+            "countdown_text": "BUY 2 GET 1 FREE -  LIMITED TIME",
             "duration_minutes": 52,
             "enable_persistence": true,
             "empty_bar_color": "#e0e0e0",
             "progress_bar_color": "#1c7931",
             "text_color": "#333333",
             "timer_color": "#333333",
-            "bar_height": 8,
-            "font_size": 14,
+            "bar_height": 6,
+            "font_size": 13,
             "margin_top": 0,
             "margin_bottom": 0
           }
