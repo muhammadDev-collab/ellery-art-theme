@@ -1,6 +1,447 @@
+{% doc %}
+  @prompt
+    Create a Shopify testimonial section similar to Trustpilot style review cards.
+    
+    Layout:
+    
+    * Display testimonials in a grid (2 columns desktop, 1 column mobile).
+    * Each testimonial should be a card.
+    * Cards should have light background and subtle spacing.
+    * Clean, modern, minimal design.
+    
+    Each testimonial must be a block and fully customizable.
+    
+    Each block settings:
+    
+    * Review text (rich text)
+    * Author name
+    * Verified label (toggle on/off)
+    * Rating (1–5 stars)
+    * Review date
+    * Product title or subtitle (optional)
+    * Card image (customer photo or product photo)
+    * Avatar image (optional)
+    
+    Card design:
+    
+    * Show author name at top
+    * Show “Verified” with a small icon next to name
+    * Show star rating below name
+    * Show review text
+    * Show image on right side (desktop)
+    * Stack image below text on mobile
+    
+    Customization:
+    
+    * Star color (default gold)
+    * Verified icon color (default blue)
+    * Card background color
+    * Text color
+    * Spacing between cards
+    * Border radius
+    * Shadow on/off
+    
+    Important:
+    
+    * Use Shopify blocks so I can add unlimited testimonials
+    * Make each card independently editable
+    * Keep spacing tight and premium
+    * Make it responsive and clean on mobile
+    
+    Default example:
+    
+    * Name: Aaron M.
+    * Verified: true
+    * Rating: 5
+    * Text: "Fick hem nyss mina tavlor och jag älskar verkligen detta verk av Last Supper. Fantastiskt bra!"
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-testimonial-card-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+    {% if block.settings.show_shadow %}
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    {% endif %}
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ai-testimonial-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ai-testimonial-avatar-{{ ai_gen_id }} {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #f4f4f4;
+  }
+
+  .ai-testimonial-avatar-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-testimonial-avatar-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .ai-testimonial-header-info-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-testimonial-name-row-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .ai-testimonial-name-{{ ai_gen_id }} {
+    font-weight: 600;
+    font-size: 15px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-testimonial-verified-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: {{ block.settings.verified_color }};
+    font-weight: 500;
+  }
+
+  .ai-testimonial-verified-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .ai-testimonial-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  .ai-testimonial-star-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    color: {{ block.settings.star_color }};
+  }
+
+  .ai-testimonial-star-empty-{{ ai_gen_id }} {
+    color: #e0e0e0;
+  }
+
+  .ai-testimonial-content-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-testimonial-product-title-{{ ai_gen_id }} {
+    font-size: 13px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 8px 0;
+    opacity: 0.8;
+  }
+
+  .ai-testimonial-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-testimonial-text-{{ ai_gen_id }} p {
+    margin: 0 0 8px 0;
+  }
+
+  .ai-testimonial-text-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-testimonial-footer-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: auto;
+  }
+
+  .ai-testimonial-date-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.6;
+  }
+
+  .ai-testimonial-image-{{ ai_gen_id }} {
+    width: 80px;
+    height: 80px;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ai-testimonial-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-testimonial-card-{{ ai_gen_id }} {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+    }
+
+    .ai-testimonial-left-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ai-testimonial-image-desktop-{{ ai_gen_id }} {
+      width: 120px;
+      height: 120px;
+      align-self: flex-start;
+    }
+
+    .ai-testimonial-footer-{{ ai_gen_id }} {
+      margin-top: auto;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-testimonial-card-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-testimonial-left-{{ ai_gen_id }}">
+    <div class="ai-testimonial-header-{{ ai_gen_id }}">
+      {% if block.settings.avatar_image %}
+        <div class="ai-testimonial-avatar-{{ ai_gen_id }}">
+          <img
+            src="{{ block.settings.avatar_image | image_url: width: 96 }}"
+            alt="{{ block.settings.author_name | escape }}"
+            width="48"
+            height="48"
+            loading="lazy"
+          >
+        </div>
+      {% else %}
+        <div class="ai-testimonial-avatar-{{ ai_gen_id }}">
+          <div class="ai-testimonial-avatar-placeholder-{{ ai_gen_id }}">
+            {% if block.settings.author_name != blank %}
+              {{ block.settings.author_name | slice: 0 }}
+            {% else %}
+              ?
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="ai-testimonial-header-info-{{ ai_gen_id }}">
+        <div class="ai-testimonial-name-row-{{ ai_gen_id }}">
+          {% if block.settings.author_name != blank %}
+            <h3 class="ai-testimonial-name-{{ ai_gen_id }}">{{ block.settings.author_name }}</h3>
+          {% endif %}
+          {% if block.settings.show_verified %}
+            <span class="ai-testimonial-verified-{{ ai_gen_id }}">
+              <svg class="ai-testimonial-verified-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              Verified
+            </span>
+          {% endif %}
+        </div>
+
+        <div class="ai-testimonial-stars-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% if i <= block.settings.rating %}
+              <svg class="ai-testimonial-star-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            {% else %}
+              <svg class="ai-testimonial-star-{{ ai_gen_id }} ai-testimonial-star-empty-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-testimonial-content-{{ ai_gen_id }}">
+      {% if block.settings.product_title != blank %}
+        <h4 class="ai-testimonial-product-title-{{ ai_gen_id }}">{{ block.settings.product_title }}</h4>
+      {% endif %}
+
+      {% if block.settings.review_text != blank %}
+        <div class="ai-testimonial-text-{{ ai_gen_id }}">
+          {{ block.settings.review_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-testimonial-footer-{{ ai_gen_id }}">
+      {% if block.settings.review_date != blank %}
+        <div class="ai-testimonial-date-{{ ai_gen_id }}">{{ block.settings.review_date }}</div>
+      {% endif %}
+
+      {% if block.settings.card_image %}
+        <div class="ai-testimonial-image-{{ ai_gen_id }}">
+          <img
+            src="{{ block.settings.card_image | image_url: width: 160 }}"
+            alt="{{ block.settings.product_title | default: 'Review image' | escape }}"
+            width="80"
+            height="80"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if block.settings.card_image %}
+    <div class="ai-testimonial-image-{{ ai_gen_id }} ai-testimonial-image-desktop-{{ ai_gen_id }}">
+      <img
+        src="{{ block.settings.card_image | image_url: width: 240 }}"
+        alt="{{ block.settings.product_title | default: 'Review image' | escape }}"
+        width="120"
+        height="120"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Testimonial card",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Author"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Name",
+      "default": "Aaron M."
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_image",
+      "label": "Avatar image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_verified",
+      "label": "Show verified badge",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Review"
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "Star rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "richtext",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "<p>Fick hem nyss mina tavlor och jag älskar verkligen detta verk av Last Supper. Fantastiskt bra!</p>"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product title"
+    },
+    {
+      "type": "text",
+      "id": "review_date",
+      "label": "Review date"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image",
+      "label": "Card image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star",
+      "default": "#FFB800"
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Verified badge",
+      "default": "#00B67A"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shadow",
+      "label": "Show shadow",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial card"
+    }
+  ]
+}
 {% endschema %}
