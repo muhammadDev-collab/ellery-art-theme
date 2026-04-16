@@ -1,0 +1,147 @@
+<div class="vendor-panel__overlay" id="vendor-panel-overlay"></div>
+
+<div class="vendor-info-popup" id="vendor-info-panel" role="dialog" aria-modal="true" aria-label="{{ settings.vendor_panel_heading | escape }}">
+  <div class="vendor-panel__header">
+    <h2 class="vendor-panel__heading">{{ settings.vendor_panel_heading }}</h2>
+    <button class="vendor-panel__close" id="vendor-panel-close" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div class="vendor-panel__divider"></div>
+
+  <div class="vendor-panel__body">
+    {{ settings.vendor_panel_content }}
+  </div>
+</div>
+
+<style>
+  .vendor-panel__overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 100000;
+  }
+
+  .vendor-panel__overlay.active {
+    display: block;
+  }
+
+  .vendor-info-popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 90vw;
+    height: 100%;
+    background: #fff;
+    z-index: 100001;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .vendor-info-popup.visible {
+    transform: translateX(0);
+  }
+
+  .vendor-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px 48px;
+  }
+
+  .vendor-panel__heading {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .vendor-panel__close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: currentColor;
+  }
+
+  .vendor-panel__close:hover {
+    opacity: 0.6;
+  }
+
+  .vendor-panel__divider {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 0;
+  }
+
+  .vendor-panel__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .vendor-panel__body p {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .vendor-panel__body p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  (function () {
+    var panel   = document.getElementById('vendor-info-panel');
+    var overlay = document.getElementById('vendor-panel-overlay');
+    var closeBtn = document.getElementById('vendor-panel-close');
+
+    function openPanel() {
+      panel.classList.add('visible');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel() {
+      panel.classList.remove('visible');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a.vendor');
+      if (link) {
+        e.preventDefault();
+        openPanel();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+    if (overlay)  overlay.addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+  })();
+</script>

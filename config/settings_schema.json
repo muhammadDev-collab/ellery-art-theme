@@ -889,6 +889,22 @@
       },
       {
         "type": "header",
+        "content": "Vendor Info Panel"
+      },
+      {
+        "type": "text",
+        "id": "vendor_panel_heading",
+        "label": "Panel Heading",
+        "default": "THREE DIFFERENT RELEASES"
+      },
+      {
+        "type": "richtext",
+        "id": "vendor_panel_content",
+        "label": "Panel Content",
+        "default": "<p>Andy okay - Art for Causes - offers three distinct release categories all connected to a good cause.</p>"
+      },
+      {
+        "type": "header",
         "content": "Product Price Info Panel"
       },
       {
