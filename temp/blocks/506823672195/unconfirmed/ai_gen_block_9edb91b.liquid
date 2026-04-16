@@ -1,6 +1,513 @@
+{% doc %}
+  @prompt
+    Create a customizable Shopify section with a horizontal split layout (50/50).
+    Requirements:
+    The section should have two equal halves (left and right).
+    Each half must have its own background color (editable in settings).
+    Each half should contain editable text (headline).
+    Text should be centered vertically and horizontally.
+    Allow customization for:
+    Left text content
+    Right text content
+    Left background color
+    Right background color
+    Text color for both sides
+    Font size and font weight
+    Make the section responsive (stack vertically on mobile).
+    Add optional spacing (padding top/bottom).
+    Use clean, modern styling similar to Shopify Dawn theme.
+    Default example:
+    Left side: "BUY 2 GET 1 FREE"
+    Right side: "BUNDLE WITH A BESTSELLER"
+    Ensure the section is easy to reuse and customizable from the Shopify theme editor., Create a Shopify section with a 50/50 split layout that looks clean on both desktop and mobile.
+    
+    Requirements:
+    
+    Layout:
+    
+    * Two equal columns (left and right) on desktop (50% width each).
+    * On mobile, stack the sections vertically (one on top of the other).
+    * Each block must always have equal height on desktop.
+    
+    Styling:
+    
+    * Each side has its own editable background color.
+    * Text must be perfectly centered (both vertically and horizontally).
+    * Use flexbox for alignment (not absolute positioning).
+    * Add consistent padding (e.g. 20px–40px).
+    
+    Text:
+    
+    * Editable text for left and right side.
+    * Allow control for:
+    
+      * Font size (desktop + mobile separately)
+      * Font weight
+      * Text color
+    
+    Mobile optimization (VERY IMPORTANT):
+    
+    * Ensure no extra spacing or uneven heights.
+    * Make both stacked sections look like clean banners.
+    * Reduce font size slightly on mobile.
+    * Keep text centered and visually balanced.
+    
+    Optional:
+    
+    * Add a subtle divider line between sections (desktop only).
+    * Add hover effect (slight brightness change).
+    
+    Default content:
+    
+    * Left: "BUY 2 GET 1 FREE"
+    * Right: "BUNDLE WITH A BESTSELLER"
+    
+    Important:
+    
+    * The section must look like a clean promotional banner, not like two separate boxes.
+    * Avoid large empty gaps or misalignment on mobile.
+    , Make the section much more compact.
+    
+    * Remove all extra spacing, margins and gaps.
+    * Reduce padding to around 10–15px.
+    * Set a smaller fixed height (around 50–70px).
+    * Ensure there is NO space between the two halves.
+    * Make it look like a slim announcement bar, not large boxes.
+    
+    Mobile:
+    
+    * Reduce height even more on mobile (around 40–60px).
+    * Reduce font size slightly.
+    * Remove any spacing between stacked sections.
+    
+    Important:
+    
+    * The layout should feel tight, clean, and minimal.
+    * No large empty areas.
+    , Adjust the text alignment to reduce the visual gap between the two texts.
+    
+    * Keep the 50/50 layout.
+    * Move the left text slightly to the right (towards center).
+    * Move the right text slightly to the left (towards center).
+    * Do NOT fully center text inside each half.
+    * Instead, align text closer to the middle divider.
+    
+    Spacing:
+    
+    * Add a small horizontal offset (e.g. padding or transform).
+    * Keep the overall layout balanced.
+    
+    Important:
+    
+    * The two texts should feel visually closer together.
+    * The middle gap should be tight, like a continuous banner.
+    , Update this section so the left and right panels are controlled independently in the theme editor.
+    
+    Add separate settings for:
+    
+    * Left text
+    * Right text
+    * Left text color
+    * Right text color
+    * Left background color
+    * Right background color
+    * Left font size
+    * Right font size
+    * Left font weight
+    * Right font weight
+    * Left text alignment/offset
+    * Right text alignment/offset
+    
+    Keep the section compact, responsive, and with reduced visual gap between the texts.
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-promo-split-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-promo-split__container-{{ ai_gen_id }} {
+    display: flex;
+    width: 100%;
+    {% if block.settings.show_divider %}
+      gap: 1px;
+      background-color: {{ block.settings.divider_color }};
+    {% else %}
+      gap: 0;
+    {% endif %}
+  }
+
+  .ai-promo-split__panel-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: {{ block.settings.padding_desktop }}px;
+    min-height: {{ block.settings.min_height_desktop }}px;
+    transition: filter 0.3s ease;
+  }
+
+  .ai-promo-split__panel--left-{{ ai_gen_id }} {
+    background-color: {{ block.settings.left_bg_color }};
+    justify-content: flex-end;
+    padding-right: {{ block.settings.left_text_offset }}px;
+  }
+
+  .ai-promo-split__panel--right-{{ ai_gen_id }} {
+    background-color: {{ block.settings.right_bg_color }};
+    justify-content: flex-start;
+    padding-left: {{ block.settings.right_text_offset }}px;
+  }
+
+  {% if block.settings.enable_hover %}
+    .ai-promo-split__panel-{{ ai_gen_id }}:hover {
+      filter: brightness(1.1);
+    }
+  {% endif %}
+
+  .ai-promo-split__text-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-transform: {{ block.settings.text_transform }};
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .ai-promo-split__text--left-{{ ai_gen_id }} {
+    color: {{ block.settings.left_text_color }};
+    font-size: {{ block.settings.left_font_size_desktop }}px;
+    font-weight: {{ block.settings.left_font_weight }};
+  }
+
+  .ai-promo-split__text--right-{{ ai_gen_id }} {
+    color: {{ block.settings.right_text_color }};
+    font-size: {{ block.settings.right_font_size_desktop }}px;
+    font-weight: {{ block.settings.right_font_weight }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-promo-split__container-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ai-promo-split__panel-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_mobile }}px;
+      min-height: {{ block.settings.min_height_mobile }}px;
+      justify-content: center;
+    }
+
+    .ai-promo-split__panel--left-{{ ai_gen_id }},
+    .ai-promo-split__panel--right-{{ ai_gen_id }} {
+      padding-left: {{ block.settings.padding_mobile }}px;
+      padding-right: {{ block.settings.padding_mobile }}px;
+    }
+
+    .ai-promo-split__text--left-{{ ai_gen_id }} {
+      font-size: {{ block.settings.left_font_size_mobile }}px;
+    }
+
+    .ai-promo-split__text--right-{{ ai_gen_id }} {
+      font-size: {{ block.settings.right_font_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<promo-split-{{ ai_gen_id }} class="ai-promo-split-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-promo-split__container-{{ ai_gen_id }}">
+    <div class="ai-promo-split__panel-{{ ai_gen_id }} ai-promo-split__panel--left-{{ ai_gen_id }}">
+      {% if block.settings.left_text != blank %}
+        <h2 class="ai-promo-split__text-{{ ai_gen_id }} ai-promo-split__text--left-{{ ai_gen_id }}">{{ block.settings.left_text }}</h2>
+      {% endif %}
+    </div>
+    <div class="ai-promo-split__panel-{{ ai_gen_id }} ai-promo-split__panel--right-{{ ai_gen_id }}">
+      {% if block.settings.right_text != blank %}
+        <h2 class="ai-promo-split__text-{{ ai_gen_id }} ai-promo-split__text--right-{{ ai_gen_id }}">{{ block.settings.right_text }}</h2>
+      {% endif %}
+    </div>
+  </div>
+</promo-split-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PromoSplit{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('promo-split-{{ ai_gen_id }}', PromoSplit{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Promo split banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left panel"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Text",
+      "default": "BUY 2 GET 1 FREE"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "left_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "left_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "left_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "left_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "left_text_offset",
+      "label": "Text offset from center",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Right panel"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Text",
+      "default": "BUNDLE WITH A BESTSELLER"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background color",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "right_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "right_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "right_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "right_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "right_text_offset",
+      "label": "Text offset from center",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 3,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height_desktop",
+      "label": "Height (desktop)",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "label": "Height (mobile)",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "label": "Padding (desktop)",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Padding (mobile)",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Effects"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider line",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover",
+      "label": "Enable hover effect",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo split banner"
+    }
+  ]
+}
 {% endschema %}
