@@ -669,7 +669,7 @@
         "margin_bottom_desktop": 0,
         "margin_top_mobile": 20,
         "margin_bottom_mobile": 20,
-        "block_background_color": "#ededed",
+        "block_background_color": "#ffffff",
         "block_padding": 24,
         "enable_full_width_card_image": false,
         "card_image_max_height_desktop": 290,
