@@ -1,6 +1,228 @@
+{% doc %}
+  @prompt
+    Create a customizable Shopify section with a horizontal split layout (50/50).
+    Requirements:
+    The section should have two equal halves (left and right).
+    Each half must have its own background color (editable in settings).
+    Each half should contain editable text (headline).
+    Text should be centered vertically and horizontally.
+    Allow customization for:
+    Left text content
+    Right text content
+    Left background color
+    Right background color
+    Text color for both sides
+    Font size and font weight
+    Make the section responsive (stack vertically on mobile).
+    Add optional spacing (padding top/bottom).
+    Use clean, modern styling similar to Shopify Dawn theme.
+    Default example:
+    Left side: "BUY 2 GET 1 FREE"
+    Right side: "BUNDLE WITH A BESTSELLER"
+    Ensure the section is easy to reuse and customizable from the Shopify theme editor.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-split-layout-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-split-layout__container-{{ ai_gen_id }} {
+    display: flex;
+    width: 100%;
+    min-height: {{ block.settings.min_height }}px;
+  }
+
+  .ai-split-layout__half-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .ai-split-layout__half--left-{{ ai_gen_id }} {
+    background-color: {{ block.settings.left_bg_color }};
+  }
+
+  .ai-split-layout__half--right-{{ ai_gen_id }} {
+    background-color: {{ block.settings.right_bg_color }};
+  }
+
+  .ai-split-layout__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 90%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-split-layout__container-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-split-layout__half-{{ ai_gen_id }} {
+      padding: 30px 20px;
+    }
+
+    .ai-split-layout__text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.font_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<split-layout-{{ ai_gen_id }} class="ai-split-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-split-layout__container-{{ ai_gen_id }}">
+    <div class="ai-split-layout__half-{{ ai_gen_id }} ai-split-layout__half--left-{{ ai_gen_id }}">
+      {% if block.settings.left_text != blank %}
+        <h2 class="ai-split-layout__text-{{ ai_gen_id }}">{{ block.settings.left_text }}</h2>
+      {% endif %}
+    </div>
+    <div class="ai-split-layout__half-{{ ai_gen_id }} ai-split-layout__half--right-{{ ai_gen_id }}">
+      {% if block.settings.right_text != blank %}
+        <h2 class="ai-split-layout__text-{{ ai_gen_id }}">{{ block.settings.right_text }}</h2>
+      {% endif %}
+    </div>
+  </div>
+</split-layout-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SplitLayout{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('split-layout-{{ ai_gen_id }}', SplitLayout{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Split layout",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left side"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Text",
+      "default": "BUY 2 GET 1 FREE"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Right side"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Text",
+      "default": "BUNDLE WITH A BESTSELLER"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Background color",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 14,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 100,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split layout"
+    }
+  ]
+}
 {% endschema %}
