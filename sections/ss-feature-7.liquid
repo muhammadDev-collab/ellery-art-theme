@@ -445,7 +445,7 @@ color: #a3a3a3;    line-height: {{ item_text_height }}%;
     const slider = new Swiper('.feature-slider-{{ section.id }}', {
       speed: 300,
       spaceBetween: {{ items_gap_mobile }},
-      slidesPerView: {{ items_row_mobile }}.4,
+      slidesPerView: 2,
       pagination: {
         el: '.feature-pagination-{{ section.id }}',
         type: 'bullets'
