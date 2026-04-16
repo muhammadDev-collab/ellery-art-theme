@@ -749,7 +749,7 @@
           "type": "image_with_text",
           "settings": {
             "image": "shopify://shop_images/2_8699ecab-9d71-4613-811c-ddb758bf90bf.png",
-            "title": "<em>FAITH ON YOUR WALLS</em>",
+            "title": "FAITH ON YOUR WALLS",
             "heading_tag": "h4",
             "content": "<p>Bring peace, purpose, and inspiration into your space.</p>",
             "link_url": "shopify://collections/christian-art",
@@ -760,7 +760,7 @@
           "type": "image_with_text",
           "settings": {
             "image": "shopify://shop_images/1_0a6e50b9-c243-4bc5-9a15-ad4881fa3654.png",
-            "title": "<em>SHAPE YOUR SPACE</em>",
+            "title": "SHAPE YOUR SPACE",
             "heading_tag": "h4",
             "content": "<p>Modern forms and colors that elevate any room.</p>",
             "link_url": "shopify://collections/abstract",
@@ -771,7 +771,7 @@
           "type": "image_with_text",
           "settings": {
             "image": "shopify://shop_images/2_63176965-8f97-4b97-9f1e-b37c2f3edbde.png",
-            "title": "<em>ART WITH CHARACTER</em>",
+            "title": "ART WITH CHARACTER",
             "heading_tag": "h4",
             "content": "<p>Playful, bold, and full of personality.</p>",
             "link_url": "shopify://collections/animals",
