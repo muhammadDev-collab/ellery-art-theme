@@ -762,13 +762,25 @@
             "spacing_bottom_mobile": 14
           }
         },
+        "star_card_bhDTrz": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Fick hem nyss mina tavlor och jag älskar verkligen detta verk av Last Supper. Fantastiskt bra 🌟",
+            "card_image": "shopify://shop_images/1775466638__1775466637108-img_4414__original.jpg",
+            "author": "Aaron M.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-last-supper-3-pieces\">The Last Supper 3 Pieces</a>",
+            "verified_text": "Verified Review"
+          }
+        },
         "star_card_NXPTgq": {
           "type": "star_card",
           "settings": {
             "title": "",
             "description": "Jag är supernöjd med min tavla! Den är ännu finare i verkligheten än på bild och känns verkligen som en kvalitetsprodukt. Ramen är stabil och ger ett väldigt stilrent intryck som passar perfekt i rummet. Leveransen gick smidigt och allt var väl förpackat. Kommer absolut beställa härifrån igen!",
             "card_image": "shopify://shop_images/1775469153__1775469150171-img_4419__original.jpg",
-            "author": "Katrin Dalar",
+            "author": "Katrin Dalar.",
             "author_image": "shopify://shop_images/trustpilot.png",
             "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\">Jesus Walking In Light</a>",
             "verified_text": "Verified Review"
@@ -804,7 +816,7 @@
             "title": "",
             "description": "Super greatful for the artwork ,just perfect",
             "card_image": "shopify://shop_images/1775512060__1775512058118-img_4425__original.jpg",
-            "author": "Olivia S",
+            "author": "Olivia S.",
             "author_image": "shopify://shop_images/trustpilot.png",
             "author_subtitle": "<a href=\"https://elleryart.com/products/he-leaves-the-99\">He Leaves The 99</a>",
             "verified_text": "Verified Review"
@@ -828,7 +840,7 @@
             "title": "",
             "description": "Really happy with it. The design looks even better in person, and the frame feels solid and well made. It fits perfectly on my wall and adds a nice vibe to the room.",
             "card_image": "shopify://shop_images/1775471813__1775471811265-img_4428__original.jpg",
-            "author": "Conrad",
+            "author": "Conrad.",
             "author_image": "shopify://shop_images/trustpilot.png",
             "author_subtitle": "<a href=\"https://elleryart.com/products/the-godfather\">The Godfather</a>",
             "verified_text": "Verified Review"
@@ -838,6 +850,7 @@
       "block_order": [
         "heading_wHqnjm",
         "review_summary_Y3zjYX",
+        "star_card_bhDTrz",
         "star_card_NXPTgq",
         "star_card_jz6ciz",
         "star_card_FMNMeL",
