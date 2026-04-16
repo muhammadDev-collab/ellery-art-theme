@@ -810,6 +810,18 @@
             "verified_text": "Verified Review"
           }
         },
+        "star_card_iBwHPm": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Just wow, really great experience",
+            "card_image": "shopify://shop_images/1775465979__1775465975139-img_2974__original.jpg",
+            "author": "Sara.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/grace\">Grace</a>",
+            "verified_text": "Verified Review"
+          }
+        },
         "star_card_FMNMeL": {
           "type": "star_card",
           "settings": {
@@ -866,6 +878,7 @@
         "star_card_KjREUK",
         "star_card_NXPTgq",
         "star_card_jz6ciz",
+        "star_card_iBwHPm",
         "star_card_FMNMeL",
         "star_card_Q9Wcqm",
         "star_card_8LDF8x",
