@@ -677,7 +677,7 @@
           "type": "review_summary",
           "settings": {
             "show_block": true,
-            "text": "Rated <strong>4.8/5</strong> based on <strong>+10,839 </strong>reviews",
+            "text": "Rated <strong>4.9/5</strong> based on <strong>+286 </strong>reviews",
             "custom_font": true,
             "font": "jost_n4",
             "size_desktop": 15,
