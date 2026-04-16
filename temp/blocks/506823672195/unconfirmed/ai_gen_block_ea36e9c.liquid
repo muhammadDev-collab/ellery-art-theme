@@ -1,6 +1,861 @@
+{% doc %}
+  @prompt
+    Create a brand new Shopify section from scratch.
+    
+    I want a fully customizable trust / USP bar section built with Shopify blocks.
+    
+    Important:
+    
+    * Do not base it on the previous section.
+    * Build it as a new clean section from scratch.
+    * Make it fully editable in the Shopify theme editor.
+    
+    Section purpose:
+    
+    * A premium trust bar with multiple items in one row.
+    * Each item should have an icon and a short text.
+    * The section should look clean, minimal, compact, and premium.
+    
+    Structure:
+    
+    * Use blocks for the trust items.
+    * Each block should be repeatable so I can add, remove, and reorder items.
+    * Show the blocks in a horizontal row on desktop.
+    * Stack them vertically on mobile.
+    
+    Each block must have separate settings for:
+    
+    * icon or image
+    * text
+    * text color
+    * icon color
+    * icon size
+    * font size
+    * font weight
+    * optional link
+    
+    Section settings must include:
+    
+    * background color
+    * content width
+    * divider on/off
+    * divider color
+    * divider thickness
+    * spacing between items
+    * spacing between icon and text
+    * desktop padding top/bottom
+    * mobile padding top/bottom
+    * horizontal alignment
+    * vertical alignment
+    
+    Design requirements:
+    
+    * compact height
+    * no large empty spaces
+    * clean vertical centering
+    * thin divider lines between items on desktop only
+    * responsive and clean on mobile
+    * premium ecommerce style
+    
+    Default example blocks:
+    
+    1. Officially Licensed Artworks Only
+    2. Free Shipping on All Orders Above 950 kr
+    3. 100% Safe and Secure Transactions
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-bar-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.desktop_padding_top }}px;
+    padding-bottom: {{ block.settings.desktop_padding_bottom }}px;
+  }
+
+  .ai-trust-bar__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.content_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-trust-bar__items-{{ ai_gen_id }} {
+    display: flex;
+    align-items: {{ block.settings.vertical_alignment }};
+    justify-content: {{ block.settings.horizontal_alignment }};
+    gap: {{ block.settings.spacing_between_items }}px;
+    flex-wrap: nowrap;
+  }
+
+  .ai-trust-bar__item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: {{ block.settings.vertical_alignment }};
+    gap: {{ block.settings.spacing_icon_text }}px;
+    flex: 0 1 auto;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-trust-bar__item-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  .ai-trust-bar__item-{{ ai_gen_id }}:not(:last-child) {
+    {% if block.settings.show_divider %}
+      padding-right: {{ block.settings.spacing_between_items }}px;
+      border-right: {{ block.settings.divider_thickness }}px solid {{ block.settings.divider_color }};
+    {% endif %}
+  }
+
+  .ai-trust-bar__icon-wrapper-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-trust-bar__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_1 }}px;
+    height: {{ block.settings.icon_size_1 }}px;
+    object-fit: contain;
+  }
+
+  .ai-trust-bar__icon-svg-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_1 }}px;
+    height: {{ block.settings.icon_size_1 }}px;
+  }
+
+  .ai-trust-bar__icon-svg-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color_1 }};
+    fill: none;
+  }
+
+  .ai-trust-bar__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color_1 }};
+    font-size: {{ block.settings.font_size_1 }}px;
+    font-weight: {{ block.settings.font_weight_1 }};
+    margin: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .ai-trust-bar__icon-2-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_2 }}px;
+    height: {{ block.settings.icon_size_2 }}px;
+  }
+
+  .ai-trust-bar__icon-svg-2-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_2 }}px;
+    height: {{ block.settings.icon_size_2 }}px;
+  }
+
+  .ai-trust-bar__icon-svg-2-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color_2 }};
+    fill: none;
+  }
+
+  .ai-trust-bar__text-2-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color_2 }};
+    font-size: {{ block.settings.font_size_2 }}px;
+    font-weight: {{ block.settings.font_weight_2 }};
+  }
+
+  .ai-trust-bar__icon-3-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_3 }}px;
+    height: {{ block.settings.icon_size_3 }}px;
+  }
+
+  .ai-trust-bar__icon-svg-3-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_3 }}px;
+    height: {{ block.settings.icon_size_3 }}px;
+  }
+
+  .ai-trust-bar__icon-svg-3-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ block.settings.icon_color_3 }};
+    fill: none;
+  }
+
+  .ai-trust-bar__text-3-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color_3 }};
+    font-size: {{ block.settings.font_size_3 }}px;
+    font-weight: {{ block.settings.font_weight_3 }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-trust-bar-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.mobile_padding_top }}px;
+      padding-bottom: {{ block.settings.mobile_padding_bottom }}px;
+    }
+
+    .ai-trust-bar__items-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: {{ block.settings.spacing_between_items | times: 0.75 }}px;
+    }
+
+    .ai-trust-bar__item-{{ ai_gen_id }}:not(:last-child) {
+      padding-right: 0;
+      border-right: none;
+      {% if block.settings.show_divider %}
+        padding-bottom: {{ block.settings.spacing_between_items | times: 0.75 }}px;
+        border-bottom: {{ block.settings.divider_thickness }}px solid {{ block.settings.divider_color }};
+        width: 100%;
+      {% endif %}
+    }
+
+    .ai-trust-bar__text-{{ ai_gen_id }},
+    .ai-trust-bar__text-2-{{ ai_gen_id }},
+    .ai-trust-bar__text-3-{{ ai_gen_id }} {
+      white-space: normal;
+    }
+  }
+{% endstyle %}
+
+<trust-bar-{{ ai_gen_id }} class="ai-trust-bar-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-trust-bar__container-{{ ai_gen_id }}">
+    <div class="ai-trust-bar__items-{{ ai_gen_id }}">
+      {% if block.settings.show_item_1 %}
+        {% if block.settings.link_1 != blank %}
+          <a href="{{ block.settings.link_1 }}" class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_1 != blank %}
+                <img 
+                  src="{{ block.settings.image_1 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_1 | escape }}"
+                  class="ai-trust-bar__icon-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_1 != blank %}
+                <div class="ai-trust-bar__icon-svg-{{ ai_gen_id }}">
+                  {{ block.settings.icon_1 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-{{ ai_gen_id }}">{{ block.settings.text_1 }}</p>
+          </a>
+        {% else %}
+          <div class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_1 != blank %}
+                <img 
+                  src="{{ block.settings.image_1 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_1 | escape }}"
+                  class="ai-trust-bar__icon-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_1 != blank %}
+                <div class="ai-trust-bar__icon-svg-{{ ai_gen_id }}">
+                  {{ block.settings.icon_1 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-{{ ai_gen_id }}">{{ block.settings.text_1 }}</p>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if block.settings.show_item_2 %}
+        {% if block.settings.link_2 != blank %}
+          <a href="{{ block.settings.link_2 }}" class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_2 != blank %}
+                <img 
+                  src="{{ block.settings.image_2 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_2 | escape }}"
+                  class="ai-trust-bar__icon-2-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_2 != blank %}
+                <div class="ai-trust-bar__icon-svg-2-{{ ai_gen_id }}">
+                  {{ block.settings.icon_2 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-2-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-2-{{ ai_gen_id }}">{{ block.settings.text_2 }}</p>
+          </a>
+        {% else %}
+          <div class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_2 != blank %}
+                <img 
+                  src="{{ block.settings.image_2 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_2 | escape }}"
+                  class="ai-trust-bar__icon-2-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_2 != blank %}
+                <div class="ai-trust-bar__icon-svg-2-{{ ai_gen_id }}">
+                  {{ block.settings.icon_2 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-2-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-2-{{ ai_gen_id }}">{{ block.settings.text_2 }}</p>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if block.settings.show_item_3 %}
+        {% if block.settings.link_3 != blank %}
+          <a href="{{ block.settings.link_3 }}" class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_3 != blank %}
+                <img 
+                  src="{{ block.settings.image_3 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_3 | escape }}"
+                  class="ai-trust-bar__icon-3-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_3 != blank %}
+                <div class="ai-trust-bar__icon-svg-3-{{ ai_gen_id }}">
+                  {{ block.settings.icon_3 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-3-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-3-{{ ai_gen_id }}">{{ block.settings.text_3 }}</p>
+          </a>
+        {% else %}
+          <div class="ai-trust-bar__item-{{ ai_gen_id }}">
+            <div class="ai-trust-bar__icon-wrapper-{{ ai_gen_id }}">
+              {% if block.settings.image_3 != blank %}
+                <img 
+                  src="{{ block.settings.image_3 | image_url: width: 100 }}" 
+                  alt="{{ block.settings.text_3 | escape }}"
+                  class="ai-trust-bar__icon-3-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% elsif block.settings.icon_3 != blank %}
+                <div class="ai-trust-bar__icon-svg-3-{{ ai_gen_id }}">
+                  {{ block.settings.icon_3 }}
+                </div>
+              {% else %}
+                <div class="ai-trust-bar__icon-svg-3-{{ ai_gen_id }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              {% endif %}
+            </div>
+            <p class="ai-trust-bar__text-3-{{ ai_gen_id }}">{{ block.settings.text_3 }}</p>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</trust-bar-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TrustBar{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('trust-bar-{{ ai_gen_id }}', TrustBar{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Trust bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        },
+        {
+          "value": "space-between",
+          "label": "Space between"
+        },
+        {
+          "value": "space-around",
+          "label": "Space around"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_items",
+      "label": "Space between items",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "spacing_icon_text",
+      "label": "Space between icon and text",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Desktop padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Desktop padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "header",
+      "content": "Divider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "label": "Divider thickness",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_1",
+      "label": "Show item 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text",
+      "default": "Officially Licensed Artworks Only"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Custom image"
+    },
+    {
+      "type": "html",
+      "id": "icon_1",
+      "label": "SVG icon code",
+      "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path><polyline points=\"9 12 11 14 15 10\"></polyline></svg>"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_1",
+      "label": "Icon size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color_1",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color_1",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size_1",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight_1",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_2",
+      "label": "Show item 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text",
+      "default": "Free Shipping on All Orders Above 950 kr"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Custom image"
+    },
+    {
+      "type": "html",
+      "id": "icon_2",
+      "label": "SVG icon code",
+      "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle></svg>"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_2",
+      "label": "Icon size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color_2",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color_2",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size_2",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight_2",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_3",
+      "label": "Show item 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text",
+      "default": "100% Safe and Secure Transactions"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Custom image"
+    },
+    {
+      "type": "html",
+      "id": "icon_3",
+      "label": "SVG icon code",
+      "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_3",
+      "label": "Icon size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color_3",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color_3",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size_3",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight_3",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust bar"
+    }
+  ]
+}
 {% endschema %}
