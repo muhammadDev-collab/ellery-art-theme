@@ -9,71 +9,6 @@
  */
 {
   "sections": {
-    "scrolling_content_fjpB7d": {
-      "type": "scrolling-content",
-      "blocks": {
-        "text_FicfWy": {
-          "type": "text",
-          "settings": {
-            "text": "Original art"
-          }
-        },
-        "text_KEfLMt": {
-          "type": "text",
-          "settings": {
-            "text": "Limited Edition"
-          }
-        },
-        "text_KXprxW": {
-          "type": "text",
-          "settings": {
-            "text": "Certified Art"
-          }
-        },
-        "text_WLtdPA": {
-          "type": "text",
-          "settings": {
-            "text": "Handmade in Sweden"
-          }
-        },
-        "text_Lyyk8M": {
-          "type": "text",
-          "settings": {
-            "text": "Crafted with emotion"
-          }
-        },
-        "text_pjt9dp": {
-          "type": "text",
-          "settings": {
-            "text": "Free shipping"
-          }
-        }
-      },
-      "block_order": [
-        "text_FicfWy",
-        "text_KEfLMt",
-        "text_KXprxW",
-        "text_WLtdPA",
-        "text_Lyyk8M",
-        "text_pjt9dp"
-      ],
-      "disabled": true,
-      "settings": {
-        "separate_section_with_border": false,
-        "scrolling_speed": 0.1,
-        "scroll_direction": "right",
-        "pause_on_hover": true,
-        "text_font": "heading",
-        "text_font_size_mobile": 10,
-        "text_font_size_desktop": 10,
-        "section_vertical_spacing_mobile": 10,
-        "section_vertical_spacing_desktop": 10,
-        "item_horizontal_spacing_mobile": 30,
-        "item_horizontal_spacing_desktop": 50,
-        "background": "#ededed",
-        "text_color": "#1c1c1c"
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -97,19 +32,25 @@
             "show_taxes_notice": false
           }
         },
+        "text_itxJwe": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>LIMITED TIME OFFER</h6>"
+          }
+        },
         "section_vso_theme_sections_countdown_timer_YPkYay": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/countdownTimer/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
-            "countdown_text": "<strong>30% OFF - LIMITED TIME</strong>",
+            "countdown_text": "BUY 2 GET 1 FREE, BUY 3 GET 2 FREE",
             "duration_minutes": 52,
             "enable_persistence": true,
             "empty_bar_color": "#e0e0e0",
             "progress_bar_color": "#1c7931",
             "text_color": "#333333",
             "timer_color": "#333333",
-            "bar_height": 8,
-            "font_size": 14,
-            "margin_top": 0,
+            "bar_height": 6,
+            "font_size": 13,
+            "margin_top": -27,
             "margin_bottom": 0
           }
         },
@@ -125,19 +66,6 @@
             "swatch_selector_style": "swatch",
             "variant_image_options": "",
             "size_chart_page": "sizing-chart"
-          }
-        },
-        "modal_mNQWbp": {
-          "type": "modal",
-          "disabled": true,
-          "settings": {
-            "button_title": "Size Guide",
-            "button_style": "link",
-            "stretch_button": false,
-            "button_background": "",
-            "button_text_color": "",
-            "modal_title": "Size Guide",
-            "modal_content": "{{ product.metafields.custom.size_chart.value.content | metafield_tag }}"
           }
         },
         "buy_buttons": {
@@ -174,29 +102,6 @@
             "section_gap": 12
           }
         },
-        "section_vso_theme_sections_delivery_information_Lq3JXd": {
-          "type": "shopify://apps/section-vso-theme-sections/blocks/deliveryInformation/06016590-3938-4460-bd08-bd58cf996a58",
-          "disabled": true,
-          "settings": {
-            "ordered_label": "Ordered",
-            "shipped_label": "Shipped",
-            "delivered_label": "Delivered",
-            "shipped_min_days": 3,
-            "shipped_max_days": 4,
-            "delivered_min_days": 7,
-            "delivered_max_days": 8,
-            "text_color": "#000000",
-            "icon_color": "#ffffff",
-            "icon_background_color": "#111827",
-            "icon_size": 36,
-            "icon_padding": 10,
-            "label_font_size": 14,
-            "date_font_weight": "500",
-            "date_font_size": 12,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g": {
           "type": "shopify://apps/section-vso-theme-sections/blocks/vsoBenefitBoxes/06016590-3938-4460-bd08-bd58cf996a58",
           "settings": {
@@ -231,7 +136,7 @@
             "video_2": "shopify://files/videos/b3312f22add34fc4a49d61fc68657bdf_31cf9684-c9bc-4e93-aa16-97f13542663d.mov",
             "video_3": "shopify://files/videos/SnapInsta.to_AQNKOMmdfJqTKSKZtLhNEMjy0ZYF28OScJfU3_CMgW7GCkDZ9LSmvV20T0-Mn7sxpwrhPcTH6ADnDeWx40OrZtXFxDawq_9K79B6qoU 2.mp4",
             "video_4": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
-            "video_5": "shopify://files/videos/reelsvideo.io_1769456695459.mp4",
+            "video_5": "shopify://files/videos/1088f611a76c44629582e0325baa5f6e 2.MOV",
             "video_6": "shopify://files/videos/DailyInspoVideo.mov"
           }
         },
@@ -267,14 +172,13 @@
         "title",
         "vendor_hYYEd4",
         "price",
+        "text_itxJwe",
         "section_vso_theme_sections_countdown_timer_YPkYay",
         "payment_terms",
         "variant_picker",
-        "modal_mNQWbp",
         "buy_buttons",
         "trust_block_KGDLif",
         "section_vso_theme_sections_product_badge_PAxHCh",
-        "section_vso_theme_sections_delivery_information_Lq3JXd",
         "section_vso_theme_sections_vso_benefit_boxes_V4gC4g",
         "in_the_wild_JfpLWB",
         "separator_wk3YaC",
@@ -307,13 +211,13 @@
         "heading_TD7CzY": {
           "type": "heading",
           "settings": {
-            "heading": "<h4>Why People Love Ellery Art</h4>",
+            "heading": "<h4>WHY PEOPLE LOVE ELLERY ART</h4>",
             "heading_custom": false,
             "heading_font": "josefin_sans_n4",
             "heading_size": 20,
             "heading_size_mobile": 18,
             "heading_height": 130,
-            "heading_align": "left",
+            "heading_align": "center",
             "heading_align_mobile": "center",
             "heading_color": "#121212"
           }
@@ -395,224 +299,54 @@
         "padding_bottom": 36,
         "padding_horizontal": 5,
         "padding_horizontal_mobile": 2.5,
-        "full_width": false,
+        "full_width": true,
         "content_width": 1200,
         "border_thickness": 0,
         "section_radius": 0
       }
     },
-    "custom_liquid_jwPn6j": {
-      "type": "custom-liquid",
-      "name": "Custom Reviews",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "liquid": "<div id='ss-product-reviews-2'></div>",
-        "text_alignment": "center"
-      }
-    },
-    "product_reviews_2_HLGaCx": {
-      "type": "product-reviews-2",
+    "17763430357da84433": {
+      "type": "_blocks",
       "blocks": {
-        "item_c6yiUQ": {
-          "type": "item",
+        "ai_gen_block_9edb91b_YNN9mH": {
+          "type": "ai_gen_block_9edb91b",
           "settings": {
-            "stars_count": 5,
-            "verified_text": "Verified",
-            "title": "Minimalist, elegant, and timeless",
-            "text": "<p>\"The Last Supper\" fits perfectly in my living room, clean lines, soft tones, and a subtle texture that makes it feel original. Ellery Art has such a refined aesthetic</p>",
-            "author": "Emily R",
-            "time": "Germany"
-          }
-        },
-        "item_6FFcy8": {
-          "type": "item",
-          "settings": {
-            "stars_count": 4.5,
-            "verified_text": "Verified",
-            "title": "Even more beautiful in person",
-            "text": "<p>I was honestly blown away when my print arrived. The colors are incredibly vibrant and the paper quality feels premium. It looks like something straight from a gallery wall.</p>",
-            "author": "Sophia L",
-            "time": "Copenhagen"
-          }
-        },
-        "item_XFEd86": {
-          "type": "item",
-          "settings": {
-            "stars_count": 5,
-            "verified_text": "Verified",
-            "title": "Worth every penny!!",
-            "text": "<p>It arrived in perfect condition — carefully wrapped, no creases, no corners bent. Even the unboxing felt premium.</p>",
-            "author": "Nora",
-            "time": "Sweden"
-          }
-        },
-        "item_eR4kBn": {
-          "type": "item",
-          "settings": {
-            "stars_count": 4.5,
-            "verified_text": "Verified",
-            "title": "The print feels alive",
-            "text": "<p>I’ve bought prints online before and they never looked like the photos. This one actually does, maybe even better. I’m impressed</p>",
-            "author": "Ryan",
-            "time": "Madrid"
-          }
-        },
-        "item_qE3Ytf": {
-          "type": "item",
-          "settings": {
-            "stars_count": 5,
-            "verified_text": "Verified",
-            "title": "Feels personal",
-            "text": "<p>I don’t usually leave reviews, but I’ve been staring at it for weeks now. It feels like it belongs in my home</p>",
-            "author": "Marco V",
-            "time": "Stockholm"
-          }
-        },
-        "item_pUhQEp": {
-          "type": "item",
-          "settings": {
-            "stars_count": 5,
-            "verified_text": "Verified",
-            "title": "Good communication and quick delivery",
-            "text": "<p>I got an update at every step, and the print arrived in perfect condition. Great experience overall</p>",
-            "author": "Maya",
-            "time": "Amsterdam"
-          }
-        },
-        "item_JxqcJT": {
-          "type": "item",
-          "settings": {
-            "stars_count": 4.5,
-            "verified_text": "Verified",
-            "title": "Emotional!",
-            "text": "<p>The Last Supper was perfect</p>",
-            "author": "Sara",
-            "time": "Sweden"
-          }
-        },
-        "item_XJmUFa": {
-          "type": "item",
-          "settings": {
-            "stars_count": 5,
-            "verified_text": "Verified",
-            "title": "I keep getting compliments",
-            "text": "<p>Friends always ask where I got the last supper. It’s perfect and really adds character , I’ll definitely order again soon.</p>",
-            "author": "Clara W",
-            "time": "Berlin"
-          }
+            "left_text": "BUY 2 GET 1 FREE",
+            "left_bg_color": "#ededed",
+            "left_text_color": "#000000",
+            "left_font_size_desktop": 20,
+            "left_font_size_mobile": 18,
+            "left_font_weight": "400",
+            "left_text_offset": 10,
+            "right_text": "BUNDLE WITH A BESTSELLER",
+            "right_bg_color": "#ededed",
+            "right_text_color": "#797979",
+            "right_font_size_desktop": 20,
+            "right_font_size_mobile": 12,
+            "right_font_weight": "600",
+            "right_text_offset": 30,
+            "text_transform": "uppercase",
+            "letter_spacing": 0.5,
+            "min_height_desktop": 40,
+            "min_height_mobile": 30,
+            "padding_desktop": 5,
+            "padding_mobile": 5,
+            "show_divider": false,
+            "divider_color": "#ffffff",
+            "enable_hover": false
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "item_c6yiUQ",
-        "item_6FFcy8",
-        "item_XFEd86",
-        "item_eR4kBn",
-        "item_qE3Ytf",
-        "item_pUhQEp",
-        "item_JxqcJT",
-        "item_XJmUFa"
+        "ai_gen_block_9edb91b_YNN9mH"
       ],
-      "name": "SS - Product reviews #2",
+      "name": "Split Banner",
       "settings": {
-        "reviews_position": "below_buy",
-        "use_metafield": false,
-        "slider_view": 2,
-        "slider_view_mobile": 1.3,
-        "slider_gap": 16,
-        "slider_gap_mobile": 10,
-        "item_padding_horizontal": 20,
-        "item_padding_horizontal_mobile": 20,
-        "item_padding_vertical": 20,
-        "item_padding_vertical_mobile": 20,
-        "item_radius": 4,
-        "item_border_thickness": 0,
-        "item_shadow": true,
-        "stars_size": 14,
-        "stars_size_mobile": 13,
-        "use_verified_tag": true,
-        "verified_icon_size": 14,
-        "verified_icon_size_mobile": 14,
-        "verified_custom": false,
-        "verified_font": "josefin_sans_n4",
-        "verified_size": 10,
-        "verified_size_mobile": 10,
-        "verified_height": 100,
-        "title_custom": false,
-        "title_font": "josefin_sans_n4",
-        "title_size": 12,
-        "title_size_mobile": 12,
-        "title_height": 150,
-        "title_mt": 16,
-        "title_mt_mobile": 16,
-        "text_custom": false,
-        "text_font": "josefin_sans_n4",
-        "text_size": 12,
-        "text_size_mobile": 12,
-        "text_height": 150,
-        "text_mt": 12,
-        "text_mt_mobile": 12,
-        "author_custom": false,
-        "author_font": "josefin_sans_n4",
-        "author_size": 12,
-        "author_size_mobile": 12,
-        "author_height": 130,
-        "publication_mt": 12,
-        "publication_mt_mobile": 12,
-        "time_custom": false,
-        "time_font": "josefin_sans_n4",
-        "time_size": 12,
-        "time_size_mobile": 12,
-        "time_height": 130,
-        "arrow_size": 32,
-        "arrow_size_mobile": 32,
-        "arrow_icon_size": 7,
-        "arrow_icon_size_mobile": 7,
-        "arrow_border_thickness": 0,
-        "arrow_radius": 100,
-        "arrow_hover_effect": "color",
-        "arrow_show_desktop": true,
-        "arrow_show_mobile": false,
-        "bottom_text": "<p>Rated <strong>4.7</strong> / 5 based on 500+ reviews</p>",
-        "bottom_text_custom": false,
-        "bottom_text_font": "josefin_sans_n4",
-        "bottom_text_size": 13,
-        "bottom_text_size_mobile": 13,
-        "bottom_text_height": 150,
-        "bottom_text_mt": 16,
-        "bottom_text_mt_mobile": 16,
-        "bottom_text_align": "center",
-        "bottom_text_align_mobile": "center",
-        "title_color": "#1f2936",
-        "text_color": "#191919",
-        "author_color": "#636464",
-        "time_color": "#636464",
-        "item_bg_color": "#f8f9fa",
-        "item_border_color": "#e2e7ec",
-        "stars_color": "#ffffff",
-        "stars_bg_color": "#00b67a",
-        "verified_color": "#6c6c85",
-        "verified_text_color": "#6c6c85",
-        "arrow_color": "#000000",
-        "arrow_hover_color": "#7b7b7b",
-        "arrow_bg_color": "#ededed",
-        "arrow_bg_hover_color": "#f5f5f5",
-        "arrow_border_color": "#c7c7c7",
-        "arrow_border_hover_color": "#c7c7c7",
-        "bottom_text_color": "#000000",
-        "background_color": "#ffffff",
-        "background_gradient": "",
-        "border_color": "#000000",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_horizontal": 0,
-        "padding_horizontal_mobile": 0,
-        "border_thickness": 0,
-        "lazy": true
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
       }
     },
     "related-products": {
@@ -621,73 +355,357 @@
         "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 4px !important; display: inline-block !important;}"
       ],
       "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
         "hide_product_information": false,
-        "stack_products": true,
-        "recommendations_count": 4,
+        "stack_products": false,
+        "recommendations_count": 8,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
+        "horizontal_spacing_factor": 0.2,
+        "vertical_spacing_factor": 0.2,
         "subheading": "",
-        "title": "You may also like",
+        "title": "",
         "content": ""
       }
     },
-    "1774524948d3fc03ed": {
-      "type": "apps",
+    "177634481806d89c19": {
+      "type": "_blocks",
       "blocks": {
-        "judge_me_reviews_videos_carousel_qqNH3h": {
-          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
+        "ai_gen_block_ea36e9c_tnp7UN": {
+          "type": "ai_gen_block_ea36e9c",
           "settings": {
-            "show_sample_reviews": false,
-            "reviews_selection": "all",
-            "products": [],
-            "star_rating": "all",
-            "review_type": "all",
-            "max_reviews": 20,
-            "show_reviewer_name": true,
-            "stars_size": "small",
-            "text_size": "small",
-            "arrows_position": "hidden",
-            "max_width": 1100,
-            "corner_styling": "square",
-            "header_text_color": "#000000",
-            "card_color": "#7D7D7D",
-            "stars_color": "",
-            "text_color": "#FFFFFF",
-            "arrows_color": "#000000",
-            "show_drop_shadow": false,
-            "show_border": false,
-            "border_color": "#108474",
-            "autoplay_media": true,
-            "transition_speed": 5,
-            "carousel_style": "highlight",
-            "header_text": "SUPER HAPPY CUSTOMERS",
-            "show_average_rating": true
-          }
+            "content_width": 1600,
+            "horizontal_alignment": "space-around",
+            "vertical_alignment": "center",
+            "spacing_between_items": 20,
+            "spacing_icon_text": 10,
+            "desktop_padding_top": 20,
+            "desktop_padding_bottom": 20,
+            "mobile_padding_top": 15,
+            "mobile_padding_bottom": 15,
+            "background_color": "#efefef",
+            "show_divider": true,
+            "divider_color": "#ffffff",
+            "divider_thickness": 2,
+            "show_item_1": true,
+            "text_1": "Officially Licensed Artworks Only",
+            "link_1": "",
+            "icon_1": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path><polyline points=\"9 12 11 14 15 10\"></polyline></svg>",
+            "icon_size_1": 20,
+            "icon_color_1": "#000000",
+            "text_color_1": "#000000",
+            "font_size_1": 14,
+            "font_weight_1": "500",
+            "show_item_2": true,
+            "text_2": "Free Shipping on All Orders Above € 150",
+            "link_2": "",
+            "icon_2": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle></svg>",
+            "icon_size_2": 20,
+            "icon_color_2": "#000000",
+            "text_color_2": "#000000",
+            "font_size_2": 14,
+            "font_weight_2": "400",
+            "show_item_3": true,
+            "text_3": "100% Safe and Secure Transactions",
+            "link_3": "",
+            "icon_3": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"></rect><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"></path></svg>",
+            "icon_size_3": 20,
+            "icon_color_3": "#000000",
+            "text_color_3": "#000000",
+            "font_size_3": 14,
+            "font_weight_3": "400"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "judge_me_reviews_videos_carousel_qqNH3h"
+        "ai_gen_block_ea36e9c_tnp7UN"
       ],
+      "custom_css": [],
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": true,
         "remove_vertical_spacing": false,
         "remove_horizontal_spacing": false
       }
+    },
+    "rich_text_XPHxNG": {
+      "type": "rich-text",
+      "blocks": {
+        "liquid_VDhRiM": {
+          "type": "liquid",
+          "settings": {
+            "liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "liquid_VDhRiM"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": true
+      }
+    },
+    "vso_testimonials_14_7JhUcQ": {
+      "type": "vso-testimonials-14",
+      "blocks": {
+        "heading_wHqnjm": {
+          "type": "heading",
+          "settings": {
+            "heading": "SEE WHAT OUR CUSTOMERS ARE SAYING",
+            "heading_custom_font": false,
+            "heading_as": "h3",
+            "heading_font": "sans_serif_n4",
+            "heading_size_desktop": 40,
+            "heading_size_mobile": 32,
+            "heading_line_height": 130,
+            "heading_color": "#000000",
+            "heading_font_weight": 700,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 24,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 18
+          }
+        },
+        "review_summary_Y3zjYX": {
+          "type": "review_summary",
+          "settings": {
+            "show_block": true,
+            "text": "<strong>4.9/5</strong>",
+            "custom_font": true,
+            "font": "jost_n4",
+            "size_desktop": 16,
+            "size_mobile": 12,
+            "line_height": 140,
+            "font_weight": 500,
+            "text_color": "#1c1c1c",
+            "stars_count": 5,
+            "bg_color": "#ffffff",
+            "stars_color": "#a18b64",
+            "empty_stars_color": "#bdbdbd",
+            "stars_size": 16,
+            "gap": 8,
+            "padding_y": 8,
+            "padding_x": 14,
+            "radius": 8,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 14,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 14
+          }
+        },
+        "star_card_bhDTrz": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Fick hem nyss mina tavlor och jag älskar verkligen detta verk av Last Supper. Fantastiskt bra 🌟",
+            "card_image": "shopify://shop_images/1775466638__1775466637108-img_4414__original.jpg",
+            "author": "Aaron M.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-last-supper-3-pieces\"><span style=\"text-decoration:underline\">The Last Supper 3 Pieces</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_KjREUK": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "I love it",
+            "card_image": "shopify://shop_images/1775466095__1775466091674-img_3692__original.jpg",
+            "author": "David P.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-world-is-yours\"><span style=\"text-decoration:underline\">The World Is Yours</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_NXPTgq": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Jag är supernöjd med min tavla! Den är ännu finare i verkligheten och känns verkligen som en kvalité . Ramen är stabil. Leveransen gick smidigt och allt var väl förpackat. Kommer absolut beställa härifrån igen!",
+            "card_image": "shopify://shop_images/1775469153__1775469150171-img_4419__original.jpg",
+            "author": "Katrin Dalar.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\"><span style=\"text-decoration:underline\">Jesus Walking In Light</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_jz6ciz": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Love my artwork! Fits so perfect in my house",
+            "card_image": "shopify://shop_images/1775642762__1775642760494-66f61c63-0efe-4394-a13d-83__original_07d59db4-aaf7-498b-a9ba-06d928c9c39c.jpg",
+            "author": "Maria S.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-last-supper-3-pieces\"><span style=\"text-decoration:underline\">The Last Supper 3 Pieces</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_iBwHPm": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Just wow, really great experience",
+            "card_image": "shopify://shop_images/1775465979__1775465975139-img_2974__original.jpg",
+            "author": "Sara.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/grace\"><span style=\"text-decoration:underline\">Grace</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_FMNMeL": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Älskar min stilrena canvas Tavla på Jesus!! Supernöjd med kvaliteten och servicen dessutom!🙏🏼💘",
+            "card_image": "shopify://shop_images/Skarmavbild_2026-04-16_kl._15.26.36.png",
+            "author": "Maryam.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\"><span style=\"text-decoration:underline\">Jesus Walking In Light</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_Q9Wcqm": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Super greatful for the artwork ,just perfect",
+            "card_image": "shopify://shop_images/1775512060__1775512058118-img_4425__original.jpg",
+            "author": "Olivia S.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/he-leaves-the-99\"><span style=\"text-decoration:underline\">He Leaves The 99</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_8LDF8x": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Love it, can't stop watching at it. Tbh I did hesitate for a while but it came out perfect!",
+            "card_image": "shopify://shop_images/1775512504__1775512502520-img_4438__original.jpg",
+            "author": "Mackarel Ale.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-last-supper-3-pieces\"><span style=\"text-decoration:underline\">The Last Supper 3 Pieces</span></a>",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_XwHgcL": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "Really happy with it. The design looks even better in person, and the frame feels solid and well made. It fits perfectly on my wall and adds a nice vibe to the room.",
+            "card_image": "shopify://shop_images/1775471813__1775471811265-img_4428__original.jpg",
+            "author": "Conrad.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-godfather\"><span style=\"text-decoration:underline\">The Godfather</span></a>",
+            "verified_text": "Verified Review"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wHqnjm",
+        "review_summary_Y3zjYX",
+        "star_card_bhDTrz",
+        "star_card_KjREUK",
+        "star_card_NXPTgq",
+        "star_card_jz6ciz",
+        "star_card_iBwHPm",
+        "star_card_FMNMeL",
+        "star_card_Q9Wcqm",
+        "star_card_8LDF8x",
+        "star_card_XwHgcL"
+      ],
+      "name": "VSO - Testimonials 14",
+      "settings": {
+        "enable_advanced_settings": true,
+        "background_style": "solid",
+        "background_color": "#ffffff",
+        "background_gradient": "linear-gradient(360deg, rgba(247, 247, 247, 1), rgba(255, 255, 255, 1) 100%)",
+        "full_width_desktop": true,
+        "section_border_radius": 12,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "block_background_color": "#ffffff",
+        "block_padding": 24,
+        "enable_full_width_card_image": false,
+        "card_image_max_height_desktop": 290,
+        "card_image_max_height_mobile": 200,
+        "block_elements_gap": 13,
+        "block_border_radius": 0,
+        "desktop_card_width": 350,
+        "desktop_blocks_gap": 32,
+        "mobile_blocks_gap": 16,
+        "enable_equal_height": true,
+        "block_border_width": 0,
+        "block_border_color": "#e0e0e0",
+        "enable_card_shadow": true,
+        "card_shadow_color": "#696969",
+        "star_size": 16,
+        "star_color": "#1c1c1c",
+        "custom_block_title_font": false,
+        "block_title_as": "h3",
+        "block_title_font": "sans_serif_n4",
+        "block_title_size_desktop": 18,
+        "block_title_size_mobile": 16,
+        "block_title_line_height": 130,
+        "block_title_color": "#111111",
+        "custom_block_description_font": true,
+        "block_description_as": "p",
+        "block_description_font": "sans_serif_n4",
+        "block_description_size_desktop": 12,
+        "block_description_size_mobile": 12,
+        "block_description_line_height": 150,
+        "block_description_color": "#232323",
+        "block_description_font_weight": 400,
+        "author_circle_size": 30,
+        "author_circle_size_mobile": 28,
+        "author_circle_background_color": "#efefef",
+        "author_circle_text_color": "#efefef",
+        "author_container_gap": 8,
+        "block_author_size_desktop": 12,
+        "block_author_size_mobile": 12,
+        "block_author_line_height": 140,
+        "block_author_color": "#333333",
+        "block_author_font_weight": 600,
+        "block_verified_size_desktop": 12,
+        "block_verified_size_mobile": 11,
+        "block_verified_line_height": 130,
+        "block_verified_color": "#1c1c1c",
+        "block_verified_font_weight": 400,
+        "show_navigation_desktop": false,
+        "show_navigation_mobile": false,
+        "nav_arrow_size": 50,
+        "nav_arrow_bg_color": "#fafafa",
+        "nav_arrow_icon_color": "#307a07",
+        "nav_arrow_border_width": 0,
+        "nav_arrow_border_color": "#e5e7eb",
+        "nav_arrow_shadow_enable": true,
+        "nav_arrow_shadow_color": "#000000",
+        "nav_arrow_gap": 10,
+        "nav_arrow_top_spacing": 0
+      }
     }
   },
   "order": [
-    "scrolling_content_fjpB7d",
     "main",
     "ss_stats_2_rRfT8d",
-    "custom_liquid_jwPn6j",
-    "product_reviews_2_HLGaCx",
+    "17763430357da84433",
     "related-products",
-    "1774524948d3fc03ed"
+    "177634481806d89c19",
+    "rich_text_XPHxNG",
+    "vso_testimonials_14_7JhUcQ"
   ]
 }
