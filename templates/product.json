@@ -323,7 +323,7 @@
             "right_bg_color": "#ededed",
             "right_text_color": "#797979",
             "right_font_size_desktop": 20,
-            "right_font_size_mobile": 12,
+            "right_font_size_mobile": 16,
             "right_font_weight": "600",
             "right_text_offset": 30,
             "text_transform": "uppercase",
