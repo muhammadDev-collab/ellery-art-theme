@@ -129,6 +129,14 @@
     object-fit: contain;
   }
 
+  .feature-item-{{ section.id }} {
+    border-right: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .feature-item-{{ section.id }}:last-child {
+    border-right: none;
+  }
+
   .feature-title-{{ section.id }} {
     margin-top: {{ item_heading_mt | times: 0.75 | round: 0 }}px;
     text-align: {{ item_heading_align }};
