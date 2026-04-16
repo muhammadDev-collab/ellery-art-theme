@@ -766,54 +766,44 @@
           "type": "star_card",
           "settings": {
             "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "card_image": "shopify://shop_images/a_bit_from_a_angle.png",
-            "author": "Johan S",
-            "author_subtitle": "The Last Supper",
+            "description": "Love my artwork! Fits so perfect in my house",
+            "card_image": "shopify://shop_images/1775642762__1775642760494-66f61c63-0efe-4394-a13d-83__original_07d59db4-aaf7-498b-a9ba-06d928c9c39c.jpg",
+            "author": "Maria S.",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-last-supper-3-pieces\">The Last Supper 3 Pieces</a>",
             "verified_text": "Verified Review"
           }
         },
-        "star_card_Va33DW": {
+        "star_card_FMNMeL": {
           "type": "star_card",
           "settings": {
             "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "card_image": "shopify://shop_images/cozy-lounge-zone-interior-couch-shelf-with-decoration-mock-up-frame.jpg",
-            "author": "Sarah M.",
-            "author_subtitle": "3 days ago",
-            "verified_text": "Verified Rating"
+            "description": "Älskar min stilrena canvas Tavla på Jesus!! Supernöjd med kvaliteten och servicen dessutom!🙏🏼💘",
+            "card_image": "shopify://shop_images/Skarmavbild_2026-04-16_kl._15.26.36.png",
+            "author": "Maryam.",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\">Jesus Walking In Light</a>",
+            "verified_text": "Verified Review"
           }
         },
-        "star_card_eB7C3L": {
+        "star_card_8LDF8x": {
           "type": "star_card",
           "settings": {
             "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "card_image": "shopify://shop_images/846c9155-498d-43f5-95f9-4fb9546d00bb-dkIBKAJRrn_184635.png",
-            "author": "Sarah M.",
-            "author_subtitle": "3 days ago",
-            "verified_text": "Verified Rating"
+            "description": "Love it, can't stop watching at it. Tbh I did hesitate for a while but it came out perfect!",
+            "card_image": "shopify://shop_images/1775512504__1775512502520-img_4438__original.jpg",
+            "author": "Mackarel Ale.",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\">Jesus Walking In Light</a>",
+            "verified_text": "Verified Review"
           }
         },
-        "star_card_L7B6TA": {
+        "star_card_Q9Wcqm": {
           "type": "star_card",
           "settings": {
             "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "card_image": "shopify://shop_images/divine-silence-christian-wall-art-living-room.jpg",
-            "author": "Sarah M.",
-            "author_subtitle": "3 days ago",
-            "verified_text": "Verified Rating"
-          }
-        },
-        "star_card_9BETjb": {
-          "type": "star_card",
-          "settings": {
-            "title": "",
-            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
-            "author": "Sarah M.",
-            "author_subtitle": "3 days ago",
-            "verified_text": "Verified Rating"
+            "description": "Super greatful for the artwork ,just perfect",
+            "card_image": "shopify://shop_images/1775512060__1775512058118-img_4425__original.jpg",
+            "author": "Olivia S",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/jesus-walking-in-light-minimalist-christian-wall-art-print\">Jesus Walking In Light</a>",
+            "verified_text": "Verified Review"
           }
         }
       },
@@ -821,10 +811,9 @@
         "heading_wHqnjm",
         "review_summary_Y3zjYX",
         "star_card_jz6ciz",
-        "star_card_Va33DW",
-        "star_card_eB7C3L",
-        "star_card_L7B6TA",
-        "star_card_9BETjb"
+        "star_card_FMNMeL",
+        "star_card_8LDF8x",
+        "star_card_Q9Wcqm"
       ],
       "name": "VSO - Testimonials 14",
       "settings": {
@@ -857,7 +846,7 @@
         "block_border_color": "#e0e0e0",
         "enable_card_shadow": true,
         "card_shadow_color": "#696969",
-        "star_size": 18,
+        "star_size": 16,
         "star_color": "#030303",
         "custom_block_title_font": false,
         "block_title_as": "h3",
@@ -874,10 +863,10 @@
         "block_description_line_height": 150,
         "block_description_color": "#232323",
         "block_description_font_weight": 400,
-        "author_circle_size": 40,
-        "author_circle_size_mobile": 36,
-        "author_circle_background_color": "#111111",
-        "author_circle_text_color": "#ffffff",
+        "author_circle_size": 30,
+        "author_circle_size_mobile": 28,
+        "author_circle_background_color": "#efefef",
+        "author_circle_text_color": "#efefef",
         "author_container_gap": 8,
         "block_author_size_desktop": 14,
         "block_author_size_mobile": 13,
