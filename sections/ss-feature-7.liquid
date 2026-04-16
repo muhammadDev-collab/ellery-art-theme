@@ -130,11 +130,18 @@
   }
 
   .feature-item-{{ section.id }} {
-    border-right: 1px solid rgba(0,0,0,0.12);
+    position: relative;
   }
 
-  .feature-item-{{ section.id }}:last-child {
-    border-right: none;
+  .feature-item-{{ section.id }}:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background-color: rgba(0,0,0,0.12);
   }
 
   .feature-title-{{ section.id }} {
