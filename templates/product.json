@@ -595,7 +595,7 @@
             "padding_mobile": 5,
             "show_divider": false,
             "divider_color": "#ffffff",
-            "enable_hover": true
+            "enable_hover": false
           },
           "blocks": {}
         }
