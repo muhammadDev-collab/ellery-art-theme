@@ -15,16 +15,7 @@
   "sections": {
     "main": {
       "settings": {},
-      "blocks": {
-        "section_vso_theme_sections_delivery_information_Lq3JXd": {
-          "settings": {
-            "shipped_min_days": 3,
-            "shipped_max_days": 4,
-            "delivered_min_days": 5,
-            "delivered_max_days": 6
-          }
-        }
-      }
+      "blocks": {}
     }
   }
 }
