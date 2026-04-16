@@ -353,6 +353,7 @@
     },
     "custom_liquid_jwPn6j": {
       "type": "custom-liquid",
+      "disabled": true,
       "name": "Custom Reviews",
       "settings": {
         "color_scheme": "",
@@ -465,6 +466,7 @@
         "item_JxqcJT",
         "item_XJmUFa"
       ],
+      "disabled": true,
       "name": "SS - Product reviews #2",
       "settings": {
         "reviews_position": "below_buy",
