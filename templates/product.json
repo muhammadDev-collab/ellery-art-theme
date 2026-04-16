@@ -945,7 +945,7 @@
         "block_verified_size_desktop": 12,
         "block_verified_size_mobile": 11,
         "block_verified_line_height": 130,
-        "block_verified_color": "#888888",
+        "block_verified_color": "#1c1c1c",
         "block_verified_font_weight": 400,
         "show_navigation_desktop": false,
         "show_navigation_mobile": false,
