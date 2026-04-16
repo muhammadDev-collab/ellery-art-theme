@@ -1,6 +1,626 @@
+{% doc %}
+  @prompt
+    Create a Shopify section that looks like a premium USP / trust bar.
+    
+    Layout:
+    
+    * A full-width horizontal bar.
+    * 3 equal columns on desktop.
+    * 1 column per row or stacked layout on mobile.
+    * Each column should contain:
+    
+      * an icon
+      * a short text line
+    * Add thin vertical divider lines between the columns on desktop only.
+    
+    Style:
+    
+    * Black background by default.
+    * White or light gray text by default.
+    * Clean, minimal, premium ecommerce style.
+    * Content should be vertically and horizontally centered.
+    * Compact height, like a slim trust bar.
+    * No large padding or empty space.
+    
+    Customization:
+    
+    * Each column must be editable separately in the Shopify theme editor.
+    * For each column, allow:
+    
+      * custom icon
+      * custom text
+      * text color
+      * icon color if possible
+    * Global settings:
+    
+      * background color
+      * divider color
+      * desktop height
+      * mobile height
+      * font size desktop
+      * font size mobile
+      * spacing between icon and text
+    
+    Important:
+    
+    * Make all 3 items balanced and aligned.
+    * Keep the bar tight and compact.
+    * Make it responsive and clean on mobile.
+    * Use blocks so I can add, remove, or reorder items later.
+    
+    Default example content:
+    
+    1. Icon: badge / seal
+       Text: "Officially Licensed Artworks Only"
+    
+    2. Icon: truck
+       Text: "Free Shipping on All Orders Above 950 kr"
+    
+    3. Icon: shield / secure
+       Text: "100% Safe and Secure Transactions"
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-usp-bar-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 0;
+  }
+
+  .ai-usp-bar-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    height: {{ block.settings.desktop_height }}px;
+  }
+
+  .ai-usp-bar-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ block.settings.icon_text_spacing }}px;
+    padding: 12px 20px;
+    position: relative;
+    height: 100%;
+  }
+
+  .ai-usp-bar-item-{{ ai_gen_id }}:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background-color: {{ block.settings.divider_color }};
+  }
+
+  .ai-usp-bar-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-usp-bar-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ai-usp-bar-icon-{{ ai_gen_id }}.icon-1 svg {
+    stroke: {{ block.settings.icon_color_1 }};
+    fill: none;
+  }
+
+  .ai-usp-bar-icon-{{ ai_gen_id }}.icon-2 svg {
+    stroke: {{ block.settings.icon_color_2 }};
+    fill: none;
+  }
+
+  .ai-usp-bar-icon-{{ ai_gen_id }}.icon-3 svg {
+    stroke: {{ block.settings.icon_color_3 }};
+    fill: none;
+  }
+
+  .ai-usp-bar-text-{{ ai_gen_id }}.text-1 {
+    color: {{ block.settings.text_color_1 }};
+    font-size: {{ block.settings.font_size_desktop }}px;
+    line-height: 1.3;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .ai-usp-bar-text-{{ ai_gen_id }}.text-2 {
+    color: {{ block.settings.text_color_2 }};
+    font-size: {{ block.settings.font_size_desktop }}px;
+    line-height: 1.3;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .ai-usp-bar-text-{{ ai_gen_id }}.text-3 {
+    color: {{ block.settings.text_color_3 }};
+    font-size: {{ block.settings.font_size_desktop }}px;
+    line-height: 1.3;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-usp-bar-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .ai-usp-bar-item-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_height }}px 20px;
+      border-bottom: 1px solid {{ block.settings.divider_color }};
+    }
+
+    .ai-usp-bar-item-{{ ai_gen_id }}:last-child {
+      border-bottom: none;
+    }
+
+    .ai-usp-bar-item-{{ ai_gen_id }}::after {
+      display: none;
+    }
+
+    .ai-usp-bar-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size_mobile }}px;
+      white-space: normal;
+      text-align: center;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-usp-bar-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-usp-bar-container-{{ ai_gen_id }}">
+    <div class="ai-usp-bar-item-{{ ai_gen_id }}">
+      <div class="ai-usp-bar-icon-{{ ai_gen_id }} icon-1">
+        {% if block.settings.icon_type_1 == 'badge' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'truck' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="1" y="3" width="15" height="13"/>
+            <path d="M16 8h4l3 3v5h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'shield' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'check' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'lock' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'heart' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'gift' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="4" rx="1"/>
+            <rect x="3" y="12" width="18" height="9" rx="1"/>
+            <path d="M12 8V21"/>
+            <path d="M12 8c0-1.5-1-3-3-3s-3 1.5-3 3"/>
+            <path d="M12 8c0-1.5 1-3 3-3s3 1.5 3 3"/>
+          </svg>
+        {% elsif block.settings.icon_type_1 == 'return' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        {% endif %}
+      </div>
+      <p class="ai-usp-bar-text-{{ ai_gen_id }} text-1">{{ block.settings.text_1 }}</p>
+    </div>
+
+    <div class="ai-usp-bar-item-{{ ai_gen_id }}">
+      <div class="ai-usp-bar-icon-{{ ai_gen_id }} icon-2">
+        {% if block.settings.icon_type_2 == 'badge' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'truck' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="1" y="3" width="15" height="13"/>
+            <path d="M16 8h4l3 3v5h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'shield' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'check' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'lock' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'heart' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'gift' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="4" rx="1"/>
+            <rect x="3" y="12" width="18" height="9" rx="1"/>
+            <path d="M12 8V21"/>
+            <path d="M12 8c0-1.5-1-3-3-3s-3 1.5-3 3"/>
+            <path d="M12 8c0-1.5 1-3 3-3s3 1.5 3 3"/>
+          </svg>
+        {% elsif block.settings.icon_type_2 == 'return' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        {% endif %}
+      </div>
+      <p class="ai-usp-bar-text-{{ ai_gen_id }} text-2">{{ block.settings.text_2 }}</p>
+    </div>
+
+    <div class="ai-usp-bar-item-{{ ai_gen_id }}">
+      <div class="ai-usp-bar-icon-{{ ai_gen_id }} icon-3">
+        {% if block.settings.icon_type_3 == 'badge' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'truck' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="1" y="3" width="15" height="13"/>
+            <path d="M16 8h4l3 3v5h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'shield' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'check' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'lock' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'heart' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'gift' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="4" rx="1"/>
+            <rect x="3" y="12" width="18" height="9" rx="1"/>
+            <path d="M12 8V21"/>
+            <path d="M12 8c0-1.5-1-3-3-3s-3 1.5-3 3"/>
+            <path d="M12 8c0-1.5 1-3 3-3s3 1.5 3 3"/>
+          </svg>
+        {% elsif block.settings.icon_type_3 == 'return' %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        {% endif %}
+      </div>
+      <p class="ai-usp-bar-text-{{ ai_gen_id }} text-3">{{ block.settings.text_3 }}</p>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "USP trust bar",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Height",
+      "min": 50,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "icon_text_spacing",
+      "label": "Icon to text spacing",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "select",
+      "id": "icon_type_1",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "badge",
+          "label": "Badge / Star"
+        },
+        {
+          "value": "truck",
+          "label": "Truck / Shipping"
+        },
+        {
+          "value": "shield",
+          "label": "Shield / Security"
+        },
+        {
+          "value": "check",
+          "label": "Check / Verified"
+        },
+        {
+          "value": "lock",
+          "label": "Lock / Secure"
+        },
+        {
+          "value": "heart",
+          "label": "Heart / Quality"
+        },
+        {
+          "value": "gift",
+          "label": "Gift / Bonus"
+        },
+        {
+          "value": "return",
+          "label": "Return / Guarantee"
+        }
+      ],
+      "default": "badge"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text",
+      "default": "Officially Licensed Artworks Only"
+    },
+    {
+      "type": "color",
+      "id": "text_color_1",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_1",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "select",
+      "id": "icon_type_2",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "badge",
+          "label": "Badge / Star"
+        },
+        {
+          "value": "truck",
+          "label": "Truck / Shipping"
+        },
+        {
+          "value": "shield",
+          "label": "Shield / Security"
+        },
+        {
+          "value": "check",
+          "label": "Check / Verified"
+        },
+        {
+          "value": "lock",
+          "label": "Lock / Secure"
+        },
+        {
+          "value": "heart",
+          "label": "Heart / Quality"
+        },
+        {
+          "value": "gift",
+          "label": "Gift / Bonus"
+        },
+        {
+          "value": "return",
+          "label": "Return / Guarantee"
+        }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text",
+      "default": "Free Shipping on All Orders Above 950 kr"
+    },
+    {
+      "type": "color",
+      "id": "text_color_2",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_2",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "select",
+      "id": "icon_type_3",
+      "label": "Icon",
+      "options": [
+        {
+          "value": "badge",
+          "label": "Badge / Star"
+        },
+        {
+          "value": "truck",
+          "label": "Truck / Shipping"
+        },
+        {
+          "value": "shield",
+          "label": "Shield / Security"
+        },
+        {
+          "value": "check",
+          "label": "Check / Verified"
+        },
+        {
+          "value": "lock",
+          "label": "Lock / Secure"
+        },
+        {
+          "value": "heart",
+          "label": "Heart / Quality"
+        },
+        {
+          "value": "gift",
+          "label": "Gift / Bonus"
+        },
+        {
+          "value": "return",
+          "label": "Return / Guarantee"
+        }
+      ],
+      "default": "shield"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text",
+      "default": "100% Safe and Secure Transactions"
+    },
+    {
+      "type": "color",
+      "id": "text_color_3",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_3",
+      "label": "Icon color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "USP trust bar"
+    }
+  ]
+}
 {% endschema %}
