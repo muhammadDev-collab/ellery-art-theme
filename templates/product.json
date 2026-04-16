@@ -11,61 +11,11 @@
   "sections": {
     "scrolling_content_fjpB7d": {
       "type": "scrolling-content",
-      "blocks": {
-        "text_FicfWy": {
-          "type": "text",
-          "settings": {
-            "text": "Original art"
-          }
-        },
-        "text_KEfLMt": {
-          "type": "text",
-          "settings": {
-            "text": "Limited Edition"
-          }
-        },
-        "text_KXprxW": {
-          "type": "text",
-          "settings": {
-            "text": "Certified Art"
-          }
-        },
-        "text_WLtdPA": {
-          "type": "text",
-          "settings": {
-            "text": "Handmade in Sweden"
-          }
-        },
-        "text_Lyyk8M": {
-          "type": "text",
-          "settings": {
-            "text": "Crafted with emotion"
-          }
-        },
-        "text_pjt9dp": {
-          "type": "text",
-          "settings": {
-            "text": "Free shipping"
-          }
-        }
-      },
-      "block_order": [
-        "text_FicfWy",
-        "text_KEfLMt",
-        "text_KXprxW",
-        "text_WLtdPA",
-        "text_Lyyk8M",
-        "text_pjt9dp"
-      ],
       "disabled": true,
       "settings": {
         "separate_section_with_border": false,
+        "scroll_interval": 2,
         "scrolling_speed": 0.1,
-        "scroll_direction": "right",
-        "pause_on_hover": true,
-        "text_font": "heading",
-        "text_font_size_mobile": 10,
-        "text_font_size_desktop": 10,
         "section_vertical_spacing_mobile": 10,
         "section_vertical_spacing_desktop": 10,
         "item_horizontal_spacing_mobile": 30,
@@ -624,15 +574,15 @@
         "color_scheme": "",
         "separate_section_with_border": true,
         "hide_product_information": false,
-        "stack_products": true,
-        "recommendations_count": 4,
+        "stack_products": false,
+        "recommendations_count": 8,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": "",
-        "title": "You may also like",
-        "content": ""
+        "title": "BUY 2 GET 1 FREE",
+        "content": "<h6> BUNDLE WITH A BESTSELLER </h6>"
       }
     },
     "1774524948d3fc03ed": {
@@ -655,9 +605,9 @@
             "max_width": 1100,
             "corner_styling": "square",
             "header_text_color": "#000000",
-            "card_color": "#7D7D7D",
+            "card_color": "#7d7d7d",
             "stars_color": "",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "arrows_color": "#000000",
             "show_drop_shadow": false,
             "show_border": false,
@@ -679,6 +629,216 @@
         "remove_vertical_spacing": false,
         "remove_horizontal_spacing": false
       }
+    },
+    "rich_text_XPHxNG": {
+      "type": "rich-text",
+      "blocks": {
+        "liquid_VDhRiM": {
+          "type": "liquid",
+          "settings": {
+            "liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "liquid_VDhRiM"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": true
+      }
+    },
+    "vso_testimonials_14_7JhUcQ": {
+      "type": "vso-testimonials-14",
+      "blocks": {
+        "heading_wHqnjm": {
+          "type": "heading",
+          "settings": {
+            "heading": "SEE WHAT OUR CUSTOMERS ARE SAYING",
+            "heading_custom_font": false,
+            "heading_as": "h3",
+            "heading_font": "sans_serif_n4",
+            "heading_size_desktop": 40,
+            "heading_size_mobile": 32,
+            "heading_line_height": 130,
+            "heading_color": "#000000",
+            "heading_font_weight": 700,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 24,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 18
+          }
+        },
+        "review_summary_Y3zjYX": {
+          "type": "review_summary",
+          "settings": {
+            "show_block": true,
+            "text": "Rated <strong>4.8/5</strong> based on <strong>+10,839 </strong>reviews",
+            "custom_font": true,
+            "font": "jost_n4",
+            "size_desktop": 15,
+            "size_mobile": 11,
+            "line_height": 140,
+            "font_weight": 500,
+            "text_color": "#1c1c1c",
+            "stars_count": 5,
+            "bg_color": "#fafafa",
+            "stars_color": "#1c1c1c",
+            "empty_stars_color": "#BDBDBD",
+            "stars_size": 16,
+            "gap": 8,
+            "padding_y": 8,
+            "padding_x": 14,
+            "radius": 8,
+            "spacing_top_desktop": 0,
+            "spacing_bottom_desktop": 14,
+            "spacing_top_mobile": 0,
+            "spacing_bottom_mobile": 14
+          }
+        },
+        "star_card_jz6ciz": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "card_image": "shopify://shop_images/a_bit_from_a_angle.png",
+            "author": "Johan S",
+            "author_subtitle": "The Last Supper",
+            "verified_text": "Verified Review"
+          }
+        },
+        "star_card_Va33DW": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "card_image": "shopify://shop_images/cozy-lounge-zone-interior-couch-shelf-with-decoration-mock-up-frame.jpg",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_eB7C3L": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "card_image": "shopify://shop_images/846c9155-498d-43f5-95f9-4fb9546d00bb-dkIBKAJRrn_184635.png",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_L7B6TA": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "card_image": "shopify://shop_images/divine-silence-christian-wall-art-living-room.jpg",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        },
+        "star_card_9BETjb": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "<em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</em>",
+            "author": "Sarah M.",
+            "author_subtitle": "3 days ago",
+            "verified_text": "Verified Rating"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wHqnjm",
+        "review_summary_Y3zjYX",
+        "star_card_jz6ciz",
+        "star_card_Va33DW",
+        "star_card_eB7C3L",
+        "star_card_L7B6TA",
+        "star_card_9BETjb"
+      ],
+      "name": "VSO - Testimonials 14",
+      "settings": {
+        "enable_advanced_settings": false,
+        "background_style": "solid",
+        "background_color": "#ffffff",
+        "background_gradient": "linear-gradient(360deg, rgba(247, 247, 247, 1), rgba(255, 255, 255, 1) 100%)",
+        "full_width_desktop": true,
+        "section_border_radius": 12,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 40,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "block_background_color": "#ededed",
+        "block_padding": 24,
+        "enable_full_width_card_image": true,
+        "card_image_max_height_desktop": 260,
+        "card_image_max_height_mobile": 200,
+        "block_elements_gap": 10,
+        "block_border_radius": 8,
+        "desktop_card_width": 350,
+        "desktop_blocks_gap": 32,
+        "mobile_blocks_gap": 16,
+        "enable_equal_height": false,
+        "block_border_width": 0,
+        "block_border_color": "#e0e0e0",
+        "enable_card_shadow": true,
+        "card_shadow_color": "#696969",
+        "star_size": 18,
+        "star_color": "#030303",
+        "custom_block_title_font": false,
+        "block_title_as": "h3",
+        "block_title_font": "sans_serif_n4",
+        "block_title_size_desktop": 18,
+        "block_title_size_mobile": 16,
+        "block_title_line_height": 130,
+        "block_title_color": "#111111",
+        "custom_block_description_font": false,
+        "block_description_as": "p",
+        "block_description_font": "sans_serif_n4",
+        "block_description_size_desktop": 16,
+        "block_description_size_mobile": 14,
+        "block_description_line_height": 150,
+        "block_description_color": "#232323",
+        "block_description_font_weight": 400,
+        "author_circle_size": 40,
+        "author_circle_size_mobile": 36,
+        "author_circle_background_color": "#111111",
+        "author_circle_text_color": "#ffffff",
+        "author_container_gap": 8,
+        "block_author_size_desktop": 14,
+        "block_author_size_mobile": 13,
+        "block_author_line_height": 140,
+        "block_author_color": "#333333",
+        "block_author_font_weight": 600,
+        "block_verified_size_desktop": 12,
+        "block_verified_size_mobile": 11,
+        "block_verified_line_height": 130,
+        "block_verified_color": "#888888",
+        "block_verified_font_weight": 400,
+        "show_navigation_desktop": false,
+        "show_navigation_mobile": false,
+        "nav_arrow_size": 50,
+        "nav_arrow_bg_color": "#fafafa",
+        "nav_arrow_icon_color": "#6b7280",
+        "nav_arrow_border_width": 0,
+        "nav_arrow_border_color": "#e5e7eb",
+        "nav_arrow_shadow_enable": true,
+        "nav_arrow_shadow_color": "#000000",
+        "nav_arrow_gap": 10,
+        "nav_arrow_top_spacing": 0
+      }
     }
   },
   "order": [
@@ -688,6 +848,8 @@
     "custom_liquid_jwPn6j",
     "product_reviews_2_HLGaCx",
     "related-products",
-    "1774524948d3fc03ed"
+    "1774524948d3fc03ed",
+    "rich_text_XPHxNG",
+    "vso_testimonials_14_7JhUcQ"
   ]
 }
