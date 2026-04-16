@@ -21,6 +21,12 @@
         "show_view_cart_button": false,
         "show_checkout_button": true,
         "show_price_in_checkout_button": true,
+        "usp_1_text": "<p>Certificate of authenticity included</p>",
+        "usp_2_text": "<p>4.8/5 TrustScore on Trustpilot</p>",
+        "usp_3_text": "<p>Buy 2 Get 1 Free | Buy 3 Get 2 Free<br>Automatically applied on the artwork<br>(Frames and mat boards are not included)</p>",
+        "trending_heading": "TRENDING RIGHT NOW",
+        "trending_subheading": "These are selling out fast",
+        "trending_collection": "",
         "cross_sell_products": [],
         "cross_sell_title": "Our Latest Release",
         "cross_sell_stack_products": false
