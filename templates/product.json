@@ -774,6 +774,18 @@
             "verified_text": "Verified Review"
           }
         },
+        "star_card_KjREUK": {
+          "type": "star_card",
+          "settings": {
+            "title": "",
+            "description": "I love it",
+            "card_image": "shopify://shop_images/1775466095__1775466091674-img_3692__original.jpg",
+            "author": "David P.",
+            "author_image": "shopify://shop_images/trustpilot.png",
+            "author_subtitle": "<a href=\"https://elleryart.com/products/the-world-is-yours\">The World Is Yours</a>",
+            "verified_text": "Verified Review"
+          }
+        },
         "star_card_NXPTgq": {
           "type": "star_card",
           "settings": {
@@ -851,6 +863,7 @@
         "heading_wHqnjm",
         "review_summary_Y3zjYX",
         "star_card_bhDTrz",
+        "star_card_KjREUK",
         "star_card_NXPTgq",
         "star_card_jz6ciz",
         "star_card_FMNMeL",
