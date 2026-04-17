@@ -391,7 +391,7 @@
           "type": "collection",
           "settings": {
             "collection": "new-release",
-            "products_count": 20,
+            "products_count": 10,
             "title": "NEW RELEASE",
             "link_url": "shopify://collections/new-release",
             "link_text": "View all"
