@@ -562,12 +562,13 @@
 
       var total = cart.total_price;
 
-      // Sum original_line_price (= compare_at_price * qty) for each item.
-      // Falls back to final_line_price when no compare_at_price is set,
-      // so compareTotal === total and the strikethrough stays hidden.
+      // Mirror the Liquid logic: sum compare_at_price * quantity per item.
+      // item.compare_at_price is in cents (null when no compare price is set).
       var compareTotal = 0;
       (cart.items || []).forEach(function(item) {
-        compareTotal += item.original_line_price || item.final_line_price || 0;
+        if (item.compare_at_price) {
+          compareTotal += item.compare_at_price * item.quantity;
+        }
       });
 
       // Show/hide entire price block
