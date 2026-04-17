@@ -487,7 +487,7 @@
               {%- assign cart_original_price = cart_original_price | plus: item.original_line_price -%}
             {%- endfor -%}
             <div class="header__cart-price{% if cart.empty? %} header__cart-price--hidden{% endif %}">
-              <s class="header__cart-compare-price{% unless cart_original_price > cart_total %} header__cart-price--hidden{% endunless %}">{{ cart_original_price | money_without_trailing_zeros }}</s>
+              <s class="header__cart-compare-price">{{ cart_original_price | money_without_trailing_zeros }}</s>
               <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
             </div>
             <div class="header__cart-icon-wrap">
@@ -575,13 +575,11 @@
       var saleEl = priceWrap.querySelector('.header__cart-sale-price');
       if (saleEl) saleEl.textContent = formatMoney(total);
 
-      // The compare/original price (black strikethrough) shows only when
-      // the sum of original prices is higher than what the customer actually pays
+      // Always show the original (black strikethrough) price alongside the sale price
       var compareEl = priceWrap.querySelector('.header__cart-compare-price');
       if (compareEl) {
-        var showCompare = originalTotal > total;
-        compareEl.classList.toggle('header__cart-price--hidden', !showCompare);
-        compareEl.textContent = showCompare ? formatMoney(originalTotal) : '';
+        compareEl.classList.remove('header__cart-price--hidden');
+        compareEl.textContent = formatMoney(originalTotal);
       }
     }
 
