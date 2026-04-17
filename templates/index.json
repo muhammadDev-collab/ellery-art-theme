@@ -15,14 +15,14 @@
         "image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/5_a6c7742b-50b2-4609-8df7-647183a93cf9.png",
-            "mobile_image": "shopify://shop_images/5_c88ebc54-1810-4986-a6d9-da192bee8bd9.png",
+            "image": "shopify://shop_images/4_62cd5dc5-a3c7-4637-8109-8d47293e0e90.png",
+            "mobile_image": "shopify://shop_images/4_97374919-e15d-4d35-8cca-aea67be0d131.png",
             "subheading": "",
             "title": "Limited Edition That Sell Out Fast",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "content_max_width": 400,
-            "button_1_text": "SHOP Best Sellers",
+            "button_1_text": "Shop Best Sellers",
             "button_1_link": "shopify://collections/best-sellers",
             "button_1_style": "link",
             "button_1_background": "#ffffff",
@@ -131,6 +131,7 @@
         "image_z3MqwR",
         "image_zdfKpM"
       ],
+      "disabled": true,
       "custom_css": [
         "p {line-height: 1.2 !important;}"
       ],
