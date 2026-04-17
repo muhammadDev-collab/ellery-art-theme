@@ -877,34 +877,32 @@
         "content": ""
       }
     },
-    "featured_collections_t4MA3z": {
+    "featured_collections_ArKAtT": {
       "type": "featured-collections",
       "blocks": {
-        "collection_g4maKG": {
+        "collection_MdKBFT": {
           "type": "collection",
           "settings": {
-            "collection": "animals",
+            "collection": "typography-art",
             "products_count": 8,
-            "title": "ANIMAL ART",
-            "link_url": "shopify://collections/animals",
+            "title": "",
+            "link_url": "shopify://collections/typography-art",
             "link_text": "View all"
           }
         }
       },
       "block_order": [
-        "collection_g4maKG"
+        "collection_MdKBFT"
       ],
-      "custom_css": [
-        "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
-      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
+        "color_scheme": "",
+        "separate_section_with_border": true,
         "hide_product_information": false,
         "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 0.2,
+        "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": ""
+        "subheading": "Featured collection"
       }
     }
   },
@@ -924,6 +922,6 @@
     "shop_the_look_WyyNnA",
     "multi_column_NyGtUQ",
     "collection_list_nK7AgD",
-    "featured_collections_t4MA3z"
+    "featured_collections_ArKAtT"
   ]
 }
