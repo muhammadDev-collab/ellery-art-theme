@@ -153,28 +153,28 @@
         "item_BJckEP": {
           "type": "item",
           "settings": {
-            "count_from": "050",
-            "count_to": "226",
-            "suffix": "",
-            "text": "<p>Signed Artists</p>"
+            "count_from": "",
+            "count_to": "",
+            "suffix": "∞",
+            "text": "<p>Ways To Fit </p>"
           }
         },
         "item_YBBzm4": {
           "type": "item",
           "settings": {
-            "count_from": "013.512",
-            "count_to": "213.512",
-            "suffix": "",
-            "text": "<p>Artworks sold for Charity</p>"
+            "count_from": "1564",
+            "count_to": "2000",
+            "suffix": "+",
+            "text": "<p>Homes styled with Ellery</p>"
           }
         },
         "item_Pg7R6Q": {
           "type": "item",
           "settings": {
-            "count_from": "1",
-            "count_to": "12",
+            "count_from": "20",
+            "count_to": "42",
             "suffix": "",
-            "text": "<p>Charity Partners</p>"
+            "text": "<p>Countries</p>"
           }
         }
       },
