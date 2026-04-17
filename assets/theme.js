@@ -1366,6 +1366,10 @@ var CartCount = class extends HTMLElement {
   }
   set itemCount(count) {
     this.innerText = count;
+    const wrapper = this.closest(".header__cart-count");
+    if (wrapper) {
+      wrapper.classList.toggle("header__cart-count--hidden", count === 0 || count === "0");
+    }
   }
 };
 _abortController2 = new WeakMap();
