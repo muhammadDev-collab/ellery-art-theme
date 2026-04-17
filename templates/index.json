@@ -15,14 +15,14 @@
         "image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/5_a6c7742b-50b2-4609-8df7-647183a93cf9.png",
-            "mobile_image": "shopify://shop_images/5_c88ebc54-1810-4986-a6d9-da192bee8bd9.png",
+            "image": "shopify://shop_images/4_62cd5dc5-a3c7-4637-8109-8d47293e0e90.png",
+            "mobile_image": "shopify://shop_images/4_97374919-e15d-4d35-8cca-aea67be0d131.png",
             "subheading": "",
             "title": "Limited Edition That Sell Out Fast",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "content_max_width": 400,
-            "button_1_text": "SHOP Best Sellers",
+            "button_1_text": "Shop Best Sellers",
             "button_1_link": "shopify://collections/best-sellers",
             "button_1_style": "link",
             "button_1_background": "#ffffff",
@@ -131,6 +131,7 @@
         "image_z3MqwR",
         "image_zdfKpM"
       ],
+      "disabled": true,
       "custom_css": [
         "p {line-height: 1.2 !important;}"
       ],
@@ -152,28 +153,28 @@
         "item_BJckEP": {
           "type": "item",
           "settings": {
-            "count_from": "050",
-            "count_to": "226",
-            "suffix": "",
-            "text": "<p>Signed Artists</p>"
+            "count_from": "",
+            "count_to": "",
+            "suffix": "∞",
+            "text": "<p>Ways to fit your home</p>"
           }
         },
         "item_YBBzm4": {
           "type": "item",
           "settings": {
-            "count_from": "013.512",
-            "count_to": "213.512",
-            "suffix": "",
-            "text": "<p>Artworks sold for Charity</p>"
+            "count_from": "1564",
+            "count_to": "2000",
+            "suffix": "+",
+            "text": "<p>Homes styled with Ellery</p>"
           }
         },
         "item_Pg7R6Q": {
           "type": "item",
           "settings": {
-            "count_from": "1",
-            "count_to": "12",
+            "count_from": "20",
+            "count_to": "42",
             "suffix": "",
-            "text": "<p>Charity Partners</p>"
+            "text": "<p>Countries shipped to</p>"
           }
         }
       },
@@ -337,7 +338,7 @@
           "type": "collection",
           "settings": {
             "collection": "best-sellers",
-            "products_count": 8,
+            "products_count": 10,
             "title": "BEST SELLERS",
             "link_url": "shopify://collections/best-sellers",
             "link_text": "View all"
@@ -409,7 +410,7 @@
         "separate_section_with_border": false,
         "hide_product_information": false,
         "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
+        "horizontal_spacing_factor": 0.2,
         "vertical_spacing_factor": 1,
         "subheading": ""
       }
@@ -488,13 +489,13 @@
       "settings": {
         "color_scheme": "",
         "separate_section_with_border": false,
-        "heading": "+200,000 CUSTOMERS FOR A REASON",
-        "review_text": "Based on 10810",
+        "heading": "+2,000 CUSTOMERS FOR A REASON",
+        "review_text": "Based on + 437",
         "review_link_text": "reviews",
         "review_link": "",
         "padding_top": 48,
         "padding_bottom": 48,
-        "logo_max_height": 36
+        "logo_max_height": 28
       }
     },
     "ss_trust_box_pC3RAi": {
@@ -522,9 +523,9 @@
             "rating_size": 15,
             "rating_size_mobile": 13,
             "rating_height": 150,
-            "stars_count": 4.5,
+            "stars_count": 5,
             "stars_size": 20,
-            "stars_size_mobile": 18,
+            "stars_size_mobile": 10,
             "stars_url": "",
             "rating_color": "#7c7c7c",
             "rating_bg_color": "#ffffff",
@@ -877,34 +878,32 @@
         "content": ""
       }
     },
-    "featured_collections_t4MA3z": {
+    "featured_collections_ArKAtT": {
       "type": "featured-collections",
       "blocks": {
-        "collection_g4maKG": {
+        "collection_MdKBFT": {
           "type": "collection",
           "settings": {
-            "collection": "animals",
+            "collection": "typography-art",
             "products_count": 8,
-            "title": "ANIMAL ART",
-            "link_url": "shopify://collections/animals",
+            "title": "",
+            "link_url": "shopify://collections/typography-art",
             "link_text": "View all"
           }
         }
       },
       "block_order": [
-        "collection_g4maKG"
+        "collection_MdKBFT"
       ],
-      "custom_css": [
-        "[class*=\"vendor\"] {padding: 4px 8px !important; border-radius: 0 !important; display: inline-block !important;}"
-      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
       "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
+        "color_scheme": "",
+        "separate_section_with_border": true,
         "hide_product_information": false,
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 0.2,
         "vertical_spacing_factor": 1,
-        "subheading": ""
+        "subheading": "Featured collection"
       }
     }
   },
@@ -924,6 +923,6 @@
     "shop_the_look_WyyNnA",
     "multi_column_NyGtUQ",
     "collection_list_nK7AgD",
-    "featured_collections_t4MA3z"
+    "featured_collections_ArKAtT"
   ]
 }

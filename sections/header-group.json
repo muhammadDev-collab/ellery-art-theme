@@ -81,7 +81,7 @@
         "reduce_padding": true,
         "logo": "{{ shop.brand.logo }}",
         "logo_max_width": 215,
-        "logo_mobile_max_width": 120,
+        "logo_mobile_max_width": 130,
         "menu": "main-menu-copy",
         "sidebar_menu": "main",
         "customer_account_menu": "customer-account-main-menu",

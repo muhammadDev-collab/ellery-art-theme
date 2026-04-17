@@ -210,6 +210,7 @@
       "blocks": {
         "heading_TD7CzY": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "<h4>WHY PEOPLE LOVE ELLERY ART</h4>",
             "heading_custom": false,
@@ -295,10 +296,10 @@
         "margin_bottom": 0,
         "margin_horizontal": 0,
         "margin_horizontal_mobile": 0,
-        "padding_top": 36,
+        "padding_top": 16,
         "padding_bottom": 36,
-        "padding_horizontal": 5,
-        "padding_horizontal_mobile": 2.5,
+        "padding_horizontal": 3,
+        "padding_horizontal_mobile": 0.5,
         "full_width": true,
         "content_width": 1200,
         "border_thickness": 0,
@@ -320,13 +321,13 @@
             "left_text_offset": 10,
             "right_text": "BUNDLE WITH A BESTSELLER",
             "right_bg_color": "#ededed",
-            "right_text_color": "#797979",
+            "right_text_color": "#a1a1a1",
             "right_font_size_desktop": 20,
-            "right_font_size_mobile": 12,
+            "right_font_size_mobile": 16,
             "right_font_weight": "600",
-            "right_text_offset": 30,
+            "right_text_offset": 20,
             "text_transform": "uppercase",
-            "letter_spacing": 0.5,
+            "letter_spacing": 0,
             "min_height_desktop": 40,
             "min_height_mobile": 30,
             "padding_desktop": 5,
@@ -359,7 +360,7 @@
         "separate_section_with_border": false,
         "hide_product_information": false,
         "stack_products": false,
-        "recommendations_count": 8,
+        "recommendations_count": 4,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "horizontal_spacing_factor": 0.2,
@@ -367,6 +368,29 @@
         "subheading": "",
         "title": "",
         "content": ""
+      }
+    },
+    "rich_text_FgbXgq": {
+      "type": "rich-text",
+      "blocks": {
+        "link_xFyHXe": {
+          "type": "link",
+          "settings": {
+            "text": "View all",
+            "url": "shopify://collections/all-artwork"
+          }
+        }
+      },
+      "block_order": [
+        "link_xFyHXe"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "content_width": "lg",
+        "text_position": "center",
+        "remove_vertical_spacing": false
       }
     },
     "177634481806d89c19": {
@@ -704,6 +728,7 @@
     "ss_stats_2_rRfT8d",
     "17763430357da84433",
     "related-products",
+    "rich_text_FgbXgq",
     "177634481806d89c19",
     "rich_text_XPHxNG",
     "vso_testimonials_14_7JhUcQ"
