@@ -252,6 +252,9 @@
   .header__cart-count--hidden {
     display: none;
   }
+  .header__cart-price--hidden {
+    display: none;
+  }
 
   {%- if section.settings.logo != blank -%}
     #shopify-section-{{ section.id }} {
@@ -478,20 +481,16 @@
             class="header__cart-link-inner"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
-            {%- unless cart.empty? -%}
-              {%- assign cart_compare_price = 0 -%}
-              {%- assign cart_total = cart.total_price -%}
-              {%- for item in cart.items -%}
-                {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
-                {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
-              {%- endfor -%}
-              <div class="header__cart-price">
-                {%- if cart_compare_price > cart_total -%}
-                  <s class="header__cart-compare-price">{{ cart_compare_price | money_without_trailing_zeros }}</s>
-                {%- endif -%}
-                <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
-              </div>
-            {%- endunless -%}
+            {%- assign cart_compare_price = 0 -%}
+            {%- assign cart_total = cart.total_price -%}
+            {%- for item in cart.items -%}
+              {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
+              {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
+            {%- endfor -%}
+            <div class="header__cart-price{% if cart.empty? %} header__cart-price--hidden{% endif %}">
+              <s class="header__cart-compare-price{% unless cart_compare_price > cart_total %} header__cart-price--hidden{% endunless %}">{{ cart_compare_price | money_without_trailing_zeros }}</s>
+              <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
+            </div>
             <div class="header__cart-icon-wrap">
               {%- render 'icon' with 'cart', class: 'header__nav-icon' -%}
               <span class="header__cart-count{% unless cart.item_count > 0 %} header__cart-count--hidden{% endunless %}"><cart-count>{{ cart.item_count }}</cart-count></span>
@@ -540,6 +539,60 @@
 
 <script>
   document.documentElement.style.setProperty('--header-height', `${document.getElementById('shopify-section-{{ section.id }}').clientHeight.toFixed(2)}px`);
+</script>
+
+<script>
+  (function() {
+    var formatter = new Intl.NumberFormat(Shopify.locale, {
+      style: 'currency',
+      currency: Shopify.currency.active,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    });
+
+    function formatMoney(cents) {
+      return formatter.format(cents / 100);
+    }
+
+    function updateHeaderCartPrice(cart) {
+      var priceWrap = document.querySelector('.header__cart-price');
+      if (!priceWrap) return;
+
+      var total = cart.total_price;
+      var compareTotal = 0;
+      if (cart.items) {
+        cart.items.forEach(function(item) {
+          var comparePrice = item.variant ? (item.variant.compare_at_price || 0) : (item.compare_at_price || 0);
+          compareTotal += comparePrice * item.quantity;
+        });
+      }
+
+      // Show/hide the whole price block
+      priceWrap.classList.toggle('header__cart-price--hidden', total === 0 && cart.item_count === 0);
+
+      // Update sale price
+      var saleEl = priceWrap.querySelector('.header__cart-sale-price');
+      if (saleEl) saleEl.textContent = formatMoney(total);
+
+      // Show/hide compare price
+      var compareEl = priceWrap.querySelector('.header__cart-compare-price');
+      if (compareEl) {
+        var showCompare = compareTotal > total;
+        compareEl.classList.toggle('header__cart-price--hidden', !showCompare);
+        if (showCompare) compareEl.textContent = formatMoney(compareTotal);
+      }
+    }
+
+    document.addEventListener('cart:change', function(event) {
+      updateHeaderCartPrice(event.detail['cart']);
+    });
+
+    document.addEventListener('cart:refresh', function() {
+      fetch(Shopify.routes.root + 'cart.js')
+        .then(function(r) { return r.json(); })
+        .then(function(cart) { updateHeaderCartPrice(cart); });
+    });
+  })();
 </script>
 
 {% schema %}
