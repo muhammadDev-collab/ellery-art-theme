@@ -485,7 +485,8 @@
             {%- assign cart_total = cart.total_price -%}
             {%- for item in cart.items -%}
               {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
-              {%- assign cart_compare_price = cart_compare_price | plus: item_compare | times: item.quantity -%}
+              {%- assign item_compare_line = item_compare | times: item.quantity -%}
+              {%- assign cart_compare_price = cart_compare_price | plus: item_compare_line -%}
             {%- endfor -%}
             <div class="header__cart-price{% if cart.empty? %} header__cart-price--hidden{% endif %}">
               <s class="header__cart-compare-price{% unless cart_compare_price > cart_total %} header__cart-price--hidden{% endunless %}">{{ cart_compare_price | money_without_trailing_zeros }}</s>
@@ -543,15 +544,16 @@
 
 <script>
   (function() {
-    var formatter = new Intl.NumberFormat(Shopify.locale, {
-      style: 'currency',
-      currency: Shopify.currency.active,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    });
-
+    // Use Shopify's money_format string (same as Liquid money_without_trailing_zeros filter)
     function formatMoney(cents) {
-      return formatter.format(cents / 100);
+      var moneyFormat = (window.themeVariables && window.themeVariables.settings.moneyFormat) || '${{amount}}';
+      // Strip trailing .00 decimals to match money_without_trailing_zeros
+      var amount = (cents / 100).toFixed(2).replace(/\.00$/, '');
+      return moneyFormat
+        .replace(/\{\{\s*amount\s*\}\}/g, amount)
+        .replace(/\{\{\s*amount_no_decimals\s*\}\}/g, Math.round(cents / 100))
+        .replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, amount.replace('.', ','))
+        .replace(/\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/g, Math.round(cents / 100));
     }
 
     function updateHeaderCartPrice(cart) {
@@ -559,35 +561,37 @@
       if (!priceWrap) return;
 
       var total = cart.total_price;
-      var compareTotal = 0;
-      if (cart.items) {
-        cart.items.forEach(function(item) {
-          var comparePrice = item.variant ? (item.variant.compare_at_price || 0) : (item.compare_at_price || 0);
-          compareTotal += comparePrice * item.quantity;
-        });
-      }
 
-      // Show/hide the whole price block
-      priceWrap.classList.toggle('header__cart-price--hidden', total === 0 && cart.item_count === 0);
+      // Sum original_line_price (= compare_at_price * qty) for each item.
+      // Falls back to final_line_price when no compare_at_price is set,
+      // so compareTotal === total and the strikethrough stays hidden.
+      var compareTotal = 0;
+      (cart.items || []).forEach(function(item) {
+        compareTotal += item.original_line_price || item.final_line_price || 0;
+      });
+
+      // Show/hide entire price block
+      priceWrap.classList.toggle('header__cart-price--hidden', cart.item_count === 0);
 
       // Update sale price
       var saleEl = priceWrap.querySelector('.header__cart-sale-price');
       if (saleEl) saleEl.textContent = formatMoney(total);
 
-      // Show/hide compare price
+      // Update compare (strikethrough) price
       var compareEl = priceWrap.querySelector('.header__cart-compare-price');
       if (compareEl) {
         var showCompare = compareTotal > total;
         compareEl.classList.toggle('header__cart-price--hidden', !showCompare);
-        if (showCompare) compareEl.textContent = formatMoney(compareTotal);
+        compareEl.textContent = showCompare ? formatMoney(compareTotal) : '';
       }
     }
 
-    document.addEventListener('cart:change', function(event) {
+    // The theme fires cart:change on document.documentElement
+    document.documentElement.addEventListener('cart:change', function(event) {
       updateHeaderCartPrice(event.detail['cart']);
     });
 
-    document.addEventListener('cart:refresh', function() {
+    document.documentElement.addEventListener('cart:refresh', function() {
       fetch(Shopify.routes.root + 'cart.js')
         .then(function(r) { return r.json(); })
         .then(function(cart) { updateHeaderCartPrice(cart); });
