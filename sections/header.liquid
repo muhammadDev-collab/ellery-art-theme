@@ -481,15 +481,13 @@
             class="header__cart-link-inner"
           >
             <span class="sr-only">{{ 'header.general.cart' | t }}</span>
-            {%- assign cart_compare_price = 0 -%}
+            {%- assign cart_original_price = 0 -%}
             {%- assign cart_total = cart.total_price -%}
             {%- for item in cart.items -%}
-              {%- assign item_compare = item.variant.compare_at_price | default: 0 -%}
-              {%- assign item_compare_line = item_compare | times: item.quantity -%}
-              {%- assign cart_compare_price = cart_compare_price | plus: item_compare_line -%}
+              {%- assign cart_original_price = cart_original_price | plus: item.original_line_price -%}
             {%- endfor -%}
             <div class="header__cart-price{% if cart.empty? %} header__cart-price--hidden{% endif %}">
-              <s class="header__cart-compare-price{% unless cart_compare_price > cart_total %} header__cart-price--hidden{% endunless %}">{{ cart_compare_price | money_without_trailing_zeros }}</s>
+              <s class="header__cart-compare-price{% unless cart_original_price > cart_total %} header__cart-price--hidden{% endunless %}">{{ cart_original_price | money_without_trailing_zeros }}</s>
               <span class="header__cart-sale-price">{{ cart_total | money_without_trailing_zeros }}</span>
             </div>
             <div class="header__cart-icon-wrap">
@@ -562,28 +560,28 @@
 
       var total = cart.total_price;
 
-      // Mirror the Liquid logic: sum compare_at_price * quantity per item.
-      // item.compare_at_price is in cents (null when no compare price is set).
-      var compareTotal = 0;
+      // original_line_price = price before item-level discounts × qty (in cents)
+      // final_line_price    = price after item-level discounts × qty (in cents)
+      // total_price         = cart total after ALL discounts
+      var originalTotal = 0;
       (cart.items || []).forEach(function(item) {
-        if (item.compare_at_price) {
-          compareTotal += item.compare_at_price * item.quantity;
-        }
+        originalTotal += item.original_line_price || 0;
       });
 
       // Show/hide entire price block
       priceWrap.classList.toggle('header__cart-price--hidden', cart.item_count === 0);
 
-      // Update sale price
+      // The sale price (blue) is always cart.total_price
       var saleEl = priceWrap.querySelector('.header__cart-sale-price');
       if (saleEl) saleEl.textContent = formatMoney(total);
 
-      // Update compare (strikethrough) price
+      // The compare/original price (black strikethrough) shows only when
+      // the sum of original prices is higher than what the customer actually pays
       var compareEl = priceWrap.querySelector('.header__cart-compare-price');
       if (compareEl) {
-        var showCompare = compareTotal > total;
+        var showCompare = originalTotal > total;
         compareEl.classList.toggle('header__cart-price--hidden', !showCompare);
-        compareEl.textContent = showCompare ? formatMoney(compareTotal) : '';
+        compareEl.textContent = showCompare ? formatMoney(originalTotal) : '';
       }
     }
 
