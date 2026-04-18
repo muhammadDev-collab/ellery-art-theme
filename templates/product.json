@@ -476,11 +476,27 @@
         "remove_vertical_spacing": true
       }
     },
+    "ss_social_proof_tDKqRY": {
+      "type": "ss-social-proof",
+      "name": "Social Proof",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "heading": "+200,000 CUSTOMERS FOR A REASON",
+        "review_text": "Based on 10810",
+        "review_link_text": "reviews",
+        "review_link": "",
+        "padding_top": 32,
+        "padding_bottom": 0,
+        "logo_max_height": 36
+      }
+    },
     "vso_testimonials_14_7JhUcQ": {
       "type": "vso-testimonials-14",
       "blocks": {
         "heading_wHqnjm": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "SEE WHAT OUR CUSTOMERS ARE SAYING",
             "heading_custom_font": false,
@@ -499,6 +515,7 @@
         },
         "review_summary_Y3zjYX": {
           "type": "review_summary",
+          "disabled": true,
           "settings": {
             "show_block": true,
             "text": "<strong>4.9/5</strong>",
@@ -654,13 +671,13 @@
         "background_gradient": "linear-gradient(360deg, rgba(247, 247, 247, 1), rgba(255, 255, 255, 1) 100%)",
         "full_width_desktop": true,
         "section_border_radius": 12,
-        "padding_top_desktop": 40,
+        "padding_top_desktop": 0,
         "padding_bottom_desktop": 40,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0,
         "margin_top_desktop": 0,
         "margin_bottom_desktop": 0,
-        "margin_top_mobile": 20,
+        "margin_top_mobile": 0,
         "margin_bottom_mobile": 20,
         "block_background_color": "#ffffff",
         "block_padding": 24,
@@ -731,6 +748,7 @@
     "rich_text_FgbXgq",
     "177634481806d89c19",
     "rich_text_XPHxNG",
+    "ss_social_proof_tDKqRY",
     "vso_testimonials_14_7JhUcQ"
   ]
 }
