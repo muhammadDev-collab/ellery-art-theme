@@ -150,15 +150,6 @@
     "ss_stats_2_eUEeDW": {
       "type": "ss-stats-2",
       "blocks": {
-        "item_BJckEP": {
-          "type": "item",
-          "settings": {
-            "count_from": "",
-            "count_to": "",
-            "suffix": "∞",
-            "text": "<p>Ways to fit your home</p>"
-          }
-        },
         "item_YBBzm4": {
           "type": "item",
           "settings": {
@@ -166,6 +157,15 @@
             "count_to": "2000",
             "suffix": "+",
             "text": "<p>Homes styled with Ellery</p>"
+          }
+        },
+        "item_BJckEP": {
+          "type": "item",
+          "settings": {
+            "count_from": "",
+            "count_to": "",
+            "suffix": "∞",
+            "text": "<p>Ways to fit your home</p>"
           }
         },
         "item_Pg7R6Q": {
@@ -179,8 +179,8 @@
         }
       },
       "block_order": [
-        "item_BJckEP",
         "item_YBBzm4",
+        "item_BJckEP",
         "item_Pg7R6Q"
       ],
       "name": "SS - Stats #2",
